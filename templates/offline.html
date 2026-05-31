@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Metisma</title>
+    
+    <style>
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('/static/fonts/Vazirmatn-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('/static/fonts/Vazirmatn-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Vazirmatn', Tahoma, sans-serif;
+        }
+    </style>
+
+    <link href="/static/css/output.css" rel="stylesheet">
+    
+    <style>
+        /* Safe area insets for mobile devices */
+        :root {
+            --safe-area-inset-top: env(safe-area-inset-top, 0px);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+            --safe-area-inset-left: env(safe-area-inset-left, 0px);
+            --safe-area-inset-right: env(safe-area-inset-right, 0px);
+        }
+        
+        .offline-container {
+            min-height: 100vh;
+            padding-top: var(--safe-area-inset-top);
+            padding-bottom: var(--safe-area-inset-bottom);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 flex items-center justify-center p-4 transition-colors duration-300">
+    
+    <div class="offline-container w-full max-w-md">
+        <div class="bg-white/90 dark:bg-dark-800/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 text-center border border-gray-200 dark:border-dark-700">
+            
+            <!-- Offline Icon -->
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-gold to-gold-dark shadow-lg shadow-gold/30 mb-6">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+            </div>
+            
+            <!-- Title -->
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">You're Offline</h1>
+            
+            <!-- Message -->
+            <p class="text-gray-600 dark:text-slate-400 mb-6 leading-relaxed">
+                It looks like you've lost your internet connection. Don't worry, you can still access some cached content.
+            </p>
+            
+            <!-- Tips -->
+            <div class="bg-dark-800/50 dark:bg-dark-700/50 rounded-xl p-4 mb-6 text-left">
+                <h3 class="font-semibold text-gold mb-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    What you can do:
+                </h3>
+                <ul class="text-sm text-slate-300 dark:text-slate-400 space-y-1.5 list-disc list-inside">
+                    <li>Check your network connection</li>
+                    <li>Try refreshing the page</li>
+                    <li>Access previously cached pages</li>
+                    <li>Enable airplane mode and back</li>
+                </ul>
+            </div>
+            
+            <!-- Retry Button -->
+            <button onclick="window.location.reload()" 
+                    class="w-full py-3.5 px-6 bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-dark-900 font-semibold rounded-xl shadow-lg shadow-gold/20 transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 dark:focus:ring-offset-dark-900">
+                <span class="flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Try Again
+                </span>
+            </button>
+            
+            <!-- Home Link -->
+            <a href="/" class="mt-4 inline-block text-sm text-gold hover:text-gold-light font-medium transition-colors">
+                ← Back to Home
+            </a>
+            
+        </div>
+        
+        <!-- Footer Info -->
+        <p class="text-center text-xs text-gray-500 dark:text-slate-500 mt-6">
+            Metisma Platform • Some features may be limited offline
+        </p>
+    </div>
+
+    <script>
+        // Auto-retry every 10 seconds when connection is restored
+        let retryInterval = setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 10000);
+
+        // Clean up interval on page unload
+        window.addEventListener('beforeunload', () => {
+            clearInterval(retryInterval);
+        });
+
+        // Listen for online event
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

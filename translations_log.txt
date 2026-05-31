@@ -1,0 +1,57 @@
+# Translation Log - Persian to English
+# =====================================
+
+## File: templates/admin/permission_dashboard.html
+1. "برای Edit Access‌های Each Role، of دکمه‌های زیر جدول استفاده کنید." → "Use the buttons below the table to edit each role's access."
+2. "لطفاً یک کاربر انتخاب کنید" → "Please select a user"
+3. "نمایش حالت لودینگ" → "Display loading state"
+
+## File: templates/admin/view_user_documents.html
+1. "مدارک User" → "User Documents"
+2. "لیست مدارک" → "List of Documents"
+3. "هیچ مدرکی آپلود نشده است" → "No document has been uploaded"
+4. "تأیید مدارک" → "Approve Documents"
+5. "رد مدارک" → "Reject Documents"
+6. "مدارک این کاربر قبلاً تأیید شده است" → "This user's documents have already been approved"
+
+## File: templates/base_pwa.html
+1. "داشبورد هوشمند" → "Smart Dashboard"
+2. "مدیریت مجوزها" → "Manage Permissions"
+3. "بارگذاری Metisma" → "Loading Metisma"
+
+## File: templates/landing.html
+1. "فونت وزیر برای پشتیبانی از اعداد و کاراکترهای خاص" → "Vazir font for supporting special characters and numbers"
+2. "انیمیشن دکمه تغییر تم" → "Theme toggle button animation"
+3. "اسکرول‌بار سفارشی برای زیبایی بیشتر" → "Custom scrollbar for better aesthetics"
+4. "استایل‌های ضروری برای کانواس Three.js و لایه‌بندی" → "Essential styles for Three.js canvas and layering"
+5. "استایل لودینگ: انیمیشن محو شدن" → "Loading style: Fade out animation"
+6. "انیمیشن لوگو و نوار پیشرفت Gmail-style" → "Logo animation and Gmail-style progress bar"
+7. "انیمیشن دکمه همبرگری منوی موبایل" → "Mobile menu hamburger button animation"
+8. "انیمیشن آکاردئون خدمات موبایل - حرفه‌ای و نرم" → "Mobile services accordion animation - professional and smooth"
+9. "افکت هاور کارت‌ها: حرکت به بالا و سایه طلایی" → "Card hover effect: upward movement and golden shadow"
+10. "غیرفعال کردن انتخاب متن روی دکمه‌ها برای تجربه کاربری بهتر" → "Disable text selection on buttons for better UX"
+11. "انیمیشن مارکی برای اسلایدر لوگوها" → "Marquee animation for logo slider"
+12. "استایل لوگوهای همکاران: فیلتر دارک‌مود و افکت هاور" → "Partner logos style: dark mode filter and hover effect"
+13. "کد کره زمین واقعی - نسخه آفلاین" → "Real globe code - offline version"
+
+## File: templates/users/dashboard.html
+1. "دکمه بازگشت به صفحه اصلی" → "Return to home page button"
+2. "مدیریت مجوزها" → "Manage Permissions"
+3. "هدر پروفایل کاربر" → "User profile header"
+4. "نمایش وضعیت تأیید هویت" → "Display identity verification status"
+5. "هویت تأیید شده" → "Identity verified"
+6. "مشاهده مدارک" → "View documents"
+7. "در حال بررسی" → "Under review"
+8. "مشاهده وضعیت" → "View status"
+9. "نیاز به آپلود مدارک" → "Need to upload documents"
+10. "شروع فرآیند" → "Start process"
+11. "مدیریت مجوزهای دسترسی" → "Access permissions management"
+12. "تنظیم دسترسی‌های ماژولار برای کاربران مختلف بر اساس نقش و خدمات" → "Configure modular access for different users based on role and services"
+
+## File: templates/users/register.html
+1. "کد کره زمین واقعی - نسخه آفلاین (بدون تغییر)" → "Real globe code - offline version (unchanged)"
+2. "این بخش تکسچرهای لوکال را لود می‌کند" → "This section loads local textures"
+
+## File: templates/users/show_backup_codes.html
+1. "چاپ Codeها" → "Print Codes"
+2. "می‌توانید از این Codeها عکس بگیرید یا آن‌ها را در یک مدیر رمز عبور مانند LastPass یا 1Password ذخیره کنید." → "You can take a photo of these codes or store them in a password manager like LastPass or 1Password."

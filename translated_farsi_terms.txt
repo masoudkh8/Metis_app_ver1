@@ -1,0 +1,45 @@
+Translated Farsi Terms to English
+==================================
+
+File: /workspace/models/user.py
+-------------------------------
+1. "بازدیدکننده" -> "Visitor" (Default role name)
+2. docstring for role_display_name: "نمایش نام نقش کاربر" -> "Display the user's role name"
+3. docstring for tier_display_name: "نمایش نام سطح کاربر" -> "Display the user's tier name"
+4. docstring for is_core_member: "بررسی اینکه آیا کاربر عضو اصلی است" -> "Check if the user is a core member"
+5. docstring for is_admin_or_moderator: "بررسی اینکه آیا کاربر ادمین یا ناظر است" -> "Check if the user is an admin or moderator"
+6. docstring for can_access_tier: "بررسی دسترسی کاربر به سطح خاص" -> "Check user access to a specific tier"
+7. docstring for generate_invite_code: "تولید کد دعوت برای کاربر" -> "Generate invite code for the user"
+8. docstring for follow: "دنبال کردن کاربر دیگر" -> "Follow another user"
+9. docstring for unfollow: "لغو دنبال کردن کاربر دیگر" -> "Unfollow another user"
+10. docstring for is_following: "بررسی اینکه آیا این کاربر، کاربر دیگر را دنبال می‌کند" -> "Check if this user is following another user"
+
+File: /workspace/routes/admin/routes.py
+---------------------------------------
+11. docstring for dashboard: "صفحه داشبورد ادمین" -> "Admin dashboard page"
+12. docstring for view_all_documents: "مشاهده تمام مدارک کاربران" -> "View all user documents"
+13. docstring for verify_user_documents: "تأیید مدارک کاربر" -> "Verify user documents"
+14. docstring for reject_user_documents: "رد مدارک کاربر" -> "Reject user documents"
+15. docstring for admin_chat_list: "لیست چت‌های ادمین" -> "Admin chat list"
+16. docstring for admin_chat_with_user: "چت ادمین با کاربر" -> "Admin chat with user"
+17. "کاربر با موفقیت تأیید شد" -> "User successfully verified" (notification message)
+18. "خطا در تأیید کاربر" -> "Error verifying user" (notification message)
+19. "مدارک کاربر رد شد" -> "User documents rejected" (notification message)
+20. "خطا در رد مدارک کاربر" -> "Error rejecting user documents" (notification message)
+21. "پیام ارسال شد" -> "Message sent" (flash message)
+22. "خطا در ارسال پیام" -> "Error sending message" (flash message)
+
+File: /workspace/routes/users/auth.py
+-------------------------------------
+23. Password Recovery section comments and docstrings translated
+24. Two-Factor Authentication section comments and docstrings translated
+25. Session Management section comments and docstrings translated
+26. User Activities section comments and docstrings translated
+27. Various error messages and descriptions translated from Farsi to English
+
+Summary:
+--------
+- Total files modified: 3
+- Total lines changed: ~140
+- All Farsi text in docstrings, comments, and string literals translated to English
+- No functionality changed, only text translations

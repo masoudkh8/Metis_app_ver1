@@ -1,0 +1,566 @@
+Persian to English Translation Dictionary
+==========================================
+
+کاربران -> Users
+مدیریت کاربران -> Manage Users
+نام کاربری -> Username
+نام -> Name
+نام خانوادگی -> Last Name
+ایمیل -> Email
+نقش -> Role
+عملیات -> Actions
+ویرایش -> Edit
+حذف -> Delete
+آیا مطمئن هستید؟ -> Are you sure?
+بله -> Yes
+خیر -> No
+افزودن کاربر جدید -> Add New User
+ذخیره -> Save
+انصراف -> Cancel
+جستجو -> Search
+نمایش -> Show
+ورودی‌ها -> Entries
+صفحه -> Page
+از -> of
+قبلی -> Previous
+بعدی -> Next
+مجوزها -> Permissions
+مدیریت مجوزهای کاربر -> Manage User Permissions
+دسترسی‌ها -> Access Rights
+سطح دسترسی -> Access Level
+ادمین -> Admin
+کاربر عادی -> Normal User
+غیرفعال -> Inactive
+فعال -> Active
+تغییر رمز عبور -> Change Password
+رمز عبور جدید -> New Password
+تکرار رمز عبور -> Confirm Password
+آخرین ورود -> Last Login
+تاریخ ایجاد -> Created Date
+وضعیت -> Status
+انتخاب نقش -> Select Role
+انتخاب مجوزها -> Select Permissions
+داشبورد -> Dashboard
+تنظیمات -> Settings
+خروج -> Logout
+پروفایل -> Profile
+لیست کاربران -> User List
+جزئیات کاربر -> User Details
+ویرایش کاربر -> Edit User
+حذف کاربر -> Delete User
+افزودن -> Add
+بروزرسانی -> Update
+لغو -> Cancel
+تایید -> Confirm
+خطا -> Error
+موفقیت آمیز -> Successful
+پیام -> Message
+هیچ داده‌ای یافت نشد -> No data found
+بارگذاری -> Loading
+در حال پردازش -> Processing
+بستن -> Close
+ذخیره تغییرات -> Save Changes
+بازگشت -> Back
+خانه -> Home
+مدیریت -> Management
+گزارش‌ها -> Reports
+پشتیبانی -> Support
+راهنما -> Help
+تماس با ما -> Contact Us
+درباره ما -> About Us
+شرایط استفاده -> Terms of Use
+حریم خصوصی -> Privacy Policy
+کلمه عبور -> Password
+فراموشی رمز عبور -> Forgot Password
+بازنشانی رمز عبور -> Reset Password
+ارسال -> Send
+دریافت -> Receive
+ثبت نام -> Register
+ورود -> Login
+خوش آمدید -> Welcome
+سلام -> Hello
+خداحافظ -> Goodbye
+شب بخیر -> Good Night
+صبح بخیر -> Good Morning
+عصر بخیر -> Good Afternoon
+امروز -> Today
+دیروز -> Yesterday
+فردا -> Tomorrow
+هفته -> Week
+ماه -> Month
+سال -> Year
+زمان -> Time
+تاریخ -> Date
+ساعت -> Hour
+دقیقه -> Minute
+ثانیه -> Second
+شماره -> Number
+کد -> Code
+شناسه -> ID
+عنوان -> Title
+توضیحات -> Description
+متن -> Text
+محتوا -> Content
+فایل -> File
+تصویر -> Image
+ویدیو -> Video
+صدا -> Audio
+لینک -> Link
+آدرس -> Address
+موقعیت -> Location
+نقشه -> Map
+جستجوی پیشرفته -> Advanced Search
+فیلتر -> Filter
+مرتب‌سازی -> Sort
+نزولی -> Descending
+صعودی -> Ascending
+نمایش همه -> Show All
+مخفی کردن -> Hide
+ظاهر کردن -> Show
+تنظیمات پیشرفته -> Advanced Settings
+عمومی -> General
+خصوصی -> Private
+عمومی و خصوصی -> Public and Private
+دسته‌بندی -> Category
+برچسب -> Tag
+کلیدواژه -> Keyword
+مطالب مرتبط -> Related Posts
+نظرات -> Comments
+دیدگاه‌ها -> Views
+بازدیدها -> Visits
+تعداد -> Count
+جمع کل -> Total
+میانگین -> Average
+حداقل -> Minimum
+حداکثر -> Maximum
+مقایسه -> Compare
+تحلیل -> Analysis
+آمار -> Statistics
+نمودار -> Chart
+جدول -> Table
+لیست -> List
+نمای کارت -> Card View
+نمای جدول -> Table View
+نمای شبکه -> Grid View
+چاپ -> Print
+دانلود -> Download
+آپلود -> Upload
+انتقال -> Transfer
+کپی -> Copy
+جابجایی -> Move
+تغییر نام -> Rename
+ایجاد -> Create
+پاک کردن -> Clear
+خالی کردن -> Empty
+بازیابی -> Recover
+بازگردانی -> Restore
+پشتیبان‌گیری -> Backup
+به‌روزرسانی -> Update
+نسخه -> Version
+سیستم -> System
+برنامه -> Application
+نرم‌افزار -> Software
+سخت‌افزار -> Hardware
+سرور -> Server
+کلاینت -> Client
+پایگاه داده -> Database
+شبکه -> Network
+امنیت -> Security
+احراز هویت -> Authentication
+مجوز -> Authorization
+رمزنگاری -> Encryption
+کلید -> Key
+قفل -> Lock
+باز کردن قفل -> Unlock
+مسدود کردن -> Block
+رفع مسدودیت -> Unblock
+اخطار -> Warning
+خطر -> Danger
+موفقیت -> Success
+اطلاعات -> Information
+سوال -> Question
+پاسخ -> Answer
+کمک -> Help
+راهنمایی -> Guidance
+آموزش -> Tutorial
+مستندات -> Documentation
+منبع -> Source
+مقصد -> Destination
+مبدا -> Origin
+جهت -> Direction
+مسیر -> Path
+فاصله -> Distance
+اندازه -> Size
+وزن -> Weight
+رنگ -> Color
+شکل -> Shape
+نوع -> Type
+جنس -> Material
+کیفیت -> Quality
+قیمت -> Price
+هزینه -> Cost
+ارز -> Currency
+پرداخت -> Payment
+تراکنش -> Transaction
+فاکتور -> Invoice
+رسید -> Receipt
+سفارش -> Order
+خرید -> Purchase
+فروش -> Sale
+محصول -> Product
+خدمت -> Service
+مشتری -> Customer
+فروشنده -> Seller
+تامین کننده -> Supplier
+همکار -> Partner
+تیم -> Team
+گروه -> Group
+بخش -> Section
+واحد -> Unit
+سازمان -> Organization
+شرکت -> Company
+موسسه -> Institute
+بنیاد -> Foundation
+انجمن -> Association
+اتحادیه -> Union
+شورا -> Council
+کمیته -> Committee
+دفتر -> Office
+اداره -> Department
+وزارت -> Ministry
+دولت -> Government
+کشور -> Country
+شهر -> City
+استان -> Province
+ناحیه -> District
+منطقه -> Region
+محله -> Neighborhood
+خیابان -> Street
+کوچه -> Alley
+پلاک -> Plate
+طبقه -> Floor
+واحد -> Unit
+ساختمان -> Building
+مجتمع -> Complex
+برج -> Tower
+مرکز -> Center
+میدان -> Square
+پارک -> Park
+باغ -> Garden
+فضای سبز -> Green Space
+محیط زیست -> Environment
+طبیعت -> Nature
+جانوران -> Animals
+گیاهان -> Plants
+آب -> Water
+هوا -> Air
+خاک -> Soil
+آتش -> Fire
+انرژی -> Energy
+نیرو -> Force
+قدرت -> Power
+سرعت -> Speed
+شتاب -> Acceleration
+حرکت -> Movement
+سکون -> Stillness
+تعادل -> Balance
+عدم تعادل -> Imbalance
+هماهنگی -> Coordination
+همکاری -> Cooperation
+رقابت -> Competition
+مسابقات -> Competitions
+مسابقه -> Contest
+جایزه -> Prize
+مدال -> Medal
+تقدیرنامه -> Certificate of Appreciation
+لوح تقدیر -> Plaque
+هدیه -> Gift
+سوغاتی -> Souvenir
+یادگاری -> Memento
+خاطره -> Memory
+یادآوری -> Reminder
+یادداشت -> Note
+پیام -> Message
+نامه -> Letter
+ایمیل -> Email
+پیامک -> SMS
+تماس -> Call
+تماس تلفنی -> Phone Call
+تماس تصویری -> Video Call
+کنفرانس -> Conference
+جلسه -> Meeting
+گردهمایی -> Gathering
+همایش -> Symposium
+سمینار -> Seminar
+کارگاه -> Workshop
+دوره -> Course
+کلاس -> Class
+درس -> Lesson
+معلم -> Teacher
+استاد -> Professor
+دانشجو -> Student
+دانش آموز -> Pupil
+مدرسه -> School
+دانشگاه -> University
+کتابخانه -> Library
+کتاب -> Book
+مجله -> Magazine
+روزنامه -> Newspaper
+مقاله -> Article
+تحقیق -> Research
+پژوهش -> Study
+نظریه -> Theory
+فرضیه -> Hypothesis
+نتیجه -> Result
+یافته -> Finding
+دستاورد -> Achievement
+پیشرفت -> Progress
+رشد -> Growth
+توسعه -> Development
+بهبود -> Improvement
+اصلاح -> Correction
+تغییر -> Change
+تحول -> Transformation
+انقلاب -> Revolution
+شورش -> Rebellion
+اعتراض -> Protest
+تظاهرات -> Demonstration
+راهپیمایی -> March
+تجمع -> Rally
+اعتصاب -> Strike
+lockout -> Lockout
+بیکاری -> Unemployment
+اشتغال -> Employment
+کار -> Work
+شغل -> Job
+حرفه -> Profession
+پیشه -> Trade
+مهارت -> Skill
+تخصص -> Expertise
+تجربه -> Experience
+سابقه -> Record
+رزومه -> Resume
+درخواست کار -> Job Application
+مصاحبه -> Interview
+پذیرش -> Acceptance
+رد -> Rejection
+استخدام -> Hiring
+اخراج -> Firing
+بازنشستگی -> Retirement
+مرخصی -> Leave
+تعطیلات -> Vacation
+استراحت -> Rest
+خواب -> Sleep
+بیداری -> Wakefulness
+رویای -> Dream
+کابوس -> Nightmare
+امید -> Hope
+ناامیدی -> Despair
+شادی -> Happiness
+غم -> Sadness
+خشم -> Anger
+ترس -> Fear
+شجاعت -> Courage
+ترسو -> Coward
+دلیر -> Brave
+قوی -> Strong
+ضعیف -> Weak
+سالم -> Healthy
+بیمار -> Sick
+دکتر -> Doctor
+پرستار -> Nurse
+بیمارستان -> Hospital
+کلینیک -> Clinic
+داروخانه -> Pharmacy
+دارو -> Medicine
+درمان -> Treatment
+پیشگیری -> Prevention
+واکسن -> Vaccine
+بیماری -> Disease
+عفونت -> Infection
+ویروس -> Virus
+باکتری -> Bacteria
+میکروب -> Germ
+سلامتی -> Health
+تندرستی -> Wellness
+ورزش -> Sport
+بدنسازی -> Bodybuilding
+فوتبال -> Football
+بسکتبال -> Basketball
+والیبال -> Volleyball
+تنیس -> Tennis
+شنا -> Swimming
+دویدن -> Running
+پیاده‌روی -> Walking
+کوهنوردی -> Mountaineering
+سفر -> Travel
+مسافرت -> Trip
+گردشگری -> Tourism
+سیاحت -> Sightseeing
+زیارت -> Pilgrimage
+حج -> Hajj
+عمره -> Umrah
+مسجد -> Mosque
+حسینیه -> Hussainiya
+تکیه -> Tekyeh
+امامزاده -> Shrine
+کلیسا -> Church
+کنیسه -> Synagogue
+معبد -> Temple
+مذهب -> Religion
+اعتقاد -> Belief
+ایمان -> Faith
+عبادت -> Worship
+نیایش -> Prayer
+دعا -> Supplication
+قرآن -> Quran
+انجیل -> Gospel
+تورات -> Torah
+زبور -> Psalms
+پیامبر -> Prophet
+رسول -> Messenger
+امام -> Imam
+ولی -> Saint
+شهید -> Martyr
+ایثارگر -> Self-sacrificing
+جانباز -> Veteran
+آزاده -> Freed Captive
+اسیر -> Captive
+زندانی -> Prisoner
+بازداشت -> Detention
+دستگیری -> Arrest
+توقیف -> Seizure
+ضبط -> Confiscation
+مصادره -> Forfeiture
+جریمه -> Fine
+شلاق -> Lash
+اعدام -> Execution
+قتل -> Murder
+کشتار -> Massacre
+خونریزی -> Bloodshed
+جنگ -> War
+صلح -> Peace
+آتش بس -> Ceasefire
+پیمان -> Treaty
+قرارداد -> Contract
+عهد -> Covenant
+قول -> Promise
+تعهد -> Commitment
+مسئولیت -> Responsibility
+وظیفه -> Duty
+حق -> Right
+عدالت -> Justice
+ظلم -> Oppression
+ستم -> Tyranny
+استبداد -> Despotism
+استعمار -> Colonialism
+استثمار -> Exploitation
+فقیر -> Poor
+ثروتمند -> Rich
+غنی -> Wealthy
+نادار -> Needy
+محتاج -> Needy
+یتیم -> Orphan
+بیوه -> Widow
+ازکارافتاده -> Disabled
+سالمند -> Elderly
+کودک -> Child
+نوزاد -> Infant
+نوجوان -> Teenager
+جوان -> Youth
+میانسال -> Middle-aged
+پیر -> Old
+مرد -> Man
+زن -> Woman
+دختر -> Girl
+پسر -> Boy
+پدر -> Father
+مادر -> Mother
+برادر -> Brother
+خواهر -> Sister
+عمو -> Uncle (Paternal)
+دایی -> Uncle (Maternal)
+عمه -> Aunt (Paternal)
+خاله -> Aunt (Maternal)
+پدربزرگ -> Grandfather
+مادربزرگ -> Grandmother
+نوه -> Grandchild
+نتیجه -> Grandson/Granddaughter
+داماد -> Son-in-law
+عروس -> Daughter-in-law
+خویشاوند -> Relative
+فامیل -> Family Member
+دوست -> Friend
+آشنا -> Acquaintance
+همسایه -> Neighbor
+همکار -> Colleague
+شریک -> Partner
+رفیق -> Companion
+یار -> Friend
+دشمن -> Enemy
+حریف -> Opponent
+رقیب -> Rival
+بیگانه -> Stranger
+غریبه -> Stranger
+مهمان -> Guest
+میزبان -> Host
+صاحب خانه -> Homeowner
+مستاجر -> Tenant
+اجاره -> Rent
+خرید -> Buy
+فروش -> Sell
+معامله -> Deal
+تجارت -> Trade
+بازار -> Market
+بازارچه -> Bazaar
+مغازه -> Shop
+فروشگاه -> Store
+سوپرمارکت -> Supermarket
+هیپرمارکت -> Hypermarket
+مرکز خرید -> Shopping Center
+مال -> Mall
+بوتهیک -> Boutique
+نمایشگاه -> Exhibition
+گالری -> Gallery
+موزه -> Museum
+تماشاخانه -> Theater
+سینما -> Cinema
+تئاتر -> Theater
+کنسرت -> Concert
+جشن -> Celebration
+جشنواره -> Festival
+مراسم -> Ceremony
+عروسی -> Wedding
+نامزدی -> Engagement
+طلاق -> Divorce
+تولد -> Birthday
+سالگرد -> Anniversary
+عید -> Holiday
+تعطیل -> Closed
+باز -> Open
+ساعات کاری -> Working Hours
+روزهای کاری -> Working Days
+آخر هفته -> Weekend
+شنبه -> Saturday
+یکشنبه -> Sunday
+دوشنبه -> Monday
+سه‌شنبه -> Tuesday
+چهارشنبه -> Wednesday
+پنجشنبه -> Thursday
+جمعه -> Friday
+بهار -> Spring
+تابستان -> Summer
+پاییز -> Autumn/Fall
+زمستان -> Winter
+فروردین -> Farvardin
+اردیبهشت -> Ordibehesht
+خرداد -> Khordad
+تیر -> Tir
+مرداد -> Mordad
+شهریور -> Shahrivar
+مهر -> Mehr
+آبان -> Aban
+آذر -> Azar
+دی -> Dey
+بهمن -> Bahman
+اسفند -> Esfand

@@ -1,0 +1,80 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Premium Upgrade Requests{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- دکمه بازگشت به داشبورد ادمین -->
+        <div class="mb-6">
+            <a href="{{ url_for('admin.dashboard') }}" 
+               class="inline-flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Admin Dashboard
+            </a>
+        </div>
+        
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">📂 Premium Upgrade Requests</h1>
+
+        <!-- فیلترهای وضعیت -->
+        <div class="flex flex-wrap gap-2 mb-6">
+            <a href="{{ url_for('admin.premium_requests', status='all') }}" class="px-4 py-2 rounded-lg text-sm font-medium transition {% if status_filter == 'all' or not status_filter %}bg-gold text-dark-900{% else %}bg-white dark:bg-dark-800 text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-dark-700 hover:bg-gray-50 dark:hover:bg-dark-700{% endif %}">All</a>
+            <a href="{{ url_for('admin.premium_requests', status='pending') }}" class="px-4 py-2 rounded-lg text-sm font-medium transition {% if status_filter == 'pending' %}bg-gold text-dark-900{% else %}bg-white dark:bg-dark-800 text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-dark-700 hover:bg-gray-50 dark:hover:bg-dark-700{% endif %}">Pending ⏳</a>
+            <a href="{{ url_for('admin.premium_requests', status='approved') }}" class="px-4 py-2 rounded-lg text-sm font-medium transition {% if status_filter == 'approved' %}bg-gold text-dark-900{% else %}bg-white dark:bg-dark-800 text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-dark-700 hover:bg-gray-50 dark:hover:bg-dark-700{% endif %}">Approved ✅</a>
+            <a href="{{ url_for('admin.premium_requests', status='rejected') }}" class="px-4 py-2 rounded-lg text-sm font-medium transition {% if status_filter == 'rejected' %}bg-gold text-dark-900{% else %}bg-white dark:bg-dark-800 text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-dark-700 hover:bg-gray-50 dark:hover:bg-dark-700{% endif %}">Rejected ❌</a>
+        </div>
+
+        <!-- جدول درخواست‌ها -->
+        <div class="bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 overflow-x-auto">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-gray-50 dark:bg-dark-700/50 border-b border-gray-200 dark:border-dark-600">
+                    <tr>
+                        <th class="px-4 py-3 font-semibold text-gray-700 dark:text-slate-300">User</th>
+                        <th class="px-4 py-3 font-semibold text-gray-700 dark:text-slate-300">Phone</th>
+                        <th class="px-4 py-3 font-semibold text-gray-700 dark:text-slate-300">Status</th>
+                        <th class="px-4 py-3 font-semibold text-gray-700 dark:text-slate-300">Submitted</th>
+                        <th class="px-4 py-3 font-semibold text-gray-700 dark:text-slate-300 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-dark-600">
+                    {% for req in requests %}
+                    <tr class="hover:bg-gray-50 dark:hover:bg-dark-700/30 transition">
+                        <td class="px-4 py-3 font-medium text-gray-900 dark:text-white">{{ req.user.username }}</td>
+                        <td class="px-4 py-3 text-gray-600 dark:text-slate-400 text-xs">{{ req.requested_phone or '—' }}</td>
+                        <td class="px-4 py-3">
+                            {% if req.status == 'pending' %}
+                                <span class="px-2.5 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-xs font-medium">Pending ⏳</span>
+                            {% elif req.status == 'approved' %}
+                                <span class="px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium">Approved ✅</span>
+                            {% else %}
+                                <span class="px-2.5 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-xs font-medium">Rejected ❌</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-3 text-gray-600 dark:text-slate-400 text-xs">{{ req.submitted_at.strftime('%Y/%m/%d - %H:%M') }}</td>
+                        <td class="px-4 py-3 text-right space-x-2">
+                            <a href="{{ url_for('admin.view_premium_request', req_id=req.id) }}" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-xs font-medium transition">👁️ View</a>
+                            {% if req.status == 'pending' %}
+                            <form method="POST" action="{{ url_for('admin.review_premium_request', req_id=req.id) }}" class="inline">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="action" value="approve">
+                                <button type="submit" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/50 text-xs font-medium transition">✅ Approve</button>
+                            </form>
+                            <form method="POST" action="{{ url_for('admin.review_premium_request', req_id=req.id) }}" class="inline">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="action" value="reject">
+                                <button type="submit" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/50 text-xs font-medium transition">❌ Reject</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="4" class="px-4 py-8 text-center text-gray-500 dark:text-slate-400">No requests found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

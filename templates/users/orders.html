@@ -1,0 +1,214 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-5xl mx-auto">
+        <!-- دکمه بازگشت به داشبورد -->
+        <div class="mb-6">
+            <a href="{{ url_for('users.profile') }}"
+               class="inline-flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Dashboard
+            </a>
+        </div>
+        
+        <!-- هدر بخش -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">My Orders</h2>
+            </div>
+            <a href="{{ url_for('users.place_order') }}" 
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-medium text-sm 
+                      hover:from-gold-light hover:to-gold transform hover:scale-[1.02] active:scale-[0.98] 
+                      transition-all duration-200 shadow">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+                New Order
+            </a>
+        </div>
+        
+        <!-- لیست سفارشات -->
+        <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 overflow-hidden">
+            {% if orders %}
+                <div class="divide-y divide-gray-200 dark:divide-dark-700">
+                    {% for order in orders %}
+                    <div class="p-5 hover:bg-gray-50 dark:hover:bg-dark-700/50 transition">
+                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                            
+                            <!-- اطلاعات اصلی سفارش -->
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="font-bold text-gray-900 dark:text-white">Order #{{ order.id }}</span>
+                                    <!-- وضعیت با رنگ -->
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold
+                                        {% if order.status.value == 'pending' %}bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400
+                                        {% elif order.status.value == 'confirmed' %}bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400
+                                        {% elif order.status.value == 'in_transit' %}bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400
+                                        {% elif order.status.value == 'delivered' %}bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400
+                                        {% else %}bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400{% endif %}">
+                                        {{ order.status.value|replace('_', ' ')|title }}
+                                    </span>
+                                </div>
+                                
+                                <p class="text-gray-600 dark:text-slate-400 text-sm mb-2">
+                                    <span class="font-medium text-gray-900 dark:text-white">{{ order.quantity_tons }} tons</span> of 
+                                    <span class="font-medium text-gray-900 dark:text-white">{{ order.product|title }}</span>
+                                    • <span class="text-gold font-semibold">${{ '{:,.0f}'.format(order.total_price) }}</span>
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-slate-400">
+                                    <span>📍 {{ order.origin_port }} → {{ order.destination_port }}</span>
+                                    <span>📅 {{ order.created_at.strftime('%d/%m/%Y') }}</span>
+                                    {% if order.shipped_at %}
+                                    <span>🚢 Shipped: {{ order.shipped_at.strftime('%d/%m/%Y') }}</span>
+                                    {% endif %}
+                                </div>
+                                
+                                {% if order.notes %}
+                                <p class="mt-2 text-sm text-gray-600 dark:text-slate-400 italic bg-gray-50 dark:bg-dark-700/50 rounded-lg p-2">
+                                    "{{ order.notes }}"
+                                </p>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- دکمه‌های اقدام -->
+                            <div class="flex items-center gap-2">
+                                 <button onclick="document.getElementById('detail-modal-{{ order.id }}').classList.remove('hidden')"
+                                        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-600 text-gray-500 hover:text-gold transition"
+                                        title="View Details">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                </button>
+                                {% if order.status.value == 'pending' and (order.buyer_id == current_user.id or current_user.role == Role.ADMIN) %}
+                                <form method="POST" action="{{ url_for('users.cancel_order', order_id=order.id) }}" class="inline" onsubmit="return confirm('Are you sure you want to cancel this order?')">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                    <button type="submit" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-600 text-gray-500 hover:text-red-500 transition" title="Cancel Order">
+                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </div>
+
+
+                            <!-- Order Detail Modal -->
+                            <div id="detail-modal-{{ order.id }}" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                                    <div class="p-6">
+                                        <div class="flex justify-between items-center mb-4">
+                                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Order #{{ order.id }} Details</h3>
+                                            <button onclick="document.getElementById('detail-modal-{{ order.id }}').classList.add('hidden')" class="text-gray-500 hover:text-gray-700">
+                                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                        <div class="space-y-4">
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <p class="text-sm text-gray-500 dark:text-slate-400">Product</p>
+                                                    <p class="font-medium text-gray-900 dark:text-white">{{ order.product|title }}</p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm text-gray-500 dark:text-slate-400">Quantity</p>
+                                                    <p class="font-medium text-gray-900 dark:text-white">{{ order.quantity_tons }} tons</p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm text-gray-500 dark:text-slate-400">Price per Ton</p>
+                                                    <p class="font-medium text-gold">${{ '{:,.2f}'.format(order.price_per_ton) }}</p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm text-gray-500 dark:text-slate-400">Total Price</p>
+                                                    <p class="font-bold text-gold">${{ '{:,.2f}'.format(order.total_price) }}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-t border-gray-200 dark:border-dark-700 pt-4">
+                                                <p class="text-sm text-gray-500 dark:text-slate-400 mb-2">Route</p>
+                                                <p class="font-medium text-gray-900 dark:text-white">{{ order.origin_port }} → {{ order.destination_port }}</p>
+                                            </div>
+
+                                            <div class="border-t border-gray-200 dark:border-dark-700 pt-4">
+                                                <p class="text-sm text-gray-500 dark:text-slate-400 mb-2">Status History</p>
+                                                <div class="flex items-center gap-2 text-sm">
+                                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold
+                                                        {% if order.status.value == 'pending' %}bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400
+                                                        {% elif order.status.value == 'confirmed' %}bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400
+                                                        {% elif order.status.value == 'in_transit' %}bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400
+                                                        {% elif order.status.value == 'delivered' %}bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400
+                                                        {% else %}bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400{% endif %}">
+                                                        {{ order.status.value|replace('_', ' ')|title }}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            {% if order.notes %}
+                                            <div class="border-t border-gray-200 dark:border-dark-700 pt-4">
+                                                <p class="text-sm text-gray-500 dark:text-slate-400 mb-2">Notes</p>
+                                                <p class="text-gray-700 dark:text-slate-300 italic">"{{ order.notes }}"</p>
+                                            </div>
+                                            {% endif %}
+
+                                            <div class="border-t border-gray-200 dark:border-dark-700 pt-4">
+                                                <p class="text-sm text-gray-500 dark:text-slate-400 mb-2">Timeline</p>
+                                                <div class="text-sm text-gray-700 dark:text-slate-300 space-y-1">
+                                                    <p>📅 Created: {{ order.created_at.strftime('%d/%m/%Y %H:%M') }}</p>
+                                                    {% if order.shipped_at %}
+                                                    <p>🚢 Shipped: {{ order.shipped_at.strftime('%d/%m/%Y %H:%M') }}</p>
+                                                    {% endif %}
+                                                    {% if order.delivered_at %}
+                                                    <p>✅ Delivered: {{ order.delivered_at.strftime('%d/%m/%Y %H:%M') }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-6 flex justify-end">
+                                            <button onclick="document.getElementById('detail-modal-{{ order.id }}').classList.add('hidden')"
+                                                    class="px-4 py-2 bg-gray-200 dark:bg-dark-700 text-gray-800 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-dark-600 transition">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <!-- حالت خالی -->
+                <div class="p-12 text-center">
+                    <div class="mx-auto h-16 w-16 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-700 dark:to-dark-800 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-gray-500 dark:text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">No Orders Yet</h3>
+                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-6">Start your first trade order to see it here.</p>
+                    <a href="{{ url_for('users.place_order') }}" 
+                       class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-medium text-sm 
+                              hover:from-gold-light hover:to-gold transform hover:scale-[1.02] active:scale-[0.98] 
+                              transition-all duration-200 shadow">
+                        Place Your First Order
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

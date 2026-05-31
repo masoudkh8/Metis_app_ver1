@@ -1,0 +1,380 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}User Profile - {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- هدر پروفایل با دکمه داشبورد -->
+        <div class="mb-6 flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">User Profile</h2>
+            <div class="flex gap-3">
+                {% if current_user.role.value == 'admin' %}
+                <a href="{{ url_for('users.manage_permissions') }}" 
+                   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium text-sm hover:from-purple-600 hover:to-indigo-700 transition shadow-md">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    Manage Permissions
+                </a>
+                {% endif %}
+                <a href="{{ url_for('users.dashboard') }}"
+                   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-medium text-sm hover:from-gold-light hover:to-gold transition shadow-md">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                    </svg>
+                    Smart Dashboard
+                </a>
+            </div>
+        </div>
+        
+        <!-- هدر پروفایل کاربر -->
+        <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 p-6 mb-6 transition-all duration-300">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-2xl font-bold text-dark-900 shadow-lg shadow-gold/30">
+                    {{ user.username[0]|upper }}
+                </div>
+                <div class="text-center sm:text-left flex-1">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{ user.username }}</h2>
+                    <p class="text-gray-600 dark:text-slate-400 capitalize">
+                        {{ user.role.name }} • {{ user.country }}
+                    </p>
+                    {% if user.is_premium %}
+                        <span class="inline-flex items-center gap-1 mt-2 px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-bold">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            Premium Member 🌟
+                        </span>
+                    {% endif %}
+                    
+                    <!-- نمایش وضعیت تأیید هویت -->
+                    <div class="mt-3 flex items-center gap-2 text-sm">
+                        {% if user.is_premium or document_status == 'approved' %}
+                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 font-medium">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                Identity Verified ✅
+                            </span>
+                            <a href="{{ url_for('users.view_my_documents') }}" class="text-gold hover:text-gold-dark underline text-xs font-medium">
+                                View Documents
+                            </a>
+                        {% elif document_status == 'pending' %}
+                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 font-medium">
+                                <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Under Review ⏳
+                            </span>
+                            <a href="{{ url_for('users.view_my_documents') }}" class="text-gold hover:text-gold-dark underline text-xs font-medium">
+                                View Status
+                            </a>
+                        {% else %}
+                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 font-medium">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                                </svg>
+                                Documents Required ⚠️
+                            </span>
+{#                            <a href="{{ url_for('users.upgrade_to_premium') }}" class="text-gold hover:text-gold-dark underline text-xs font-medium">#}
+{#                                Start Process#}
+{#                            </a>#}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <a href="{{ url_for('users.edit_profile') }}" 
+                       class="px-4 py-2 rounded-lg border border-gray-300 dark:border-dark-600 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-dark-700 transition text-sm font-medium text-center">
+                        ✏️ Edit Profile
+                    </a>
+                    {% if user.is_premium or document_status in ['approved', 'pending'] %}
+                        <a href="{{ url_for('users.view_my_documents') }}" 
+                           class="px-4 py-2 rounded-lg bg-gold text-dark-900 hover:bg-gold-dark transition text-sm font-medium text-center">
+                            📄 My Documents
+                        </a>
+                    {% elif document_status != 'approved' %}
+                        <a href="{{ url_for('users.upgrade_to_premium') }}" 
+                           class="px-4 py-2 rounded-lg bg-gold text-dark-900 hover:bg-gold-dark transition text-sm font-medium text-center">
+                            🚀 Upgrade to Premium
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Score Card -->
+        <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 p-6 mb-6 transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    <svg class="w-6 h-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                    </svg>
+                    Trust Score - Trust Core
+                </h3>
+                {% if current_user.trust_score and current_user.trust_score.total_score >= 75 %}
+                    <span class="px-3 py-1 rounded-full bg-gold/20 text-gold text-sm font-bold">
+                        🏆 {{ current_user.trust_score.get_badge() }}
+                    </span>
+                {% elif current_user.trust_score and current_user.trust_score.total_score >= 50 %}
+                    <span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-bold">
+                        🥈 {{ current_user.trust_score.get_badge() }}
+                    </span>
+                {% elif current_user.trust_score %}
+                    <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-sm font-bold">
+                        🥉 {{ current_user.trust_score.get_badge() }}
+                    </span>
+                {% endif %}
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Total Score -->
+                <div class="bg-gradient-to-br from-gold/10 to-gold-dark/10 dark:from-gold/20 dark:to-gold-dark/20 rounded-xl p-4 text-center border border-gold/30">
+                    <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">Total Score</p>
+                    <p class="text-3xl font-bold text-gold">
+                        {{ current_user.trust_score.total_score if current_user.trust_score else current_user.trust_score_value or 0 }}
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-slate-500 mt-1">/ 100</p>
+                </div>
+                
+                <!-- Identity Score -->
+                <div class="bg-white dark:bg-dark-700 rounded-xl p-4 text-center border border-gray-200 dark:border-dark-600">
+                    <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">Identity Verified</p>
+                    <p class="text-2xl font-bold {% if current_user.trust_score and current_user.trust_score.identity_score >= 20 %}text-green-600{% elif current_user.trust_score and current_user.trust_score.identity_score >= 10 %}text-yellow-600{% else %}text-red-600{% endif %}">
+                        {{ current_user.trust_score.identity_score if current_user.trust_score else 0 }}
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-slate-500 mt-1">/ 25</p>
+                </div>
+                
+                <!-- Expertise Score -->
+                <div class="bg-white dark:bg-dark-700 rounded-xl p-4 text-center border border-gray-200 dark:border-dark-600">
+                    <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">Expertise Verified</p>
+                    <p class="text-2xl font-bold {% if current_user.trust_score and current_user.trust_score.expertise_score >= 20 %}text-green-600{% elif current_user.trust_score and current_user.trust_score.expertise_score >= 10 %}text-yellow-600{% else %}text-red-600{% endif %}">
+                        {{ current_user.trust_score.expertise_score if current_user.trust_score else 0 }}
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-slate-500 mt-1">/ 25</p>
+                </div>
+                
+                <!-- Social & Dynamic Score -->
+                <div class="bg-white dark:bg-dark-700 rounded-xl p-4 text-center border border-gray-200 dark:border-dark-600">
+                    <p class="text-sm text-gray-600 dark:text-slate-400 mb-2">Social & Dynamic</p>
+                    <p class="text-2xl font-bold {% if current_user.trust_score and (current_user.trust_score.social_score + current_user.trust_score.dynamic_score) >= 30 %}text-green-600{% elif current_user.trust_score and (current_user.trust_score.social_score + current_user.trust_score.dynamic_score) >= 15 %}text-yellow-600{% else %}text-red-600{% endif %}">
+                        {{ (current_user.trust_score.social_score + current_user.trust_score.dynamic_score) if current_user.trust_score else 0 }}
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-slate-500 mt-1">/ 50</p>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="mt-4">
+                <div class="flex justify-between text-sm mb-1">
+                    <span class="text-gray-600 dark:text-slate-400">Trust Progress</span>
+                    <span class="font-bold text-gold">
+                        {{ current_user.trust_score.total_score if current_user.trust_score else current_user.trust_score_value or 0 }}%
+                    </span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-dark-600 rounded-full h-3 overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-gold to-gold-dark transition-all duration-500" 
+                         style="width: {{ current_user.trust_score.total_score if current_user.trust_score else current_user.trust_score_value or 0 }}%">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tips -->
+            <div class="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                <p class="text-sm text-blue-800 dark:text-blue-200">
+                    <strong>💡 Tip:</strong> Increase your trust score by completing documents and activities
+                </p>
+            </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+            <!-- Permission Management Card (Admin Only) -->
+            {% if current_user.role.value == 'admin' %}
+            <div class="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-xl p-5 shadow border border-purple-200 dark:border-purple-700 transition-all duration-300 hover:shadow-lg col-span-1 md:col-span-2 lg:col-span-3">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-2xl shadow-lg">
+                            🔐
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 dark:text-white text-lg">Permission Management</h3>
+                            <p class="text-gray-600 dark:text-slate-400 text-sm">Configure modular access for different users based on roles and services</p>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('users.manage_permissions') }}" 
+                       class="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold text-sm 
+                              hover:from-purple-600 hover:to-indigo-700 transform hover:scale-[1.02] active:scale-[0.98] 
+                              transition-all duration-200 shadow-lg whitespace-nowrap flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        Manage Permissions
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+            
+{#            <!-- Orders Card -->#}
+{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
+{#                <div class="flex items-center justify-between mb-4">#}
+{#                    <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">#}
+{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
+{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>#}
+{#                        </svg>#}
+{#                        Orders#}
+{#                    </h3>#}
+{#                    {% if pending_orders > 0 %}#}
+{#                        <span class="px-2 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold">#}
+{#                            {{ pending_orders }} New#}
+{#                        </span>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#                <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">View and manage your trade orders.</p>#}
+{#                <a href="{{ url_for('users.my_orders') }}"#}
+{#                   class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
+{#                    View Orders →#}
+{#                </a>#}
+{#            </div>#}
+
+{#            <!-- Manage Orders Card (Producer Only) -->#}
+{#            {% if current_user.role.value == 'producer' %}#}
+{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
+{#                <div class="flex items-center gap-3 mb-4">#}
+{#                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">#}
+{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
+{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>#}
+{#                        </svg>#}
+{#                    </div>#}
+{#                    <h3 class="font-bold text-gray-900 dark:text-white">Manage Orders</h3>#}
+{#                </div>#}
+{#                <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Process incoming orders from buyers.</p>#}
+{#                <a href="{{ url_for('users.seller_orders') }}" #}
+{#                   class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
+{#                    Manage →#}
+{#                </a>#}
+{#            </div>#}
+{#            {% endif %}#}
+
+{#            <!-- Smart Chat Card -->#}
+{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
+{#                <div class="flex items-center gap-3 mb-4">#}
+{#                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">#}
+{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
+{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>#}
+{#                        </svg>#}
+{#                    </div>#}
+{#                    <h3 class="font-bold text-gray-900 dark:text-white">Smart Chat</h3>#}
+{#                </div>#}
+{#                {% if current_user.is_premium %}#}
+{#                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Connect with verified traders worldwide.</p>#}
+{#                    <a href="{{ url_for('users.chat') }}" #}
+{#                       class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
+{#                        Open Chat →#}
+{#                    </a>#}
+{#                {% else %}#}
+{#                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Premium feature: Chat with verified traders.</p>#}
+{#                    <a href="{{ url_for('users.upgrade_to_premium') }}" #}
+{#                       class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
+{#                        Unlock →#}
+{#                    </a>#}
+{#                {% endif %}#}
+{#            </div>#}
+{##}
+{#            <!-- Support Card -->#}
+{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
+{#                <div class="flex items-center gap-3 mb-4">#}
+{#                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">#}
+{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
+{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>#}
+{#                        </svg>#}
+{#                    </div>#}
+{#                    <h3 class="font-bold text-gray-900 dark:text-white">Support</h3>#}
+{#                </div>#}
+{#                <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Get help from our expert team.</p>#}
+{#                <a href="{{ url_for('users.support') }}" #}
+{#                   class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
+{#                    Contact Support →#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{#            <!-- Port Finder Card (Premium) -->#}
+{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
+{#                <div class="flex items-center gap-3 mb-4">#}
+{#                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">#}
+{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
+{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>#}
+{#                        </svg>#}
+{#                    </div>#}
+{#                    <h3 class="font-bold text-gray-900 dark:text-white">Port Finder</h3>#}
+{#                </div>#}
+{#                {% if current_user.is_premium %}#}
+{#                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Find optimal ports for your shipments.</p>#}
+{#                    <a href="{{ url_for('users.show_map') }}" #}
+{#                       class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
+{#                        Open Map →#}
+{#                    </a>#}
+{#                {% else %}#}
+{#                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Premium: Interactive port & vessel tracking.</p>#}
+{#                    <a href="{{ url_for('users.upgrade_to_premium') }}" #}
+{#                       class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
+{#                        Unlock →#}
+{#                    </a>#}
+{#                {% endif %}#}
+{#            </div>#}
+
+            <!-- Upgrade to Premium Card -->
+            {% if not current_user.is_premium %}
+            <div class="bg-gradient-to-br from-gold/10 to-gold-dark/10 dark:from-gold/20 dark:to-gold-dark/20 rounded-xl p-5 shadow border border-gold/30 transition-all duration-300 hover:shadow-lg col-span-1 md:col-span-2 lg:col-span-3">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-dark-900 font-bold shadow-lg">
+                            🌟
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 dark:text-white">Start Premium Journey</h3>
+                            <p class="text-gray-600 dark:text-slate-400 text-sm">Upload documents, get verified & unlock all features (Premium Level 1)</p>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('users.upgrade_to_premium') }}" 
+                       class="px-6 py-3 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-bold text-sm 
+                              hover:from-gold-light hover:to-gold transform hover:scale-[1.02] active:scale-[0.98] 
+                              transition-all duration-200 shadow-lg whitespace-nowrap">
+                        🚀 Start Premium
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <!-- Premium Status Card -->
+            <div class="bg-gradient-to-br from-gold/10 to-gold-dark/10 dark:from-gold/20 dark:to-gold-dark/20 rounded-xl p-5 shadow border border-gold/30 transition-all duration-300 col-span-1 md:col-span-2 lg:col-span-3">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-dark-900 font-bold shadow-lg">
+                        ✅
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white">You're a Premium Member! 🌟</h3>
+                        <p class="text-gray-600 dark:text-slate-400 text-sm">Enjoy unlimited access to all Metisma features.</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Logout Button -->
+        <div class="mt-8 text-center">
+            <a href="{{ url_for('users.logout') }}" 
+               class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-gray-300 dark:border-dark-600 
+                      text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-dark-700 
+                      font-medium text-sm transition">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                </svg>
+                Sign Out
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

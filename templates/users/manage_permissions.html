@@ -1,0 +1,825 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Access Permissions Management{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        --info-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        --danger-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+        --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+        --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+        --shadow-xl: 0 20px 60px rgba(0,0,0,0.2);
+        --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        --border-radius: 24px;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+    }
+
+    /* Permissions Page */
+    .permissions-page {
+        padding: 2rem 0;
+    }
+    
+    /* Page Header */
+    .page-header {
+        background: var(--primary-gradient);
+        border-radius: var(--border-radius);
+        padding: 3rem 2.5rem;
+        margin-bottom: 2.5rem;
+        color: white;
+        box-shadow: var(--shadow-xl);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.18);
+    }
+    
+    .page-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .header-content {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .page-header h2 {
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+        font-size: 2.2rem;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        letter-spacing: -0.5px;
+    }
+    
+    .page-header p {
+        opacity: 0.95;
+        font-size: 1.15rem;
+        font-weight: 400;
+        max-width: 600px;
+    }
+    
+    .user-badge {
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    .user-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        background: rgba(255,255,255,0.25);
+    }
+    
+    /* User Selector Card */
+    .user-selector-card {
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-lg);
+        border: none;
+        margin-bottom: 2.5rem;
+        overflow: hidden;
+        transition: var(--transition);
+    }
+    
+    .user-selector-card:hover {
+        box-shadow: var(--shadow-xl);
+        transform: translateY(-5px);
+    }
+    
+    .user-selector-card .card-header {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 1.5rem 2rem;
+        border: none;
+        font-weight: 700;
+        font-size: 1.15rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .filter-select {
+        border: 2px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 1rem 1.25rem;
+        font-weight: 600;
+        transition: var(--transition);
+        background: white;
+        font-size: 1rem;
+    }
+    
+    .filter-select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        outline: none;
+        transform: translateY(-2px);
+    }
+    
+    /* Permission Card */
+    .permission-card {
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-lg);
+        border: none;
+        overflow: hidden;
+        transition: var(--transition);
+    }
+    
+    .permission-card:hover {
+        box-shadow: var(--shadow-xl);
+        transform: translateY(-5px);
+    }
+    
+    .permission-card .card-header {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        padding: 1.75rem 2rem;
+        border-bottom: 3px solid #e2e8f0;
+        font-weight: 700;
+        color: #2d3748;
+        font-size: 1.15rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    /* Category Section */
+    .category-section {
+        margin-bottom: 2.5rem;
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        border: 2px solid #e2e8f0;
+        transition: var(--transition);
+    }
+    
+    .category-section:hover {
+        border-color: #cbd5e0;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .category-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.75rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid #cbd5e0;
+        gap: 1rem;
+    }
+    
+    .category-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        flex-shrink: 0;
+    }
+    
+    .category-section:hover .category-icon {
+        transform: rotate(10deg) scale(1.1);
+    }
+    
+    .category-title {
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: #2d3748;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    /* Permission Item */
+    .permission-item {
+        background: white;
+        border-radius: 14px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        border: 2px solid transparent;
+        gap: 1rem;
+    }
+    
+    .permission-item:hover {
+        transform: translateX(10px);
+        box-shadow: var(--shadow-md);
+        border-color: #667eea;
+        background: linear-gradient(90deg, #ffffff 0%, #f7fafc 100%);
+    }
+    
+    .permission-checkbox {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        accent-color: #667eea;
+        flex-shrink: 0;
+        transition: var(--transition);
+    }
+    
+    .permission-checkbox:hover {
+        transform: scale(1.15);
+    }
+    
+    .permission-info {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .permission-name {
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 0.35rem;
+        display: block;
+        font-size: 1rem;
+    }
+    
+    .permission-value {
+        font-size: 0.8rem;
+        color: #718096;
+        font-family: 'Courier New', monospace;
+        background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+        padding: 0.3rem 0.75rem;
+        border-radius: 8px;
+        display: inline-block;
+        font-weight: 600;
+    }
+    
+    /* Status Badge */
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    
+    .status-enabled {
+        background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+        color: #22543d;
+    }
+    
+    .status-disabled {
+        background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+        color: #742a2a;
+    }
+    
+    /* Action Buttons */
+    .action-buttons {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        box-shadow: var(--shadow-lg);
+        margin-top: 2.5rem;
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        transition: var(--transition);
+    }
+    
+    .action-buttons:hover {
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .btn-permission {
+        padding: 1rem 2rem;
+        border-radius: 14px;
+        font-weight: 700;
+        transition: var(--transition);
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1rem;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+    }
+    
+    .btn-permission::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-permission:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .btn-save {
+        background: var(--success-gradient);
+        color: white;
+        box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+    }
+    
+    .btn-save:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.5);
+        color: white;
+    }
+    
+    .btn-reset {
+        background: var(--warning-gradient);
+        color: white;
+        box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
+    }
+    
+    .btn-reset:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(250, 112, 154, 0.5);
+        color: white;
+    }
+    
+    .btn-cancel {
+        background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+        color: #2d3748;
+        box-shadow: 0 4px 15px rgba(226, 232, 240, 0.4);
+    }
+    
+    .btn-cancel:hover {
+        background: linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%);
+        color: #2d3748;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(226, 232, 240, 0.5);
+    }
+    
+    /* Info Alert */
+    .info-alert {
+        background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+        border: 2px solid rgba(144, 205, 244, 0.5);
+        border-radius: 16px;
+        padding: 1.75rem;
+        margin-top: 2rem;
+        color: #2c5282;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    
+    .info-alert:hover {
+        box-shadow: var(--shadow-md);
+        transform: scale(1.01);
+    }
+    
+    .info-alert i {
+        font-size: 1.75rem;
+        flex-shrink: 0;
+        margin-top: 0.25rem;
+    }
+    
+    /* Guide Card */
+    .guide-card {
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-lg);
+        border: none;
+        margin-top: 2.5rem;
+        overflow: hidden;
+        transition: var(--transition);
+    }
+    
+    .guide-card:hover {
+        box-shadow: var(--shadow-xl);
+        transform: translateY(-5px);
+    }
+    
+    .guide-card .card-header {
+        background: var(--success-gradient);
+        color: white;
+        padding: 1.5rem 2rem;
+        border: none;
+        font-weight: 700;
+        font-size: 1.15rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .guide-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .guide-list li {
+        padding: 1.25rem 1.75rem;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.25rem;
+        transition: var(--transition);
+    }
+    
+    .guide-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .guide-list li:hover {
+        background: linear-gradient(90deg, #f7fafc 0%, #ffffff 100%);
+        transform: translateX(5px);
+    }
+    
+    .guide-list li i {
+        color: #48bb78;
+        font-size: 1.3rem;
+        margin-top: 0.25rem;
+        flex-shrink: 0;
+    }
+    
+    .guide-list strong {
+        color: #2d3748;
+        font-weight: 700;
+    }
+    
+    /* Role Badge */
+    .role-badge {
+        padding: 0.5rem 1.25rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        text-transform: capitalize;
+    }
+    
+    .role-badge:hover {
+        transform: scale(1.08);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .role-admin { background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); color: #742a2a; }
+    .role-logistics { background: linear-gradient(135deg, #bee3f8 0%, #63b3ed 100%); color: #2a4365; }
+    .role-legal { background: linear-gradient(135deg, #fef3c7 0%, #f6e05e 100%); color: #744210; }
+    .role-tech { background: linear-gradient(135deg, #e9d8fd 0%, #b794f4 100%); color: #44337a; }
+    .role-investor { background: linear-gradient(135deg, #c6f6d5 0%, #68d391 100%); color: #22543d; }
+    .role-producer { background: linear-gradient(135deg, #feebc8 0%, #f6ad55 100%); color: #7c2d12; }
+    .role-buyer { background: linear-gradient(135deg, #fed7e2 0%, #f687b3 100%); color: #831843; }
+    .role-broker { background: linear-gradient(135deg, #fef5e7 0%, #fbd38d 100%); color: #744210; }
+    .role-corporate { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%); color: #2d3748; }
+    
+    /* Category Badges */
+    .category-badge {
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        box-shadow: var(--shadow-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .cat-order { background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); color: #742a2a; }
+    .cat-logistics { background: linear-gradient(135deg, #bee3f8 0%, #63b3ed 100%); color: #2a4365; }
+    .cat-legal { background: linear-gradient(135deg, #fef3c7 0%, #f6e05e 100%); color: #744210; }
+    .cat-finance { background: linear-gradient(135deg, #c6f6d5 0%, #68d391 100%); color: #22543d; }
+    .cat-investment { background: linear-gradient(135deg, #fef3c7 0%, #f6e05e 100%); color: #744210; }
+    .cat-tech { background: linear-gradient(135deg, #e9d8fd 0%, #b794f4 100%); color: #44337a; }
+    .cat-dashboard { background: linear-gradient(135deg, #feebc8 0%, #f6ad55 100%); color: #7c2d12; }
+    .cat-profile { background: linear-gradient(135deg, #fed7e2 0%, #f687b3 100%); color: #831843; }
+    .cat-public { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%); color: #2d3748; }
+    .cat-other { background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%); color: #4a5568; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .page-header {
+            padding: 2rem 1.5rem;
+        }
+        
+        .page-header h2 {
+            font-size: 1.6rem;
+        }
+        
+        .permission-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .permission-checkbox {
+            margin-bottom: 0.5rem;
+        }
+        
+        .action-buttons {
+            flex-direction: column;
+        }
+        
+        .btn-permission {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .category-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .card-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+    
+    /* Animation Classes */
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    
+    .fade-in-up.delay-1 { animation-delay: 0.1s; }
+    .fade-in-up.delay-2 { animation-delay: 0.2s; }
+    .fade-in-up.delay-3 { animation-delay: 0.3s; }
+    
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="permissions-page">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2><i class="fas fa-shield-alt ml-2"></i>Access Permissions Management</h2>
+                    <p class="mb-0 opacity-75">Fine-grained and advanced user access management</p>
+                </div>
+                <div class="col-md-4 text-left">
+                    <span class="user-badge">
+                        <i class="fas fa-user-shield"></i>
+                        Admin Panel
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        {% if current_user_obj.role.value == 'admin' %}
+        <!-- Select User -->
+        <div class="user-selector-card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-users ml-2"></i>Select User for Permission Management</h5>
+            </div>
+            <div class="card-body p-4">
+                <form method="GET" action="{{ url_for('users.manage_permissions') }}">
+                    <div class="row align-items-end">
+                        <div class="col-md-8">
+                            <label for="target_user" class="form-label font-weight-bold mb-2">Target User:</label>
+                            <select name="target_user_id" id="target_user" class="form-control filter-select">
+                                {% for user in users_list %}
+                                <option value="{{ user.id }}" {% if request.args.get('target_user_id')|int == user.id %}selected{% endif %}>
+                                    {{ user.username }} 
+                                    <span class="role-badge role-{{ user.role.value|lower }}">{{ user.role_display_name }}</span>
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-permission btn-save w-100">
+                                <i class="fas fa-sync-alt"></i>
+                                Load Permissions
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Permissions Card -->
+        <div class="permission-card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-key ml-2"></i>
+                    {% if request.args.get('target_user_id') %}
+                        User Permissions: 
+                        <span class="role-badge role-{{ target_user.role.value|lower }}">{{ target_user.username }}</span>
+                    {% else %}
+                        Your Role Default Permissions
+                        <span class="role-badge role-{{ current_user_obj.role.value|lower }}">{{ current_user_obj.role_display_name }}</span>
+                    {% endif %}
+                </h5>
+                <div>
+                    <span class="status-badge {% if custom_perms %}status-enabled{% else %}status-disabled{% endif %}">
+                        {% if custom_perms %}
+                            <i class="fas fa-check-circle"></i>
+                            Custom Permissions Enabled
+                        {% else %}
+                            <i class="fas fa-clock"></i>
+                            Using Default
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" id="permissionsForm">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    {% if request.args.get('target_user_id') %}
+                    <input type="hidden" name="target_user_id" value="{{ request.args.get('target_user_id') }}">
+                    {% endif %}
+                    
+                    {% for category, permissions in categories.items() %}
+                    {% set cat_class = 'cat-' + category|lower|replace(' ', '-') %}
+                    <div class="category-section">
+                        <div class="category-header">
+                            {% if category == 'Orders' %}
+                                <div class="category-icon" style="background: #fed7d7;">📦</div>
+                            {% elif category == 'Logistics' %}
+                                <div class="category-icon" style="background: #bee3f8;">🚚</div>
+                            {% elif category == 'Legal' %}
+                                <div class="category-icon" style="background: #fef3c7;">⚖️</div>
+                            {% elif category == 'Finance' %}
+                                <div class="category-icon" style="background: #c6f6d5;">💰</div>
+                            {% elif category == 'Investment' %}
+                                <div class="category-icon" style="background: #fef3c7;">📈</div>
+                            {% elif category == 'Technical' %}
+                                <div class="category-icon" style="background: #e9d8fd;">🔧</div>
+                            {% elif category == 'Dashboard' %}
+                                <div class="category-icon" style="background: #feebc8;">📊</div>
+                            {% elif category == 'Profile' %}
+                                <div class="category-icon" style="background: #fed7e2;">👤</div>
+                            {% else %}
+                                <div class="category-icon" style="background: #e2e8f0;">📌</div>
+                            {% endif %}
+                            <h6 class="category-title">{{ category }} 
+                                <span class="badge {{ cat_class }} mr-2">{{ permissions|length }} Permissions</span>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            {% for perm in permissions %}
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div class="permission-item">
+                                    <input class="permission-checkbox" 
+                                           type="checkbox" 
+                                           name="permissions" 
+                                           value="{{ perm.value }}" 
+                                           id="perm_{{ perm.value }}"
+                                           {% if perm.is_enabled %}checked{% endif %}
+                                           {% if current_user_obj.role.value != 'admin' %}disabled{% endif %}>
+                                    <div class="permission-info">
+                                        <label class="permission-name" for="perm_{{ perm.value }}">
+                                            {{ perm.name }}
+                                        </label>
+                                        <span class="permission-value">{{ perm.value }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    {% if current_user_obj.role.value == 'admin' %}
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-permission btn-save">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                        <a href="{{ url_for('users.manage_permissions', target_user_id=request.args.get('target_user_id') or current_user.id) }}" 
+                           class="btn btn-permission btn-reset">
+                            <i class="fas fa-undo"></i>
+                            Reset to Default
+                        </a>
+                        <a href="{{ url_for('users.dashboard') }}" class="btn btn-permission btn-cancel">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="info-alert">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Note:</strong> Only system administrator can change permissions. You are viewing your role's default permissions.
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        
+        <!-- Guide -->
+        <div class="guide-card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-book ml-2"></i>Permissions System Guide</h5>
+            </div>
+            <div class="card-body p-0">
+                <ul class="guide-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Default Permissions:</strong>
+                            Each user role has a set of default permissions defined based on that role's duties.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Custom Permissions:</strong>
+                            System administrator can enable or disable specific permissions for each user. These permissions replace the default permissions.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Unauthenticated Users:</strong>
+                            Only have access to public permissions (view products and about us).
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Role Change:</strong>
+                            When changing a user's role, their default permissions also change unless custom permissions are set.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Confirm before reset
+document.querySelectorAll('.btn-reset').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        if (!confirm('Are you sure you want to reset permissions to default?')) {
+            e.preventDefault();
+        }
+    });
+});
+
+// Display count of selected permissions
+function updateSelectedCount() {
+    const checked = document.querySelectorAll('input[name="permissions"]:checked').length;
+    const total = document.querySelectorAll('input[name="permissions"]').length;
+    console.log(`Selected Permissions: ${checked} of ${total}`);
+}
+
+document.querySelectorAll('input[name="permissions"]').forEach(checkbox => {
+    checkbox.addEventListener('change', updateSelectedCount);
+});
+</script>
+{% endblock %}

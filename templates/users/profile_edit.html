@@ -1,0 +1,220 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Edit Profile - {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-dark-900 dark:to-dark-800 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Edit Profile</h1>
+            <p class="text-gray-600 dark:text-slate-400">Update your professional information and contact details</p>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mb-4 p-4 rounded-lg {% if category == 'success' %}bg-green-100 border border-green-400 text-green-700 dark:bg-green-900/30 dark:border-green-700 dark:text-green-400{% elif category == 'error' %}bg-red-100 border border-red-400 text-red-700 dark:bg-red-900/30 dark:border-red-700 dark:text-red-400{% else %}bg-blue-100 border border-blue-400 text-blue-700 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-400{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Profile Edit Form -->
+        <form method="POST" class="bg-white dark:bg-dark-800 rounded-xl shadow-lg p-6 sm:p-8 border border-gray-200 dark:border-dark-700">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <!-- Section 1: Basic Information -->
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-4 border-b pb-2 flex items-center dark:border-dark-700">
+                    <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                    Basic Information
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Company Name</label>
+                        <input type="text" name="company"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                               placeholder="Enter your company name"
+                               value="{{ user.company_name or '' }}">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Country <span class="text-red-500">*</span></label>
+                        <input type="text" name="country" required
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                               placeholder="Enter your country"
+                               value="{{ user.country or '' }}">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Phone Number</label>
+                        <input type="tel" name="phone"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                               placeholder="+1 234 567 8900"
+                               value="{{ user.phone or '' }}">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Professional Information -->
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-4 border-b pb-2 flex items-center dark:border-dark-700">
+                    <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Professional Information
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Job Title</label>
+                        <input type="text" name="job_title"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                               placeholder="e.g., CEO, Manager"
+                               value="{{ user.job_title or '' }}">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Area of Expertise</label>
+                        <input type="text" name="expertise_area"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                               placeholder="e.g., International Trade"
+                               value="{{ user.expertise_area or '' }}">
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Bio</label>
+                    <textarea name="bio" rows="4"
+                              class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                              placeholder="Tell us about yourself and your professional background">{{ user.bio or '' }}</textarea>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Website</label>
+                    <input type="url" name="website"
+                           class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                           placeholder="https://yourcompany.com"
+                           value="{{ user.website or '' }}">
+                </div>
+            </div>
+
+            <!-- Section 3: Social Links -->
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200 mb-4 border-b pb-2 flex items-center dark:border-dark-700">
+                    <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                    </svg>
+                    Social Media Links
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">LinkedIn</label>
+                        <input type="url" name="linkedin"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                               placeholder="https://linkedin.com/in/username"
+                               value="{{ (user.social_links or '{}') | from_json | tojson_attr('linkedin', '') }}">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Telegram</label>
+                        <input type="text" name="telegram"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                               placeholder="@username"
+                               value="{{ (user.social_links or '{}') | from_json | tojson_attr('telegram', '') }}">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">WhatsApp</label>
+                        <input type="tel" name="whatsapp"
+                               class="w-full px-4 py-2 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                               placeholder="+1 234 567 8900"
+                               value="{{ (user.social_links or '{}') | from_json | tojson_attr('whatsapp', '') }}">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t dark:border-dark-700">
+                <button type="submit"
+                        class="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition duration-200 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    Save Changes ✓
+                </button>
+                <a href="{{ url_for('users.profile') }}"
+                   class="flex-1 bg-gray-200 dark:bg-dark-700 text-gray-700 dark:text-slate-300 py-3 px-4 rounded-lg hover:bg-gray-300 dark:hover:bg-dark-600 transition duration-200 font-medium text-center shadow-md">
+                    Cancel
+                </a>
+            </div>
+        </form>
+
+        <!-- Quick Links -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Account Settings Link -->
+            <div class="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-xl p-4 hover:shadow-md transition duration-200">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-medium text-indigo-800 dark:text-indigo-300">Account Settings</p>
+                        <p class="text-xs text-indigo-600 dark:text-indigo-400 mt-1">Manage password, security, and preferences</p>
+                        <a href="{{ url_for('users.account_settings') }}" class="text-xs text-indigo-700 dark:text-indigo-300 underline font-medium mt-1 inline-block hover:text-indigo-900 dark:hover:text-indigo-200">
+                            Go to Settings →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Documents Link (Only if not premium) -->
+            {% if not user.is_premium %}
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-4 hover:shadow-md transition duration-200">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-medium text-yellow-800 dark:text-yellow-300">Upload Documents</p>
+                        <p class="text-xs text-yellow-600 dark:text-yellow-400 mt-1">Submit verification documents for Premium status</p>
+                        <a href="{{ url_for('users.upload_documents') }}" class="text-xs text-yellow-700 dark:text-yellow-300 underline font-medium mt-1 inline-block hover:text-yellow-900 dark:hover:text-yellow-200">
+                            Upload Now →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-4">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-medium text-green-800 dark:text-green-300">Premium Member</p>
+                        <p class="text-xs text-green-600 dark:text-green-400 mt-1">Your documents have been verified</p>
+                        <a href="{{ url_for('users.view_my_documents') }}" class="text-xs text-green-700 dark:text-green-300 underline font-medium mt-1 inline-block hover:text-green-900 dark:hover:text-green-200">
+                            View Documents →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<!-- Custom filter for JSON parsing -->
+{##}
+{#{% macro parse_json(str) %}#}
+{#      {% if str and str != 'null' %}#}
+{#        {{ str }}#}
+{#    {% else %}#}
+{#        {}#}
+{#    {% endif %}#}
+{#{% endmacro %}#}
+{% endblock %}
+

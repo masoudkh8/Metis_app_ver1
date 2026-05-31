@@ -1,0 +1,165 @@
+# Persian to English Translations - Batch 2
+# Files: permissions_routes.py, schemas.py, seed_exhibition_trading.py, access_control.py, socketio_app.py
+
+## /workspace/routes/users/permissions_routes.py
+استفاده از users_bp مشترک از __init__.py | Using shared users_bp from __init__.py
+تعیین دسته‌بندی هر مجوز - تابع کمکی مشترک بین CBV و FBV | Determine category of each permission - helper function shared between CBV and FBV
+سفارشات | Orders
+لجستیک | Logistics
+حقوقی | Legal
+مالی | Finance
+سرمایه‌گذاری | Investment
+فنی | Technical
+داشبورد | Dashboard
+پروفایل | Profile
+عمومی | Public
+سایر | Other
+پیاده‌سازی با استفاده از MethodView (CBV) | Implementation using MethodView (CBV)
+نمای مبتنی بر کلاس برای مدیریت مجوزها | Class-based view for permissions management
+ایجاد خودکار پروفایل اگر وجود ندارد | Auto-create profile if doesn't exist
+پروفایل کاربر {target_user.username} به صورت خودکار ایجاد شد. | Profile for user {target_user.username} was automatically created.
+تبدیل مجوزهای پیش‌فرض به لیست رشته‌ها برای مقایسه صحیح | Convert default permissions to string list for correct comparison
+ذخیره تغییرات مجوزها | Save permission changes
+خطای امنیتی: توکن CSRF نامعتبر است. | Security error: Invalid CSRF token.
+مجوزهای کاربر {target_user.username} با موفقیت به‌روزرسانی شد. ({len(valid_permissions)} مجوز فعال) | Permissions for user {target_user.username} updated successfully. ({len(valid_permissions)} active permissions)
+مجوزهای کاربر {target_user.username} به حالت پیش‌فرض بازگشت. | Permissions for user {target_user.username} reverted to default.
+ثبت View به عنوان route | Register View as route
+مدیریت مجوزهای سفارشی برای کاربر - FBV (Function Based View) | Manage custom permissions for user - FBV (Function Based View)
+فقط ادمین می‌تواند برای هر کاربر مجوزهای خاصی را فعال/غیرفعال کند. | Only admin can enable/disable specific permissions for any user.
+دریافت target_user_id از query parameter یا form | Get target_user_id from query parameter or form
+اگر target_user_id مشخص نشده، از کاربر فعلی استفاده کن (فقط برای مشاهده) | If target_user_id not specified, use current user (view only)
+ایجاد خودکار پروفایل اگر وجود ندارد | Auto-create profile if doesn't exist
+دریافت مجوزهای پیش‌فرض نقش کاربر هدف | Get default permissions for target user's role
+دریافت مجوزهای سفارشی با استفاده از متد جدید مدل | Get custom permissions using new model method
+تبدیل مجوزهای پیش‌فرض به لیست رشته‌ها برای مقایسه صحیح | Convert default permissions to string list for correct comparison
+تبدیل به فرمت مناسب برای نمایش | Convert to appropriate format for display
+گروه‌بندی بر اساس دسته‌بندی | Group by category
+بررسی CSRF Token | Check CSRF Token
+دریافت لیست مجوزهای انتخاب شده از فرم | Get list of selected permissions from form
+اعتبارسنجی و فیلتر کردن مجوزهای معتبر | Validate and filter valid permissions
+اطمینان از معتبر بودن مجوز | Ensure permission is valid
+نادیده گرفتن مجوزهای نامعتبر | Ignore invalid permissions
+استفاده از متدهای جدید مدل برای ذخیره مجوزها | Use new model methods to save permissions
+اگر کاربر ادمین است، لیست کاربران را برای انتخاب بفرست | If user is admin, send list of users for selection
+تبدیل به لیست رشته‌ها | Convert to string list
+داشبورد هوشمند که بر اساس نقش و مجوزهای کاربر، سرویس‌های مرتبط را نمایش می‌دهد. | Smart dashboard that displays relevant services based on user role and permissions.
+بررسی دسترسی به ماژول‌های مختلف | Check access to various modules
+دریافت آمارهای مرتبط بر اساس نقش | Get stats based on role
+محاسبه تعداد اعلان‌های خوانده‌نشده | Calculate unread notifications count
+تعیین وضعیت تأیید مدارک | Determine document verification status
+ادغام داشبورد ماژولار در dashboard.html اصلی برای یکپارچگی | Integrate modular dashboard into main dashboard.html for consistency
+دریافت آمارهای مرتبط با کاربر بر اساس نقش | Get user-related statistics based on role
+مثال: آمار سفارشات | Example: Order statistics
+مثال: آمار لجستیک | Example: Logistics statistics
+مثال: آمار سرمایه‌گذاری | Example: Investment statistics
+TODO: محاسبه از مدل Investment | TODO: Calculate from Investment model
+نمایش سفارش‌های اختصاص یافته به ارائه‌دهنده لجستیک | Display orders assigned to logistics provider
+نمایش قراردادهای نیازمند بررسی حقوقی | Display contracts requiring legal review
+نمایش درخواست‌های بازرسی فنی | Display technical inspection requests
+نمایش پورتفوی سرمایه‌گذاری | Display investment portfolio
+TODO: پیاده‌سازی مدل Investment و ارتباط آن با کاربر | TODO: Implement Investment model and its relationship with user
+نمایش تأییدیه‌های شرکتی مورد نیاز | Display required corporate approvals
+نمایش کمیسیون‌های کارگزاری | Display brokerage commissions
+
+## /workspace/schemas.py
+Schemaهای Pydantic برای اعتبارسنجی داده‌ها در APIها | Pydantic schemas for data validation in APIs
+بر اساس CONTEXT_MASTER_BRIEF و مدل‌های کاربری ۱۰ نقش تخصصی | Based on CONTEXT_MASTER_BRIEF and 10-role user models
+۱۰ نقش تخصصی اکوسیستم متیسما - هماهنگ با models.user.Role | 10 specialized ecosystem roles - aligned with models.user.Role
+تولیدکننده/صادرکننده | Producer/Exporter
+واردکننده/خریدار | Importer/Buyer
+کارگزار تجاری | Commercial Broker
+نماینده شرکتی | Corporate Agent
+خدمات لجستیک و بیمه | Logistics and Insurance Services
+خدمات حقوقی و انطباق | Legal and Compliance Services
+شریک فناوری | Technology Partner
+سرمایه‌گذار مالی | Financial Investor
+مدیریت سیستم | System Administration
+ناظر محتوا | Content Moderator
+اسکمای ثبت‌نام کاربر با انتخاب نقش | User registration schema with role selection
+اسکمای ورود کاربر | User login schema
+پاسخ احراز هویت | Authentication response
+پایه پروفایل کاربری | User profile base
+ایجاد پروفایل جدید | Create new profile
+به‌روزرسانی پروفایل - تمام فیلدها اختیاری | Update profile - all fields optional
+پاسخ پروفایل کاربری | User profile response
+ایجاد پست جدید | Create new post
+به‌روزرسانی پست | Update post
+پاسخ پست | Post response
+ایجاد کامنت | Create comment
+برای پاسخ به کامنت دیگر | For replying to another comment
+پاسخ کامنت | Comment response
+پاسخ وضعیت اتصال | Connection status response
+وضعیت فالو | Follow status
+پست فید با اطلاعات تکمیلی | Feed post with additional info
+اکشن لایک | Like action
+اکشن کامنت | Comment action
+کامنت با موفقیت ثبت شد | Comment successfully registered
+پروفایل عمومی برای نمایش به عموم (SEO) | Public profile for general display (SEO)
+به‌روزرسانی کاربر توسط ادمین | Update user by admin
+اکشن گروهی روی کاربران | Bulk action on users
+فقط برای assign_role | Only for assign_role
+
+## /workspace/scripts/seed_exhibition_trading.py
+نمایشگاه بین‌المللی فناوری | International Technology Exhibition
+بزرگترین نمایشگاه فناوری در خاورمیانه | The largest technology exhibition in the Middle East
+نمایشگاه صنایع پتروشیمی | Petrochemical Industries Exhibition
+نمایشگاه تخصصی صنایع پتروشیمی و انرژی | Specialized exhibition for petrochemical and energy industries
+نمایشگاه کالاهای مصرفی | Consumer Goods Exhibition
+نمایشگاه محصولات مصرفی و خانگی | Exhibition for consumer and household products
+فناوری اطلاعات | Information Technology
+هوش مصنوعی | Artificial Intelligence
+بلاکچین | Blockchain
+انرژی تجدیدپذیر | Renewable Energy
+صنایع غذایی | Food Industries
+داروسازی | Pharmaceuticals
+خودروسازی | Automotive
+نساجی | Textiles
+ساختمان | Construction
+کشاورزی | Agriculture
+غرفه تخصصی {title_fa} با محصولات نوین | Specialized booth for {title_fa} with modern products
+
+## /workspace/services/access_control.py
+دکوریتور برای محدود کردن دسترسی بر اساس نقش کاربر. | Decorator to restrict access based on user role.
+لطفاً ابتدا وارد حساب کاربری خود شوید. | Please log in to your account first.
+نقش کاربری تعریف نشده است. | User role is not defined.
+دسترسی غیرمجاز. این صفحه فقط برای نقش‌های {', '.join(allowed_roles)} قابل دسترسی است. | Unauthorized access. This page is only accessible to roles: {', '.join(allowed_roles)}.
+دکوریتور برای محدود کردن دسترسی بر اساس مجوزهای ریزدانه (Granular Permissions). | Decorator to restrict access based on granular permissions.
+این دکوریتور انعطاف‌پذیری بیشتری نسبت به role_required دارد و می‌توانید در پروفایل هر کاربر، مجوزها را شخصی‌سازی کنید. | This decorator provides more flexibility than role_required and allows customizing permissions in each user's profile.
+بررسی اینکه آیا کاربر حداقل یکی از مجوزهای مورد نیاز را دارد | Check if user has at least one of the required permissions
+دسترسی غیرمجاز. شما مجوز لازم ({', '.join(perm_names)}) را ندارید. | Unauthorized access. You do not have the required permission ({', '.join(perm_names)}).
+دریافت لیست مجوزهای یک کاربر. | Get list of user permissions.
+اولویت‌بندی: | Priority:
+اگر کاربر مجوزهای سفارشی در پروفایل خود دارد، آن مجوزها به عنوان مجوزهای نهایی استفاده می‌شوند. | If user has custom permissions in their profile, those are used as final permissions.
+اگر مجوز سفارشی وجود ندارد، از مجوزهای پیش‌فرض نقش (DEFAULT_ROLE_PERMISSIONS) استفاده می‌شود. | If no custom permissions exist, default role permissions (DEFAULT_ROLE_PERMISSIONS) are used.
+اگر کاربر مهمان است، مجوزهای guest بازگردانده می‌شود. | If user is guest, guest permissions are returned.
+لیستی از اشیاء Permission | List of Permission objects
+اگر کاربر مجوزهای دستی تنظیم کرده باشد | If user has manually set permissions
+اگر لیست خالی نباشد | If list is not empty
+پشتیبانی از هر دو فرمت: رشته و شیء Permission | Support both formats: string and Permission object
+نادیده گرفتن مجوزهای نامعتبر | Ignore invalid permissions
+اگر مجوز سفارشی معتبر وجود داشت، برگردان | If valid custom permissions exist, return them
+اگر JSON نامعتبر بود، از پیش‌فرض استفاده کن | If JSON is invalid, use default
+استفاده از مجوزهای پیش‌فرض نقش | Use default role permissions
+بررسی ساده اینکه آیا یک کاربر مجوز خاصی دارد یا خیر. | Simple check if a user has a specific permission.
+مناسب برای استفاده در templateها. | Suitable for use in templates.
+ثبت سفارش جدید | Create New Order
+دریافت مجوزهای پیش‌فرض یک نقش خاص. | Get default permissions for a specific role.
+شیء Role یا رشته نام نقش | Role object or role name string
+لیستی از مجوزهای Permission مربوط به آن نقش | List of Permission objects for that role
+تبدیل به رشته اگر Role object باشد | Convert to string if Role object
+بررسی اینکه آیا یک ماژول خدماتی برای کاربر فعال است یا خیر. | Check if a service module is enabled for the user.
+این تابع برای نمایش/مخفی کردن بخش‌های مختلف در UI بر اساس نقش و تنظیمات پروفایل استفاده می‌شود. | This function is used to show/hide different sections in UI based on role and profile settings.
+نام سرویس (مثلاً 'logistics', 'legal', 'investment') | Service name (e.g., 'logistics', 'legal', 'investment')
+شیء کاربر (اگر None باشد، از current_user استفاده می‌کند) | User object (if None, uses current_user)
+Boolean: True اگر سرویس برای کاربر فعال باشد | Boolean: True if service is enabled for user
+نگاشت نام سرویس به مجوز مربوطه | Map service name to corresponding permission
+
+## /workspace/socketio_app.py
+دنبال‌کننده جدید | New Follower
+کاربر شما را دنبال کرد | User followed you
+پسند جدید | New Like
+کاربر پست شما را پسندید | User liked your post
+نظر جدید | New Comment
+کاربر روی پست شما نظر داد | User commented on your post
+اشتراک‌گذاری جدید | New Share
+کاربر پست شما را اشتراک‌گذاری کرد | User shared your post

@@ -1,0 +1,741 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Metisma Smart Map - Intelligent Trade Navigation{% endblock %}
+
+{% block extra_head %}
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<!-- Leaflet Draw CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+<!-- Custom Map Styles -->
+<style>
+  /* ===== MAP CONTAINER ===== */
+  #smart-map {
+    @apply w-full h-[calc(100vh-120px)] rounded-2xl overflow-hidden 
+           border border-blue-500/20 dark:border-blue-800/30
+           shadow-[0_0_30px_rgba(212,175,55,0.1)]
+           transition-all duration-300;
+  }
+  
+  /* ===== SIDEBAR PANEL ===== */
+  .map-sidebar {
+    @apply fixed top-20 left-4 z-[1000] w-80 max-h-[calc(100vh-140px)]
+           bg-white/95 dark:bg-dark-800/95 backdrop-blur-md
+           border border-blue-500/20 dark:border-blue-800/40
+           rounded-2xl shadow-2xl overflow-hidden
+           transition-all duration-300;
+  }
+  
+  .map-sidebar.collapsed {
+    @apply w-16;
+  }
+  
+  .map-sidebar.collapsed .sidebar-content {
+    @apply opacity-0 pointer-events-none;
+  }
+  
+  .sidebar-toggle {
+    @apply absolute -right-3 top-1/2 -translate-y-1/2 
+           w-6 h-12 rounded-full 
+           bg-gold hover:bg-gold-dark
+           border-2 border-white dark:border-dark-700
+           shadow-lg cursor-pointer
+           flex items-center justify-center
+           transition-all duration-200;
+  }
+  
+  /* ===== LAYER CONTROLS ===== */
+  .layer-item {
+    @apply flex items-center gap-3 p-3 rounded-xl 
+           hover:bg-blue-500/10 dark:hover:bg-blue-900/30
+           cursor-pointer transition-all duration-200
+           border border-transparent hover:border-gold/30;
+  }
+  
+  .layer-item.active {
+    @apply bg-gold/10 border-gold/40 shadow-[0_0_15px_rgba(212,175,55,0.2)];
+  }
+  
+  .layer-toggle {
+    @apply relative w-11 h-6 rounded-full 
+           bg-gray-300 dark:bg-dark-600
+           transition-colors duration-200;
+  }
+  
+  .layer-toggle.active {
+    @apply bg-gold;
+  }
+  
+  .layer-toggle::after {
+    content: '';
+    @apply absolute top-1 left-1 w-4 h-4 rounded-full 
+           bg-white dark:bg-dark-300
+           transition-transform duration-200;
+  }
+  
+  .layer-toggle.active::after {
+    @apply translate-x-5;
+  }
+  
+  /* ===== ROUTE PLANNER ===== */
+  .route-input {
+    @apply w-full px-4 py-3 rounded-xl 
+           bg-white/80 dark:bg-dark-700/80
+           border border-blue-500/20 dark:border-blue-800/40
+           text-gray-900 dark:text-slate-200
+           placeholder-gray-500 dark:placeholder-slate-400
+           focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20
+           transition-all duration-200;
+  }
+  
+  .route-suggestion {
+    @apply px-4 py-2 rounded-lg 
+           hover:bg-blue-500/10 dark:hover:bg-blue-900/30
+           cursor-pointer transition-colors duration-150;
+  }
+  
+  /* ===== POPUP STYLES ===== */
+  .leaflet-popup-content-wrapper {
+    @apply bg-white dark:bg-dark-800 
+           border border-blue-500/30 dark:border-blue-800/50
+           rounded-2xl shadow-2xl;
+  }
+  
+  .leaflet-popup-tip {
+    @apply bg-white dark:bg-dark-800 
+           border-l border-t border-blue-500/30 dark:border-blue-800/50;
+  }
+  
+  .popup-port {
+    @apply min-w-[280px] p-4;
+  }
+  
+  .popup-port h3 {
+    @apply text-lg font-bold text-gray-900 dark:text-slate-100 mb-2;
+  }
+  
+  .popup-port .detail-row {
+    @apply flex items-center gap-2 py-1.5 text-sm;
+  }
+  
+  .popup-port .detail-row i {
+    @apply text-gold w-4;
+  }
+  
+  /* ===== LEGEND ===== */
+  .map-legend {
+    @apply absolute bottom-6 right-4 z-[1000] 
+           bg-white/95 dark:bg-dark-800/95 backdrop-blur-md
+           border border-blue-500/20 dark:border-blue-800/40
+           rounded-2xl p-4 shadow-xl
+           min-w-[200px];
+  }
+  
+  .legend-item {
+    @apply flex items-center gap-2 py-1.5 text-sm;
+  }
+  
+  .legend-color {
+    @apply w-4 h-4 rounded-full border border-white dark:border-dark-600;
+  }
+  
+  /* ===== LOADING OVERLAY ===== */
+  .map-loading {
+    @apply absolute inset-0 z-[2000] 
+           bg-white/80 dark:bg-dark-900/80 backdrop-blur-sm
+           flex items-center justify-center;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .map-sidebar {
+      @apply left-2 right-2 w-auto max-w-full;
+    }
+    .map-sidebar.collapsed {
+      @apply hidden;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="container mx-auto px-4 py-6">
+  
+  <!-- ===== HEADER ===== -->
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-slate-100">
+        🗺️ <span class="text-gold">Smart Map</span>
+      </h1>
+      <p class="text-gray-600 dark:text-slate-400 mt-1">
+        Intelligent navigation for global trade routes
+      </p>
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="toggle-sidebar" class="md:hidden px-4 py-2 rounded-xl bg-gold/20 hover:bg-gold/30 text-gold font-medium transition">
+        ☰ Layers
+      </button>
+      <button id="fullscreen-btn" class="p-3 rounded-xl bg-white/80 dark:bg-dark-700/80 hover:bg-gold/20 border border-blue-500/20 dark:border-blue-800/40 transition">
+        ⛶
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== MAP CONTAINER ===== -->
+  <div class="relative">
+    <div id="smart-map"></div>
+    
+    <!-- Loading Overlay -->
+    <div id="map-loading" class="map-loading hidden">
+      <div class="text-center">
+        <div class="loader w-16 h-16 mx-auto mb-4"></div>
+        <p class="text-gray-600 dark:text-slate-400">Loading map data...</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== SIDEBAR PANEL ===== -->
+<div id="map-sidebar" class="map-sidebar">
+  <button id="sidebar-toggle-btn" class="sidebar-toggle">
+    <span class="text-dark-900 dark:text-slate-200 text-xs font-bold">‹</span>
+  </button>
+  
+  <div class="sidebar-content p-4 overflow-y-auto h-full">
+    
+    <!-- ===== SEARCH ROUTE ===== -->
+    <div class="mb-6 pb-4 border-b border-blue-500/20 dark:border-blue-800/40">
+      <h3 class="font-semibold text-gray-900 dark:text-slate-100 mb-3 flex items-center gap-2">
+        🛣️ Route Planner
+      </h3>
+      <div class="space-y-3">
+        <div>
+          <label class="form-label">Origin Country</label>
+          <input type="text" id="origin-input" class="route-input" placeholder="e.g., Iran, China..." list="country-list">
+        </div>
+        <div>
+          <label class="form-label">Destination Country</label>
+          <input type="text" id="dest-input" class="route-input" placeholder="e.g., Germany, UAE..." list="country-list">
+        </div>
+        <datalist id="country-list">
+          <option value="Iran">
+          <option value="China">
+          <option value="Germany">
+          <option value="UAE">
+          <option value="Oman">
+          <option value="Turkey">
+          <option value="India">
+          <option value="Russia">
+        </datalist>
+        <button id="find-route-btn" class="w-full mt-2 px-4 py-3 rounded-xl bg-gold hover:bg-gold-dark text-white font-medium transition shadow-lg shadow-gold/20">
+          🔍 Find Best Route
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== MAP LAYERS ===== -->
+    <div class="mb-6 pb-4 border-b border-blue-500/20 dark:border-blue-800/40">
+      <h3 class="font-semibold text-gray-900 dark:text-slate-100 mb-3 flex items-center gap-2">
+        📊 Map Layers
+      </h3>
+      <div class="space-y-2">
+        
+        <!-- Ports Layer -->
+        <div class="layer-item active" data-layer="ports">
+          <div class="layer-toggle active" onclick="toggleLayer(this, 'ports')"></div>
+          <div class="flex-1">
+            <div class="font-medium text-gray-900 dark:text-slate-100">🚢 Ports & Harbors</div>
+            <div class="text-xs text-gray-500 dark:text-slate-400">{{ ports_count|default(0) }} active ports</div>
+          </div>
+          <span class="text-gold text-xs">●</span>
+        </div>
+
+        <!-- Transit Routes Layer -->
+        <div class="layer-item" data-layer="transit">
+          <div class="layer-toggle" onclick="toggleLayer(this, 'transit')"></div>
+          <div class="flex-1">
+            <div class="font-medium text-gray-900 dark:text-slate-100">🛣️ Transit Routes</div>
+            <div class="text-xs text-gray-500 dark:text-slate-400">Land & sea corridors</div>
+          </div>
+          <span class="text-blue-500 text-xs">●</span>
+        </div>
+
+        <!-- Conflicts Layer -->
+        <div class="layer-item" data-layer="conflicts">
+          <div class="layer-toggle" onclick="toggleLayer(this, 'conflicts')"></div>
+          <div class="flex-1">
+            <div class="font-medium text-gray-900 dark:text-slate-100">⚠️ Conflicts & Risks</div>
+            <div class="text-xs text-gray-500 dark:text-slate-400">Active zones</div>
+          </div>
+          <span class="text-red-500 text-xs">●</span>
+        </div>
+
+        <!-- Trade Zones Layer -->
+        <div class="layer-item" data-layer="trade-zones">
+          <div class="layer-toggle" onclick="toggleLayer(this, 'trade-zones')"></div>
+          <div class="flex-1">
+            <div class="font-medium text-gray-900 dark:text-slate-100">💼 Free Trade Zones</div>
+            <div class="text-xs text-gray-500 dark:text-slate-400">Economic areas</div>
+          </div>
+          <span class="text-green-500 text-xs">●</span>
+        </div>
+
+        <!-- Weather Layer -->
+        <div class="layer-item" data-layer="weather">
+          <div class="layer-toggle" onclick="toggleLayer(this, 'weather')"></div>
+          <div class="flex-1">
+            <div class="font-medium text-gray-900 dark:text-slate-100">🌤️ Weather & Conditions</div>
+            <div class="text-xs text-gray-500 dark:text-slate-400">Maritime forecasts</div>
+          </div>
+          <span class="text-cyan-500 text-xs">●</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== FILTERS ===== -->
+    <div class="mb-6 pb-4 border-b border-blue-500/20 dark:border-blue-800/40">
+      <h3 class="font-semibold text-gray-900 dark:text-slate-100 mb-3 flex items-center gap-2">
+        🔍 Quick Filters
+      </h3>
+      <div class="flex flex-wrap gap-2">
+        <button class="filter-chip px-3 py-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-medium transition" data-filter="active">
+          ✅ Active Only
+        </button>
+        <button class="filter-chip px-3 py-1.5 rounded-lg bg-gold/10 hover:bg-gold/20 text-gold text-xs font-medium transition" data-filter="major">
+          ⭐ Major Ports
+        </button>
+        <button class="filter-chip px-3 py-1.5 rounded-lg bg-green-500/10 hover:bg-green-500/20 text-green-600 dark:text-green-400 text-xs font-medium transition" data-filter="customs">
+          🛃 Customs Active
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== SELECTED INFO ===== -->
+    <div id="selected-info" class="hidden p-4 rounded-xl bg-gold/5 border border-gold/20">
+      <h4 class="font-semibold text-gray-900 dark:text-slate-100 mb-2">Selected Item</h4>
+      <div id="selected-details" class="text-sm text-gray-600 dark:text-slate-400 space-y-1"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== MAP LEGEND ===== -->
+<div class="map-legend">
+  <h4 class="font-semibold text-gray-900 dark:text-slate-100 mb-3 text-sm">Legend</h4>
+  <div class="space-y-2">
+    <div class="legend-item">
+      <div class="legend-color bg-gold"></div>
+      <span class="text-gray-700 dark:text-slate-300 text-xs">Active Port</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color bg-gold/50"></div>
+      <span class="text-gray-700 dark:text-slate-300 text-xs">Inactive Port</span>
+    </div>
+    <div class="legend-item">
+      <div class="w-8 h-0.5 bg-blue-500 rounded"></div>
+      <span class="text-gray-700 dark:text-slate-300 text-xs">Transit Route</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color bg-red-500"></div>
+      <span class="text-gray-700 dark:text-slate-300 text-xs">Conflict Zone</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color bg-green-500"></div>
+      <span class="text-gray-700 dark:text-slate-300 text-xs">Free Trade Zone</span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+
+<script>
+// ===== GLOBAL VARIABLES =====
+let map, portsLayer, transitLayer, conflictsLayer, tradeZonesLayer, weatherLayer, routeLayer;
+let selectedFeature = null;
+const activeLayers = new Set(['ports']);
+
+// ===== PORTS DATA (From your database) =====
+const portsData = {{ ports_json|default('[]')|tojson }};
+
+// ===== INIT MAP =====
+document.addEventListener('DOMContentLoaded', function() {
+  initMap();
+  loadPortsData();
+  setupEventListeners();
+});
+
+function initMap() {
+  // Create map centered on Middle East
+  map = L.map('smart-map', {
+    center: [28.5, 54.5], // Iran region
+    zoom: 4,
+    minZoom: 2,
+    maxZoom: 18,
+    zoomControl: true
+  });
+
+  // Dark/Light tile layers
+  const darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  });
+
+  const lightTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  });
+
+  // Apply current theme
+  if (document.documentElement.classList.contains('dark')) {
+    darkTiles.addTo(map);
+  } else {
+    lightTiles.addTo(map);
+  }
+
+  // Listen for theme changes
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class') {
+        if (document.documentElement.classList.contains('dark')) {
+          map.removeLayer(lightTiles);
+          darkTiles.addTo(map);
+        } else {
+          map.removeLayer(darkTiles);
+          lightTiles.addTo(map);
+        }
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+
+  // Initialize layer groups
+  portsLayer = L.layerGroup().addTo(map);
+  transitLayer = L.layerGroup();
+  conflictsLayer = L.layerGroup();
+  tradeZonesLayer = L.layerGroup();
+  weatherLayer = L.layerGroup();
+  routeLayer = L.layerGroup();
+
+  // Add draw controls for route planning
+  const drawnItems = new L.FeatureGroup();
+  map.addLayer(drawnItems);
+
+  const drawControl = new L.Control.Draw({
+    edit: { featureGroup: drawnItems },
+    draw: {
+      polyline: {
+        shapeOptions: { color: '#d4af37', weight: 4, opacity: 0.8 }
+      },
+      polygon: false,
+      circle: false,
+      marker: false,
+      circlemarker: false,
+      rectangle: false
+    }
+  });
+  map.addControl(drawControl);
+
+  // Handle drawn routes
+  map.on(L.Draw.Event.CREATED, function(e) {
+    if (e.layerType === 'polyline') {
+      routeLayer.clearLayers();
+      routeLayer.addLayer(e.layer);
+      routeLayer.addTo(map);
+      calculateRouteStats(e.layer);
+    }
+  });
+}
+
+// ===== LOAD PORTS FROM DATABASE =====
+function loadPortsData() {
+  if (!portsData || portsData.length === 0) {
+    // Fetch from API if not pre-loaded
+    fetch('/api/ports')
+      .then(res => res.json())
+      .then(data => {
+        portsData = data;
+        renderPorts();
+      })
+      .catch(err => console.error('Error loading ports:', err));
+  } else {
+    renderPorts();
+  }
+}
+
+function renderPorts(filter = 'all') {
+  portsLayer.clearLayers();
+  
+  portsData.forEach(port => {
+    // Apply filters
+    if (filter === 'active' && !port.is_active) return;
+    if (filter === 'major' && !port.is_major) return;
+    if (filter === 'customs' && !port.customs_active) return;
+
+    const marker = L.circleMarker([port.latitude, port.longitude], {
+      radius: port.is_major ? 10 : 6,
+      fillColor: port.is_active ? '#d4af37' : '#94a3b8',
+      color: '#fff',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.9
+    });
+
+    // Popup content
+    const popupContent = `
+      <div class="popup-port">
+        <h3>🚢 ${port.name}</h3>
+        <div class="detail-row">
+          <i>📍</i>
+          <span>${port.country} • ${port.latitude.toFixed(2)}, ${port.longitude.toFixed(2)}</span>
+        </div>
+        <div class="detail-row">
+          <i>📊</i>
+          <span>${port.status || 'Operational'}</span>
+        </div>
+        ${port.customs_active ? 
+          '<div class="detail-row"><i>🛃</i><span class="text-green-600">Customs: Active</span></div>' : ''}
+        ${port.capacity ? 
+          `<div class="detail-row"><i>📦</i><span>Capacity: ${port.capacity}</span></div>` : ''}
+        <button onclick="planRouteToPort('${port.name}', ${port.latitude}, ${port.longitude})" 
+                class="mt-3 w-full px-3 py-2 rounded-lg bg-gold/20 hover:bg-gold/30 text-gold text-sm font-medium transition">
+          🗺️ Plan Route Here
+        </button>
+      </div>
+    `;
+
+    marker.bindPopup(popupContent);
+    
+    // Click handler
+    marker.on('click', function() {
+      showSelectedInfo({
+        type: 'port',
+        name: port.name,
+        country: port.country,
+        coords: [port.latitude, port.longitude],
+        details: port
+      });
+    });
+
+    portsLayer.addLayer(marker);
+  });
+}
+
+// ===== LAYER TOGGLE FUNCTION =====
+function toggleLayer(element, layerName) {
+  element.classList.toggle('active');
+  const layerItem = element.closest('.layer-item');
+  layerItem.classList.toggle('active');
+  
+  const layerMap = {
+    'ports': portsLayer,
+    'transit': transitLayer,
+    'conflicts': conflictsLayer,
+    'trade-zones': tradeZonesLayer,
+    'weather': weatherLayer
+  };
+
+  const layer = layerMap[layerName];
+  if (!layer) return;
+
+  if (element.classList.contains('active')) {
+    layer.addTo(map);
+    activeLayers.add(layerName);
+    if (layerName === 'ports') renderPorts();
+  } else {
+    map.removeLayer(layer);
+    activeLayers.delete(layerName);
+  }
+}
+
+// ===== ROUTE PLANNING =====
+document.getElementById('find-route-btn')?.addEventListener('click', function() {
+  const origin = document.getElementById('origin-input').value.trim();
+  const dest = document.getElementById('dest-input').value.trim();
+  
+  if (!origin || !dest) {
+    alert('Please enter both origin and destination countries');
+    return;
+  }
+
+  showMapLoading(true);
+  
+  // Call your backend API for route calculation
+  fetch('/api/calculate-transit-route', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ origin, destination: dest })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.route) {
+      drawRouteOnMap(data.route);
+      showRouteSummary(data.summary);
+    } else {
+      alert('Could not calculate route. Please try different locations.');
+    }
+  })
+  .catch(err => {
+    console.error('Route calculation error:', err);
+    alert('Error calculating route. Please try again.');
+  })
+  .finally(() => showMapLoading(false));
+});
+
+function drawRouteOnMap(route) {
+  routeLayer.clearLayers();
+  
+  const polyline = L.polyline(route.coordinates, {
+    color: '#d4af37',
+    weight: 4,
+    opacity: 0.9,
+    dashArray: route.type === 'sea' ? '10,10' : null
+  });
+  
+  polyline.bindPopup(`
+    <div class="p-3">
+      <strong>🛣️ ${route.type === 'sea' ? 'Maritime' : 'Land'} Route</strong><br>
+      Distance: ${route.distance_km?.toLocaleString()} km<br>
+      Est. Time: ${route.estimated_days} days
+    </div>
+  `);
+  
+  routeLayer.addLayer(polyline);
+  routeLayer.addTo(map);
+  map.fitBounds(polyline.getBounds(), { padding: [50, 50] });
+}
+
+function calculateRouteStats(layer) {
+  const coords = layer.getLatLngs();
+  let totalDistance = 0;
+  
+  for (let i = 0; i < coords.length - 1; i++) {
+    totalDistance += coords[i].distanceTo(coords[i+1]);
+  }
+  
+  const summary = `
+    <div class="p-3 text-sm">
+      <strong>📏 Route Stats:</strong><br>
+      Distance: ${(totalDistance/1000).toFixed(1)} km<br>
+      Points: ${coords.length}
+    </div>
+  `;
+  
+  layer.bindPopup(summary);
+}
+
+// ===== FILTER CHIPS =====
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    // Toggle active state
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('bg-gold/20', 'ring-2', 'ring-gold/40'));
+    this.classList.add('bg-gold/20', 'ring-2', 'ring-gold/40');
+    
+    const filter = this.dataset.filter;
+    renderPorts(filter);
+  });
+});
+
+// ===== SIDEBAR TOGGLE =====
+document.getElementById('sidebar-toggle-btn')?.addEventListener('click', function() {
+  const sidebar = document.getElementById('map-sidebar');
+  const btn = this.querySelector('span');
+  
+  sidebar.classList.toggle('collapsed');
+  btn.textContent = sidebar.classList.contains('collapsed') ? '›' : '‹';
+});
+
+document.getElementById('toggle-sidebar')?.addEventListener('click', function() {
+  document.getElementById('map-sidebar').classList.remove('collapsed');
+});
+
+// ===== FULLSCREEN =====
+document.getElementById('fullscreen-btn')?.addEventListener('click', function() {
+  const mapEl = document.getElementById('smart-map');
+  if (!document.fullscreenElement) {
+    mapEl.requestFullscreen?.() || mapEl.webkitRequestFullscreen?.();
+    this.textContent = '❐';
+  } else {
+    document.exitFullscreen?.() || document.webkitExitFullscreen?.();
+    this.textContent = '⛶';
+  }
+});
+
+// ===== SELECTED INFO PANEL =====
+function showSelectedInfo(item) {
+  const panel = document.getElementById('selected-info');
+  const details = document.getElementById('selected-details');
+  
+  if (item.type === 'port') {
+    details.innerHTML = `
+      <div><strong>${item.name}</strong></div>
+      <div>📍 ${item.country}</div>
+      <div>🌐 ${item.coords[0].toFixed(3)}, ${item.coords[1].toFixed(3)}</div>
+      ${item.details.customs_active ? '<div class="text-green-600">✅ Customs Active</div>' : ''}
+    `;
+  }
+  
+  panel.classList.remove('hidden');
+}
+
+// ===== ROUTE TO PORT HELPER =====
+function planRouteToPort(portName, lat, lng) {
+  document.getElementById('dest-input').value = portName;
+  map.setView([lat, lng], 8);
+  
+  // Add temporary marker
+  const tempMarker = L.marker([lat, lng], {
+    icon: L.divIcon({
+      className: 'bg-gold text-white rounded-full w-8 h-8 flex items-center justify-center font-bold shadow-lg',
+      html: '🎯',
+      iconSize: [32, 32]
+    })
+  }).addTo(map);
+  
+  setTimeout(() => map.removeLayer(tempMarker), 5000);
+}
+
+// ===== LOADING OVERLAY =====
+function showMapLoading(show) {
+  const overlay = document.getElementById('map-loading');
+  show ? overlay.classList.remove('hidden') : overlay.classList.add('hidden');
+}
+
+// ===== SAMPLE CONFLICTS DATA (Replace with API) =====
+function loadConflictsData() {
+  const conflicts = [
+    { name: 'Red Sea Tension', lat: 15.5, lng: 42.5, severity: 'high' },
+    { name: 'Black Sea Zone', lat: 45, lng: 34, severity: 'medium' }
+  ];
+  
+  conflicts.forEach(c => {
+    const circle = L.circle([c.lat, c.lng], {
+      color: c.severity === 'high' ? '#ef4444' : '#f59e0b',
+      fillColor: c.severity === 'high' ? '#ef4444' : '#f59e0b',
+      fillOpacity: 0.3,
+      radius: 50000
+    });
+    
+    circle.bindPopup(`<strong>⚠️ ${c.name}</strong><br>Risk Level: ${c.severity}`);
+    conflictsLayer.addLayer(circle);
+  });
+}
+
+// ===== INIT CONFLICTS WHEN LAYER ACTIVATED =====
+const originalToggleLayer = toggleLayer;
+toggleLayer = function(element, layerName) {
+  originalToggleLayer(element, layerName);
+  if (layerName === 'conflicts' && element.classList.contains('active')) {
+    loadConflictsData();
+  }
+};
+</script>
+{% endblock %}

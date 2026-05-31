@@ -1,0 +1,632 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Edit Role Permissions: {{ role.value }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --success-gradient: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        --warning-gradient: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+        --danger-gradient: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+        --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+        --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+        --shadow-lg: 0 10px 40px rgba(0,0,0,0.16);
+    }
+    
+    .edit-permissions-page {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        min-height: 100vh;
+        padding: 2rem 0 3rem;
+    }
+    
+    .edit-permissions-header {
+        background: var(--primary-gradient);
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        color: white;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .edit-permissions-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 300px;
+        height: 300px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 50%;
+    }
+    
+    .edit-permissions-header h2 {
+        font-weight: 800;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .role-badge-large {
+        background: rgba(255,255,255,0.25);
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        display: inline-block;
+        backdrop-filter: blur(10px);
+    }
+    
+    .header-description {
+        opacity: 0.95;
+        font-size: 1rem;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .permission-groups-container {
+        display: grid;
+        gap: 1.5rem;
+    }
+    
+    .permission-group {
+        background: white;
+        border-radius: 16px;
+        padding: 1.75rem;
+        box-shadow: var(--shadow-md);
+        border: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .permission-group::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--group-gradient, #667eea);
+    }
+    
+    .permission-group:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .permission-group-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #f1f5f9;
+    }
+    
+    .permission-group-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .permission-group-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        box-shadow: var(--shadow-sm);
+        flex-shrink: 0;
+    }
+    
+    .group-title-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1e293b;
+    }
+    
+    .group-subtitle {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-top: 0.25rem;
+    }
+    
+    .permissions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+    
+    .permission-checkbox-card {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
+        background: #f8fafc;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .permission-checkbox-card::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--card-gradient, #667eea);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .permission-checkbox-card:hover {
+        background: #f1f5f9;
+        transform: translateX(6px);
+        border-color: #cbd5e1;
+    }
+    
+    .permission-checkbox-card.checked {
+        background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+        border-color: #22c55e;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    }
+    
+    .permission-checkbox-card.checked::before {
+        opacity: 1;
+    }
+    
+    .permission-checkbox-input {
+        width: 22px;
+        height: 22px;
+        margin-left: 1rem;
+        cursor: pointer;
+        accent-color: #22c55e;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .permission-checkbox-content {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .permission-label-text {
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 0.35rem;
+        display: block;
+        line-height: 1.4;
+    }
+    
+    .permission-code-badge {
+        font-size: 0.7rem;
+        color: #64748b;
+        font-family: 'Courier New', monospace;
+        background: #e2e8f0;
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        display: inline-block;
+    }
+    
+    .select-all-btn {
+        background: #f1f5f9;
+        color: #475569;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .select-all-btn:hover {
+        background: #e2e8f0;
+        color: #1e293b;
+    }
+    
+    .action-bar-fixed {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 1.25rem 2rem;
+        border-radius: 16px;
+        box-shadow: 0 -8px 30px rgba(0,0,0,0.12);
+        z-index: 1000;
+        margin-top: 2.5rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid #f1f5f9;
+    }
+    
+    .action-buttons-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .stats-counter {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1.25rem;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        border-radius: 12px;
+        border: 2px solid #bae6fd;
+    }
+    
+    .stats-number {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0284c7;
+        min-width: 40px;
+        text-align: center;
+    }
+    
+    .stats-label {
+        font-size: 0.9rem;
+        color: #0369a1;
+        font-weight: 600;
+    }
+    
+    .btn-action {
+        padding: 0.875rem 2rem;
+        border-radius: 12px;
+        font-weight: 700;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-size: 0.95rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn-action::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-action:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .btn-save {
+        background: var(--success-gradient);
+        color: white;
+        box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+    }
+    
+    .btn-save:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(72, 187, 120, 0.5);
+        color: white;
+    }
+    
+    .btn-cancel {
+        background: #f1f5f9;
+        color: #475569;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .btn-cancel:hover {
+        background: #e2e8f0;
+        color: #1e293b;
+        transform: translateY(-2px);
+    }
+    
+    .info-alert-box {
+        background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+        border: 2px solid #fdba74;
+        border-radius: 14px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        color: #9a3412;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .info-alert-icon {
+        font-size: 1.75rem;
+        flex-shrink: 0;
+    }
+    
+    .info-alert-content strong {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 1.05rem;
+    }
+    
+    .info-alert-content p {
+        margin: 0;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .permission-group {
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+    
+    @media (max-width: 768px) {
+        .edit-permissions-header {
+            padding: 1.75rem;
+        }
+        
+        .edit-permissions-header h2 {
+            font-size: 1.5rem;
+        }
+        
+        .permissions-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .action-buttons-row {
+            flex-direction: column;
+        }
+        
+        .stats-counter {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-action {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="edit-permissions-page">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="edit-permissions-header">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2>
+                        <i class="fas fa-user-shield ml-2"></i>
+                        Edit Role Permissions: 
+                        <span class="role-badge-large">{{ role.value }}</span>
+                    </h2>
+                    <p class="header-description mb-0">
+                        <i class="fas fa-info-circle ml-1"></i>
+                        Configure permissions for this role. Changes will affect all users with this role.
+                    </p>
+                </div>
+                <div class="col-md-4 text-left">
+                    <a href="{{ url_for('admin.admin_perms.permission_dashboard') }}" class="btn btn-light action-btn" style="border-radius: 12px; padding: 0.75rem 1.5rem; font-weight: 600;">
+                        <i class="fas fa-arrow-right ml-1"></i>Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <form method="POST" id="permissionsForm">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            
+            {% set categories = {
+                'ORDER': {'title': 'Order Management', 'subtitle': 'Create, edit and manage orders', 'icon': '📦', 'gradient': '#fed7d7'},
+                'LOGISTICS': {'title': 'Logistics and Transportation', 'subtitle': 'Driver assignment and shipment tracking', 'icon': '🚚', 'gradient': '#bee3f8'},
+                'LEGAL': {'title': 'Legal Affairs', 'subtitle': 'Review contracts and legal documents', 'icon': '⚖️', 'gradient': '#fef3c7'},
+                'FINANCE': {'title': 'Finance', 'subtitle': 'Wallet, transactions and financial reports', 'icon': '💰', 'gradient': '#c6f6d5'},
+                'INVESTMENT': {'title': 'Investment', 'subtitle': 'Portfolio and investment opportunities', 'icon': '📈', 'gradient': '#e9d8fd'},
+                'TECH': {'title': 'Technical Inspection', 'subtitle': 'Technical reports and commodity inspection', 'icon': '🔧', 'gradient': '#feebc8'},
+                'DASHBOARD': {'title': 'Dashboard', 'subtitle': 'Display statistics and general information', 'icon': '📊', 'gradient': '#fed7e2'},
+                'PROFILE': {'title': 'Profile', 'subtitle': 'Manage personal information', 'icon': '👤', 'gradient': '#e2e8f0'},
+                'PUBLIC': {'title': 'Public', 'subtitle': 'Basic system access', 'icon': '🌐', 'gradient': '#cbd5e0'}
+            } %}
+            
+            <div class="permission-groups-container">
+                {% for category, info in categories.items() %}
+                    {% set category_perms = [] %}
+                    {% for perm in permissions %}
+                        {% if perm.name.startswith(category) %}
+                            {% set _ = category_perms.append(perm) %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if category_perms %}
+                    <div class="permission-group" style="--group-gradient: {{ info.gradient }};">
+                        <div class="permission-group-header">
+                            <div class="permission-group-title">
+                                <div class="permission-group-icon" style="background: {{ info.gradient }};">
+                                    {{ info.icon }}
+                                </div>
+                                <div>
+                                    <div class="group-title-text">{{ info.title }}</div>
+                                    <div class="group-subtitle">{{ info.subtitle }}</div>
+                                </div>
+                            </div>
+                            <button type="button" class="select-all-btn" onclick="toggleCategory('{{ category }}')">
+                                <i class="fas fa-check-square"></i>Select All
+                            </button>
+                        </div>
+                        
+                        <div class="permissions-grid">
+                            {% for perm in category_perms %}
+                            <label class="permission-checkbox-card {% if perm in current_perms %}checked{% endif %}" 
+                                   onclick="toggleCheckbox(this)"
+                                   style="--card-gradient: {{ info.gradient }};">
+                                <input type="checkbox" name="permissions" value="{{ perm.name }}" 
+                                       class="permission-checkbox-input"
+                                       {% if perm in current_perms %}checked{% endif %}>
+                                <div class="permission-checkbox-content">
+                                    <span class="permission-label-text">{{ perm.value }}</span>
+                                    <span class="permission-code-badge">{{ perm.name }}</span>
+                                </div>
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <!-- Action Bar -->
+            <div class="action-bar-fixed">
+                <div class="action-buttons-row">
+                    <div class="stats-counter">
+                        <span class="stats-number" id="countValue">{{ current_perms|length }}</span>
+                        <span class="stats-label">Active permissions selected</span>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="btn-action btn-cancel" onclick="window.history.back()">
+                            <i class="fas fa-times"></i>Cancel
+                        </button>
+                        <button type="submit" class="btn-action btn-save">
+                            <i class="fas fa-save"></i>Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        <div class="info-alert-box">
+            <div class="info-alert-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="info-alert-content">
+                <strong>Important Notice:</strong>
+                <p>These changes will affect all users who have the role <strong>{{ role.value }}</strong>, 
+                   unless you have defined custom permissions for specific users. Before saving, make sure necessary permissions are preserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Update selected permissions counter
+function updateCount() {
+    const checked = document.querySelectorAll('input[name="permissions"]:checked').length;
+    document.getElementById('countValue').textContent = checked;
+    
+    // Animation for counter
+    const counter = document.querySelector('.stats-number');
+    counter.style.transform = 'scale(1.1)';
+    setTimeout(() => {
+        counter.style.transform = 'scale(1)';
+    }, 200);
+}
+
+// Toggle checkbox state by clicking on card
+function toggleCheckbox(label) {
+    if (event.target.tagName !== 'INPUT' && !event.target.classList.contains('permission-code-badge')) {
+        const checkbox = label.querySelector('input[type="checkbox"]');
+        checkbox.checked = !checkbox.checked;
+        label.classList.toggle('checked', checkbox.checked);
+        updateCount();
+    }
+}
+
+// Select/deselect all permissions in a category
+function toggleCategory(category) {
+    const checkboxes = document.querySelectorAll(`input[name="permissions"][value^="${category}_"]`);
+    const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+    
+    checkboxes.forEach(cb => {
+        cb.checked = !allChecked;
+        cb.parentElement.classList.toggle('checked', !allChecked);
+    });
+    
+    updateCount();
+}
+
+// Prevent empty form submission
+document.getElementById('permissionsForm').addEventListener('submit', function(e) {
+    const checked = document.querySelectorAll('input[name="permissions"]:checked').length;
+    if (checked === 0) {
+        e.preventDefault();
+        showCustomAlert('At least one permission must be selected', 'warning');
+    } else {
+        // Show confirmation message
+        if (!confirm(`Are you sure you want to save ${checked} permissions?`)) {
+            e.preventDefault();
+        }
+    }
+});
+
+// Display custom message
+function showCustomAlert(message, type = 'info') {
+    const alertClass = {
+        'success': 'alert-success',
+        'error': 'alert-danger',
+        'warning': 'alert-warning',
+        'info': 'alert-info'
+    }[type] || 'alert-info';
+    
+    const alertHtml = `
+        <div class="alert ${alertClass} alert-dismissible fade show" role="alert" style="border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+            <i class="fas fa-exclamation-circle ml-2"></i>${message}
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+    `;
+    
+    document.querySelector('.container').insertAdjacentHTML('afterbegin', alertHtml);
+    setTimeout(() => {
+        const alert = document.querySelector('.alert');
+        if (alert) alert.remove();
+    }, 5000);
+}
+
+// Initial counter update and add event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    updateCount();
+    
+    document.querySelectorAll('input[name="permissions"]').forEach(cb => {
+        cb.addEventListener('change', function() {
+            this.parentElement.classList.toggle('checked', this.checked);
+            updateCount();
+        });
+    });
+    
+    // Add hover effect for cards
+    document.querySelectorAll('.permission-checkbox-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(6px)';
+        });
+        card.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('checked')) {
+                this.style.transform = 'translateX(0)';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

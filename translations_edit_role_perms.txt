@@ -1,0 +1,54 @@
+# Translation Reference for edit_role_perms.html
+# =====================================================
+
+## Page Title (Line 3)
+- ویرایش مجوزهای نقش {{ role.value }} → Edit Role Permissions: {{ role.value }}
+
+## Header Section (Lines 417-436)
+- هدر صفحه → Page Header
+- ویرایش مجوزهای نقش: → Edit Role Permissions:
+- دسترسی‌های این نقش را تنظیم کنید. تغییرات روی تمام کاربران با این نقش تأثیر می‌گذارد. → Configure permissions for this role. Changes will affect all users with this role.
+- بازگشت به داشبورد → Back to Dashboard
+
+## Permission Categories (Lines 442-452)
+- مدیریت سفارشات → Order Management
+- ایجاد، ویرایش و مدیریت سفارشات → Create, edit and manage orders
+- لجستیک و حمل‌ونقل → Logistics and Transportation
+- تخصیص راننده و پیگیری مرسولات → Driver assignment and shipment tracking
+- امور حقوقی → Legal Affairs
+- بررسی قراردادها و مدارک قانونی → Review contracts and legal documents
+- امور مالی → Finance
+- کیف پول، تراکنش‌ها و گزارش‌های مالی → Wallet, transactions and financial reports
+- سرمایه‌گذاری → Investment
+- پورتفوی و فرصت‌های سرمایه‌گذاری → Portfolio and investment opportunities
+- بازرسی فنی → Technical Inspection
+- گزارش‌های فنی و بازرسی کالا → Technical reports and commodity inspection
+- داشبورد → Dashboard
+- نمایش آمار و اطلاعات کلی → Display statistics and general information
+- پروفایل → Profile
+- مدیریت اطلاعات شخصی → Manage personal information
+- عمومی → Public
+- دسترسی‌های پایه سیستم → Basic system access
+
+## Buttons and Actions (Lines 476, 509, 512)
+- انتخاب همه → Select All
+- انصراف → Cancel
+- ذخیره تغییرات → Save Changes
+
+## Stats Counter (Line 505)
+- مجوز فعال انتخاب شده → Active permissions selected
+
+## Info Alert Box (Lines 524-526)
+- توجه مهم: → Important Notice:
+- این تغییرات روی تمام کاربرانی که نقش {{ role.value }} را دارند تأثیر می‌گذارد، مگر اینکه برای کاربر خاصی مجوز سفارشی تعریف کرده باشید. قبل از ذخیره، مطمئن شوید که مجوزهای لازم حفظ شده‌اند. → These changes will affect all users who have the role {{ role.value }}, unless you have defined custom permissions for specific users. Before saving, make sure necessary permissions are preserved.
+
+## JavaScript Comments and Messages (Lines 533-608)
+- به‌روزرسانی شمارنده مجوزهای انتخاب‌شده → Update selected permissions counter
+- تغییر وضعیت چک‌باکس با کلیک روی کارت → Toggle checkbox state by clicking on card
+- انتخاب/عدم انتخاب همه مجوزهای یک دسته → Select/deselect all permissions in a category
+- جلوگیری از ارسال فرم خالی → Prevent empty form submission
+- حداقل یک مجوز باید انتخاب شود → At least one permission must be selected
+- آیا از ذخیره {{ count }} مجوز اطمینان دارید؟ → Are you sure you want to save {{ count }} permissions?
+- نمایش پیام سفارشی → Display custom message
+- به‌روزرسانی اولیه شمارنده و اضافه کردن event listenerها → Initial counter update and add event listeners
+- اضافه کردن افکت hover برای کارت‌ها → Add hover effect for cards

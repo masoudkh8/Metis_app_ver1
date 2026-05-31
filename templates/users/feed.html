@@ -1,0 +1,141 @@
+<!-- templates/users/feed.html -->
+{% extends "base_pwa.html" %}
+
+{% block title %}{{ t_('social.feed') }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- دکمه بازگشت به داشبورد -->
+    <div class="mb-3">
+        <a href="{{ url_for('users.dashboard') }}" class="inline-flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Back to Dashboard
+        </a>
+    </div>
+    
+    <div class="row">
+        <!-- Main Feed Column -->
+        <div class="col-lg-8">
+            <!-- Create Post Card -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">{{ t_('social.create_post') }}</h5>
+                    <form action="{{ url_for('social.create_post') }}" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <textarea class="form-control" name="content" rows="3" placeholder="{{ t_('social.what_is_on_your_mind') }}" required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="visibility" class="form-label">{{ t_('social.visibility') }}</label>
+                            <select class="form-select" name="visibility" id="visibility">
+                                <option value="public">{{ t_('social.visibility_public') }}</option>
+                                <option value="followers_only">{{ t_('social.visibility_followers_only') }}</option>
+                                <option value="private">{{ t_('social.visibility_private') }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <button type="button" class="btn btn-outline-secondary btn-sm me-2" id="addMediaBtn">
+                                    <i class="fas fa-image"></i> {{ t_('social.add_media') }}
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-tag"></i> {{ t_('social.tag_products') }}
+                                </button>
+                            </div>
+                            <button type="submit" class="btn btn-primary">{{ t_('social.publish') }}</button>
+                        </div>
+                        
+                        <input type="file" id="mediaInput" name="media" multiple style="display: none;" accept="image/*,video/*,.pdf,.doc,.docx">
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Feed Posts -->
+            <div id="feed-posts">
+                {% if feed_posts %}
+                    {% for post in feed_posts %}
+                        {% include 'users/_post_card.html' %}
+                    {% endfor %}
+                {% else %}
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center py-5">
+                            <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">{{ t_('social.no_posts_yet') }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Sidebar Column -->
+        <div class="col-lg-4">
+            <!-- Suggested Users -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0">{{ t_('social.suggested_users') }}</h6>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush" id="suggested-users">
+                        <!-- Will be populated by AJAX or backend -->
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Trust Score Info -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0">{{ t_('social.trust_score') }}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="trust-score-display mb-2">
+                            {% if current_user.trust_score %}
+                                <span class="badge {% if current_user.trust_score >= 70 %}bg-success{% elif current_user.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}">
+                                    {{ current_user.trust_score }}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary">--</span>
+                            {% endif %}
+                        </div>
+                        <small class="text-muted">{{ t_('messages.fill_required_fields') }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Media upload handling
+document.getElementById('addMediaBtn').addEventListener('click', function() {
+    document.getElementById('mediaInput').click();
+});
+
+// Auto-resize textarea
+const textarea = document.querySelector('textarea[name="content"]');
+textarea.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+});
+
+// Load suggested users
+async function loadSuggestedUsers() {
+    try {
+        const response = await fetch('{{ url_for("social.explore") }}');
+        // Parse and display suggested users
+    } catch (error) {
+        console.error('Error loading suggested users:', error);
+    }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    loadSuggestedUsers();
+});
+</script>
+{% endblock %}

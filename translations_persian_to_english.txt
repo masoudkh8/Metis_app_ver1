@@ -1,0 +1,68 @@
+# Translation List - Persian to English
+# Generated from templates/users/enable_2fa.html, manage_permissions.html, manage_sessions.html
+
+## enable_2fa.html
+فعال‌سازی احراز هویت دو مرحله‌ای - متیسما = Enable Two-Factor Authentication - Metisma
+فعال‌سازی احراز هویت دو مرحله‌ای = Enable Two-Factor Authentication
+امنیت حساب کاربری خود را با تأیید دو مرحله‌ای افزایش دهید = Increase your account security with two-factor authentication
+مرحله ۱: اسکن کد QR = Step 1: Scan QR Code
+۱. اپلیکیشن Google Authenticator یا Authy را نصب کنید = 1. Install Google Authenticator or Authy app
+۲. کد QR بالا را اسکن کنید = 2. Scan the QR code above
+۳. یا کد زیر را به صورت دستی وارد کنید = 3. Or enter the code below manually
+کد تأیید ۶ رقمی = 6-digit verification code
+کد ۶ رقمی نمایش داده شده در اپلیکیشن را وارد کنید = Enter the 6-digit code displayed in the app
+فعال‌سازی احراز هویت دو مرحله‌ای = Enable Two-Factor Authentication
+💡 نکته: پس از فعال‌سازی، کدهای پشتیبان را در مکان امنی ذخیره کنید. این کدها برای مواقع اضطراری استفاده می‌شوند. = 💡 Tip: After activation, store backup codes in a secure location. These codes are used for emergencies.
+← انصراف و بازگشت به پروفایل = ← Cancel and return to profile
+
+## manage_permissions.html
+مدیریت مجوزهای دسترسی = Access Permissions Management
+پنل ادمین = Admin Panel
+انتخاب کاربر برای مدیریت مجوزها = Select User for Permission Management
+کاربر مورد نظر: = Target User:
+بارگذاری مجوزها = Load Permissions
+مجوزهای کاربر: = User Permissions:
+مجوزهای پیش‌فرض نقش شما = Your Role Default Permissions
+مجوزهای سفارشی فعال = Custom Permissions Enabled
+استفاده از پیش‌فرض = Using Default
+سفارشات = Orders
+لجستیک = Logistics
+حقوقی = Legal
+مالی = Finance
+سرمایه‌گذاری = Investment
+فنی = Technical
+داشبورد = Dashboard
+پروفایل = Profile
+مجوز = Permission
+ذخیره تغییرات = Save Changes
+بازنشانی به پیش‌فرض = Reset to Default
+انصراف = Cancel
+توجه: فقط مدیر سیستم می‌تواند مجوزها را تغییر دهد. شما در حال مشاهده مجوزهای پیش‌فرض نقش خود هستید. = Note: Only system administrator can change permissions. You are viewing your role's default permissions.
+راهنمای سیستم مجوزها = Permissions System Guide
+مجوزهای پیش‌فرض: هر نقش کاربری مجموعه‌ای از مجوزهای پیش‌فرض دارد که بر اساس وظایف آن نقش تعریف شده است. = Default Permissions: Each user role has a set of default permissions defined based on that role's duties.
+مجوزهای سفارشی: مدیر سیستم می‌تواند برای هر کاربر، مجوزهای خاصی را فعال یا غیرفعال کند. این مجوزها جایگزین مجوزهای پیش‌فرض می‌شوند. = Custom Permissions: System administrator can enable or disable specific permissions for each user. These permissions replace the default permissions.
+کاربران غیر احراز هویت: فقط به مجوزهای عمومی (مشاهده محصولات و درباره ما) دسترسی دارند. = Unauthenticated Users: Only have access to public permissions (view products and about us).
+تغییر نقش: با تغییر نقش کاربر، مجوزهای پیش‌فرض او نیز تغییر می‌کند مگر اینکه مجوزهای سفارشی تنظیم شده باشد. = Role Change: When changing a user's role, their default permissions also change unless custom permissions are set.
+آیا مطمئن هستید که می‌خواهید مجوزها را به حالت پیش‌فرض بازگردانید؟ = Are you sure you want to reset permissions to default?
+مجوزهای انتخاب شده: = Selected Permissions:
+تنظیم و مدیریت دسترسی‌های کاربران به صورت ریزدانه و پیشرفته = Fine-grained and advanced user access management
+
+## manage_sessions.html
+مدیریت نشست‌ها - متیسما = Session Management - Metisma
+مدیریت دستگاه‌های فعال = Active Devices Management
+دستگاه‌هایی که به حساب کاربری شما وارد شده‌اند را مشاهده و مدیریت کنید = View and manage devices logged into your account
+روی = on
+دستگاه فعلی = Current Device
+آخرین فعالیت: = Last Activity:
+آیا مطمئن هستید که می‌خواهید این دستگاه را خارج کنید؟ = Are you sure you want to log out this device?
+خروج از دستگاه = Log Out Device
+دستگاه فعلی = Current Device
+⚠️ آیا مطمئن هستید؟ تمام دستگاه‌ها (به جز دستگاه فعلی) خارج خواهند شد. = ⚠️ Are you sure? All devices (except current device) will be logged out.
+خروج از تمام دستگاه‌ها (به جز دستگاه فعلی) = Log Out All Devices (except current device)
+هیچ نشانه‌ای وجود ندارد = No sessions found
+هیچ دستگاه فعالی یافت نشد. = No active devices found.
+💡 نکات امنیتی: = 💡 Security Tips:
+به طور منظم دستگاه‌های فعال خود را بررسی کنید = Regularly check your active devices
+اگر دستگاه ناشناسی مشاهده کردید، سریعاً آن را خارج کنید = If you see an unknown device, log it out immediately
+پس از استفاده از دستگاه‌های عمومی، حتماً خارج شوید = Always log out after using public devices
+احراز هویت دو مرحله‌ای را فعال کنید = Enable two-factor authentication

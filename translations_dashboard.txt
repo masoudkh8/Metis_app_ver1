@@ -1,0 +1,15 @@
+# Persian to English Translation List
+# File: templates/admin/dashboard.html
+
+| Line | Original Persian | English Translation |
+|------|------------------|---------------------|
+| 19 | اعلان جدید | new notifications |
+| 32 | مشاهده همه | View All |
+| 53 | مدارک در انتظار | Pending Documents |
+| 74 | مدارک کاربران | User Documents |
+| 81 | مدیریت مجوزها | Permission Management |
+
+## Comments (not translated in code, just for reference):
+- Line 10: نوتیفیکیشن‌های جدید → New Notifications
+- Line 38: آمار کلی → General Statistics
+- Line 58: دسترسی سریع → Quick Actions

@@ -1,0 +1,32 @@
+{% extends "base_pwa.html" %}
+{% block title %}Admin Chat{% endblock %}
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">💬 Admin Chat</h1>
+            <a href="{{ url_for('admin.dashboard') }}" class="text-sm text-gray-600 dark:text-slate-400 hover:text-gold transition flex items-center gap-1">← Back to Dashboard</a>
+        </div>
+        <p class="text-gray-600 dark:text-slate-400 mb-6">Select a user to start a conversation. You can chat with all active users.</p>
+
+        <div class="bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 overflow-hidden divide-y divide-gray-200 dark:divide-dark-700">
+            {% for u in users %}
+            <a href="{{ url_for('admin.chat_with_user', user_id=u.id) }}" class="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-dark-700/50 transition group">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold/20 to-gold-dark/20 flex items-center justify-center text-gold font-bold flex-shrink-0">{{ u.username[0]|upper }}</div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2">
+                        <p class="font-medium text-gray-900 dark:text-white truncate group-hover:text-gold transition">{{ u.username }}</p>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-gray-100 dark:bg-dark-700 text-gray-600 dark:text-slate-400">{{ u.role.value }}</span>
+                        {% if u.is_premium %}<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-gold/10 text-gold">🌟 Premium</span>{% endif %}
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-slate-400 truncate">{{ u.email }}</p>
+                </div>
+                <svg class="w-5 h-5 text-gray-400 group-hover:text-gold transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+            {% else %}
+            <div class="p-8 text-center text-gray-500 dark:text-slate-400">No active users found.</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,184 @@
+<!-- templates/users/explore.html -->
+{% extends "base_pwa.html" %}
+
+{% block title %}{{ t_('social.explore') }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Featured Posts Column -->
+        <div class="col-lg-8">
+            <h4 class="mb-3">{{ t_('social.featured_posts') }}</h4>
+            
+            {% if featured_posts %}
+                {% for post in featured_posts %}
+                    {% include 'users/_post_card.html' %}
+                {% endfor %}
+            {% else %}
+                <div class="card shadow-sm">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">{{ t_('social.no_posts_yet') }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Sidebar Column -->
+        <div class="col-lg-4">
+            <!-- Suggested Users -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0">{{ t_('social.suggested_users') }}</h6>
+                </div>
+                <div class="card-body p-0">
+                    {% if suggested_users %}
+                    <ul class="list-group list-group-flush">
+                        {% for user in suggested_users %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                            <div class="d-flex align-items-center">
+                                {% if user.profile and user.profile.avatar_url %}
+                                    <img src="{{ user.profile.avatar_url }}" alt="{{ user.username }}" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
+                                {% else %}
+                                    <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center text-white" style="width: 40px; height: 40px;">
+                                        {{ user.username[0]|upper }}
+                                    </div>
+                                {% endif %}
+                                <div>
+                                    <a href="{{ url_for('social.public_profile', username=user.username) }}" class="fw-bold text-dark text-decoration-none d-block">
+                                        {{ user.company_name or user.username }}
+                                    </a>
+                                    {% if user.trust_score %}
+                                        <span class="badge badge-sm {% if user.trust_score >= 70 %}bg-success{% elif user.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}" title="{{ t_('social.trust_score') }}">
+                                            {{ user.trust_score }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            {% if current_user.is_authenticated %}
+                            <button class="btn btn-sm btn-outline-primary follow-btn" 
+                                    data-user-id="{{ user.id }}" 
+                                    data-action="follow">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            {% else %}
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-sm btn-outline-primary">{{ t_('common.login') }}</a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <div class="p-3 text-center text-muted">
+                        <small>{{ t_('social.no_posts_yet')|replace('posts', 'users') }}</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {/* Trust Score Info */}
+            {% if current_user.is_authenticated %}
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0">{{ t_('social.trust_score') }}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="trust-score-display mb-2">
+                            {% if current_user.trust_score %}
+                                <span class="badge {% if current_user.trust_score >= 70 %}bg-success{% elif current_user.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}" style="font-size: 1.5rem; padding: 0.5em 1em;">
+                                    {{ current_user.trust_score }}
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary" style="font-size: 1.5rem; padding: 0.5em 1em;">--</span>
+                            {% endif %}
+                        </div>
+                        <p class="small text-muted mb-0">
+                            {% if current_user.trust_score and current_user.trust_score >= 70 %}
+                                {{ t_('social.high_trust') }}
+                            {% elif current_user.trust_score and current_user.trust_score >= 40 %}
+                                {{ t_('social.medium_trust') }}
+                            {% else %}
+                                {{ t_('social.low_trust') }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            {/* Trending Tags */}
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0">Trending Tags</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-primary">#Products</span>
+                        <span class="badge bg-success">#Trading</span>
+                        <span class="badge bg-info">#Exhibition</span>
+                        <span class="badge bg-warning">#Market</span>
+                        <span class="badge bg-danger">#New</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Follow/Unfollow functionality
+document.querySelectorAll('.follow-btn').forEach(btn => {
+    btn.addEventListener('click', async function() {
+        const userId = this.dataset.userId;
+        const isFollowing = this.classList.contains('active');
+        
+        try {
+            const endpoint = isFollowing ? `/social/unfollow/${userId}` : `/social/follow/${userId}`;
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.success) {
+                // Toggle button state
+                if (isFollowing) {
+                    this.classList.remove('active');
+                    this.innerHTML = '<i class="fas fa-plus"></i>';
+                    this.classList.remove('btn-secondary');
+                    this.classList.add('btn-outline-primary');
+                } else {
+                    this.classList.add('active');
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.classList.remove('btn-outline-primary');
+                    this.classList.add('btn-secondary');
+                }
+                
+                // Show toast
+                showToast(isFollowing ? '{{ t_("social.unfollowed") }}' : '{{ t_("social.now_following") }}');
+            } else {
+                showToast(data.error || 'Error occurred');
+            }
+        } catch (error) {
+            console.error('Error following/unfollowing:', error);
+            showToast('Error occurred');
+        }
+    });
+});
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'alert alert-info position-fixed bottom-0 end-0 m-3';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+</script>
+{% endblock %}

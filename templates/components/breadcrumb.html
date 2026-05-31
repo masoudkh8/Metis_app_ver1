@@ -1,0 +1,24 @@
+{# Breadcrumb Component - Reusable #}
+{% macro render_breadcrumb(items) %}
+<nav class="mb-6 md:mb-8" aria-label="Breadcrumb">
+    <ol class="flex items-center space-x-2 md:space-x-4 text-sm md:text-base overflow-x-auto whitespace-nowrap">
+        {% for item in items %}
+        <li class="flex items-center">
+            {% if not loop.first %}
+            <svg class="w-4 h-4 text-gray-400 mx-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+            {% endif %}
+            
+            {% if loop.last %}
+            <span class="text-gray-900 dark:text-white font-medium">{{ item.label }}</span>
+            {% else %}
+            <a href="{{ item.url }}" class="text-gray-500 dark:text-gray-400 hover:text-gold dark:hover:text-gold-light transition-colors">
+                {{ item.label }}
+            </a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</nav>
+{% endmacro %}

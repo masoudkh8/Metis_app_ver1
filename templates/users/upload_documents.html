@@ -1,0 +1,74 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Upload Documents{% endblock %}
+
+{% block content %}
+<div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-8">
+    <div class="w-full max-w-lg bg-white dark:bg-dark-800 p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-dark-700 transition-all duration-300">
+        
+        <!-- هدر فرم -->
+        <div class="text-center mb-8">
+            <div class="mx-auto h-16 w-16 bg-gradient-to-br from-gold to-gold-dark rounded-full flex items-center justify-center shadow-lg shadow-gold/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-dark-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+            </div>
+            <h2 class="mt-4 text-2xl font-bold text-gray-900 dark:text-white">Upload Documents</h2>
+            <p class="text-gray-600 dark:text-slate-400 text-sm mt-2">To complete the upgrade process, please upload clear scans or photos.</p>
+        </div>
+
+        <!-- فرم آپلود -->
+        <form method="POST" enctype="multipart/form-data" class="space-y-6">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            
+            <!-- پاسپورت -->
+            <div>
+                <label for="passport" class="form-label">Passport Copy *</label>
+                <input id="passport" name="passport_file" type="file" accept=".pdf,image/*" required
+                       class="form-input file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 
+                              file:text-sm file:font-semibold file:bg-gold/10 file:text-gold 
+                              hover:file:bg-gold/20 dark:file:bg-gold/20 dark:file:text-gold-light">
+                <p class="mt-1 text-xs text-gray-500 dark:text-slate-500">Upload PDF or image of your passport.</p>
+            </div>
+
+            <!-- لایسنس شرکت -->
+            <div>
+                <label for="license" class="form-label">Company License *</label>
+                <input id="license" name="license_file" type="file" accept=".pdf,image/*" required
+                       class="form-input file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 
+                              file:text-sm file:font-semibold file:bg-gold/10 file:text-gold 
+                              hover:file:bg-gold/20 dark:file:bg-gold/20 dark:file:text-gold-light">
+                <p class="mt-1 text-xs text-gray-500 dark:text-slate-500">Upload company registration or business license.</p>
+            </div>
+
+            <!-- دکمه ادامه -->
+            <div class="pt-4">
+                <button type="submit"
+                        class="w-full flex justify-center py-3.5 px-6 rounded-xl shadow-lg text-sm font-bold text-dark-900 
+                               bg-gradient-to-r from-gold to-gold-dark 
+                               hover:from-gold-light hover:to-gold 
+                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold 
+                               transform hover:scale-[1.02] active:scale-[0.98] 
+                               transition-all duration-200">
+                    Upload & Continue to Payment
+                </button>
+            </div>
+        </form>
+
+        <!-- لینک بازگشت - با توجه به وضعیت مدارک -->
+        <div class="text-center pt-6 border-t border-gray-200 dark:border-dark-700">
+            {% if req and req.passport_file and req.license_file %}
+                <!-- اگر مدارک آپلود شده، بازگشت به صفحه مشاهده مدارک -->
+                <a href="{{ url_for('users.view_my_documents') }}" class="text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
+                    ← View Document Status
+                </a>
+            {% else %}
+                <!-- اگر مدارک آپلود نشده، بازگشت به مراحل ارتقاء -->
+                <a href="{{ url_for('users.upgrade_to_premium') }}" class="text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
+                    ← Return to Upgrade Steps
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

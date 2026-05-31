@@ -1,0 +1,72 @@
+{% extends "base_pwa.html" %}
+{% block title %}Advertising Request - Imazhe Magazine{% endblock %}
+
+{% block content %}
+<div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-8">
+    <div class="w-full max-w-lg bg-white dark:bg-dark-800 p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-dark-700 transition-all duration-300">
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Advertising Request</h2>
+            <p class="text-gray-600 dark:text-slate-400 text-sm mt-2">To register an advertisement in the magazine, complete the form below.</p>
+        </div>
+        <form method="POST" class="space-y-4">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="name" class="form-label">Name and Surname *</label>
+                    <input id="name" name="name" type="text" required class="form-input">
+                </div>
+                <div>
+                    <label for="company" class="form-label">Company / Brand</label>
+                    <input id="company" name="company" type="text" class="form-input">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="email" class="form-label">Email *</label>
+                    <input id="email" name="email" type="email" required class="form-input">
+                </div>
+                <div>
+                    <label for="phone" class="form-label">Phone Number *</label>
+                    <input id="phone" name="phone" type="tel" required class="form-input">
+                </div>
+            </div>
+            <div>
+                <label for="ad_type" class="form-label">Type of Advertisement *</label>
+                <select id="ad_type" name="ad_type" required class="form-input cursor-pointer">
+                    <option value="" disabled selected>Choose...</option>
+                    <option value="full_page">Full Page</option>
+                    <option value="half_page">Half Page</option>
+                    <option value="quarter_page">Quarter Page</option>
+                    <option value="back_cover">Back Cover</option>
+                    <option value="inner_cover">Inner Cover</option>
+                    <option value="banner">Advertising Banner</option>
+                </select>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="size" class="form-label">Ad Size</label>
+                    <input id="size" name="size" type="text" class="form-input" placeholder="e.g., 210x297mm">
+                </div>
+                <div>
+                    <label for="duration" class="form-label">Publication Duration *</label>
+                    <select id="duration" name="duration" required class="form-input cursor-pointer">
+                        <option value="" disabled selected>Choose...</option>
+                        <option value="1_issue">1 Issue</option>
+                        <option value="3_issues">3 Issues</option>
+                        <option value="6_issues">6 Issues</option>
+                        <option value="annual">Annual (12 Issues)</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label for="message" class="form-label">Message and Description</label>
+                <textarea id="message" name="message" rows="3" class="form-input resize-none"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-bold text-sm hover:from-gold-light hover:to-gold shadow transition transform hover:scale-[1.02] active:scale-[0.98]">Submit Advertising Request</button>
+        </form>
+        <div class="text-center mt-6 pt-4 border-t border-gray-200 dark:border-dark-700">
+            <a href="{{ url_for('magazine.index') }}" class="text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">← Return to Magazine Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

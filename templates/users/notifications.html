@@ -1,0 +1,97 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-3xl mx-auto">
+        
+        <!-- هدر بخش با دکمه بازگشت -->
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Notifications</h2>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="{{ url_for('users.profile') }}"
+                   class="inline-flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Back to Dashboard
+                </a>
+                <a href="{{ url_for('users.profile') }}" 
+                   class="inline-flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Return
+                </a>
+            </div>
+        </div>
+        
+        <!-- لیست اعلانات -->
+        <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 overflow-hidden">
+            {% if notifications %}
+                <div class="divide-y divide-gray-200 dark:divide-dark-700">
+                    {% for n in notifications %}
+                    <div class="p-4 hover:bg-gray-50 dark:hover:bg-dark-700/50 transition {% if not n.is_read %}bg-gold/5 dark:bg-gold/10{% endif %}">
+                        <div class="flex items-start gap-3">
+                            <!-- آیکون وضعیت خوانده/نخوانده -->
+                            <div class="mt-1">
+                                {% if not n.is_read %}
+                                <span class="w-2.5 h-2.5 rounded-full bg-gold animate-pulse"></span>
+                                {% else %}
+                                <span class="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-dark-600"></span>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- محتوا -->
+                            <div class="flex-1 min-w-0">
+                                <p class="text-gray-900 dark:text-white text-sm leading-relaxed">{{ n.message }}</p>
+                                <p class="text-xs text-gray-500 dark:text-slate-400 mt-2">
+                                    {{ n.created_at.strftime('%d/%m/%Y %H:%M') }}
+                                </p>
+                            </div>
+                            
+                            <!-- دکمه حذف (اختیاری) -->
+                            <button class="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-600 text-gray-400 hover:text-red-500 transition">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- دکمه علامت‌گذاری همه به‌عنوان خوانده‌شده -->
+                <div class="p-4 border-t border-gray-200 dark:border-dark-700 text-center">
+                    <form action="{{ url_for('users.mark_all_read') }}" method="POST" class="inline">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="text-sm text-gold hover:text-gold-light font-medium transition">
+                            Mark all as read
+                        </button>
+                    </form>
+                </div>
+                
+            {% else %}
+                <!-- حالت خالی -->
+                <div class="p-12 text-center">
+                    <div class="mx-auto h-16 w-16 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-700 dark:to-dark-800 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-gray-500 dark:text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">No Notifications</h3>
+                    <p class="text-gray-600 dark:text-slate-400 text-sm">You're all caught up! New notifications will appear here.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

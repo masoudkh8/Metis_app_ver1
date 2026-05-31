@@ -1,0 +1,55 @@
+{% extends "base_pwa.html" %}
+{% block title %}Imazhe Magazine{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- هدر مجله -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Imazhe Magazine</h1>
+            <p class="text-gray-600 dark:text-slate-400 max-w-2xl mx-auto mb-8">Specialized reference for domestic and international trade, maritime transport and logistics</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="{{ url_for('magazine.sponsorship_request') }}" class="px-5 py-2.5 rounded-xl border border-gold/30 text-gold hover:bg-gold/10 font-medium text-sm transition">Sponsorship Request</a>
+                <a href="{{ url_for('magazine.advertisement_request') }}" class="px-5 py-2.5 rounded-xl border border-gold/30 text-gold hover:bg-gold/10 font-medium text-sm transition">Advertising in the Magazine</a>
+                <a href="{{ url_for('magazine.subscribe') }}" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-bold text-sm hover:from-gold-light hover:to-gold shadow transition transform hover:scale-[1.02]">Annual Subscription</a>
+            </div>
+        </div>
+
+        <!-- لیست شماره‌های منتشر شده -->
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">📚 Published Issues</h2>
+        {% if issues %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for issue in issues %}
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 overflow-hidden transition-all hover:shadow-xl group">
+                    <div class="h-48 bg-gray-100 dark:bg-dark-700 flex items-center justify-center relative overflow-hidden">
+                        {% if issue.cover_image_url %}
+                            <img src="{{ issue.cover_image_url }}" alt="{{ issue.title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        {% else %}
+                            <span class="text-4xl text-gray-400">📖</span>
+                        {% endif %}
+                        {% if issue.publish_date and issue.publish_date.strftime('%Y-%m-%d') >= (now() - timedelta(days=30)).strftime('%Y-%m-%d') %}
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-gold text-dark-900 text-xs font-bold">New</span>
+                        {% endif %}
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-900 dark:text-white mb-2">{{ issue.title }}</h3>
+                        <p class="text-gray-600 dark:text-slate-400 text-sm mb-3 line-clamp-2">{{ issue.description or 'Description will be added soon.' }}</p>
+                        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-slate-500 mb-4">
+                            <span>📅 {{ issue.publish_date.strftime('%Y/%m/%d') if issue.publish_date else 'TBD' }}</span>
+                            <span>📥 {{ issue.download_count }} downloads</span>
+                        </div>
+                        <a href="#" class="w-full block text-center py-2.5 rounded-lg bg-gray-100 dark:bg-dark-700 text-gray-700 dark:text-slate-300 hover:bg-gold/10 hover:text-gold font-medium text-sm transition">Download Digital Version</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-16 bg-white dark:bg-dark-800 rounded-2xl border border-dashed border-gray-300 dark:border-dark-600">
+                <p class="text-4xl mb-4">📚</p>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">No issue has been published yet</h3>
+                <p class="text-gray-600 dark:text-slate-400 text-sm">The first issue of the magazine will be available soon.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

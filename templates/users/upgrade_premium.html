@@ -1,0 +1,195 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Upgrade to Premium{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        
+        <!-- هدر صفحه -->
+        <div class="text-center mb-8">
+            <div class="mx-auto h-20 w-20 bg-gradient-to-br from-gold to-gold-dark rounded-full flex items-center justify-center shadow-lg shadow-gold/30 mb-4">
+                <span class="text-4xl">🌟</span>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Premium Level 1 - Verified Member</h2>
+            <p class="text-gray-600 dark:text-slate-400 mt-2">Complete verification steps to unlock all premium features and increase your Trust Score</p>
+        </div>
+
+        <!-- دکمه شروع فرآیند (اگر درخواستی وجود ندارد) -->
+        {% if not req %}
+        <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 p-8 mb-6 text-center">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Start Your Premium Journey</h3>
+            <p class="text-gray-600 dark:text-slate-400 mb-6">By completing these steps, you'll become a <strong>Premium Level 1 (Verified)</strong> member with:</p>
+            <ul class="text-left max-w-md mx-auto space-y-2 mb-6 text-sm text-gray-700 dark:text-slate-300">
+                <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Access to Smart Chat with verified traders</li>
+                <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Interactive Port Finder & Vessel Tracking</li>
+                <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Advanced Analytics & Trade Intelligence</li>
+                <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Priority Support & Dedicated Account Manager</li>
+                <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Increased Trust Score & Credibility Badge</li>
+            </ul>
+            
+            <!-- فرم شروع بدون نیاز به شماره تلفن -->
+            <form method="POST" action="{{ url_for('users.start_upgrade') }}" class="max-w-md mx-auto">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                
+                <div class="mb-6 text-left bg-gray-50 dark:bg-dark-700/50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-700 dark:text-slate-300 mb-2">
+                        <strong>Current Phone:</strong> {{ current_user.phone or 'Not set (set in profile)' }}
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-slate-400">
+                        Phone verification is temporarily disabled. Proceed with document upload.
+                    </p>
+                </div>
+                
+                <button type="submit" 
+                        class="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-bold text-lg 
+                               hover:from-gold-light hover:to-gold transform hover:scale-105 active:scale-95 
+                               transition-all duration-200 shadow-xl">
+                    🚀 Start Premium Verification
+                </button>
+            </form>
+        </div>
+        {% elif req and not (req.passport_file and req.license_file) %}
+        <!-- اگر درخواست وجود دارد اما مدارک آپلود نشده، دکمه ادامه نمایش داده شود -->
+        <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 p-8 mb-6 text-center">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Continue Your Premium Journey</h3>
+            <p class="text-gray-600 dark:text-slate-400 mb-6">You have started the verification process but haven't uploaded your documents yet.</p>
+            
+            <a href="{{ url_for('users.upload_documents') }}" 
+               class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-bold text-lg 
+                      hover:from-gold-light hover:to-gold transform hover:scale-105 active:scale-95 
+                      transition-all duration-200 shadow-xl">
+                📄 Upload Documents Now
+            </a>
+        </div>
+        {% endif %}
+
+        <!-- نوار پیشرفت (Progress Bar) -->
+        {% if req %}
+        <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-sm font-semibold text-gold">Progress Status</span>
+                {% if req and req.status == 'approved' %}
+                    <span class="px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold">Completed ✅</span>
+                {% elif req and req.status == 'rejected' %}
+                    <span class="px-2.5 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-xs font-bold">Rejected ❌</span>
+                {% elif req %}
+                    <span class="px-2.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-bold">In Progress...</span>
+                {% endif %}
+            </div>
+            
+            <!-- لیست مراحل -->
+            <div class="space-y-4">
+                
+                <!-- مرحله ۱: ایمیل (جابجا شده به اول) -->
+                <div class="flex items-center gap-4 p-3 rounded-lg {% if req and req.email_verified %}bg-green-50 dark:bg-green-900/20{% else %}bg-gray-50 dark:bg-dark-700/50{% endif %}">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center {% if req and req.email_verified %}bg-green-500 text-white{% else %}bg-gray-200 dark:bg-dark-600 text-gray-600 dark:text-slate-400{% endif %}">
+                        1
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-medium text-gray-900 dark:text-white">Verify Email</p>
+                    </div>
+                    {% if req and req.email_verified %}
+                        <span class="text-green-600 dark:text-green-400 text-sm font-medium">✅ Done</span>
+                    {% else %}
+                        <a href="{{ url_for('users.verify_email') }}" class="text-gold hover:text-gold-light text-sm font-medium">Complete →</a>
+                    {% endif %}
+                </div>
+
+                <!-- مرحله ۲: مدارک -->
+                <div class="flex items-center gap-4 p-3 rounded-lg {% if req and req.passport_file and req.license_file %}bg-green-50 dark:bg-green-900/20{% else %}bg-gray-50 dark:bg-dark-700/50{% endif %}">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center {% if req and req.passport_file and req.license_file %}bg-green-500 text-white{% else %}bg-gray-200 dark:bg-dark-600 text-gray-600 dark:text-slate-400{% endif %}">
+                        2
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-medium text-gray-900 dark:text-white">Upload Documents (Passport & License)</p>
+                    </div>
+                    {% if req and req.passport_file and req.license_file %}
+                        <span class="text-green-600 dark:text-green-400 text-sm font-medium">✅ Done</span>
+                    {% elif req %}
+                        <a href="{{ url_for('users.upload_documents') }}" class="text-gold hover:text-gold-light text-sm font-medium">Complete →</a>
+                    {% else %}
+                        <span class="text-gray-400 text-xs">Start Required</span>
+                    {% endif %}
+                </div>
+
+                <!-- مرحله ۳: پرداخت -->
+                <div class="flex items-center gap-4 p-3 rounded-lg {% if req and req.payment_receipt %}bg-green-50 dark:bg-green-900/20{% else %}bg-gray-50 dark:bg-dark-700/50{% endif %}">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center {% if req and req.payment_receipt %}bg-green-500 text-white{% else %}bg-gray-200 dark:bg-dark-600 text-gray-600 dark:text-slate-400{% endif %}">
+                        3
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-medium text-gray-900 dark:text-white">Payment ($1,000 Annual Fee)</p>
+                    </div>
+                    {% if req and req.payment_receipt %}
+                        <span class="text-green-600 dark:text-green-400 text-sm font-medium">✅ Done</span>
+                    {% elif req and req.passport_file and req.license_file %}
+                        <a href="{{ url_for('users.make_payment') }}" class="text-gold hover:text-gold-light text-sm font-medium">Complete →</a>
+                    {% else %}
+                        <span class="text-gray-400 text-xs">Step 2 Required</span>
+                    {% endif %}
+                </div>
+
+                <!-- مرحله ۴: بررسی نهایی -->
+                <div class="flex items-center gap-4 p-3 rounded-lg {% if req and req.status == 'approved' %}bg-green-50 dark:bg-green-900/20{% elif req and req.status == 'rejected' %}bg-red-50 dark:bg-red-900/20{% else %}bg-gray-50 dark:bg-dark-700/50{% endif %}">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center {% if req and req.status == 'approved' %}bg-green-500 text-white{% elif req and req.status == 'rejected' %}bg-red-500 text-white{% else %}bg-gray-200 dark:bg-dark-600 text-gray-600 dark:text-slate-400{% endif %}">
+                        4
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-medium text-gray-900 dark:text-white">Admin Review & Approval</p>
+                    </div>
+                    {% if req %}
+                        <span class="{% if req.status == 'approved' %}text-green-600 dark:text-green-400{% elif req.status == 'rejected' %}text-red-600 dark:text-red-400{% else %}text-blue-600 dark:text-blue-400{% endif %} text-sm font-medium capitalize">{{ req.status|replace('_', ' ') }}</span>
+                    {% else %}
+                        <span class="text-gray-400 text-xs">Waiting</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- وضعیت درخواست‌های قبلی -->
+        {% if requests and requests|length > 0 %}
+            <div class="bg-gray-50 dark:bg-dark-800 rounded-xl p-4 border border-gray-200 dark:border-dark-700">
+                <h4 class="font-semibold text-gray-900 dark:text-white mb-3">📋 Request History</h4>
+                <ul class="space-y-2 text-sm text-gray-600 dark:text-slate-400">
+                    {% for r in requests %}
+                        {% if r.status in ['rejected', 'approved'] %}
+                        <li class="flex items-center justify-between p-2 rounded bg-white dark:bg-dark-700 border border-gray-200 dark:border-dark-600">
+                            <span>Request #{{ loop.index }}</span>
+                            <span class="font-medium {% if r.status == 'rejected' %}text-red-600 dark:text-red-400{% else %}text-green-600 dark:text-green-400{% endif %}">
+                                {{ r.status|capitalize }} on {{ r.submitted_at.strftime('%Y/%m/%d') }}
+                            </span>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- راهنما و پشتیبانی -->
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-800 mt-6">
+            <h4 class="font-semibold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Need Help?
+            </h4>
+            <p class="text-sm text-blue-800 dark:text-blue-400">
+                If you have any questions during the verification process, please contact our support team at 
+                <a href="mailto:support@metisma.com" class="underline font-medium">support@metisma.com</a>
+            </p>
+        </div>
+
+        <!-- دکمه بازگشت -->
+        <div class="text-center mt-6">
+            <a href="{{ url_for('users.profile') }}" class="inline-flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Return to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base_pwa.html" %}
+{% block title %}Chat with {{ user.username }}{% endblock %}
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-4 flex flex-col">
+    <div class="max-w-4xl mx-auto w-full flex-1 flex flex-col">
+        <!-- هدر چت -->
+        <div class="flex items-center justify-between mb-4 p-4 bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold/20 to-gold-dark/20 flex items-center justify-center text-gold font-bold">{{ user.username[0]|upper }}</div>
+                <div>
+                    <h2 class="font-bold text-gray-900 dark:text-white">Chat with {{ user.username }} {% if user.is_premium %}🌟{% endif %}</h2>
+                    <p class="text-xs text-gray-500 dark:text-slate-400">{{ user.email }} | {{ user.role.value }} | {% if user.is_active %}<span class="text-green-500">Active</span>{% else %}<span class="text-red-500">Disabled</span>{% endif %}</p>
+                </div>
+            </div>
+            <a href="{{ url_for('admin.admin_chat_list') }}" class="text-sm text-gray-600 dark:text-slate-400 hover:text-gold transition flex items-center gap-1">← Back to Users</a>
+        </div>
+
+        <!-- ناحیه پیام‌ها -->
+        <div class="flex-1 bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 overflow-hidden flex flex-col">
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 min-h-[400px] max-h-[60vh]">
+                {% if messages %}
+                    {% for m in messages %}
+                    <div class="flex {% if m.sender_id == current_user.id %}justify-end{% else %}justify-start{% endif %}">
+                        <div class="max-w-[75%] {% if m.sender_id == current_user.id %}bg-gold text-dark-900{% else %}bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-white{% endif %} rounded-2xl px-4 py-2.5 shadow-sm">
+                            <p class="text-sm">{{ m.content }}</p>
+                            <p class="text-[10px] {% if m.sender_id == current_user.id %}text-dark-900/70{% else %}text-gray-500 dark:text-slate-400{% endif %} mt-1 {% if m.sender_id == current_user.id %}text-right{% endif %}">
+                                {{ m.created_at.strftime('%d/%m/%Y %H:%M') }}
+                                {% if m.sender_id != current_user.id and not m.is_read %}<span class="ml-1 text-gold">● New</span>{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="flex items-center justify-center h-full text-gray-500 dark:text-slate-400"><p>No messages yet. Start the conversation!</p></div>
+                {% endif %}
+            </div>
+
+            <!-- فرم ارسال -->
+            <form method="POST" class="p-4 border-t border-gray-200 dark:border-dark-700">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <div class="flex gap-3">
+                    <input type="text" name="content" required class="form-input flex-1" placeholder="Type your message...">
+                    <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-bold text-sm hover:from-gold-light hover:to-gold transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

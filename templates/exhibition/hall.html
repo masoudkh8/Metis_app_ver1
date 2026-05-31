@@ -1,0 +1,149 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Metisma Online Exhibition | Metisma Exhibition{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                🏛️ Metisma Online Exhibition
+            </h1>
+            <p class="text-xl mb-8 opacity-90">
+                Discover Business Opportunities in Interactive Virtual Booths
+            </p>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+                <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+                    <div class="text-3xl font-bold">{{ stats.total_booths }}</div>
+                    <div class="text-sm opacity-80">Active Booths</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+                    <div class="text-3xl font-bold">{{ stats.total_visitors }}</div>
+                    <div class="text-sm opacity-80">Visitors</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+                    <div class="text-3xl font-bold">{{ stats.active_exhibitions }}</div>
+                    <div class="text-sm opacity-80">Exhibitions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Booths -->
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
+            ⭐ Featured Booths
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for booth in featured_booths %}
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <!-- Booth Image -->
+                <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 relative">
+                    {% if booth.image_url %}
+                    <img src="{{ booth.image_url }}" alt="{{ booth.title_fa }}" class="w-full h-full object-cover">
+                    {% else %}
+                    <div class="w-full h-full flex items-center justify-center text-white text-6xl">
+                        🏪
+                    </div>
+                    {% endif %}
+                    
+                    {% if booth.is_featured %}
+                    <span class="absolute top-2 right-2 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
+                        Featured
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <!-- Booth Info -->
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-2 text-gray-800">{{ booth.title_fa }}</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2">
+                        {{ booth.description_fa[:100] }}...
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">
+                            👁️ {{ booth.visit_count }} views
+                        </span>
+                        <a href="{{ url_for('exhibition.booth_detail', booth_id=booth.id) }}" 
+                           class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors">
+                            View Booth
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-8">
+            <a href="#" class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors">
+                View All Booths →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Active Exhibitions -->
+<section class="py-12">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
+            📅 Active Exhibitions
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for exhibition in exhibitions %}
+            <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-blue-500 transition-colors">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800">{{ exhibition.title_fa }}</h3>
+                        <p class="text-sm text-gray-500 mt-1">
+                            🗓️ {{ exhibition.start_date.strftime('%Y/%m/%d') }} - {{ exhibition.end_date.strftime('%Y/%m/%d') }}
+                        </p>
+                    </div>
+                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold">
+                        Active
+                    </span>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4">
+                    {{ exhibition.description_fa[:150] }}...
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <span class="text-sm text-gray-500">
+                        🏪 {{ exhibition.booths.count() if exhibition.booths else 0 }} Booths
+                    </span>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                        Enter Exhibition →
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Are You an Exhibitor?</h2>
+        <p class="text-xl mb-8 opacity-90">Create your virtual booth today and connect with thousands of visitors</p>
+        
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('exhibition.create_booth') }}" class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+            Create New Booth
+        </a>
+        {% else %}
+        <a href="{{ url_for('users.login') }}" class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+            Login / Register
+        </a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

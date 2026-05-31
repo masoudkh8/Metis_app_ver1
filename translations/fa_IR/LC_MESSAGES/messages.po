@@ -1,0 +1,570 @@
+# Persian (Farsi) Translations for Metisma
+# Copyright (C) 2024 Metisma Platform
+# This file is distributed under the same license as the Metisma package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Metisma 1.0\n"
+"Report-Msgid-Bugs-To: support@metisma.com\n"
+"POT-Creation-Date: 2024-01-01 00:00+0330\n"
+"PO-Revision-Date: 2024-01-01 00:00+0330\n"
+"Last-Translator: Metisma Team\n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+# Authentication & Registration
+msgid "Welcome to Metisma"
+msgstr "به متیسمای خوش آمدید"
+
+msgid "Login"
+msgstr "ورود"
+
+msgid "Register"
+msgstr "ثبت‌نام"
+
+msgid "Logout"
+msgstr "خروج"
+
+msgid "Username"
+msgstr "نام کاربری"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Password"
+msgstr "رمز عبور"
+
+msgid "Confirm Password"
+msgstr "تأیید رمز عبور"
+
+msgid "Forgot Password?"
+msgstr "رمز عبور را فراموش کرده‌اید؟"
+
+msgid "Reset Password"
+msgstr "بازنشانی رمز عبور"
+
+msgid "Remember Me"
+msgstr "مرا به خاطر بسپار"
+
+msgid "Don't have an account?"
+msgstr "حساب کاربری ندارید؟"
+
+msgid "Already have an account?"
+msgstr "حساب کاربری دارید؟"
+
+msgid "Sign Up Now"
+msgstr "همین حالا ثبت‌نام کنید"
+
+msgid "Sign In"
+msgstr "ورود به حساب"
+
+# Registration Steps
+msgid "Step 1: Basic Information"
+msgstr "مرحله ۱: اطلاعات پایه"
+
+msgid "Step 2: Professional Information"
+msgstr "مرحله ۲: اطلاعات حرفه‌ای"
+
+msgid "Step 3: Security & Verification"
+msgstr "مرحله ۳: امنیت و تأیید"
+
+msgid "Next Step"
+msgstr "مرحله بعد"
+
+msgid "Previous Step"
+msgstr "مرحله قبل"
+
+msgid "Complete Registration"
+msgstr "تکمیل ثبت‌نام"
+
+msgid "Select Your Role"
+msgstr "نقش خود را انتخاب کنید"
+
+msgid "Producer"
+msgstr "تولیدکننده"
+
+msgid "Buyer"
+msgstr "خریدار"
+
+msgid "Broker"
+msgstr "کارگزار"
+
+msgid "Corporate Agent"
+msgstr "نماینده شرکتی"
+
+msgid "Logistics Provider"
+msgstr "ارائه‌دهنده خدمات لجستیک"
+
+msgid "Legal Advisor"
+msgstr "مشاور حقوقی"
+
+msgid "Tech Partner"
+msgstr "شریک فناوری"
+
+msgid "Investor"
+msgstr "سرمایه‌گذار"
+
+# Profile & Dashboard
+msgid "Dashboard"
+msgstr "داشبورد"
+
+msgid "Profile"
+msgstr "پروفایل"
+
+msgid "Edit Profile"
+msgstr "ویرایش پروفایل"
+
+msgid "My Documents"
+msgstr "مدارک من"
+
+msgid "Upload Documents"
+msgstr "آپلود مدارک"
+
+msgid "Company Name"
+msgstr "نام شرکت"
+
+msgid "Job Title"
+msgstr "عنوان شغلی"
+
+msgid "Expertise Area"
+msgstr "حوزه تخصصی"
+
+msgid "Bio"
+msgstr "بیوگرافی"
+
+msgid "Website"
+msgstr "وبسایت"
+
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+msgid "Country"
+msgstr "کشور"
+
+msgid "City"
+msgstr "شهر"
+
+msgid "Address"
+msgstr "آدرس"
+
+msgid "Social Links"
+msgstr "لینک‌های اجتماعی"
+
+msgid "LinkedIn"
+msgstr "لینکدین"
+
+msgid "Telegram"
+msgstr "تلگرام"
+
+msgid "WhatsApp"
+msgstr "واتساپ"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Cancel"
+msgstr "انصراف"
+
+# Trust Score
+msgid "Trust Score"
+msgstr "امتیاز اعتماد"
+
+msgid "Your Trust Score"
+msgstr "امتیاز اعتماد شما"
+
+msgid "Trust Level"
+msgstr "سطح اعتماد"
+
+msgid "Bronze"
+msgstr "برنز"
+
+msgid "Silver"
+msgstr "نقره‌ای"
+
+msgid "Gold"
+msgstr "طلایی"
+
+msgid "Platinum"
+msgstr "پلاتینیوم"
+
+msgid "Newcomer"
+msgstr "تازه‌وارد"
+
+msgid "Identity Verification"
+msgstr "تأیید هویت"
+
+msgid "Expertise Verification"
+msgstr "تأیید تخصص"
+
+msgid "Social Credibility"
+msgstr "اعتبار اجتماعی"
+
+msgid "Dynamic Score"
+msgstr "امتیاز پویا"
+
+msgid "Verified"
+msgstr "تأیید شده"
+
+msgid "Not Verified"
+msgstr "تأیید نشده"
+
+msgid "Pending Verification"
+msgstr "در انتظار تأیید"
+
+# Messages & Notifications
+msgid "Success"
+msgstr "موفقیت"
+
+msgid "Error"
+msgstr "خطا"
+
+msgid "Warning"
+msgstr "هشدار"
+
+msgid "Info"
+msgstr "اطلاعات"
+
+msgid "Please login first."
+msgstr "لطفاً ابتدا وارد شوید."
+
+msgid "Access denied."
+msgstr "دسترسی غیرمجاز."
+
+msgid "Invalid credentials."
+msgstr "اطلاعات ورود نامعتبر است."
+
+msgid "Account created successfully."
+msgstr "حساب کاربری با موفقیت ایجاد شد."
+
+msgid "Profile updated successfully."
+msgstr "پروفایل با موفقیت به‌روزرسانی شد."
+
+msgid "Documents uploaded successfully."
+msgstr "مدارک با موفقیت آپلود شدند."
+
+msgid "File type not allowed."
+msgstr "نوع فایل مجاز نیست."
+
+msgid "File size exceeds limit."
+msgstr "حجم فایل از حد مجاز بیشتر است."
+
+msgid "Password reset link sent to your email."
+msgstr "لینک بازنشانی رمز عبور به ایمیل شما ارسال شد."
+
+msgid "Old password is incorrect."
+msgstr "رمز عبور قدیمی نادرست است."
+
+msgid "Passwords do not match."
+msgstr "رمزهای عبور مطابقت ندارند."
+
+msgid "Username already exists."
+msgstr "نام کاربری قبلاً گرفته شده است."
+
+msgid "Email already exists."
+msgstr "ایمیل قبلاً ثبت شده است."
+
+msgid "Too many requests. Please try again later."
+msgstr "درخواست‌های زیادی ارسال شده است. لطفاً بعداً تلاش کنید."
+
+# Forms & Validation
+msgid "Required"
+msgstr "الزامی"
+
+msgid "This field is required."
+msgstr "این فیلد الزامی است."
+
+msgid "Enter a valid email address."
+msgstr "یک آدرس ایمیل معتبر وارد کنید."
+
+msgid "Password must be at least 8 characters."
+msgstr "رمز عبور باید حداقل ۸ کاراکتر باشد."
+
+msgid "Password must contain uppercase, lowercase, and numbers."
+msgstr "رمز عبور باید شامل حروف بزرگ، کوچک و اعداد باشد."
+
+msgid "Please accept the terms and conditions."
+msgstr "لطفاً شرایط و قوانین را بپذیرید."
+
+msgid "I agree to the Terms of Service"
+msgstr "با شرایط خدمات موافقم"
+
+msgid "I agree to the Privacy Policy"
+msgstr "با سیاست حریم خصوصی موافقم"
+
+# Navigation & Menu
+msgid "Home"
+msgstr "خانه"
+
+msgid "Marketplace"
+msgstr "بازار"
+
+msgid "Products"
+msgstr "محصولات"
+
+msgid "Services"
+msgstr "خدمات"
+
+msgid "Consortium"
+msgstr "کنسرسیوم"
+
+msgid "Smart Chat"
+msgstr "چت هوشمند"
+
+msgid "Map"
+msgstr "نقشه"
+
+msgid "Learning"
+msgstr "یادگیری"
+
+msgid "Courses"
+msgstr "دوره‌ها"
+
+msgid "Webinars"
+msgstr "وبینارها"
+
+msgid "CRM"
+msgstr "مدیریت ارتباط با مشتری"
+
+msgid "Leads"
+msgstr "سرنخ‌ها"
+
+msgid "Network"
+msgstr "شبکه"
+
+msgid "Exhibition"
+msgstr "نمایشگاه"
+
+msgid "Trading Hall"
+msgstr "تالار معاملات"
+
+msgid "Magazine"
+msgstr "مجله"
+
+msgid "News"
+msgstr "اخبار"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Help"
+msgstr "راهنما"
+
+msgid "Contact Us"
+msgstr "تماس با ما"
+
+msgid "About Us"
+msgstr "درباره ما"
+
+msgid "Terms of Service"
+msgstr "شرایط خدمات"
+
+msgid "Privacy Policy"
+msgstr "سیاست حریم خصوصی"
+
+# Actions
+msgid "View"
+msgstr "مشاهده"
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Create"
+msgstr "ایجاد"
+
+msgid "Update"
+msgstr "به‌روزرسانی"
+
+msgid "Search"
+msgstr "جستجو"
+
+msgid "Filter"
+msgstr "فیلتر"
+
+msgid "Export"
+msgstr "خروجی"
+
+msgid "Import"
+msgstr "ورود"
+
+msgid "Download"
+msgstr "دانلود"
+
+msgid "Upload"
+msgstr "آپلود"
+
+msgid "Share"
+msgstr "اشتراک‌گذاری"
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "Submit"
+msgstr "ثبت"
+
+msgid "Apply"
+msgstr "درخواست"
+
+msgid "Accept"
+msgstr "پذیرفتن"
+
+msgid "Reject"
+msgstr "رد کردن"
+
+msgid "Confirm"
+msgstr "تأیید"
+
+msgid "Approve"
+msgstr "تصویب"
+
+# Time & Dates
+msgid "Today"
+msgstr "امروز"
+
+msgid "Yesterday"
+msgstr "دیروز"
+
+msgid "This Week"
+msgstr "این هفته"
+
+msgid "This Month"
+msgstr "این ماه"
+
+msgid "This Year"
+msgstr "امسال"
+
+msgid "Created At"
+msgstr "ایجاد شده در"
+
+msgid "Updated At"
+msgstr "به‌روزرسانی شده در"
+
+msgid "Last Login"
+msgstr "آخرین ورود"
+
+msgid "Date"
+msgstr "تاریخ"
+
+msgid "Time"
+msgstr "زمان"
+
+# Status
+msgid "Active"
+msgstr "فعال"
+
+msgid "Inactive"
+msgstr "غیرفعال"
+
+msgid "Pending"
+msgstr "در انتظار"
+
+msgid "Approved"
+msgstr "تصویب شده"
+
+msgid "Rejected"
+msgstr "رد شده"
+
+msgid "Draft"
+msgstr "پیش‌نویس"
+
+msgid "Published"
+msgstr "منتشر شده"
+
+msgid "Archived"
+msgstr "بایگانی شده"
+
+# Financial
+msgid "Wallet"
+msgstr "کیف پول"
+
+msgid "Balance"
+msgstr "موجودی"
+
+msgid "Transaction"
+msgstr "تراکنش"
+
+msgid "Transactions"
+msgstr "تراکنش‌ها"
+
+msgid "Deposit"
+msgstr "واریز"
+
+msgid "Withdraw"
+msgstr "برداشت"
+
+msgid "Payment"
+msgstr "پرداخت"
+
+msgid "Invoice"
+msgstr "فاکتور"
+
+msgid "Credit"
+msgstr "اعتبار"
+
+msgid "Debit"
+msgstr "بدهی"
+
+msgid "Trade Credit"
+msgstr "اعتبار تجاری"
+
+msgid "Escrow"
+msgstr "امانت"
+
+# Miscellaneous
+msgid "Loading..."
+msgstr "در حال بارگذاری..."
+
+msgid "No results found."
+msgstr "نتیجه‌ای یافت نشد."
+
+msgid "Show more"
+msgstr "نمایش بیشتر"
+
+msgid "Show less"
+msgstr "نمایش کمتر"
+
+msgid "Back to top"
+msgstr "بازگشت به بالا"
+
+msgid "Copyright"
+msgstr "حق کپی‌رایت"
+
+msgid "All rights reserved."
+msgstr "تمامی حقوق محفوظ است."
+
+msgid "Made with"
+msgstr "ساخته شده با"
+
+msgid "in Iran"
+msgstr "در ایران"
+
+# Roles Description
+msgid "Producer Description"
+msgstr "تولیدکنندگان کالا و خدمات صادراتی"
+
+msgid "Buyer Description"
+msgstr "خریداران بین‌المللی و واردکنندگان"
+
+msgid "Broker Description"
+msgstr "کارگزاران و واسطه‌های تجاری"
+
+msgid "Corporate Agent Description"
+msgstr "نمایندگان رسمی شرکت‌های بزرگ"
+
+msgid "Logistics Provider Description"
+msgstr "ارائه‌دهندگان خدمات حمل‌ونقل و لجستیک"
+
+msgid "Legal Advisor Description"
+msgstr "مشاوران حقوقی و قراردادهای بین‌المللی"
+
+msgid "Tech Partner Description"
+msgstr "شریک‌های فناوری و پلتفرم‌های دیجیتال"
+
+msgid "Investor Description"
+msgstr "سرمایه‌گذاران و صندوق‌های سرمایه‌گذاری"

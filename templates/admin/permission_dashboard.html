@@ -1,0 +1,1039 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Permissions and Access Management Dashboard{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        --info-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        --dark-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+        --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+        --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Dashboard Header */
+    .permission-dashboard {
+        background: var(--primary-gradient);
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin-bottom: 2.5rem;
+        color: white;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .permission-dashboard::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(10deg); }
+    }
+    
+    .permission-dashboard h2 {
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .permission-dashboard p {
+        opacity: 0.9;
+        font-size: 1.1rem;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Stat Cards */
+    .stat-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        height: 100%;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--primary-gradient);
+    }
+    
+    .stat-card:nth-child(2)::before { background: var(--secondary-gradient); }
+    .stat-card:nth-child(3)::before { background: var(--success-gradient); }
+    .stat-card:nth-child(4)::before { background: var(--warning-gradient); }
+    
+    .stat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .stat-card .icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    
+    .stat-card .value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .stat-card:nth-child(2) .value { 
+        background: var(--secondary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .stat-card:nth-child(3) .value { 
+        background: var(--success-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .stat-card:nth-child(4) .value { 
+        background: var(--warning-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .stat-card .label {
+        color: #718096;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+    }
+    
+    /* Navigation Tabs */
+    .nav-tabs {
+        border: none;
+        gap: 1rem;
+        margin-bottom: 0;
+    }
+    
+    .nav-tabs .nav-link {
+        border: none;
+        color: #4a5568;
+        font-weight: 700;
+        padding: 1.2rem 2rem;
+        border-radius: 15px 15px 0 0;
+        transition: var(--transition);
+        background: #f7fafc;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .nav-tabs .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background: var(--primary-gradient);
+        transition: var(--transition);
+        transform: translateX(-50%);
+    }
+    
+    .nav-tabs .nav-link.active {
+        background: white;
+        color: #667eea;
+        border: none;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .nav-tabs .nav-link.active::before {
+        width: 80%;
+    }
+    
+    .nav-tabs .nav-link:hover:not(.active) {
+        background: #edf2f7;
+        transform: translateY(-2px);
+    }
+    
+    .nav-tabs .nav-link i {
+        margin-left: 0.5rem;
+        font-size: 1.1rem;
+    }
+    
+    /* Tab Content */
+    .tab-content {
+        background: white;
+        border-radius: 0 0 20px 20px;
+        padding: 2.5rem;
+        box-shadow: var(--shadow-md);
+    }
+    
+    /* Permission Matrix Table */
+    .permission-matrix {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        background: white;
+    }
+    
+    .permission-matrix thead {
+        background: var(--primary-gradient);
+        color: white;
+    }
+    
+    .permission-matrix th {
+        padding: 1.5rem 1rem;
+        text-align: center;
+        border: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .permission-matrix td {
+        padding: 1.2rem 1rem;
+        text-align: center;
+        border-bottom: 1px solid #e2e8f0;
+        transition: var(--transition);
+    }
+    
+    .permission-matrix th:first-child,
+    .permission-matrix td:first-child {
+        text-align: right;
+        font-weight: 700;
+        background: #f7fafc;
+        min-width: 220px;
+        border-right: 2px solid #e2e8f0;
+    }
+    
+    .permission-matrix tbody tr {
+        transition: var(--transition);
+    }
+    
+    .permission-matrix tbody tr:hover {
+        background: linear-gradient(90deg, #f7fafc 0%, #ffffff 100%);
+        transform: scale(1.01);
+    }
+    
+    .permission-matrix tbody tr:last-child td {
+        border-bottom: none;
+    }
+    
+    /* Badge Permission */
+    .badge-permission {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 1.3rem;
+        transition: var(--transition);
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .badge-permission:hover {
+        transform: scale(1.2) rotate(5deg);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .badge-permission.granted {
+        background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+        color: #22543d;
+    }
+    
+    .badge-permission.denied {
+        background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+        color: #742a2a;
+        opacity: 0.7;
+    }
+    
+    /* Role Badge */
+    .role-badge {
+        padding: 0.6rem 1.2rem;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: inline-block;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    
+    .role-badge:hover {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .role-admin { background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); color: #742a2a; }
+    .role-logistics { background: linear-gradient(135deg, #bee3f8 0%, #63b3ed 100%); color: #2a4365; }
+    .role-legal { background: linear-gradient(135deg, #fef3c7 0%, #f6e05e 100%); color: #744210; }
+    .role-tech { background: linear-gradient(135deg, #e9d8fd 0%, #b794f4 100%); color: #44337a; }
+    .role-investor { background: linear-gradient(135deg, #c6f6d5 0%, #68d391 100%); color: #22543d; }
+    .role-producer { background: linear-gradient(135deg, #feebc8 0%, #f6ad55 100%); color: #7c2d12; }
+    .role-buyer { background: linear-gradient(135deg, #fed7e2 0%, #f687b3 100%); color: #831843; }
+    .role-corporate_agent { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%); color: #2d3748; }
+    .role-broker { background: linear-gradient(135deg, #fef5e7 0%, #fbd38d 100%); color: #744210; }
+    
+    /* Action Buttons */
+    .action-btn {
+        padding: 0.7rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 700;
+        transition: var(--transition);
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .action-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .action-btn:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .action-btn-primary {
+        background: var(--primary-gradient);
+        color: white;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .action-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .action-btn-success {
+        background: var(--success-gradient);
+        color: white;
+    }
+    
+    .action-btn-warning {
+        background: var(--warning-gradient);
+        color: white;
+    }
+    
+    .action-btn-info {
+        background: var(--info-gradient);
+        color: #2d3748;
+    }
+    
+    /* Filter Select */
+    .filter-select {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 0.875rem 1.25rem;
+        font-weight: 600;
+        transition: var(--transition);
+        background: white;
+    }
+    
+    .filter-select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        outline: none;
+        transform: translateY(-2px);
+    }
+    
+    /* Preview Box */
+    .preview-box {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-top: 1.5rem;
+        border: 3px dashed #cbd5e0;
+        transition: var(--transition);
+    }
+    
+    .preview-box:hover {
+        border-color: #667eea;
+        background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+    }
+    
+    /* Module Item */
+    .module-item {
+        background: white;
+        padding: 1.25rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        border: 2px solid transparent;
+    }
+    
+    .module-item:hover {
+        transform: translateX(10px);
+        box-shadow: var(--shadow-md);
+        border-color: #667eea;
+        background: linear-gradient(90deg, #ffffff 0%, #f7fafc 100%);
+    }
+    
+    .module-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 1rem;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+        transition: var(--transition);
+    }
+    
+    .module-item:hover .module-icon {
+        transform: rotate(10deg) scale(1.1);
+        background: var(--primary-gradient);
+        color: white;
+    }
+    
+    /* Category Badge */
+    .category-badge {
+        padding: 0.35rem 0.875rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-left: 0.5rem;
+        display: inline-block;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .cat-order { background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); color: #742a2a; }
+    .cat-logistics { background: linear-gradient(135deg, #bee3f8 0%, #63b3ed 100%); color: #2a4365; }
+    .cat-legal { background: linear-gradient(135deg, #fef3c7 0%, #f6e05e 100%); color: #744210; }
+    .cat-finance { background: linear-gradient(135deg, #c6f6d5 0%, #68d391 100%); color: #22543d; }
+    .cat-tech { background: linear-gradient(135deg, #e9d8fd 0%, #b794f4 100%); color: #44337a; }
+    .cat-dashboard { background: linear-gradient(135deg, #feebc8 0%, #f6ad55 100%); color: #7c2d12; }
+    .cat-profile { background: linear-gradient(135deg, #fed7e2 0%, #f687b3 100%); color: #831843; }
+    .cat-public { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%); color: #2d3748; }
+    
+    /* Search Box */
+    .search-box {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+    
+    .search-box input {
+        width: 100%;
+        padding: 1rem 1.25rem 1rem 3rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 15px;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: var(--transition);
+        background: white;
+    }
+    
+    .search-box input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        outline: none;
+        transform: translateY(-2px);
+    }
+    
+    .search-box i {
+        position: absolute;
+        right: 1.25rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #a0aec0;
+        font-size: 1.1rem;
+        transition: var(--transition);
+    }
+    
+    .search-box input:focus + i {
+        color: #667eea;
+    }
+    
+    /* Cards */
+    .card {
+        border: none;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        overflow: hidden;
+    }
+    
+    .card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-5px);
+    }
+    
+    .card-header {
+        border-radius: 16px 16px 0 0 !important;
+        padding: 1.5rem 2rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+    
+    .card-header.bg-warning {
+        background: var(--warning-gradient) !important;
+        color: white !important;
+    }
+    
+    .card-header.bg-info {
+        background: var(--success-gradient) !important;
+        color: white !important;
+    }
+    
+    .card-header.bg-primary {
+        background: var(--primary-gradient) !important;
+        color: white !important;
+    }
+    
+    /* Alerts */
+    .alert {
+        border: none;
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        font-weight: 600;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .alert-info {
+        background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+        color: #234e52;
+    }
+    
+    .alert-light {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        color: #4a5568;
+        border: 2px solid #e2e8f0 !important;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .permission-dashboard {
+            padding: 1.5rem;
+        }
+        
+        .permission-dashboard h2 {
+            font-size: 1.5rem;
+        }
+        
+        .stat-card {
+            padding: 1.5rem;
+        }
+        
+        .stat-card .icon {
+            font-size: 2rem;
+        }
+        
+        .stat-card .value {
+            font-size: 2rem;
+        }
+        
+        .tab-content {
+            padding: 1.5rem;
+        }
+        
+        .nav-tabs .nav-link {
+            padding: 1rem 1.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .permission-matrix {
+            font-size: 0.85rem;
+        }
+        
+        .permission-matrix th,
+        .permission-matrix td {
+            padding: 0.75rem 0.5rem;
+        }
+    }
+    
+    /* Loading Spinner */
+    .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        border-width: 0.25rem;
+    }
+    
+    /* Button Group */
+    .btn-group-sm > .btn, .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        border-radius: 10px;
+    }
+    
+    /* Gap Utility */
+    .gap-2 { gap: 0.5rem !important; }
+    .gap-3 { gap: 1rem !important; }
+    
+    /* Animation for page load */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .permission-dashboard,
+    .stat-card,
+    .tab-content {
+        animation: fadeInUp 0.6s ease-out;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <!-- هدر داشبورد -->
+    <div class="permission-dashboard mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h2><i class="fas fa-shield-alt ml-2"></i>Permissions and Access Management Dashboard</h2>
+                <p class="mb-0 opacity-75">Professional centralized management of roles, permissions and user access</p>
+            </div>
+            <div class="col-md-4 text-left">
+                <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-light action-btn action-btn-primary" onclick="location.reload()">
+                        <i class="fas fa-sync-alt ml-1"></i>Update
+                    </button>
+                    <a href="{{ url_for('users.manage_permissions', target_user_id=current_user.id) }}" 
+                       class="btn btn-light action-btn action-btn-success">
+                        <i class="fas fa-user-cog ml-1"></i>User Management
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- کارت‌های آمار -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="stat-card text-center">
+                <div class="icon">🎭</div>
+                <div class="value">{{ roles|length }}</div>
+                <div class="label">Active User Roles</div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card text-center">
+                <div class="icon">🔐</div>
+                <div class="value">{{ permissions|length }}</div>
+                <div class="label">Defined Permissions</div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card text-center">
+                <div class="icon">👥</div>
+                <div class="value">{{ users|length }}</div>
+                <div class="label">Registered Users</div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card text-center">
+                <div class="icon">⚙️</div>
+                <div class="value">{{ matrix|length }}</div>
+                <div class="label">Active Systems</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- تب‌های ناوبری -->
+    <ul class="nav nav-tabs mb-0" id="permTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="matrix-tab" data-toggle="tab" href="#matrix" role="tab">
+                <i class="fas fa-table ml-1"></i>Role Access Matrix
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab">
+                <i class="fas fa-users-cog ml-1"></i>Special User Management
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview" role="tab">
+                <i class="fas fa-eye ml-1"></i>User Menu Preview
+            </a>
+        </li>
+    </ul>
+    
+    <div class="tab-content" id="permTabsContent">
+        
+        <!-- تب ۱: ماتریس دسترسی نقش‌ها -->
+        <div class="tab-pane fade show active" id="matrix" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0 text-primary font-weight-bold">
+                    <i class="fas fa-grid-2 ml-2"></i>Default Role Access Table
+                </h5>
+                <div class="search-box" style="width: 350px;">
+                    <input type="text" id="matrixSearch" placeholder="Search in permissions and roles..." onkeyup="filterMatrix()">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            
+            <div class="alert alert-info mb-3">
+                <i class="fas fa-info-circle ml-2"></i>
+                <strong>Guide:</strong> ✅ indicates authorized access and ❌ indicates no access. 
+                Use the buttons below the table to edit each role's access.
+            </div>
+            
+            <div class="table-responsive">
+                <table class="permission-matrix" id="permissionMatrix">
+                    <thead>
+                        <tr>
+                            <th>Permission / Role</th>
+                            {% for role in roles %}
+                            <th>
+                                <span class="role-badge role-{{ role.name|lower }}">{{ role.value }}</span>
+                            </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for perm in permissions %}
+                        {% set perm_category = perm.name.split('_')[0]|lower %}
+                        <tr class="permission-row" data-category="{{ perm_category }}">
+                            <td class="text-right">
+                                <span class="category-badge cat-{{ perm_category }}">
+                                    {{ perm_category }}
+                                </span>
+                                <strong>{{ perm.value }}</strong>
+                            </td>
+                            {% for role in roles %}
+                            <td>
+                                {% if matrix[role.name][perm.name] %}
+                                    <span class="badge-permission granted" title="{{ role.value }}: has access">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                {% else %}
+                                    <span class="badge-permission denied" title="{{ role.value }}: no access">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                {% endif %}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-4 d-flex flex-wrap gap-2">
+                {% for role_name in ['ADMIN', 'PRODUCER', 'BUYER', 'LOGISTICS', 'LEGAL', 'TECH_PARTNER', 'INVESTOR', 'CORPORATE_AGENT', 'BROKER'] %}
+                {% set role_obj = roles|selectattr('name', 'equalto', role_name)|first %}
+                {% if role_obj %}
+                <a href="{{ url_for('admin.admin_perms.edit_role_permissions', role_name=role_name) }}"
+                   class="btn action-btn action-btn-primary btn-sm">
+                    <i class="fas fa-edit ml-1"></i>Edit {{ role_obj.value }}
+                </a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- تب ۲: مدیریت کاربران خاص -->
+        <div class="tab-pane fade" id="users" role="tabpanel">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-warning text-dark border-0">
+                            <h5 class="mb-0"><i class="fas fa-user-cog ml-2"></i>Grant Exceptional Permission to User</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="GET" action="{{ url_for('admin.admin_perms.manage_user_permissions', user_id=0) }}"
+                                  class="mb-4">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                <label class="font-weight-bold mb-2">Select User:</label>
+                                <select name="user_id" class="form-control filter-select" required 
+                                        onchange="this.form.submit()">
+                                    <option value="">-- Select a user --</option>
+                                    {% for user in users %}
+                                    <option value="{{ user.id }}">
+                                        {{ user.username }} 
+                                        <span class="text-muted">({{ user.role.value }})</span>
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                            
+                            <div class="alert alert-light border">
+                                <i class="fas fa-lightbulb text-warning ml-2"></i>
+                                <strong>Application:</strong> Use this section to grant special permissions to special users. 
+                                These permissions are exceptionally added to the role's default access and have higher priority.
+                            </div>
+                            
+                            <div class="mt-3">
+                                <h6 class="font-weight-bold mb-2"><i class="fas fa-info-circle ml-1"></i>Important Points:</h6>
+                                <ul class="small text-muted pr-2">
+                                    <li>Custom permissions have priority over role permissions</li>
+                                    <li>To delete custom permission, refer to user management page</li>
+                                    <li>Changes are applied immediately</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-info text-white border-0">
+                            <h5 class="mb-0"><i class="fas fa-chart-pie ml-2"></i>Custom Access Statistics</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center py-4">
+                                <div class="display-4 text-info mb-3">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <p class="text-muted mb-3">
+                                    In this section you can view and manage users who have custom permissions.
+                                </p>
+                                <button class="btn action-btn action-btn-info" onclick="showCustomPermsStats()">
+                                    <i class="fas fa-list ml-1"></i>View List of special users
+                                </button>
+                                
+                                <div class="mt-4 pt-4 border-top">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="stat-card p-2">
+                                                <div class="value" style="font-size: 1.5rem;">{{ users|length }}</div>
+                                                <div class="label small">Total Users</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stat-card p-2">
+                                                <div class="value" style="font-size: 1.5rem;">{{ (users|selectattr('custom_permissions')|list)|length }}</div>
+                                                <div class="label small">With custom permission</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تب ۳: پیش‌نمایش منو -->
+        <div class="tab-pane fade" id="preview" role="tabpanel">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white border-0">
+                    <h5 class="mb-0"><i class="fas fa-desktop ml-2"></i>Preview of services visible to user</h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info mb-4">
+                        <i class="fas fa-info-circle ml-2"></i>
+                        <strong>Application:</strong> In this section you can see a preview of modules and services that a specific user can view.
+                        This tool is very useful for testing and verifying permission settings.
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="font-weight-bold mb-2">Select user for preview:</label>
+                                <select id="previewUserSelect" class="form-control filter-select">
+                                    <option value="">-- Select a user --</option>
+                                    {% for user in users %}
+                                    <option value="{{ user.id }}">
+                                        {{ user.username }} 
+                                        <span class="text-muted">({{ user.role.value }})</span>
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <button onclick="loadPreview()" class="btn action-btn action-btn-primary btn-block mt-3">
+                                <i class="fas fa-play ml-1"></i>Load Preview
+                            </button>
+                            
+                            <div class="mt-4 p-3 bg-light rounded">
+                                <h6 class="font-weight-bold mb-2"><i class="fas fa-lightbulb text-warning ml-1"></i>Note:</h6>
+                                <p class="small text-muted mb-0">
+                                    The preview is displayed based on the user's role permissions plus any granted custom permissions.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div id="previewResult" class="preview-box" style="display:none;">
+                                <h6 class="font-weight-bold mb-3">
+                                    <i class="fas fa-check-circle text-success ml-1"></i>
+                                    Visible Modules:
+                                </h6>
+                                <div id="previewList"></div>
+                            </div>
+                            
+                            <div id="previewPlaceholder" class="text-center text-muted py-5">
+                                <i class="fas fa-arrow-left display-4 mb-3"></i>
+                                <p class="mb-0">To view preview, select a user and click the load button.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// فیلتر کردن ماتریس بر اساس جستجand
+function filterMatrix() {
+    const input = document.getElementById('matrixSearch');
+    const filter = input.value.toLowerCase();
+    const rows = document.querySelectorAll('.permission-row');
+    
+    rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+    });
+}
+
+// بارگذاری User Menu Preview
+function loadPreview() {
+    const userId = document.getElementById('previewUserSelect').value;
+    
+    if (!userId) {
+        showAlert('Please select a user', 'warning');
+        return;
+    }
+
+    // Display loading state
+    document.getElementById('previewResult').style.display = 'none';
+    document.getElementById('previewPlaceholder').innerHTML = `
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <p class="mt-3">Fetching information...</p>
+    `;
+
+    fetch(`/admin/permissions/api/preview/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById('previewList');
+            list.innerHTML = '';
+            
+            if (data.visible_modules.length === 0) {
+                list.innerHTML = `
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle ml-2"></i>
+                        No module is visible
+                    </div>`;
+            } else {
+                const icons = {
+                    'orders': '📦',
+                    'logistics': '🚚',
+                    'legal': '⚖️',
+                    'finance': '💰',
+                    'tech': '🔧'
+                };
+                
+                data.visible_modules.forEach(mod => {
+                    const icon = icons[mod.id] || '📌';
+                    const div = document.createElement('div');
+                    div.className = 'module-item';
+                    div.innerHTML = `
+                        <div class="module-icon" style="background: #edf2f7;">${icon}</div>
+                        <div>
+                            <strong>${mod.name}</strong>
+                            <div class="text-muted small">${mod.perm.value}</div>
+                        </div>
+                    `;
+                    list.appendChild(div);
+                });
+            }
+            
+            document.getElementById('previewResult').style.display = 'block';
+            document.getElementById('previewPlaceholder').style.display = 'none';
+        })
+        .catch(err => {
+            console.error(err);
+            showAlert('Error loading information', 'error');
+            document.getElementById('previewPlaceholder').innerHTML = `
+                <i class="fas fa-exclamation-circle text-danger display-4"></i>
+                <p class="mt-3 text-danger">Error fetching information</p>
+            `;
+        });
+}
+
+// نمایش پیام
+function showAlert(message, type = 'info') {
+    const alertClass = {
+        'success': 'alert-success',
+        'error': 'alert-danger',
+        'warning': 'alert-warning',
+        'info': 'alert-info'
+    }[type] || 'alert-info';
+    
+    const alertHtml = `
+        <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+    `;
+    
+    $('.container-fluid').prepend(alertHtml);
+    setTimeout(() => {
+        $('.alert').alert('close');
+    }, 5000);
+}
+
+// نمایش آمار Permissionsی سفارشی
+function showCustomPermsStats() {
+    showAlert('This feature will be added soon', 'info');
+}
+</script>
+{% endblock %}

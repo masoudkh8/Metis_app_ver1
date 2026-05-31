@@ -1,0 +1,128 @@
+<!-- templates/users/post_detail.html -->
+{% extends "base_pwa.html" %}
+
+{% block title %}{{ t_('social.post') }} #{{ post.id }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Back Button -->
+            <a href="{{ url_for('social.news_feed') }}" class="btn btn-outline-secondary mb-3">
+                <i class="fas fa-arrow-left me-1"></i>{{ t_('common.back') }}
+            </a>
+            
+            <!-- Post Detail -->
+            {% include 'users/_post_card.html' %}
+            
+            <!-- Comments Section -->
+            <div class="card mt-4 shadow-sm">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">{{ t_('social.comments') }} ({{ comments|length }})</h6>
+                </div>
+                <div class="card-body">
+                    <!-- Add Comment Form -->
+                    {% if current_user.is_authenticated %}
+                    <form action="{{ url_for('social.add_comment', post_id=post.id) }}" method="POST" class="mb-4">
+                        <div class="mb-2">
+                            <textarea name="content" class="form-control" rows="3" placeholder="{{ t_('social.comment') }}..." required></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary btn-sm">{{ t_('social.comment') }}</button>
+                        </div>
+                    </form>
+                    {% else %}
+                    <div class="alert alert-info">
+                        <a href="{{ url_for('auth.login') }}">{{ t_('common.login') }}</a> {{ t_('messages.fill_required_fields') }} {{ t_('social.comment')|lower }}.
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Comments List -->
+                    <div class="comments-list">
+                        {% if comments %}
+                            {% for comment in comments %}
+                                {% include 'users/_comment_item.html' %}
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-muted text-center py-4">{{ t_('social.no_posts_yet')|replace('posts', 'comments') }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Share Options -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0">{{ t_('social.share_to') }}</h6>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-outline-primary w-100 mb-2" onclick="shareToTelegram()">
+                        <i class="fab fa-telegram me-2"></i>Telegram
+                    </button>
+                    <button class="btn btn-outline-info w-100 mb-2" onclick="shareToTwitter()">
+                        <i class="fab fa-twitter me-2"></i>Twitter
+                    </button>
+                    <button class="btn btn-outline-success w-100 mb-2" onclick="shareToWhatsApp()">
+                        <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                    </button>
+                    <button class="btn btn-outline-secondary w-100" onclick="copyPostLink({{ post.id }})">
+                        <i class="fas fa-link me-2"></i>{{ t_('social.copy_link') }}
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Related Posts -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0">{{ t_('social.related_posts')|default('Related Posts') }}</h6>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <!-- Will be populated by backend or AJAX -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const postUrl = window.location.origin + '/social/post/{{ post.id }}';
+
+function shareToTelegram() {
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(postUrl)}&text={{ post.content[:50]|urlencode }}`, '_blank');
+}
+
+function shareToTwitter() {
+    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text={{ post.content[:50]|urlencode }}`, '_blank');
+}
+
+function shareToWhatsApp() {
+    window.open(`https://wa.me/?text=${encodeURIComponent(postUrl + ' - ' + post.content[:50])}`, '_blank');
+}
+
+async function copyPostLink(postId) {
+    const url = window.location.origin + '/social/post/' + postId;
+    try {
+        await navigator.clipboard.writeText(url);
+        showToast('{{ t_("social.link_copied") }}');
+    } catch (error) {
+        console.error('Error copying link:', error);
+    }
+}
+
+function showToast(message) {
+    // Simple toast implementation
+    const toast = document.createElement('div');
+    toast.className = 'alert alert-success position-fixed bottom-0 end-0 m-3';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+/* ✅ فعال‌سازی دارک‌مود با کلاس */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* فونت‌ها - ترکیب بهینه برای فارسی و انگلیسی */
+  /* Inter برای انگلیسی + Vazirmatn برای فارسی */
+  --font-sans: 'Inter', 'Vazirmatn', Tahoma, sans-serif;
+  
+  /* ✅ رنگ‌های طلایی */
+  --color-gold: #d4af37;
+  --color-gold-light: #e6c06b;
+  --color-gold-dark: #b8860b;
+  
+  /* ✅ رنگ‌های دارک (کامل) */
+  --color-dark-900: #050a1a;
+  --color-dark-800: #0f172a;
+  --color-dark-700: #1e293b;
+  --color-dark-600: #334155;
+  --color-dark-500: #475569;
+  
+  /* رنگ‌های اولیه */
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+
+ /* ✅ بنفش تعاملی (ثانویه) */
+  --color-accent: #8b5cf6;       /* حالت عادی */
+  --color-accent-light: #a78bfa; /* هاور / متن روی دارک */
+  --color-accent-dark: #6d28d9;  /* اکتیو / فوکوس */
+  
+  /* انیمیشن‌ها */
+  --animate-ticker: ticker 35s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  
+  @keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+  .animate-ticker {
+    animation: ticker-scroll 35s linear infinite;
+    will-change: transform;
+  }
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  /* توقف حرکت هنگام هاور */
+  .ticker-wrap:hover .animate-ticker {
+    animation-play-state: paused;
+  }
+
+
+/* استایل‌های سراسری */
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-[#fafaf9] text-gray-800 dark:bg-dark-900 dark:text-slate-200 transition-colors duration-300;
+
+  }
+}
+
+/* کامپوننت‌های سفارشی */
+@layer components {
+
+  .form-label {
+    @apply block text-gray-600 dark:text-slate-400 text-sm mb-4 font-semibold;
+  }
+
+  .feature-card {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+  }
+  .theme-toggle {
+    @apply transition-all duration-300 active:scale-95 hover:shadow-xl;
+  }
+  .partner-logo {
+    @apply filter brightness-90 contrast-110 opacity-70 transition-all duration-300;
+  }
+  .partner-logo:hover {
+    @apply opacity-100 brightness-120 scale-105;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+  }
+  .dark .partner-logo {
+    @apply filter brightness-100 contrast-100 invert-90;
+  }
+  .dark .partner-logo:hover {
+    @apply filter brightness-120 contrast-110 invert-100;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.7));
+  }
+  .form-input {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-dark-600 
+           bg-white dark:bg-dark-700 text-gray-900 dark:text-white 
+           placeholder-gray-500 dark:placeholder-slate-400
+           focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 
+           transition-all duration-200;
+  }
+
+  .dark select.form-input {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+ /* ✅ اضافه کنید - انیمیشن آیکون‌های تم */
+  #icon-moon, #icon-sun {
+   @apply transition-transform duration-300 ease-in-out;
+   transform-origin: center;
+ }
+   /* ✅ اضافه کنید - غیرفعال کردن انتخاب متن */
+  .no-select {
+   @apply select-none;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+  .feature-card {
+    @apply bg-white/90 backdrop-blur-sm
+           border border-gold/10 
+           shadow-[0_2px_12px_rgba(0,0,0,0.04)]
+           hover:shadow-[0_8px_24px_rgba(212,175,55,0.08)]
+           hover:border-gold/30
+           transition-all duration-300;
+  }
+  .light-premium {
+    @apply bg-[#fafaf9];
+  }
+  .card-premium {
+    @apply bg-white/95 border border-gold/15 
+           shadow-[0_4px_20px_rgba(0,0,0,0.03)]
+           hover:shadow-[0_12px_30px_rgba(212,175,55,0.12)];
+  }
+
+}
+/* ✅ حذف تعریف تکراری خارج از @layer */
+
+/* استایل‌های خاص */
+#loading { @apply transition-opacity duration-500; }
+#loading.hidden { @apply opacity-0 pointer-events-none; }
+
+.loader {
+  @apply w-12 h-12 border-4 border-gold/20 border-t-gold rounded-full;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hamburger-line { @apply transition-all duration-300; }
+.hamburger-active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger-active .hamburger-line:nth-child(2) { @apply opacity-0; }
+.hamburger-active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* اسکرول‌بار */
+@supports not (scrollbar-width: thin) {
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  .dark ::-webkit-scrollbar-thumb { background: #475569; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+}

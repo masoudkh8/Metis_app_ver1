@@ -1,0 +1,1170 @@
+# Persian (Farsi) translations for Metisma Platform
+# Copyright (C) 2024 Metisma
+# This file is distributed under the same license as the Metisma project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-01-01 00:00+0330\n"
+"PO-Revision-Date: 2024-01-01 00:00+0330\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fa\n"
+"Language-Team: fa <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: templates/base_pwa.html
+msgid "..."
+msgstr "..."
+#: templates/base_pwa.html
+msgid "Home"
+msgstr "خانه"
+#: templates/base_pwa.html
+msgid "🌍 Metisma"
+msgstr "🌍 متیسما"
+#: templates/base_pwa.html
+msgid "profile"
+msgstr "پروفایل"
+#: templates/base_pwa.html
+msgid "Edit profile"
+msgstr "ویرایش پروفایل"
+#: templates/base_pwa.html
+msgid "Special"
+msgstr "ویژه"
+#: templates/base_pwa.html
+msgid "Login"
+msgstr "ورود"
+#: templates/base_pwa.html
+msgid "Register"
+msgstr "ثبت‌نام"
+#: templates/index.html
+msgid "Metisma - the comprehensive international trade management platform"
+msgstr "متیسما - پلتفرم جامع مدیریت تجارت بین‌الملل"
+#: templates/index.html
+msgid "Metisma"
+msgstr "متیسما"
+#: templates/index.html
+msgid "Our services"
+msgstr "خدمات ما"
+#: templates/index.html
+msgid "Manage orders"
+msgstr "مدیریت سفارشات"
+#: templates/index.html
+msgid "Register, track, and confirm orders completely digitally and in real time."
+msgstr "ثبت، پیگیری و تأیید سفارشات به صورت کاملاً دیجیتال و در لحظه"
+#: templates/index.html
+msgid "Security and authentication"
+msgstr "امنیت و احراز هویت"
+#: templates/index.html
+msgid "Verifying user identities, verifying credentials, and upgrading to special users with a transparent process."
+msgstr "احراز هویت کاربران، تأیید مدارک و ارتقاء به کاربران ویژه با فرآیندی شفاف"
+#: templates/index.html
+msgid "24/7 support"
+msgstr "پشتیبانی ۲۴ ساعته"
+#: templates/index.html
+msgid "Specialized support via chat, call, and email every day of the week."
+msgstr "پشتیبانی تخصصی از طریق چت، تماس و ایمیل در تمام روزهای هفته"
+#: templates/index.html
+msgid "System training video"
+msgstr "ویدیو آموزشی سیستم"
+#: templates/index.html
+msgid "Cooperation with reputable companies"
+msgstr "همکاری با شرکت‌های معتبر"
+#: templates/index.html
+msgid "Imazhe magazine"
+msgstr "مجله ایماژه"
+#: templates/index.html
+msgid "Cooperate with us"
+msgstr "همکاری با ما"
+#: templates/index.html
+msgid "© 1403 Metisma | All rights reserved"
+msgstr "© ۱۴۰۳ متیسما | تمامی حقوق محفوظ است"
+#: templates/index.html
+msgid "Comprehensive international trade and logistics management platform"
+msgstr "پلتفرم جامع مدیریت تجارت و لجستیک بین‌الملل"
+#: templates/magazine/subscribe.html
+msgid "Annual subscription"
+msgstr "اشتراک سالانه"
+#: templates/magazine/subscribe.html
+msgid "1,200,000 Tomans"
+msgstr "۱,۲۰۰,۰۰۰ تومان"
+#: templates/magazine/subscribe.html
+msgid "✓ 12 printed issues annually"
+msgstr "✓ ۱۲ شماره چاپی در سال"
+#: templates/magazine/subscribe.html
+msgid "✓ Access to the digital version"
+msgstr "✓ دسترسی به نسخه دیجیتال"
+#: templates/magazine/subscribe.html
+msgid "✓ Free postage"
+msgstr "✓ پست رایگان"
+#: templates/magazine/subscribe.html
+msgid "✓ Special discounts for events"
+msgstr "✓ تخفیف‌های ویژه برای رویدادها"
+#: templates/magazine/subscribe.html
+msgid "Six month subscription"
+msgstr "اشتراک شش ماهه"
+#: templates/magazine/subscribe.html
+msgid "650,000 Tomans"
+msgstr "۶۵۰,۰۰۰ تومان"
+#: templates/magazine/subscribe.html
+msgid "✓ 6 printed numbers"
+msgstr "✓ ۶ شماره چاپی"
+#: templates/magazine/subscribe.html
+msgid "Annually (1,200,000 Tomans)"
+msgstr "سالانه (۱,۲۰۰,۰۰۰ تومان)"
+#: templates/magazine/subscribe.html
+msgid "Six months (650,000 Tomans)"
+msgstr "شش ماهه (۶۵۰,۰۰۰ تومان)"
+#: templates/magazine/index.html
+msgid "Magazine number"
+msgstr "شماره مجله"
+#: templates/magazine/advertisement.html
+msgid "choose..."
+msgstr "انتخاب کنید..."
+#: templates/magazine/advertisement.html
+msgid "Full page"
+msgstr "تمام صفحه"
+#: templates/magazine/advertisement.html
+msgid "half page"
+msgstr "نیم صفحه"
+#: templates/magazine/advertisement.html
+msgid "quarter page"
+msgstr "ربع صفحه"
+#: templates/magazine/advertisement.html
+msgid "back cover"
+msgstr "جلد پشت"
+#: templates/magazine/advertisement.html
+msgid "Inner cover"
+msgstr "جلد داخلی"
+#: templates/magazine/advertisement.html
+msgid "Advertising banner"
+msgstr "بنر تبلیغاتی"
+#: templates/magazine/advertisement.html
+msgid "a number"
+msgstr "یک شماره"
+#: templates/magazine/advertisement.html
+msgid "Three numbers"
+msgstr "سه شماره"
+#: templates/magazine/advertisement.html
+msgid "Six numbers"
+msgstr "شش شماره"
+#: templates/magazine/advertisement.html
+msgid "Annual (12 issues)"
+msgstr "سالانه (۱۲ شماره)"
+#: templates/admin/login.html
+msgid "Admin Login - Admin Panel"
+msgstr "ورود مدیر - پنل مدیریت"
+#: templates/admin/login.html
+msgid "🔐 Admin Panel"
+msgstr "🔐 پنل مدیریت"
+#: templates/admin/login.html
+msgid "For admin users only"
+msgstr "فقط برای کاربران مدیر"
+#: templates/admin/dashboard.html
+msgid "📊 Management dashboard"
+msgstr "📊 داشبورد مدیریت"
+#: templates/admin/dashboard.html
+msgid "Total users"
+msgstr "کل کاربران"
+#: templates/admin/dashboard.html
+msgid "Special requests"
+msgstr "درخواست‌های ویژه"
+#: templates/admin/dashboard.html
+msgid "Awaiting review"
+msgstr "در انتظار بررسی"
+#: templates/admin/manage_users.html
+msgid "🔧 User management"
+msgstr "🔧 مدیریت کاربران"
+#: templates/admin/manage_users.html
+msgid "Username"
+msgstr "نام کاربری"
+#: templates/admin/manage_users.html
+msgid "Email"
+msgstr "ایمیل"
+#: templates/admin/manage_users.html
+msgid "Role"
+msgstr "نقش"
+#: templates/admin/manage_users.html
+msgid "special?"
+msgstr "ویژه؟"
+#: templates/admin/manage_users.html
+msgid "State"
+msgstr "وضعیت"
+#: templates/admin/manage_users.html
+msgid "Operation"
+msgstr "عملیات"
+#: templates/admin/manage_users.html
+msgid "✅ Yes"
+msgstr "✅ بله"
+#: templates/admin/manage_users.html
+msgid "❌ No"
+msgstr "❌ خیر"
+#: templates/admin/manage_users.html
+msgid "Active"
+msgstr "فعال"
+#: templates/admin/manage_users.html
+msgid "disable"
+msgstr "غیرفعال"
+#: templates/admin/manage_users.html
+msgid "you"
+msgstr "شما"
+#: templates/admin/manage_users.html
+msgid "User not found."
+msgstr "کاربر یافت نشد."
+#: templates/admin/view_premium_request.html
+msgid "📄 Upgrade request details"
+msgstr "📄 جزئیات درخواست ارتقاء"
+#: templates/admin/view_premium_request.html
+msgid "👤 User information"
+msgstr "👤 اطلاعات کاربر"
+#: templates/admin/view_premium_request.html
+msgid "Username:"
+msgstr "نام کاربری:"
+#: templates/admin/view_premium_request.html
+msgid "email:"
+msgstr "ایمیل:"
+#: templates/admin/view_premium_request.html
+msgid "company_name:"
+msgstr "نام شرکت:"
+#: templates/admin/view_premium_request.html
+msgid "country:"
+msgstr "کشور:"
+#: templates/admin/view_premium_request.html
+msgid "✅ The status of the steps"
+msgstr "✅ وضعیت مراحل"
+#: templates/admin/view_premium_request.html
+msgid "✅ Confirmed"
+msgstr "✅ تأیید شده"
+#: templates/admin/view_premium_request.html
+msgid "❌ Not verified"
+msgstr "❌ تأیید نشده"
+#: templates/admin/premium_requests.html
+msgid "📂 Special user upgrade requests"
+msgstr "📂 درخواست‌های ارتقاء به کاربر ویژه"
+#: templates/admin/premium_requests.html
+msgid "new!"
+msgstr "جدید!"
+#: templates/admin/premium_requests.html
+msgid "user"
+msgstr "کاربر"
+#: templates/admin/premium_requests.html
+msgid "state"
+msgstr "وضعیت"
+#: templates/admin/premium_requests.html
+msgid "Date of posting"
+msgstr "تاریخ ثبت"
+#: templates/admin/premium_requests.html
+msgid "waiting"
+msgstr "در انتظار"
+#: templates/admin/premium_requests.html
+msgid "rejected"
+msgstr "رد شده"
+#: templates/admin/premium_requests.html
+msgid "No request found."
+msgstr "هیچ درخواستی یافت نشد."
+#: templates/users/map.html
+msgid "📌 List of ports"
+msgstr "📌 لیست بنادر"
+#: templates/users/map.html
+msgid "Loading..."
+msgstr "در حال بارگذاری..."
+#: templates/users/map.html
+msgid "➕ Add new port"
+msgstr "➕ افزودن بندر جدید"
+#: templates/users/map.html
+msgid "Edit"
+msgstr "ویرایش"
+#: templates/users/map.html
+msgid "Delete"
+msgstr "حذف"
+#: templates/users/map.html
+msgid "loading error."
+msgstr "خطا در بارگذاری."
+#: templates/users/map.html
+msgid "🔒 Limited access"
+msgstr "🔒 دسترسی محدود"
+#: templates/users/map.html
+msgid "Only special users can access this map."
+msgstr "فقط کاربران ویژه می‌توانند به این نقشه دسترسی داشته باشند."
+#: templates/users/edit_profile.html
+msgid "✏️ Edit profile"
+msgstr "✏️ ویرایش پروفایل"
+#: templates/users/edit_profile.html
+msgid "Company name"
+msgstr "نام شرکت"
+#: templates/users/edit_profile.html
+msgid "country"
+msgstr "کشور"
+#: templates/users/edit_profile.html
+msgid "تلفن"
+msgstr "تلفن"
+#: templates/users/make_payment.html
+msgid "💳 Pay for the upgrade"
+msgstr "💳 پرداخت هزینه ارتقاء"
+#: templates/users/make_payment.html
+msgid "Amount payable: US$1,000"
+msgstr "مبلغ قابل پرداخت: ۱,۰۰۰ دلار آمریکا"
+#: templates/users/make_payment.html
+msgid "Company account information"
+msgstr "اطلاعات حساب شرکت"
+#: templates/users/make_payment.html
+msgid "Bank name:"
+msgstr "نام بانک:"
+#: templates/users/make_payment.html
+msgid "Bank of China"
+msgstr "بانک چین"
+#: templates/users/make_payment.html
+msgid "Account number:"
+msgstr "شماره حساب:"
+#: templates/users/make_payment.html
+msgid "Name of the account holder:"
+msgstr "نام صاحب حساب:"
+#: templates/users/make_payment.html
+msgid "Royan Export Co."
+msgstr "شرکت صادرات رویان"
+#: templates/users/make_payment.html
+msgid "(IBAN):"
+msgstr "(شبا):"
+#: templates/users/register.html
+msgid "📝 Register in the market"
+msgstr "📝 ثبت‌نام در بازار"
+#: templates/users/register.html
+msgid "username"
+msgstr "نام کاربری"
+#: templates/users/register.html
+msgid "password"
+msgstr "رمز عبور"
+#: templates/users/register.html
+msgid "your role"
+msgstr "نقش شما"
+#: templates/users/register.html
+msgid "Select..."
+msgstr "انتخاب کنید..."
+#: templates/users/register.html
+msgid "Buyer"
+msgstr "خریدار"
+#: templates/users/register.html
+msgid "Seller"
+msgstr "فروشنده"
+#: templates/users/register.html
+msgid "Broker"
+msgstr "کارگزار"
+#: templates/users/register.html
+msgid "Company name (optional)"
+msgstr "نام شرکت (اختیاری)"
+#: templates/users/login.html
+msgid "welcome"
+msgstr "خوش آمدید"
+#: templates/users/login.html
+msgid "Log in to the Metisma platform"
+msgstr "ورود به پلتفرم متیسما"
+#: templates/users/login.html
+msgid "Password"
+msgstr "رمز عبور"
+#: templates/users/chat.html
+msgid "⚠️ Access to chat"
+msgstr "⚠️ دسترسی به چت"
+#: templates/users/chat.html
+msgid "Only"
+msgstr "فقط"
+#: templates/users/chat.html
+msgid "special"
+msgstr "ویژه"
+#: templates/users/chat.html
+msgid "users can use the chat system ."
+msgstr "کاربران می‌توانند از سیستم چت استفاده کنند."
+#: templates/users/chat.html
+msgid "Special contacts"
+msgstr "تماس‌های ویژه"
+#: templates/users/chat.html
+msgid "No message sent yet."
+msgstr "هنوز پیامی ارسال نشده است."
+#: templates/users/chat.html
+msgid "To start a chat, select a specific contact."
+msgstr "برای شروع چت، یک مخاطب خاص انتخاب کنید."
+#: templates/users/verify_email.html
+msgid "📬 Email verification"
+msgstr "📬 تأیید ایمیل"
+#: templates/users/dashboard.html
+msgid "special 🌟"
+msgstr "ویژه 🌟"
+#: templates/users/dashboard.html
+msgid "Orders"
+msgstr "سفارشات"
+#: templates/users/dashboard.html
+msgid "View my orders"
+msgstr "مشاهده سفارشات من"
+#: templates/users/dashboard.html
+msgid "🔒 Chat is only active for special users."
+msgstr "🔒 چت فقط برای کاربران ویژه فعال است."
+#: templates/users/dashboard.html
+msgid "🗺️ Access to port finder is enabled only for special users."
+msgstr "🗺️ دسترسی به جستجوی بندر فقط برای کاربران ویژه فعال است."
+#: templates/users/dashboard.html
+msgid "🗺️ Access to vessel finder is enabled only for special users."
+msgstr "🗺️ دسترسی به جستجوی کشتی فقط برای کاربران ویژه فعال است."
+#: templates/users/dashboard.html
+msgid "🌟 Upgrade to special user"
+msgstr "🌟 ارتقاء به کاربر ویژه"
+#: templates/users/dashboard.html
+msgid "✅ You are a special user"
+msgstr "✅ شما یک کاربر ویژه هستید"
+#: templates/users/upgrade_premium.html
+msgid "The process of upgrading to a special user"
+msgstr "فرآیند ارتقاء به کاربر ویژه"
+#: templates/users/upgrade_premium.html
+msgid "Start"
+msgstr "شروع"
+#: templates/users/upgrade_premium.html
+msgid "Completion"
+msgstr "تکمیل"
+#: templates/users/upgrade_premium.html
+msgid "Approved"
+msgstr "تأیید شده"
+#: templates/users/upgrade_premium.html
+msgid "Mobile number verification"
+msgstr "تأیید شماره موبایل"
+#: templates/users/upgrade_premium.html
+msgid "Email verification"
+msgstr "تأیید ایمیل"
+#: templates/users/seller_orders.html
+msgid "Orders received and their status"
+msgstr "سفارشات دریافتی و وضعیت آن‌ها"
+#: templates/users/seller_orders.html
+msgid "Buyer:"
+msgstr "خریدار:"
+#: templates/users/seller_orders.html
+msgid "Company:"
+msgstr "شرکت:"
+#: templates/users/seller_orders.html
+msgid "Country:"
+msgstr "کشور:"
+#: templates/users/seller_orders.html
+msgid "Origin:"
+msgstr "مبدأ:"
+#: templates/users/seller_orders.html
+msgid "Destination:"
+msgstr "مقصد:"
+#: templates/users/seller_orders.html
+msgid "Date:"
+msgstr "تاریخ:"
+#: templates/users/seller_orders.html
+msgid "This order already"
+msgstr "این سفارش قبلاً"
+#: templates/users/seller_orders.html
+msgid "Order not received"
+msgstr "سفارش دریافت نشده"
+#: templates/users/seller_orders.html
+msgid "Your order has not been send yet."
+msgstr "سفارش شما هنوز ارسال نشده است."
+#: templates/users/place_order.html
+msgid "📝 Place a new order"
+msgstr "📝 ثبت سفارش جدید"
+#: templates/users/place_order.html
+msgid "Complete your order for export or import"
+msgstr "سفارش خود را برای صادرات یا واردات تکمیل کنید"
+#: templates/users/place_order.html
+msgid "product"
+msgstr "محصول"
+#: templates/users/place_order.html
+msgid "Wheat"
+msgstr "گندم"
+#: templates/users/place_order.html
+msgid "Rice"
+msgstr "برنج"
+#: templates/users/place_order.html
+msgid "Sugar"
+msgstr "شکر"
+#: templates/users/place_order.html
+msgid "Corn"
+msgstr "ذرت"
+#: templates/users/place_order.html
+msgid "Steel"
+msgstr "فولاد"
+#: templates/users/place_order.html
+msgid "Quantity (tons)"
+msgstr "مقدار (تن)"
+#: templates/users/upload_documents.html
+msgid "📎 Upload documents"
+msgstr "📎 آپلود مدارک"
+#: templates/users/upload_documents.html
+msgid "Passport copy"
+msgstr "کپی پاسپورت"
+#: templates/users/upload_documents.html
+msgid "Company license"
+msgstr "مجوز شرکت"
+#: templates/users/orders.html
+msgid "📦 My orders"
+msgstr "📦 سفارشات من"
+#: templates/users/orders.html
+msgid "send:"
+msgstr "ارسال:"
+#: templates/users/verify_phone.html
+msgid "📱 Mobile number verification"
+msgstr "📱 تأیید شماره موبایل"
+#: templates/users/verify_phone.html
+msgid "six digit code"
+msgstr "کد شش رقمی"
+#: templates/users/payment_confirmation.html
+msgid "✅ Payment receipt received"
+msgstr "✅ فیش پرداخت دریافت شد"
+#: templates/users/payment_confirmation.html
+msgid "Review time:"
+msgstr "زمان بررسی:"
+#: templates/users/vessel_finder.html
+msgid "Ship tracking - Vessel Finder"
+msgstr "ردیابی کشتی - جستجوی کشتی"
+#: templates/users/vessel_finder.html
+msgid "🌍 Vessel Finder"
+msgstr "🌍 جستجوی کشتی"
+#: templates/users/vessel_finder.html
+msgid "Search for a ship by ID IMO"
+msgstr "جستجوی کشتی بر اساس شناسه IMO"
+#: templates/users/vessel_finder.html
+msgid "IMO number"
+msgstr "شماره IMO"
+#: templates/users/vessel_finder.html
+msgid "Attribute"
+msgstr "ویژگی"
+#: templates/users/vessel_finder.html
+msgid "Value"
+msgstr "مقدار"
+#: templates/users/vessel_finder.html
+msgid "IMO"
+msgstr "IMO"
+#: templates/users/vessel_finder.html
+msgid "MMSI"
+msgstr "MMSI"
+#: templates/users/vessel_finder.html
+msgid "ship name"
+msgstr "نام کشتی"
+#: templates/users/vessel_finder.html
+msgid "destination"
+msgstr "مقصد"
+# Messages from routes
+#: routes/magazine/routes.py
+msgid "This issue has not been published yet."
+msgstr "این شماره هنوز منتشر نشده است."
+#: routes/magazine/routes.py
+msgid "Magazine file not found."
+msgstr "فایل مجله یافت نشد."
+#: routes/magazine/routes.py
+msgid "Please fill in the required fields."
+msgstr "لطفاً فیلدهای الزامی را پر کنید."
+#: routes/magazine/routes.py
+msgid "Your sponsorship request has been successfully submitted. We will contact you soon."
+msgstr "درخواست حمایت شما با موفقیت ثبت شد. به زودی با شما تماس خواهیم گرفت."
+#: routes/admin/requests.py
+msgid "❌ Access denied."
+msgstr "❌ دسترسی رد شد."
+#: routes/admin/routes.py
+msgid "❌ Please log in first."
+msgstr "❌ لطفاً ابتدا وارد شوید."
+#: routes/admin/routes.py
+msgid "❌ Access denied: Only admin can access this page."
+msgstr "❌ دسترسی رد شد: فقط مدیر می‌تواند به این صفحه دسترسی داشته باشد."
+#: routes/admin/routes.py
+msgid "❌ The role is invalid."
+msgstr "❌ نقش نامعتبر است."
+#: routes/admin/routes.py
+msgid "❌ You cannot delete yourself."
+msgstr "❌ نمی‌توانید خودتان را حذف کنید."
+#: routes/admin/routes.py
+msgid "❌ You cannot disable the admin."
+msgstr "❌ نمی‌توانید مدیر را غیرفعال کنید."
+#: routes/users/main.py
+msgid "❌ قبلاً یک ادمین وجود دارد."
+msgstr "❌ قبلاً یک مدیر وجود دارد."
+#: routes/users/main.py
+msgid "❌ ایجاد ادمین غیرفعال است."
+msgstr "❌ ایجاد مدیر غیرفعال است."
+#: routes/users/main.py
+msgid "❌ تمام فیلدها الزامی هستند."
+msgstr "❌ تمام فیلدها الزامی هستند."
+#: routes/users/main.py
+msgid "❌ نام کاربری باید حداقل 3 کاراکتر باشد."
+msgstr "❌ نام کاربری باید حداقل ۳ کاراکتر باشد."
+#: routes/users/main.py
+msgid "❌ رمز عبور باید حداقل 8 کاراکتر باشد."
+msgstr "❌ رمز عبور باید حداقل ۸ کاراکتر باشد."
+#: routes/users/auth.py
+msgid "✅ شماره موبایل تأیید شد."
+msgstr "✅ شماره موبایل تأیید شد."
+#: routes/users/auth.py
+msgid "کد نامعتبر است."
+msgstr "کد نامعتبر است."
+#: routes/users/auth.py
+msgid "✅ شماره موبایل شما قبلاً تأیید شده است."
+msgstr "✅ شماره موبایل شما قبلاً تأیید شده است."
+#: routes/users/auth.py
+msgid "لطفاً کد را وارد کنید."
+msgstr "لطفاً کد را وارد کنید."
+#: routes/users/routes.py
+msgid "There is already an admin.."
+msgstr "قبلاً یک مدیر وجود دارد."
+#: routes/users/routes.py
+msgid "❌ Username already taken."
+msgstr "❌ نام کاربری قبلاً گرفته شده است."
+#: routes/users/routes.py
+msgid "❌ Email already used."
+msgstr "❌ ایمیل قبلاً استفاده شده است."
+#: routes/users/routes.py
+msgid "The first admin was created."
+msgstr "اولین مدیر ایجاد شد."
+#: templates/index.html
+msgid ".There are no announcements"
+msgstr ".اعلانی وجود ندارد"
+#: templates/users/notifications.html
+msgid "notifications"
+msgstr "اعلان‌ها"
+#: templates/users/notifications.html
+msgid "return"
+msgstr "بازگشت"
+#: templates/users/notifications.html
+msgid "There are no announcements"
+msgstr "هیچ اعلانی وجود ندارد"
+#: templates/index.html
+msgid "Login to the system"
+msgstr "ورود به سیستم"
+#: templates/index.html
+msgid "Sign up"
+msgstr "ثبت‌نام"
+#: templates/index.html
+msgid "Login to the magazine section"
+msgstr "ورود به بخش مجله"
+#: templates/index.html
+msgid "Specialized reference for international trade, maritime transport and logistics"
+msgstr "مرجع تخصصی تجارت داخلی و بین‌الملل، حمل و نقل دریایی و لجستیک"
+#: templates/index.html
+msgid "Watch this video to learn how to use the comprehensive international trade management platform."
+msgstr "برای یادگیری نحوه استفاده از پلتفرم جامع مدیریت تجارت بین‌الملل، این ویدیو را تماشا کنید."
+#: templates/index.html
+msgid "Your browser does not support video playback."
+msgstr "مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند."
+#: templates/index.html
+msgid "We cooperate with large and reputable companies at the national and international levels."
+msgstr "ما با شرکت‌های بزرگ و معتبر در سطح ملی و بین‌المللی همکاری می‌کنیم."
+#: templates/index.html
+msgid "You too can take advantage of the Metisma platform to grow your business."
+msgstr "شما هم می‌توانید از پلتفرم متیسما برای رشد کسب و کار خود بهره‌مند شوید."
+#: templates/index.html
+msgid "Welcome to the comprehensive international trade management platform"
+msgstr "به پلتفرم جامع مدیریت تجارت بین‌الملل خوش آمدید"
+#: templates/index.html
+msgid "By providing an intelligent and comprehensive platform, Metisma simplifies, transparently, and securely the process of communication, analysis, marketing, purchasing, selling, and international transportation of goods."
+msgstr "متیسما با ارائه پلتفرمی هوشمند و جامع، فرآیند ارتباط، تحلیل، بازاریابی، خرید، فروش و حمل و نقل بین‌المللی کالا را ساده، شفاف و ایمن می‌سازد."
+#: templates/index.html
+msgid "To access the latest issues of the magazine, request sponsorship, advertising, and annual subscriptions, visit the magazine section."
+msgstr "برای دسترسی به آخرین شماره‌های مجله، درخواست اسپانسرینگ، تبلیغات و اشتراک سالانه، به بخش مجله مراجعه کنید."
+#: templates/index.html
+msgid "Metisma logo"
+msgstr "لوگو متیسما"
+#: templates/index.html
+msgid "Partner company 1"
+msgstr "شرکت همکار ۱"
+#: templates/index.html
+msgid "Partner company 2"
+msgstr "شرکت همکار ۲"
+#: templates/index.html
+msgid "Partner company 3"
+msgstr "شرکت همکار ۳"
+#: templates/index.html
+msgid "Partner company 4"
+msgstr "شرکت همکار ۴"
+#: templates/index.html
+msgid "Partner company 5"
+msgstr "شرکت همکار ۵"
+#: templates/index.html
+msgid "Partner company 6"
+msgstr "شرکت همکار ۶"
+# Added on 2026-05-11 16:23:47
+#: templates/
+msgid "Passport copy:"
+msgstr "کپی پاسپورت:"
+#: templates/
+msgid "Payment receipt received. Reviewing..."
+msgstr "فیش پرداخت دریافت شد. در حال بررسی..."
+#: templates/
+msgid "Payment receipt:"
+msgstr "فیش پرداخت:"
+#: templates/
+msgid "Phone (optional)"
+msgstr "تلفن (اختیاری)"
+#: templates/
+msgid "Phone number"
+msgstr "شماره تلفن"
+#: templates/
+msgid "Please click on the verification link. If you do not receive an email, please check your Spam folder."
+msgstr "لطفاً روی لینک تأیید کلیک کنید. اگر ایمیلی دریافت نکردید، پوشه Spam را بررسی کنید."
+#: templates/
+msgid "Please enter the code."
+msgstr "لطفاً کد را وارد کنید."
+#: templates/
+msgid "Please upload the receipt after making the payment."
+msgstr "لطفاً پس از پرداخت، فیش را آپلود کنید."
+#: templates/
+msgid "Posted in:"
+msgstr "ارسال شده در:"
+#: templates/
+msgid "Previous"
+msgstr "قبلی"
+#: templates/
+msgid "Price per ton (USD)"
+msgstr "قیمت هر تن (دلار آمریکا)"
+#: templates/
+msgid "Published issues"
+msgstr "شماره‌های منتشر شده"
+#: templates/
+msgid "Registration"
+msgstr "ثبت‌نام"
+#: templates/
+msgid "Registration of advertising requests"
+msgstr "ثبت درخواست‌های تبلیغاتی"
+#: templates/
+msgid "Request for Sponsorship - Imazhe Magazine"
+msgstr "درخواست اسپانسرشیپ - مجله ایماژه"
+#: templates/
+msgid "Resend the code"
+msgstr "ارسال مجدد کد"
+#: templates/
+msgid "Reviewed in:"
+msgstr "بررسی شده در:"
+#: templates/
+msgid "Save changes"
+msgstr "ذخیره تغییرات"
+#: templates/
+msgid "Seller panel"
+msgstr "پنل فروشنده"
+#: templates/
+msgid "Sign out of the account"
+msgstr "خروج از حساب"
+#: templates/
+msgid "Size Advertisement"
+msgstr "اندازه تبلیغ"
+#: templates/
+msgid "Specialized reference for domestic and international trade, maritime transport and logistics"
+msgstr "مرجع تخصصی تجارت داخلی و بین‌المللی، حمل و نقل دریایی و لجستیک"
+#: templates/
+msgid "Sponsorship application registration"
+msgstr "ثبت درخواست اسپانسرشیپ"
+#: templates/
+msgid "Sponsorship request"
+msgstr "درخواست اسپانسرشیپ"
+#: templates/
+msgid "Start the upgrade process"
+msgstr "شروع فرآیند ارتقاء"
+#: templates/
+msgid "Subscription registration"
+msgstr "ثبت اشتراک"
+#: templates/
+msgid "Subscription type"
+msgstr "نوع اشتراک"
+#: templates/
+msgid "The IMO (International Maritime Organization) identifier is a unique 7-digit code for each ship."
+msgstr "شناسه IMO یک کد ۷ رقمی منحصر به فرد برای هر کشتی است."
+#: templates/
+msgid "The first issue of the magazine will be available soon."
+msgstr "اولین شماره مجله به زودی در دسترس خواهد بود."
+#: templates/
+msgid "The upgrade process has started. Please verify your mobile number."
+msgstr "فرآیند ارتقاء شروع شده است. لطفاً شماره موبایل خود را تأیید کنید."
+#: templates/
+msgid "To collaborate and sponsor the magazine, complete the following form."
+msgstr "برای همکاری و اسپانسرشیپ مجله، فرم زیر را تکمیل کنید."
+#: templates/
+msgid "To complete the upgrade process, please upload the following documents:"
+msgstr "برای تکمیل فرآیند ارتقاء، لطفاً مدارک زیر را آپلود کنید:"
+#: templates/
+msgid "To receive the print and digital version of the magazine, complete the form below."
+msgstr "برای دریافت نسخه چاپی و دیجیتال مجله، فرم زیر را تکمیل کنید."
+#: templates/
+msgid "To register an advertisement in the magazine, complete the form below."
+msgstr "برای ثبت تبلیغ در مجله، فرم زیر را تکمیل کنید."
+#: templates/
+msgid "Type of advertisement"
+msgstr "نوع تبلیغ"
+#: templates/
+msgid "US1234567890123456789012"
+msgstr ""
+#: templates/
+msgid "Under review"
+msgstr "در حال بررسی"
+#: templates/
+msgid "Upload a PDF file or clear image of your passport."
+msgstr "یک فایل PDF یا تصویر واضح از پاسپورت خود آپلود کنید."
+#: templates/
+msgid "Upload a photo or PDF file of your payment receipt."
+msgstr "عکس یا فایل PDF فیش پرداخت خود را آپلود کنید."
+#: templates/
+msgid "Upload and continue"
+msgstr "آپلود و ادامه"
+#: templates/
+msgid "Upload documents"
+msgstr "آپلود مدارک"
+#: templates/
+msgid "Upload payment receipt"
+msgstr "آپلود فیش پرداخت"
+#: templates/
+msgid "Upload receipt and send"
+msgstr "آپلود فیش و ارسال"
+#: templates/
+msgid "Upload your company registration certificate or business license."
+msgstr "گواهی ثبت شرکت یا مجوز کسب و کار خود را آپلود کنید."
+#: templates/
+msgid "Usually between 24 and 48 business hours"
+msgstr "معمولاً بین ۲۴ تا ۴۸ ساعت کاری"
+#: templates/
+msgid "View the file"
+msgstr "مشاهده فایل"
+#: templates/
+msgid "Your advertising request has been successfully submitted. We will contact you soon."
+msgstr "درخواست تبلیغاتی شما با موفقیت ثبت شد. به زودی با شما تماس خواهیم گرفت."
+#: templates/
+msgid "Your annual subscription has been successfully registered. Information will be sent soon."
+msgstr "اشتراک سالانه شما با موفقیت ثبت شد. اطلاعات به زودی ارسال خواهد شد."
+#: templates/
+msgid "Your promotion request has been received. The management team will review your documents as soon as possible and you will be notified of the result via email."
+msgstr "درخواست ارتقاء شما دریافت شد. تیم مدیریت به زودی مدارک شما را بررسی کرده و نتیجه را از طریق ایمیل اطلاع‌رسانی خواهد کرد."
+#: templates/
+msgid "all"
+msgstr "همه"
+#: templates/
+msgid "chat"
+msgstr "چت"
+#: templates/
+msgid "confirmation"
+msgstr "تأیید"
+#: templates/
+msgid "date_arrival (ETA)"
+msgstr "تاریخ ورود (ETA)"
+#: templates/
+msgid "email"
+msgstr "ایمیل"
+#: templates/
+msgid "latitude (Latitude)"
+msgstr "عرض جغرافیایی"
+#: templates/
+msgid "log in"
+msgstr "ورود"
+#: templates/
+msgid "longitude  (Longitude)"
+msgstr "طول جغرافیایی"
+#: templates/
+msgid "not uploaded"
+msgstr "آپلود نشده"
+#: templates/
+msgid "order registration"
+msgstr "ثبت سفارش"
+#: templates/
+msgid "pay"
+msgstr "پرداخت"
+#: templates/
+msgid "payment 1,000$"
+msgstr "پرداخت ۱,۰۰۰ دلار"
+#: templates/
+msgid "reject the order"
+msgstr "رد سفارش"
+#: templates/
+msgid "rejection"
+msgstr "رد"
+#: templates/
+msgid "send"
+msgstr "ارسال"
+#: templates/
+msgid "speed (knot)"
+msgstr "سرعت (گره)"
+#: templates/
+msgid "the seller"
+msgstr "فروشنده"
+#: templates/
+msgid "view"
+msgstr "مشاهده"
+#: templates/
+msgid "©2026 Metisma. All rights reserved"
+msgstr ""
+#: templates/
+msgid "ارسال کد با مشکل مواجه شد."
+msgstr ""
+#: templates/
+msgid "محصول را وارد کنید."
+msgstr ""
+#: templates/
+msgid "مقدار نامعتبر است."
+msgstr ""
+#: templates/
+msgid "کد تأیید ارسال شد."
+msgstr ""
+
+#: templates/
+msgid "کد تأیید به شماره شما ارسال شد."
+msgstr ""
+#: templates/
+msgid "کد جدید ارسال شد."
+msgstr ""
+#: templates/
+msgid "← Return to the magazine home page"
+msgstr "← بازگشت به صفحه اصلی مجله"
+#: templates/
+msgid "← Return to the main page"
+msgstr "← بازگشت به صفحه اصلی"
+#: templates/
+msgid "⏳ The verification code expires after 10 minutes"
+msgstr "⏳ کد تأیید پس از ۱۰ دقیقه منقضی می‌شود"
+#: templates/
+msgid "⚠️ Network unavailable. Showing demo data."
+msgstr "⚠️ شبکه در دسترس نیست. نمایش داده‌های دموی."
+#: templates/
+msgid "⚠️ No port data available."
+msgstr "⚠️ داده‌ای برای بندر موجود نیست."
+#: templates/
+msgid "⚠️ This order has already changed status."
+msgstr "⚠️ این سفارش قبلاً تغییر وضعیت داده است."
+#: templates/
+msgid "⚠️ Your request is being reviewed."
+msgstr "⚠️ درخواست شما در حال بررسی است."
+#: templates/
+msgid "⚠️ این سفارش قبلاً تأیید یا رد شده است."
+msgstr ""
+#: templates/
+msgid "⚠️ این سفارش قبلاً تغییر وضعیت داده است."
+msgstr ""
+#: templates/
+msgid "⚠️This order has already been approved or rejected."
+msgstr "⚠️این سفارش قبلاً تأیید یا رد شده است."
+#: templates/
+msgid "✅ Approved"
+msgstr "✅ تأیید شد"
+#: templates/
+msgid "✅ Email has been verified."
+msgstr "✅ ایمیل تأیید شده است."
+#: templates/
+msgid "✅ Mobile number successfully verified."
+msgstr "✅ شماره موبایل با موفقیت تأیید شد."
+#: templates/
+msgid "✅ Order successfully placed."
+msgstr "✅ سفارش با موفقیت ثبت شد."
+#: templates/
+msgid "✅ Profile updated."
+msgstr "✅ پروفایل به‌روزرسانی شد."
+#: templates/
+msgid "✅ Registration successful! Please log in."
+msgstr "✅ ثبت‌نام موفقیت‌آمیز بود! لطفاً وارد شوید."
+#: templates/
+msgid "✅ Request confirmation"
+msgstr "✅ تأیید درخواست"
+#: templates/
+msgid "✅ The order was confirmed and the notification was sent"
+msgstr "✅ سفارش تأیید شد و اعلان ارسال گردید"
+#: templates/
+msgid "✅ Welcome, admin.!"
+msgstr "✅ خوش آمدید، مدیر!"
+#: templates/
+msgid "✅ You have already become a special user."
+msgstr "✅ شما قبلاً به کاربر ویژه تبدیل شده‌اید."
+#: templates/
+msgid "✅ Your mobile number has already been verified."
+msgstr "✅ شماره موبایل شما قبلاً تأیید شده است."
+#: templates/
+msgid "✅ paid"
+msgstr "✅ پرداخت شده"
+#: templates/
+msgid "✅ uploaded"
+msgstr "✅ آپلود شده"
+#: templates/
+msgid "✅ welcome!"
+msgstr "✅ خوش آمدید!"
+#: templates/
+msgid "✅ ادمین اول با موفقیت ایجاد شد."
+msgstr ""
+#: templates/
+msgid "✅ سفارش با موفقیت ثبت شد."
+msgstr ""
+#: templates/
+msgid "✅ سفارش تأیید و اعلان به خریدار ارسال شد."
+msgstr ""
+#: templates/
+msgid "✅ سفارش و اعلان با موفقیت ثبت شد."
+msgstr ""
+#: templates/
+msgid "✅ شماره موبایل با موفقیت تأیید شد."
+msgstr ""
+#: templates/
+msgid "✉️ Message sent."
+msgstr "✉️ پیام ارسال شد."
+#: templates/
+msgid "❌ Access denied: Only admin can log in."
+msgstr "❌ دسترسی رد شد: فقط مدیر می‌تواند وارد شود."
+#: templates/
+msgid "❌ Access is only allowed for special users."
+msgstr "❌ دسترسی فقط برای کاربران ویژه مجاز است."
+#: templates/
+msgid "❌ An error occurred while placing your order. Please try again."
+msgstr "❌ خطایی هنگام ثبت سفارش رخ داد. لطفاً دوباره تلاش کنید."
+#: templates/
+msgid "❌ An error occurred with the ship tracking service."
+msgstr "❌ خطایی در سرویس ردیابی کشتی رخ داد."
+#: templates/
+msgid "❌ Incorrect email or password."
+msgstr "❌ ایمیل یا رمز عبور نادرست است."
+#: templates/
+msgid "❌ Invalid quantity or price."
+msgstr "❌ مقدار یا قیمت نامعتبر است."
+#: templates/
+msgid "❌ Limited access: Only special users can chat."
+msgstr "❌ دسترسی محدود: فقط کاربران ویژه می‌توانند چت کنند."
+#: templates/
+msgid "❌ No data found for this ship."
+msgstr "❌ داده‌ای برای این کشتی یافت نشد."
+#: templates/
+msgid "❌ No request found."
+msgstr "❌ درخواستی یافت نشد."
+#: templates/
+msgid "❌ No seller found."
+msgstr "❌ فروشنده‌ای یافت نشد."
+#: templates/
+msgid "❌ Only available to sellers."
+msgstr "❌ فقط برای فروشندگان در دسترس است."
+#: templates/
+msgid "❌ Only special users can access the map."
+msgstr "❌ فقط کاربران ویژه می‌توانند به نقشه دسترسی داشته باشند."
+#: templates/
+msgid "❌ Please enter a valid 7-digit ID (IMO)."
+msgstr "❌ لطفاً یک شناسه ۷ رقمی معتبر وارد کنید (IMO)."
+#: templates/
+msgid "❌ Please enter the product name."
+msgstr "❌ لطفاً نام محصول را وارد کنید."
+#: templates/
+msgid "❌ Please enter your mobile number in your profile first."
+msgstr "❌ لطفاً ابتدا شماره موبایل خود را در پروفایل وارد کنید."
+#: templates/
+msgid "❌ Please select origin and destination."
+msgstr "❌ لطفاً مبدأ و مقصد را انتخاب کنید."
+#: templates/
+msgid "❌ Rejected"
+msgstr "❌ رد شد"
+#: templates/
+msgid "❌ Request rejection"
+msgstr "❌ رد درخواست"
+#: templates/
+msgid "❌ The code is invalid."
+msgstr "❌ کد نامعتبر است."
+#: templates/
+msgid "❌ The desired seller was not found."
+msgstr "❌ فروشنده مورد نظر یافت نشد."
+#: templates/
+msgid "❌ The email or password is incorrect."
+msgstr "❌ ایمیل یا رمز عبور نادرست است."
+#: templates/
+msgid "❌ The link has expired."
+msgstr "❌ لینک منقضی شده است."
+#: templates/
+msgid "❌ The link is invalid."
+msgstr "❌ لینک نامعتبر است."
+#: templates/
+msgid "❌ The received data is invalid."
+msgstr "❌ داده‌های دریافتی نامعتبر هستند."
+#: templates/
+msgid "❌ The request to the server was scheduled. Please try again."
+msgstr "❌ درخواست به سرور زمان‌بندی شد. لطفاً دوباره تلاش کنید."
+#: templates/
+msgid "❌ The selected user is not a seller."
+msgstr "❌ کاربر انتخاب شده فروشنده نیست."
+#: templates/
+msgid "❌ The seller is invalid."
+msgstr "❌ فروشنده نامعتبر است."
+#: templates/
+msgid "❌ There was a problem sending the code."
+msgstr "❌ مشکلی در ارسال کد وجود داشت."
+#: templates/
+msgid "❌ There was an error sending the email."
+msgstr "❌ خطایی در ارسال ایمیل رخ داد."
+#: templates/
+msgid "❌ This account is inactive."
+msgstr "❌ این حساب غیرفعال است."
+#: templates/
+msgid "❌ This link is not for you."
+msgstr "❌ این لینک برای شما نیست."
+#: templates/
+msgid "❌ This user is not special and you cannot chat with him/her."
+msgstr "❌ این کاربر ویژه نیست و نمی‌توانید با او چت کنید."
+#: templates/
+msgid "❌ Unauthorized access."
+msgstr "❌ دسترسی غیرمجاز."
+#: templates/
+msgid "❌ You cannot deactivate another admin."
+msgstr "❌ نمی‌توانید مدیر دیگری را غیرفعال کنید."
+#: templates/
+msgid "❌ You cannot deactivate yourself."
+msgstr "❌ نمی‌توانید خودتان را غیرفعال کنید."
+#: templates/
+msgid "❌ not paid"
+msgstr "❌ پرداخت نشده"
+#: templates/
+msgid "❌ ارسال کد با مشکل مواجه شد."
+msgstr ""
+#: templates/
+msgid "❌ ایمیل قبلاً استفاده شده."
+msgstr ""
+#: templates/
+msgid "❌ خطایی رخ داد."
+msgstr ""
+#: templates/
+msgid "❌ خطایی رخ داد. لطفاً دوباره تلاش کنید."
+msgstr ""
+#: templates/
+msgid "❌ دسترسی غیرمجاز"
+msgstr ""
+#: templates/
+msgid "❌ دسترسی محدود: فقط برای فروشندگان"
+msgstr ""
+#: templates/
+msgid "❌ فروشنده معتبر نیست."
+msgstr ""
+#: templates/
+msgid "❌ لطفاً ابتدا شماره موبایل خود را در پروفایل خود وارد کنید."
+msgstr ""
+#: templates/
+msgid "❌ نام کاربری قبلاً گرفته شده."
+msgstr ""
+#: templates/
+msgid "❌ کد نامعتبر است."
+msgstr ""
+#: templates/
+msgid "🌍 port finder"
+msgstr "🌍 جستجوی بندر"
+#: templates/
+msgid "🌟 Special promotion."
+msgstr "🌟 ارتقاء ویژه."
+#: templates/
+msgid "👋 You have exited successfully."
+msgstr "👋 شما با موفقیت خارج شدید."
+#: templates/
+msgid "💬 Chat with the broker"
+msgstr "💬 چت با کارگزار"
+#: templates/
+msgid "💬 Chat with the seller"
+msgstr "💬 چت با فروشنده"
+#: templates/
+msgid "💬 Login to chat"
+msgstr "💬 ورود برای چت"
+#: templates/
+msgid "💬 Start chat"
+msgstr "💬 شروع چت"
+#: templates/
+msgid "📂 Upgrade requests to special user"
+msgstr "📂 درخواست‌های ارتقاء به کاربر ویژه"
+#: templates/
+msgid "📎 Uploaded documents"
+msgstr "📎 مدارک آپلود شده"
+#: templates/
+msgid "🔍 ship search"
+msgstr "🔍 جستجوی کشتی"
+#: templates/
+msgid "🗑️ Your account has been deleted."
+msgstr "🗑️ حساب شما حذف شده است."
+#: templates/
+msgid "🛒 Manage orders"
+msgstr "🛒 مدیریت سفارشات"

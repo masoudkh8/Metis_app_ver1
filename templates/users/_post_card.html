@@ -1,0 +1,271 @@
+<!-- templates/users/_post_card.html -->
+<div class="card mb-3 shadow-sm post-card" data-post-id="{{ post.id }}">
+    <div class="card-body">
+        <!-- Post Header -->
+        <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="d-flex align-items-center">
+                <a href="{{ url_for('social.public_profile', username=post.author.username) }}" class="text-decoration-none">
+                    {% if post.author.profile and post.author.profile.avatar_url %}
+                        <img src="{{ post.author.profile.avatar_url }}" alt="{{ post.author.username }}" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
+                    {% else %}
+                        <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center text-white" style="width: 40px; height: 40px;">
+                            {{ post.author.username[0]|upper }}
+                        </div>
+                    {% endif %}
+                </a>
+                <div>
+                    <a href="{{ url_for('social.public_profile', username=post.author.username) }}" class="fw-bold text-dark text-decoration-none">
+                        {{ post.author.company_name or post.author.username }}
+                    </a>
+                    {% if post.author.trust_score %}
+                        <span class="badge badge-sm {% if post.author.trust_score >= 70 %}bg-success{% elif post.author.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %} ms-1" title="{{ t_('social.trust_score') }}">
+                            {{ post.author.trust_score }}
+                        </span>
+                    {% endif %}
+                    <br>
+                    <small class="text-muted">
+                        <time datetime="{{ post.created_at.isoformat() }}">{{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</time>
+                        · {{ t_('social.visibility_' + post.visibility) if post.visibility in ['public', 'followers_only', 'private'] else t_('social.visibility_public') }}
+                    </small>
+                </div>
+            </div>
+            
+            {% if current_user.is_authenticated and (current_user.id == post.author_id or current_user.is_admin_or_moderator) %}
+            <div class="dropdown">
+                <button class="btn btn-link text-muted p-0" type="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    {% if current_user.id == post.author_id %}
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>{{ t_('social.edit_post') }}</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-thumbtack me-2"></i>{% if post.is_pinned %}{{ t_('social.unpin_post') }}{% else %}{{ t_('social.pin_post') }}{% endif %}</a></li>
+                    {% endif %}
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-flag me-2"></i>{{ t_('social.report_post') }}</a></li>
+                    {% if current_user.id == post.author_id or current_user.is_admin %}
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form action="{{ url_for('social.delete_post', post_id=post.id) }}" method="POST" onsubmit="return confirm('{{ t_('social.delete_post_confirm') }}')">
+                            <button type="submit" class="dropdown-item text-danger"><i class="fas fa-trash me-2"></i>{{ t_('common.delete') }}</button>
+                        </form>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Post Content -->
+        <div class="post-content mb-3">
+            <p class="card-text">{{ post.content }}</p>
+            
+            {% if post.tagged_products or post.tagged_companies %}
+            <div class="mb-2">
+                {% for product_id in (post.tagged_products or [])[:3] %}
+                    <span class="badge bg-info me-1">#Product{{ product_id }}</span>
+                {% endfor %}
+                {% for company_id in (post.tagged_companies or [])[:3] %}
+                    <span class="badge bg-primary me-1">#Company{{ company_id }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Post Media -->
+        {% if post.media and (post.media.images or post.media.files) %}
+        <div class="post-media mb-3">
+            {% if post.media.images %}
+            <div class="row g-2">
+                {% for image_url in post.media.images[:4] %}
+                <div class="{% if post.media.images|length == 1 %}col-12{% elif post.media.images|length <= 4 %}col-md-6{% else %}col-md-4{% endif %}">
+                    <img src="{{ image_url }}" alt="Post image" class="img-fluid rounded" style="width: 100%; height: auto; max-height: 300px; object-fit: cover;">
+                </div>
+                {% endfor %}
+                {% if post.media.images|length > 4 %}
+                <div class="col-md-4 position-relative">
+                    <img src="{{ post.media.images[3] }}" alt="More images" class="img-fluid rounded" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div class="position-absolute top-50 start-50 translate-middle bg-dark bg-opacity-75 rounded px-3 py-2 text-white">
+                        +{{ post.media.images|length - 4 }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            {% if post.media.files %}
+            <div class="mt-2">
+                {% for file in post.media.files %}
+                <a href="{{ file }}" class="btn btn-outline-secondary btn-sm me-2 mb-1" target="_blank">
+                    <i class="fas fa-file me-1"></i>{{ file.split('/')[-1] }}
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <!-- Post Stats -->
+        <div class="post-stats d-flex justify-content-between text-muted small mb-2">
+            <div>
+                {% if post.likes_count > 0 %}
+                <span><i class="far fa-heart me-1"></i>{{ post.likes_count }}</span>
+                {% endif %}
+                {% if post.comments_count > 0 %}
+                <span class="ms-2"><i class="far fa-comment me-1"></i>{{ post.comments_count }}</span>
+                {% endif %}
+                {% if post.shares_count > 0 %}
+                <span class="ms-2"><i class="fas fa-share me-1"></i>{{ post.shares_count }}</span>
+                {% endif %}
+                {% if post.views_count > 0 %}
+                <span class="ms-2"><i class="far fa-eye me-1"></i>{{ post.views_count }}</span>
+                {% endif %}
+            </div>
+            <div>
+                <time datetime="{{ post.created_at.isoformat() }}" title="{{ post.created_at }}">{{ post.created_at.strftime('%Y-%m-%d') }}</time>
+            </div>
+        </div>
+        
+        <!-- Post Actions -->
+        <div class="post-actions d-flex justify-content-around border-top pt-2">
+            <button class="btn btn-outline-danger like-btn {% if current_user.is_authenticated and post.is_liked_by_current_user %}active{% endif %}" 
+                    data-post-id="{{ post.id }}" 
+                    data-action="like">
+                <i class="{% if current_user.is_authenticated and post.is_liked_by_current_user %}fas{% else %}far{% endif %} fa-heart me-1"></i>
+                {{ t_('social.like') }}
+            </button>
+            
+            <a href="{{ url_for('social.view_post', post_id=post.id) }}" class="btn btn-outline-primary">
+                <i class="far fa-comment me-1"></i>{{ t_('social.comment') }}
+            </a>
+            
+            <button class="btn btn-outline-success share-btn" data-post-id="{{ post.id }}" data-action="share">
+                <i class="fas fa-share me-1"></i>{{ t_('social.share') }}
+            </button>
+            
+            <button class="btn btn-outline-secondary" onclick="copyPostLink({{ post.id }})">
+                <i class="fas fa-link me-1"></i>{{ t_('social.copy_link') }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+.post-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.like-btn.active {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+.badge-sm {
+    font-size: 0.65rem;
+    padding: 0.2em 0.4em;
+}
+</style>
+
+<script>
+// Like functionality
+document.querySelectorAll('.like-btn').forEach(btn => {
+    btn.addEventListener('click', async function() {
+        const postId = this.dataset.postId;
+        const isLiked = this.classList.contains('active');
+        
+        try {
+            const response = await fetch(`/social/post/${postId}/like`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // Update UI
+                const icon = this.querySelector('i');
+                if (data.is_liked) {
+                    this.classList.add('active');
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                } else {
+                    this.classList.remove('active');
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                }
+                
+                // Update likes count
+                const statsDiv = this.closest('.post-card').querySelector('.post-stats');
+                // Refresh stats
+                updatePostStats(postId);
+            }
+        } catch (error) {
+            console.error('Error liking post:', error);
+        }
+    });
+});
+
+// Share functionality
+document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', async function() {
+        const postId = this.dataset.postId;
+        const postUrl = window.location.origin + '/social/post/' + postId;
+        
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: '{{ t_("social.post") }}',
+                    url: postUrl
+                });
+            } else {
+                // Fallback: copy to clipboard
+                await navigator.clipboard.writeText(postUrl);
+                alert('{{ t_("social.link_copied") }}');
+            }
+            
+            // Track share
+            await fetch(`/social/post/${postId}/share`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
+    });
+});
+
+// Copy link function
+async function copyPostLink(postId) {
+    const url = window.location.origin + '/social/post/' + postId;
+    try {
+        await navigator.clipboard.writeText(url);
+        showToast('{{ t_("social.link_copied") }}');
+    } catch (error) {
+        console.error('Error copying link:', error);
+    }
+}
+
+// Update post stats
+async function updatePostStats(postId) {
+    try {
+        const response = await fetch(`/social/api/post/${postId}/stats`);
+        const data = await response.json();
+        // Update UI with new stats
+    } catch (error) {
+        console.error('Error updating stats:', error);
+    }
+}
+
+// Toast notification
+function showToast(message) {
+    // Implement toast notification
+    console.log('Toast:', message);
+}
+</script>

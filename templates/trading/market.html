@@ -1,0 +1,130 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}Metisma Trading Hall | Metisma Trading{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-green-600 to-blue-600 text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                📊 Metisma Trading Hall
+            </h1>
+            <p class="text-xl mb-6 opacity-90">
+                Fast, Secure and Transparent Digital Currency Pair Trading
+            </p>
+            
+            <!-- Market Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+                    <div class="text-2xl font-bold">{{ "{:,.0f}".format(total_volume) }}</div>
+                    <div class="text-sm opacity-80">24h Volume</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+                    <div class="text-2xl font-bold">{{ "{:,.0f}".format(total_trades) }}</div>
+                    <div class="text-sm opacity-80">24h Trades</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+                    <div class="text-2xl font-bold">{{ pairs|length }}</div>
+                    <div class="text-sm opacity-80">Active Pairs</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-4">
+                    <div class="text-2xl font-bold">0.1%</div>
+                    <div class="text-sm opacity-80">Trading Fee</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trending Pairs -->
+<section class="py-8 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">🔥 Top Performing Pairs</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {% for pair in trending %}
+            <div class="bg-white rounded-lg shadow p-4 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-gray-800">{{ pair.symbol }}</span>
+                    <span class="text-green-600 font-bold">+{{ pair.price_change_24h }}%</span>
+                </div>
+                <div class="text-2xl font-bold text-gray-900">${{ pair.current_price }}</div>
+                <a href="{{ url_for('trading.trading_pair_detail', symbol=pair.symbol) }}" 
+                   class="block mt-3 text-center bg-green-600 text-white py-2 rounded hover:bg-green-700 text-sm">
+                    Trade
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- All Trading Pairs Table -->
+<section class="py-8">
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">📋 All Markets</h2>
+        
+        <div class="bg-white rounded-xl shadow overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-6 py-4 text-right font-bold text-gray-700">Pair Name</th>
+                        <th class="px-6 py-4 text-left font-bold text-gray-700">Last Price</th>
+                        <th class="px-6 py-4 text-left font-bold text-gray-700">24h Change</th>
+                        <th class="px-6 py-4 text-left font-bold text-gray-700">24h Volume</th>
+                        <th class="px-6 py-4 text-left font-bold text-gray-700">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pair in pairs %}
+                    <tr class="border-t hover:bg-gray-50">
+                        <td class="px-6 py-4">
+                            <div class="font-bold text-gray-900">{{ pair.symbol }}</div>
+                            <div class="text-xs text-gray-500">{{ pair.base_currency }} / {{ pair.quote_currency }}</div>
+                        </td>
+                        <td class="px-6 py-4 text-left">
+                            <span class="font-mono font-bold">${{ pair.current_price }}</span>
+                        </td>
+                        <td class="px-6 py-4 text-left">
+                            {% if pair.price_change_24h >= 0 %}
+                            <span class="text-green-600 font-bold">▲ +{{ pair.price_change_24h }}%</span>
+                            {% else %}
+                            <span class="text-red-600 font-bold">▼ {{ pair.price_change_24h }}%</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 text-left text-gray-600">
+                            {{ "{:,.0f}".format(pair.volume_24h or 0) }}
+                        </td>
+                        <td class="px-6 py-4 text-left">
+                            <a href="{{ url_for('trading.trading_pair_detail', symbol=pair.symbol) }}" 
+                               class="text-blue-600 hover:text-blue-800 font-medium">
+                                View →
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-12 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Start Trading?</h2>
+        <p class="text-xl mb-8 opacity-90">Create your account now and make your first trade</p>
+        
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('trading.wallet') }}" class="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+            Go to Wallet
+        </a>
+        {% else %}
+        <a href="{{ url_for('users.login') }}" class="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+            Login / Register
+        </a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

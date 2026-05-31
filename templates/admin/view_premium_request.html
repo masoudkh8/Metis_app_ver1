@@ -1,0 +1,108 @@
+{% extends "base_pwa.html" %}
+
+{% block title %}View Upgrade Request{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-3xl mx-auto space-y-6">
+        <div class="flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">📄 Upgrade Request Details</h1>
+            <a href="{{ url_for('admin.premium_requests') }}" class="text-sm text-gray-600 dark:text-slate-400 hover:text-gold transition">← Back to Requests</a>
+        </div>
+
+        <!-- اطلاعات کاربر -->
+        <div class="bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 p-5">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">👤 User Information</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <div class="p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50"><span class="text-gray-500 dark:text-slate-400">Username:</span> <span class="font-medium text-gray-900 dark:text-white ml-1">{{ req.user.username }}</span></div>
+                <div class="p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50"><span class="text-gray-500 dark:text-slate-400">Email:</span> <span class="font-medium text-gray-900 dark:text-white ml-1">{{ req.user.email }}</span></div>
+                <div class="p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50"><span class="text-gray-500 dark:text-slate-400">Company:</span> <span class="font-medium text-gray-900 dark:text-white ml-1">{{ req.user.company_name or '—' }}</span></div>
+                <div class="p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50"><span class="text-gray-500 dark:text-slate-400">Country:</span> <span class="font-medium text-gray-900 dark:text-white ml-1">{{ req.user.country or '—' }}</span></div>
+                <div class="p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50"><span class="text-gray-500 dark:text-slate-400">Phone for Verification:</span> <span class="font-medium text-gold ml-1">{{ req.requested_phone or '—' }}</span></div>
+                <div class="p-3 rounded-lg bg-gold/10 dark:bg-gold/20 border border-gold/30"><span class="text-gray-500 dark:text-slate-400">Current Tier:</span> <span class="font-bold text-gold ml-1">{{ req.user.tier_display_name }}</span></div>
+                <div class="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20"><span class="text-gray-500 dark:text-slate-400">Trust Score:</span> <span class="font-bold text-blue-600 dark:text-blue-400 ml-1">{{ req.user.trust_score_value }}/100</span></div>
+            </div>
+        </div>
+
+        <!-- وضعیت مراحل -->
+        <div class="bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 p-5">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">✅ Step Verification Status</h2>
+            <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 rounded-lg {% if req.phone_verified %}bg-green-50 dark:bg-green-900/20{% else %}bg-gray-50 dark:bg-dark-700/50{% endif %}">
+                    <span class="font-medium text-gray-700 dark:text-slate-300">📱 Mobile Verification</span>
+                    <span class="{% if req.phone_verified %}text-green-600 dark:text-green-400 font-medium{% else %}text-red-500 dark:text-red-400 font-medium{% endif %}">{% if req.phone_verified %}✅ Confirmed{% else %}❌ Not Verified{% endif %}</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-lg {% if req.email_verified %}bg-green-50 dark:bg-green-900/20{% else %}bg-gray-50 dark:bg-dark-700/50{% endif %}">
+                    <span class="font-medium text-gray-700 dark:text-slate-300">📧 Email Verification</span>
+                    <span class="{% if req.email_verified %}text-green-600 dark:text-green-400 font-medium{% else %}text-red-500 dark:text-red-400 font-medium{% endif %}">{% if req.email_verified %}✅ Confirmed{% else %}❌ Not Verified{% endif %}</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-lg {% if req.payment_verified %}bg-green-50 dark:bg-green-900/20{% else %}bg-gray-50 dark:bg-dark-700/50{% endif %}">
+                    <span class="font-medium text-gray-700 dark:text-slate-300">💳 Payment</span>
+                    <span class="{% if req.payment_verified %}text-green-600 dark:text-green-400 font-medium{% else %}text-red-500 dark:text-red-400 font-medium{% endif %}">{% if req.payment_verified %}✅ Paid{% else %}❌ Not Paid{% endif %}</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-lg {% if req.status == 'approved' %}bg-green-50 dark:bg-green-900/20{% elif req.status == 'rejected' %}bg-red-50 dark:bg-red-900/20{% else %}bg-yellow-50 dark:bg-yellow-900/20{% endif %}">
+                    <span class="font-medium text-gray-700 dark:text-slate-300">📋 Overall Status</span>
+                    <span class="font-bold capitalize">
+                        {% if req.status == 'pending' %}<span class="text-yellow-600 dark:text-yellow-400">⏳ Awaiting Review</span>
+                        {% elif req.status == 'approved' %}<span class="text-green-600 dark:text-green-400">✅ Approved</span>
+                        {% else %}<span class="text-red-600 dark:text-red-400">❌ Rejected</span>{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- مدارک آپلود شده -->
+        <div class="bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 p-5">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">📎 Uploaded Documents</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {% if req.passport_file %}
+                <a href="{{ url_for('static', filename='uploads/documents/user_' + req.user.id|string +'_'+ req.user.username|string+ '/' + req.passport_file) }}" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition group">
+                    <span class="text-2xl">🛂</span>
+                    <div><p class="text-sm font-medium text-gray-900 dark:text-white">Passport Copy</p><p class="text-xs text-blue-600 dark:text-blue-400 group-hover:underline">View File →</p></div>
+                </a>
+                {% else %}
+                <div class="p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50 border border-gray-200 dark:border-dark-600"><p class="text-sm font-medium text-gray-500 dark:text-slate-400">🛂 Passport Copy</p><p class="text-xs text-red-500">Not Uploaded</p></div>
+                {% endif %}
+
+                {% if req.license_file %}
+                <a href="{{ url_for('static', filename='uploads/documents/user_' + req.user.id|string +'_'+ req.user.username|string+ '/' + req.license_file) }}" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition group">
+                    <span class="text-2xl">📜</span>
+                    <div><p class="text-sm font-medium text-gray-900 dark:text-white">Company License</p><p class="text-xs text-blue-600 dark:text-blue-400 group-hover:underline">View File →</p></div>
+                </a>
+                {% else %}
+                <div class="p-3 rounded-lg bg-gray-50 dark:bg-dark-700/50 border border-gray-200 dark:border-dark-600"><p class="text-sm font-medium text-gray-500 dark:text-slate-400">📜 Company License</p><p class="text-xs text-red-500">Not Uploaded</p></div>
+                {% endif %}
+
+                {% if req.payment_receipt %}
+                <a href="{{ url_for('static', filename='uploads/documents/user_' + req.user.id|string +'_'+ req.user.username|string+ '/' + req.payment_receipt) }}" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition group sm:col-span-2">
+                    <span class="text-2xl">🧾</span>
+                    <div><p class="text-sm font-medium text-gray-900 dark:text-white">Payment Receipt</p><p class="text-xs text-blue-600 dark:text-blue-400 group-hover:underline">View File →</p></div>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- متادیتا -->
+        <div class="text-xs text-gray-500 dark:text-slate-400 space-y-1">
+            <p>📅 Submitted: {{ req.submitted_at.strftime('%Y/%m/%d - %H:%M') }}</p>
+            {% if req.reviewed_at %}<p>🔍 Reviewed: {{ req.reviewed_at.strftime('%Y/%m/%d - %H:%M') }}</p>{% endif %}
+        </div>
+
+        <!-- دکمه‌های اقدام -->
+        {% if req.status == 'pending' %}
+        <div class="flex flex-col sm:flex-row gap-3">
+            <form method="POST" action="{{ url_for('admin.review_premium_request', req_id=req.id) }}" class="flex-1">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="action" value="approve">
+                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-sm hover:from-green-600 hover:to-green-700 shadow-lg transition transform hover:scale-[1.02] active:scale-[0.98]">✅ Confirm Request</button>
+            </form>
+            <form method="POST" action="{{ url_for('admin.review_premium_request', req_id=req.id) }}" class="flex-1">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="action" value="reject">
+                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-sm hover:from-red-600 hover:to-red-700 shadow-lg transition transform hover:scale-[1.02] active:scale-[0.98]">❌ Reject Request</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

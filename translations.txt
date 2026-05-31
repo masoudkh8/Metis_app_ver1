@@ -1,0 +1,41 @@
+# Translations from Persian to English
+
+## templates/admin/view_user_documents.html
+- "مدارک User" → "Documents of User"
+- "اطلاعات کاربر" → "User Information"
+- "لیست مدارک" → "List of Documents"
+- "اقدامات ادمین" → "Admin Actions"
+
+## templates/base_pwa.html
+- "فریم‌ورک Tailwind CSS" → "Tailwind CSS Framework"
+- "fallback برای حالت آفلاین کامل (اختیاری)" → "fallback for complete offline mode (optional)"
+- "اگر output.css لود نشد، از CDN استفاده کن (فقط برای توسعه)" → "If output.css fails to load, use CDN (for development only)"
+- "کتابخانه Three.js (لود لوکال - بدون تغییر)" → "Three.js Library (loaded locally - unchanged)"
+- "دکمه تغییر تم شناور (گوشه پایین چپ)" → "Floating theme toggle button (bottom left corner)"
+- "دکمه تغییر تم شناور با آیکون‌های SVG ماه/خورشید" → "Floating theme toggle button with SVG moon/sun icons"
+- "آیکون ماه (نمایش در حالت لایت)" → "Moon icon (displayed in light mode)"
+- "آیکون خورشید (نمایش در حالت دارک)" → "Sun icon (displayed in dark mode)"
+- "لایه لودینگ اولیه (ساده‌شده)" → "Initial loading layer (simplified)"
+- "هدر سایت: چسبان به بالا با افکت شیشه‌ای" → "Site header: sticky at top with glass effect"
+- "لوگو و نام برند" → "Logo and brand name"
+- "منوی ناوبری دسکتاپ" → "Desktop navigation menu"
+- "منوی کشویی خدمات" → "Services dropdown menu"
+
+## templates/landing.html
+- "فونت وزیر برای پشتیبانی از اعداد و کاراکترهای خاص" → "Vazir font for supporting numbers and special characters"
+- "گزینه ۲: فونت سیستم به‌عنوان fallback (سریع‌ترین راه)" → "Option 2: System font as fallback (fastest way)"
+
+## templates/users/show_backup_codes.html
+- "چاپ Codeها" → "Print Codes"
+- "می‌توانید از این Codeها عکس بگیرید یا آن‌ها را در یک مدیر رمز عبور مانند LastPass یا 1Password ذخیره کنید." → "You can take a picture of these codes or store them in a password manager like LastPass or 1Password."
+
+## templates/users/dashboard.html
+- "کارت‌های داشبورد مبتنی بر مجوزها" → "Dashboard cards based on permissions"
+
+## templates/landing.html (additional)
+- "دکمه شناور واتس‌اپ برای پشتیبانی (گوشه پایین راست)" → "Floating WhatsApp button for support (bottom right corner)"
+- "پشتیبانی واتس‌اپ" → "WhatsApp Support"
+
+## templates/base_pwa.html (additional comments - not translated as per user request to keep comments in Persian)
+Note: Many HTML comments were kept in Persian as the user specified that comments can remain in Persian.
+Only text content within the code (not comments) was translated to English.

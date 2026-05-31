@@ -1,0 +1,80 @@
+{% extends "base_pwa.html" %}
+{% block title %}Annual Subscription - Imazhe Magazine{% endblock %}
+
+{% block content %}
+<div class="min-h-[calc(100vh-4rem)] px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Imazhe Magazine Subscription</h2>
+            <p class="text-gray-600 dark:text-slate-400 text-sm mt-2">Choose your subscription plan to receive print and digital editions.</p>
+        </div>
+
+        <!-- کارت‌های قیمت‌گذاری -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- پلن سالانه -->
+            <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border-2 border-gold/30 p-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-gold text-dark-900 text-xs font-bold px-3 py-1 rounded-bl-lg">Best Value</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Annual Subscription</h3>
+                <p class="text-3xl font-bold text-gold mb-4">1,200,000 <span class="text-sm text-gray-500 dark:text-slate-400 font-normal">Tomans</span></p>
+                <ul class="space-y-2 text-sm text-gray-600 dark:text-slate-400 mb-6">
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> 12 printed issues annually</li>
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Access to digital version</li>
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Free postage</li>
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Special discounts for events</li>
+                </ul>
+                <label class="flex items-center justify-center w-full py-2.5 rounded-xl bg-gold/10 text-gold font-semibold text-sm cursor-pointer hover:bg-gold/20 transition">
+                    <input type="radio" name="plan" value="annual" class="hidden peer" checked>
+                    <span class="peer-checked:hidden">Select Plan</span>
+                    <span class="hidden peer-checked:inline">✅ Selected</span>
+                </label>
+            </div>
+
+            <!-- پلن ۶ ماهه -->
+            <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 p-6">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">6-Month Subscription</h3>
+                <p class="text-3xl font-bold text-gray-700 dark:text-slate-300 mb-4">650,000 <span class="text-sm text-gray-500 dark:text-slate-400 font-normal">Tomans</span></p>
+                <ul class="space-y-2 text-sm text-gray-600 dark:text-slate-400 mb-6">
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> 6 printed issues</li>
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Access to digital version</li>
+                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Free postage</li>
+                </ul>
+                <label class="flex items-center justify-center w-full py-2.5 rounded-xl border border-gray-300 dark:border-dark-600 text-gray-600 dark:text-slate-300 font-semibold text-sm cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-700 transition">
+                    <input type="radio" name="plan" value="semi_annual" class="hidden peer">
+                    <span class="peer-checked:hidden">Select Plan</span>
+                    <span class="hidden peer-checked:inline">✅ Selected</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- فرم تکمیل اشتراک -->
+        <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg border border-gray-200 dark:border-dark-700 p-6">
+            <form method="POST" class="space-y-4">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="name" class="form-label">Name and Surname *</label>
+                        <input id="name" name="name" type="text" required class="form-input">
+                    </div>
+                    <div>
+                        <label for="email" class="form-label">Email *</label>
+                        <input id="email" name="email" type="email" required class="form-input">
+                    </div>
+                </div>
+                <div>
+                    <label for="phone" class="form-label">Phone Number *</label>
+                    <input id="phone" name="phone" type="tel" required class="form-input">
+                </div>
+                <div>
+                    <label for="address" class="form-label">Complete Postal Address *</label>
+                    <textarea id="address" name="address" rows="3" required class="form-input resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-dark-900 font-bold text-sm hover:from-gold-light hover:to-gold shadow transition transform hover:scale-[1.02] active:scale-[0.98]">Complete Subscription</button>
+            </form>
+        </div>
+
+        <div class="text-center mt-6">
+            <a href="{{ url_for('magazine.index') }}" class="text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">← Return to Magazine Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
