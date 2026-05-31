@@ -97,7 +97,7 @@ def verify_phone():
     # اگر شماره قبلاً تأیید شده، به مرحله بعد برو
     if req.phone_verified:
         flash("✅ Your mobile number has already been verified.")
-        return redirect(url_for('users.verify_email'))  # ✅ به ایمیل برو، نه payment_confirmation
+        return redirect(url_for('users.show_verify_email_page'))  # ✅ به ایمیل برو، نه payment_confirmation
 
     if request.method == 'POST':
         if 'resend' in request.form:
@@ -120,7 +120,7 @@ def verify_phone():
             req.phone_verification_code = None
             db.session.commit()
             flash("✅ Mobile number successfully verified.")
-            return redirect(url_for('users.verify_email'))  # ✅ بعد از تأیید شماره، به ایمیل برو
+            return redirect(url_for('users.show_verify_email_page'))  # ✅ بعد از تأیید شماره، به ایمیل برو
         else:
             flash("❌ The code is invalid.")
 

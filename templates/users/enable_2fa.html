@@ -47,6 +47,7 @@
 
         <!-- Step 2: Verification Code -->
         <form class="mt-8 space-y-6" method="POST" action="{{ url_for('users.enable_2fa') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <div>
                 <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     6-digit verification code

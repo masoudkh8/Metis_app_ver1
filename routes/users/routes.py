@@ -24,7 +24,7 @@ from models.auth import PasswordResetToken, LoginSession, ActivityLog, EmailVeri
 from models.port import Port
 
 from . import users_bp,root_bp
-from auth import verify_phone,verify_2fa_login,show_verify_email_page
+from .auth import verify_phone, verify_2fa_login, show_verify_email_page
 # Import permissions routes to register them under users_bp
 from . import permissions_routes
 

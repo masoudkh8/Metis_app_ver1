@@ -23,6 +23,7 @@
                 </div>
                 <div class="card-body">
                     <form action="{{ url_for('social.create_post') }}" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <!-- Content -->
                         <div class="mb-3">
                             <label for="content" class="form-label">{{ t_('social.what_is_on_your_mind') }}</label>

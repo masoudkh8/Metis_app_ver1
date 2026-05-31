@@ -45,6 +45,7 @@
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <form action="{{ url_for('social.delete_post', post_id=post.id) }}" method="POST" onsubmit="return confirm('{{ t_('social.delete_post_confirm') }}')">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                             <button type="submit" class="dropdown-item text-danger"><i class="fas fa-trash me-2"></i>{{ t_('common.delete') }}</button>
                         </form>
                     </li>
