@@ -2,7 +2,6 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
-from routes.users.auth import verify_phone
 import click
 from flask import Flask, redirect, url_for, request, session, jsonify, g
 from flask_babel import Babel, gettext
@@ -43,39 +42,25 @@ socketio = SocketIO(
 )
 
 
-def get_locale():
-    # اولویت ۱: زبان انتخاب‌شده توسط کاربر در session
-    if 'lang' in session:
-        return session['lang']
-
-    # اولویت ۲: پارامتر URL (برای تغییرات لحظه‌ای)
-    lang = request.args.get('lang')
-    if lang and lang in ['fa', 'en']:
-        session['lang'] = lang  # ذخیره برای جلسات بعدی
-        return lang
-
-    # اولویت ۳: زبان مرورگر
-    return request.accept_languages.best_match(['fa', 'en'], 'fa')
-
 def setup_logging(app):
     """Setup structured logging configuration for the application."""
     if not app.debug:
         if not os.path.exists('logs'):
             os.mkdir('logs')
-        
+
         file_handler = RotatingFileHandler('logs/app.log', maxBytes=10240, backupCount=3 , delay=True)
         file_handler.setFormatter(logging.Formatter(
             '{"timestamp": "%(asctime)s", "level": "%(levelname)s", "message": "%(message)s", '
             '"module": "%(module)s", "lineno": %(lineno)d}'
         ))
         file_handler.setLevel(logging.INFO)
-        
+
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(logging.Formatter(
             '{"timestamp": "%(asctime)s", "level": "%(levelname)s", "message": "%(message)s"}'
         ))
         console_handler.setLevel(logging.INFO)
-        
+
         app.logger.addHandler(file_handler)
         app.logger.addHandler(console_handler)
         app.logger.setLevel(logging.INFO)
@@ -87,7 +72,7 @@ def setup_logging(app):
 
 def setup_monitoring(app):
     """Setup monitoring endpoints and health checks."""
-    
+
     @app.route('/health')
     def health_check():
         """Health check endpoint for monitoring."""
@@ -101,7 +86,7 @@ def setup_monitoring(app):
                 'celery': 'ok'
             }
         }
-        
+
         try:
             from sqlalchemy import text
             db.session.execute(text('SELECT 1'))
@@ -109,7 +94,7 @@ def setup_monitoring(app):
         except Exception as e:
             health_status['checks']['database'] = f'error: {str(e)}'
             health_status['status'] = 'unhealthy'
-        
+
         try:
             cache.cache.set('_health_check', 'ok', timeout=5)
             result = cache.cache.get('_health_check')
@@ -119,7 +104,7 @@ def setup_monitoring(app):
                 health_status['checks']['redis'] = 'error: connection failed'
         except Exception as e:
             health_status['checks']['redis'] = f'error: {str(e)}'
-        
+
         try:
             from celery_app import celery
             inspect = celery.control.inspect(timeout=2)
@@ -130,10 +115,10 @@ def setup_monitoring(app):
                 health_status['checks']['celery'] = 'warning: no active workers'
         except Exception as e:
             health_status['checks']['celery'] = f'warning: {str(e)}'
-        
+
         status_code = 200 if health_status['status'] == 'healthy' else 503
         return jsonify(health_status), status_code
-    
+
     @app.route('/metrics')
     def metrics():
         """Metrics endpoint for Prometheus-style monitoring."""
@@ -144,12 +129,12 @@ def setup_monitoring(app):
             'timestamp': datetime.utcnow().isoformat()
         }
         return jsonify(metrics_data)
-    
+
     @app.before_request
     def before_request_metrics():
         """Record request start time for metrics."""
         request.start_time = time.time()
-    
+
     @app.after_request
     def after_request_metrics(response):
         """Log request duration and add headers."""
@@ -159,48 +144,6 @@ def setup_monitoring(app):
             if duration > 1.0:
                 app.logger.warning(f'Slow request: {request.method} {request.path} took {duration:.4f}s')
         return response
-
-
-file_path = "/static/files/ports.json"
-def load_ports_from_dataset(file_path):
-    """Load ports data from JSON file and save to database."""
-    try:
-        with open(file_path, 'r') as file:
-            data = json.load(file)
-
-        for key in data:
-            name = data[key].get('port_name')
-            country = data[key].get("country")
-            latitude = data[key].get('lat')
-            longitude = data[key].get('long')
-
-            if not name or not country or latitude is None or longitude is None:
-                print(f"Invalid data: {data[key]}")
-                continue
-                
-            existing_port = Port.query.filter_by(name=name, country=country).first()
-            if existing_port:
-                print(f"Port already exists: {name}, {country}")
-                continue
-                
-            new_port = Port(
-                name=name,
-                country=country,
-                latitude=float(latitude),
-                longitude=float(longitude)
-            )
-            db.session.add(new_port)
-        
-        db.session.commit()
-        print("Ports loaded successfully!")
-    except FileNotFoundError:
-        print("Dataset file not found!")
-    except json.JSONDecodeError:
-        print("Invalid JSON format in dataset file!")
-    except Exception as e:
-        db.session.rollback()
-        print(f"Error loading ports: {e}")
-
 
 
 def get_serializer(app):
@@ -363,23 +306,23 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     csrf.init_app(app)
-    
+
     login_manager.login_view = 'users.login'
     login_manager.login_message = "Please log in."
     login_manager.init_app(app)
-    
+
     mail.init_app(app)
     cache.init_app(app)
-    
+
     if Config.RATELIMIT_ENABLED:
         limiter.init_app(app)
-    
+
     # Initialize SocketIO
     socketio.init_app(app, message_queue=Config.SOCKETIO_MESSAGE_QUEUE, cors_allowed_origins="*")
-    
+
     setup_logging(app)
     setup_monitoring(app)
-    
+
     # Create upload folders
     os.makedirs(Config.PROFILE_UPLOAD_FOLDER, exist_ok=True)
     os.makedirs(Config.MAGAZINE_UPLOAD_FOLDER, exist_ok=True)
@@ -469,14 +412,14 @@ def create_app():
         """
         Make permission checking functions available in all Jinja2 templates.
         This allows templates to use:
-            - has_permission(user, permission) 
+            - has_permission(user, permission)
             - service_module_enabled(service_name, user)
             - Permission enum class
         """
         from services.access_control import has_permission as _has_permission
         from services.access_control import service_module_enabled as _service_module_enabled
         from services.permissions import Permission
-        
+
         return {
             'has_permission': _has_permission,
             'service_module_enabled': _service_module_enabled,
@@ -494,11 +437,11 @@ def create_app():
     # Blueprint از permissions_routes به دلیل استفاده از همان users_bp در آن فایل، نیاز به ثبت جداگانه ندارد
     # تمام routeهای permissions_routes تحت همان users_bp ثبت شده‌اند
     app.register_blueprint(root_bp)
-    
+
     # Initialize admin blueprints (includes permission management)
     admin_bp_instance = init_admin_blueprints()
     app.register_blueprint(admin_bp_instance, url_prefix='/admin')
-    
+
     app.register_blueprint(magazine_bp, url_prefix='/magazine')
     app.register_blueprint(social_bp)
     app.register_blueprint(exhibition_bp)
@@ -560,25 +503,25 @@ def create_app():
 
     with app.app_context():
         db.create_all()
-        
+
         # Initialize Exhibition & Trading modules
         from models.exhibition import init_exhibition_db
         from models.trading import init_trading_db
-        
+
         try:
             init_exhibition_db()
             app.logger.info("Exhibition module initialized successfully.")
         except Exception as e:
             app.logger.warning(f"Exhibition initialization skipped: {e}")
-        
+
         try:
             init_trading_db()
             app.logger.info("Trading module initialized successfully.")
         except Exception as e:
             app.logger.warning(f"Trading initialization skipped: {e}")
-        
+
         app.logger.info("Database and tables created.")
-    
+
     app.config['START_TIME'] = time.time()
 
     # =============================================================================
@@ -591,10 +534,10 @@ def create_app():
         from flask_login import current_user
         query = request.args.get('q', '').strip()
         search_type = request.args.get('type', 'all')  # all, users, products, articles
-        
+
         if not query or len(query) < 2:
             return jsonify({'error': 'Query must be at least 2 characters'}), 400
-        
+
         results = {
             'query': query,
             'users': [],
@@ -602,7 +545,7 @@ def create_app():
             'articles': [],
             'ports': []
         }
-        
+
         try:
             # Search users
             if search_type in ['all', 'users']:
@@ -620,7 +563,7 @@ def create_app():
                     'avatar': u.profile_image,
                     'url': url_for('users.profile', user_id=u.id)
                 } for u in users]
-            
+
             # Search products (from trading module)
             if search_type in ['all', 'products']:
                 try:
@@ -637,7 +580,7 @@ def create_app():
                     } for p in products]
                 except:
                     pass
-            
+
             # Search articles (from magazine module)
             if search_type in ['all', 'articles']:
                 try:
@@ -657,7 +600,7 @@ def create_app():
                     } for a in articles]
                 except:
                     pass
-            
+
             # Search ports
             if search_type in ['all', 'ports']:
                 ports = Port.query.filter(
@@ -672,9 +615,9 @@ def create_app():
                     'country': p.country,
                     'url': url_for('exhibition.port_detail', port_id=p.id)
                 } for p in ports]
-            
+
             return jsonify(results)
-        
+
         except Exception as e:
             app.logger.error(f'Search error: {e}')
             return jsonify({'error': 'Search failed'}), 500

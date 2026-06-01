@@ -15,7 +15,8 @@ from models.premium_request import PremiumRequest
 from . import users_bp
 from extensions import mail
 from kavenegar import KavenegarAPI
-
+# from flask_limiter import Limiter
+# limiter = Limiter(app, key_func=get_remote_address)
 tehran_tz = pytz.timezone('Asia/Tehran')
 logger = logging.getLogger(__name__)
 
@@ -552,18 +553,37 @@ def verify_2fa_login():
             # پنجره زمانی برای اختلاف ساعت (valid for 30 seconds before/after)
             verified = totp.verify(code, valid_window=1)
         
+
         # بررسی کد پشتیبان
         if not verified and backup_code:
             import json
             if user.backup_codes:
                 try:
                     codes = json.loads(user.backup_codes)
-                    if backup_code in codes:
-                        codes.remove(backup_code)
+
+                    # نرمال‌سازی ورودی برای حذف فاصله‌های احتمالی
+                    backup_code_clean = backup_code.strip()
+
+                    if backup_code_clean in codes:
+                        codes.remove(backup_code_clean)
                         user.backup_codes = json.dumps(codes)
+                        db.session.commit()  # 🔴 حیاتی: ذخیره قطعی در دیتابیس
                         verified = True
-                except:
-                    pass
+                except json.JSONDecodeError as e:
+                    # مدیریت خطای فرمت بدون کرش کردن ریکوئست
+                    import logging
+                    logging.getLogger(__name__).error(f"Backup codes JSON corrupted (user {user_id}): {e}")
+        # if not verified and backup_code:
+        #     import json
+        #     if user.backup_codes:
+        #         try:
+        #             codes = json.loads(user.backup_codes)
+        #             if backup_code in codes:
+        #                 codes.remove(backup_code)
+        #                 user.backup_codes = json.dumps(codes)
+        #                 verified = True
+        #         except:
+        #             pass
         
         if verified:
             remember_me = session.get('2fa_remember_me', False)

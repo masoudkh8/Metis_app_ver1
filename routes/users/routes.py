@@ -548,7 +548,8 @@ def edit_profile():
                             os.remove(old_path)
                         except Exception as e:
                             current_app.logger.error(f"Error deleting old profile image: {e}")
-                current_user.profile_image = f'/static/uploads/profiles/{unique_filename}'
+
+                current_user.profile_image = url_for('static', filename=f'uploads/profiles/{unique_filename}')
                 flash("✅ Profile picture updated successfully.", "success")
 
         db.session.commit()
@@ -1678,7 +1679,9 @@ def upload_documents():
             pass
 
     unique_f = f"{current_user.id}_{current_user.username}"
-    upload_folder = f'static/uploads/documents/user_{unique_f}/'
+    # upload_folder = f'static/uploads/documents/user_{unique_f}/'
+    upload_folder = os.path.join(current_app.root_path, 'static', 'uploads', 'documents', f'user_{unique_f}')
+
     os.makedirs(upload_folder, exist_ok=True)
 
     if request.method == 'POST':
@@ -1759,7 +1762,9 @@ def make_payment():
             file = request.files['receipt']
             if file.filename != '':
                 unique_f = f"{current_user.id}_{current_user.username}"
-                upload_folder = f'static/uploads/documents/user_{unique_f}/'
+                # upload_folder = f'static/uploads/documents/user_{unique_f}/'
+                upload_folder = os.path.join(current_app.root_path, 'static', 'uploads', 'documents',
+                                             f'user_{unique_f}')
 
                 filename = secure_filename(f"receipt.+{file.filename.rsplit('.', 1)[1].lower()}")
                 # filename = secure_filename(f"receipt_{current_user.id}_{current_user.username}")

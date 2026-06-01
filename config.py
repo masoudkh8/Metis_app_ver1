@@ -14,17 +14,23 @@ class Config:
     KAVENEGAR_API_KEY = os.environ.get("KAVENEGAR_API_KEY", "")
     
     SECRET_KEY = os.environ.get("SECRET_KEY")
-    
+
+    from datetime import timedelta
     # Session Management - Professional Settings
-    PERMANENT_SESSION_LIFETIME = int(os.environ.get("SESSION_TIMEOUT_MINUTES", "5")) * 60  # Default 30 minutes
+    PERMANENT_SESSION_LIFETIME = timedelta(minutes=int(os.environ.get("SESSION_TIMEOUT_MINUTES", "1")))
+    # PERMANENT_SESSION_LIFETIME = int(os.environ.get("SESSION_TIMEOUT_MINUTES", "5")) * 60  # Default 30 minutes
     SESSION_REFRESH_EACH_REQUEST = True  # Refresh session on each request
     
     # Database configuration - PostgreSQL or SQLite
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+
     if not SQLALCHEMY_DATABASE_URI:
         # Fallback to SQLite in instance folder if DATABASE_URL not set
         basedir = os.path.abspath(os.path.dirname(__file__))
-        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'instance', 'test.db')
+        db_path = os.path.join(basedir, 'instance', 'test.db')
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)  # ساخت خودکار پوشه
+        SQLALCHEMY_DATABASE_URI = f'sqlite:///{db_path}'
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # Email configuration
