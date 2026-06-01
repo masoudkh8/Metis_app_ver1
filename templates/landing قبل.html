@@ -3,20 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>{{ _('Metisma - Intelligent Global Trade Platform') }}</title>
-  <script src="{{ url_for('static', filename='js/three.min.js') }}" defer></script>
+  <title>Metisma - Intelligent Global Trade Platform</title>
+  
   <script>
     // ✅ FIX #2: Auto-detect and set language/direction on page load
     (function() {
       const urlParams = new URLSearchParams(window.location.search);
-      // ✅ تغییر: پشتیبانی از fa و fa_IR
       const lang = urlParams.get('lang') || 'en';
       const html = document.documentElement;
       
-      // ✅ تغییر: بررسی fa یا fa_IR برای RTL
-      if (lang === 'fa' || lang === 'fa_IR' || lang === 'ar') {
+      if (lang === 'fa' || lang === 'ar') {
         html.setAttribute('dir', 'rtl');
-        html.setAttribute('lang', 'fa');
+        html.setAttribute('lang', lang);
       } else {
         html.setAttribute('dir', 'ltr');
         html.setAttribute('lang', 'en');
@@ -70,25 +68,25 @@
 	  
   
   
-{#  <!-- ✅ FIX #3: Lazy load Three.js only when needed (not on initial page load) -->#}
-{#  <script>#}
-{#    // Load Three.js only after DOM is ready and when user scrolls or interacts#}
-{#    let threeLoaded = false;#}
-{#    function loadThreeJS() {#}
-{#      if (threeLoaded) return;#}
-{#      threeLoaded = true;#}
-{#      const script = document.createElement('script');#}
-{#      script.src = '/static/js/three.min.js';#}
-{#      script.onload = () => console.log('✅ Three.js loaded lazily');#}
-{#      document.body.appendChild(script);#}
-{#    }#}
-{#    #}
-{#    // Load on user interaction or after 2 seconds (whichever comes first)#}
-    {#setTimeout(loadThreeJS, 2000);#}
-{#    window.addEventListener('scroll', loadThreeJS, { once: true });#}
-{#    window.addEventListener('touchstart', loadThreeJS, { once: true });#}
-{#  </script>#}
-{#  #}
+  <!-- ✅ FIX #3: Lazy load Three.js only when needed (not on initial page load) -->
+  <script>
+    // Load Three.js only after DOM is ready and when user scrolls or interacts
+    let threeLoaded = false;
+    function loadThreeJS() {
+      if (threeLoaded) return;
+      threeLoaded = true;
+      const script = document.createElement('script');
+      script.src = '/static/js/three.min.js';
+      script.onload = () => console.log('✅ Three.js loaded lazily');
+      document.body.appendChild(script);
+    }
+    
+    // Load on user interaction or after 2 seconds (whichever comes first)
+    setTimeout(loadThreeJS, 2000);
+    window.addEventListener('scroll', loadThreeJS, { once: true });
+    window.addEventListener('touchstart', loadThreeJS, { once: true });
+  </script>
+  
   <style>
   
   /* انیمیشن دکمه تغییر تم */
@@ -209,6 +207,7 @@
     .dark .testimonial-card {
       background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.7));
     }
+  
   
   
   
@@ -549,7 +548,7 @@
         class="theme-toggle fixed bottom-6 left-6 z-50 p-3.5 rounded-full 
                bg-white dark:bg-dark-700 shadow-lg border border-gray-200 dark:border-dark-600 
                hover:shadow-xl transition-all duration-300" 
-        aria-label="{{ _('Toggle Dark Mode') }}" title="{{ _('Toggle Theme') }}">
+        aria-label="Toggle Dark Mode" title="Toggle Theme">
   
   <!-- آیکون ماه (نمایش در حالت لایت) -->
   <svg id="icon-moon" class="w-5 h-5 text-gray-700 dark:hidden transition-transform duration-300" 
@@ -572,8 +571,8 @@
    target="_blank" 
    rel="noopener noreferrer"
    class="group fixed bottom-6 right-6 z-50 inline-flex items-center justify-center"
-   aria-label="{{ _('Chat with Support on WhatsApp') }}"
-   title="{{ _('Chat with Support') }}">
+   aria-label="Chat with Support on WhatsApp"
+   title="Chat with Support">
   
   <!-- Tooltip -->
 {#  <span class="absolute right-full mr-3 px-3 py-1.5 bg-gray-900 dark:bg-dark-700 text-white text-xs font-medium rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-lg">#}
@@ -607,7 +606,7 @@
   <!-- لایه لودینگ اولیه با لوگو بزرگ و نوار پیشرفت Gmail-style -->
   <div id="loading" class="fixed inset-0 z-[100] flex items-center justify-center bg-gray-50 dark:bg-dark-900 transition-colors">
     <div class="logo-container">
-      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('Metisma Logo') }}" class="logo-image">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Metisma Logo" class="logo-image">
       <div class="progress-bar-container">
         <div class="progress-bar"></div>
       </div>
@@ -622,16 +621,16 @@
     <a href="/" class="flex items-center gap-3 group">
       <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold to-gold-dark 
                   flex items-center justify-center text-lg shadow-lg shadow-gold/20 group-hover:scale-105 transition">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('Metisma Logo') }}" class="h-12 sm:h-16 w-auto object-contain flex-shrink-0">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Metisma Logo" class="h-12 sm:h-16 w-auto object-contain flex-shrink-0">
       </div>
       <span class="text-xl font-bold text-gray-900 dark:text-gold tracking-tight">Metisma</span>
     </a>
 
     <!-- منوی ناوبری دسکتاپ - طراحی مینیمال و حرفه‌ای -->
     <nav class="hidden lg:flex items-center gap-4 text-sm font-medium">
-      <a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Home') }}</a>
-      <a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('About') }}</a>
-      <a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Contact') }}</a>
+      <a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Home</a>
+      <a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">About</a>
+      <a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Contact</a>
 
       <!-- دسته‌بندی‌های خدمات با استایل مینیمال -->
       <div class="flex items-center gap-1">
@@ -641,7 +640,7 @@
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <span>{{ _('Trade') }}</span>
+            <span>Trade</span>
             <svg class="w-3 h-3 transition-transform group-hover:rotate-180 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
@@ -649,9 +648,9 @@
           <div class="absolute left-0 mt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
             <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl border border-gray-100 dark:border-gold/10 overflow-hidden">
               <ul class="py-1">
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-trade-light)] hover:text-[var(--color-trade-hover)] transition">{{ _('Trade Assurance') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-trade-light)] hover:text-[var(--color-trade-hover)] transition">{{ _('Payment & Escrow') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-trade-light)] hover:text-[var(--color-trade-hover)] transition">{{ _('Trade Credit') }}</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-trade-light)] hover:text-[var(--color-trade-hover)] transition">Trade Assurance</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-trade-light)] hover:text-[var(--color-trade-hover)] transition">Payment & Escrow</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-trade-light)] hover:text-[var(--color-trade-hover)] transition">Trade Credit</a></li>
               </ul>
             </div>
           </div>
@@ -663,7 +662,7 @@
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
             </svg>
-            <span>{{ _('Logistics') }}</span>
+            <span>Logistics</span>
             <svg class="w-3 h-3 transition-transform group-hover:rotate-180 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
@@ -671,8 +670,8 @@
           <div class="absolute left-0 mt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
             <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl border border-gray-100 dark:border-gold/10 overflow-hidden">
               <ul class="py-1">
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-logistics-light)] hover:text-[var(--color-logistics-hover)] transition">{{ _('Smart Logistics') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-logistics-light)] hover:text-[var(--color-logistics-hover)] transition">{{ _('Smart Map') }}</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-logistics-light)] hover:text-[var(--color-logistics-hover)] transition">Smart Logistics</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-logistics-light)] hover:text-[var(--color-logistics-hover)] transition">Smart Map</a></li>
               </ul>
             </div>
           </div>
@@ -684,7 +683,7 @@
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
             </svg>
-            <span>{{ _('Analytics') }}</span>
+            <span>Analytics</span>
             <svg class="w-3 h-3 transition-transform group-hover:rotate-180 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
@@ -692,10 +691,10 @@
           <div class="absolute left-0 mt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
             <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl border border-gray-100 dark:border-gold/10 overflow-hidden">
               <ul class="py-1">
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-analytics-light)] hover:text-[var(--color-analytics-hover)] transition">{{ _('Market Analytics') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-analytics-light)] hover:text-[var(--color-analytics-hover)] transition">{{ _('AI Consultant') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-analytics-light)] hover:text-[var(--color-analytics-hover)] transition">{{ _('AI Core') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-analytics-light)] hover:text-[var(--color-analytics-hover)] transition">{{ _('Business Intelligence') }}</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-analytics-light)] hover:text-[var(--color-analytics-hover)] transition">Market Analytics</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-analytics-light)] hover:text-[var(--color-analytics-hover)] transition">AI Consultant</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-analytics-light)] hover:text-[var(--color-analytics-hover)] transition">AI Core</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-analytics-light)] hover:text-[var(--color-analytics-hover)] transition">Business Intelligence</a></li>
               </ul>
             </div>
           </div>
@@ -707,7 +706,7 @@
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
             </svg>
-            <span>{{ _('Tools') }}</span>
+            <span>Tools</span>
             <svg class="w-3 h-3 transition-transform group-hover:rotate-180 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
@@ -715,10 +714,10 @@
           <div class="absolute left-0 mt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
             <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl border border-gray-100 dark:border-gold/10 overflow-hidden">
               <ul class="py-1">
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-tools-light)] hover:text-[var(--color-tools-hover)] transition">{{ _('CRM') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-tools-light)] hover:text-[var(--color-tools-hover)] transition">{{ _('Marketplace') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-tools-light)] hover:text-[var(--color-tools-hover)] transition">{{ _('Consortium') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-tools-light)] hover:text-[var(--color-tools-hover)] transition">{{ _('Trust Score') }}</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-tools-light)] hover:text-[var(--color-tools-hover)] transition">CRM</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-tools-light)] hover:text-[var(--color-tools-hover)] transition">Marketplace</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-tools-light)] hover:text-[var(--color-tools-hover)] transition">Consortium</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-tools-light)] hover:text-[var(--color-tools-hover)] transition">Trust Score</a></li>
               </ul>
             </div>
           </div>
@@ -730,7 +729,7 @@
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
             </svg>
-            <span>{{ _('Learn') }}</span>
+            <span>Learn</span>
             <svg class="w-3 h-3 transition-transform group-hover:rotate-180 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
@@ -738,9 +737,9 @@
           <div class="absolute left-0 mt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
             <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl border border-gray-100 dark:border-gold/10 overflow-hidden">
               <ul class="py-1">
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-learning-light)] hover:text-[var(--color-learning-hover)] transition">{{ _('Trade Academy') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-learning-light)] hover:text-[var(--color-learning-hover)] transition">{{ _('Gamification') }}</a></li>
-                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-learning-light)] hover:text-[var(--color-learning-hover)] transition">{{ _('Trade Media') }}</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-learning-light)] hover:text-[var(--color-learning-hover)] transition">Trade Academy</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-learning-light)] hover:text-[var(--color-learning-hover)] transition">Gamification</a></li>
+                <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-[var(--color-learning-light)] hover:text-[var(--color-learning-hover)] transition">Trade Media</a></li>
               </ul>
             </div>
           </div>
@@ -760,28 +759,18 @@
           </svg>
         </button>
         <div class="absolute right-0 mt-2 w-24 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-{#          <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl border border-gray-100 dark:border-gold/10 overflow-hidden">#}
-{#            <!-- ✅ FIX #4: Language links now work with backend session -->#}
-{#            <a href="?lang=fa_IR" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-dark-700 transition" onclick="setLanguage('fa_IR')">فارسی</a>#}
-{#            <a href="?lang=en" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-dark-700 transition" onclick="setLanguage('en')">English</a>#}
-{#          </div>#}
-            <div class="sm:flex items-center gap-1 bg-dark-800/50 rounded-lg p-1 border border-gold/10">
-                <a href="{{ url_for('language.set_language', lang='fa_IR') }}"
-                   class="px-3 py-1.5 text-xs font-medium rounded-md {% if session.get('lang') == 'fa_IR' %}bg-gold text-dark-900{% else %}text-slate-400 hover:text-gold{% endif %} transition">FA</a>
-                <a href="{{ url_for('language.set_language', lang='en') }}"
-                   class="px-3 py-1.5 text-xs font-medium rounded-md {% if session.get('lang') != 'fa_IR' %}bg-gold text-dark-900{% else %}text-slate-400 hover:text-gold{% endif %} transition">EN</a>
-            </div>
+          <div class="bg-white dark:bg-dark-800 rounded-lg shadow-xl border border-gray-100 dark:border-gold/10 overflow-hidden">
+            <!-- ✅ FIX #4: Language links now work with backend session -->
+            <a href="?lang=fa" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-dark-700 transition" onclick="setLanguage('fa')">فارسی</a>
+            <a href="?lang=en" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-dark-700 transition" onclick="setLanguage('en')">English</a>
+          </div>
         </div>
       </div>
-
-
-
-
-
+      
       <!-- دکمه Dark Mode -->
       <button onclick="toggleDarkMode()" 
               class="theme-toggle p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20" 
-              aria-label="{{ _('Toggle Dark Mode') }}" title="{{ _('Toggle Theme') }}">
+              aria-label="Toggle Dark Mode" title="Toggle Theme">
         <!-- آیکون ماه (نمایش در حالت لایت) -->
         <svg id="icon-moon-desktop" class="w-5 h-5 text-gray-600 dark:text-slate-400 dark:hidden transition-transform duration-300" 
              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -801,12 +790,12 @@
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
         </svg>
-        <span>{{ _('Apply for Membership') }}</span>
+        <span>Apply for Membership</span>
       </a>
       
       <!-- دکمه منوی موبایل (همبرگری) -->
       <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-              aria-label="{{ _('Menu') }}" aria-expanded="false" aria-controls="mobileMenu">
+              aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
         <div class="w-6 h-5 flex flex-col justify-between">
           <span class="hamburger-line h-0.5 w-full bg-gray-600 dark:bg-slate-300 rounded-full"></span>
           <span class="hamburger-line h-0.5 w-full bg-gray-600 dark:bg-slate-300 rounded-full"></span>
@@ -827,8 +816,8 @@
       
       <!-- هدر منو: عنوان و دکمه بستن -->
       <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gold/10">
-        <span class="text-lg font-bold text-gray-900 dark:text-gold">{{ _('Menu') }}</span>
-        <button id="closeMenuBtn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-700 transition" aria-label="{{ _('Close Menu') }}">
+        <span class="text-lg font-bold text-gray-900 dark:text-gold">Menu</span>
+        <button id="closeMenuBtn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-700 transition" aria-label="Close Menu">
           <svg class="w-5 h-5 text-gray-600 dark:text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
@@ -839,7 +828,7 @@
       <button onclick="toggleDarkMode()" 
               class="theme-toggle w-full flex items-center justify-between px-4 py-3 rounded-xl mb-4 
                      bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 transition">
-        <span class="text-sm font-medium text-gray-700 dark:text-slate-300">{{ _('Dark Mode') }}</span>
+        <span class="text-sm font-medium text-gray-700 dark:text-slate-300">Dark Mode</span>
         <div class="relative w-12 h-6 bg-gray-300 dark:bg-gold rounded-full transition-colors">
           <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-white dark:bg-dark-800 rounded-full transition-transform transform translate-x-0 dark:translate-x-6 shadow-md"></div>
         </div>
@@ -849,7 +838,7 @@
       <nav class="flex-1 space-y-1">
         <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-dark-700 hover:text-gold transition">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          {{ _('Home') }}
+          Home
         </a>
         
         <!-- آکاردئون خدمات با دسته‌بندی حرفه‌ای برای موبایل -->
@@ -857,63 +846,62 @@
           <button onclick="toggleServicesAccordion()" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-dark-700 hover:text-gold transition active:scale-[0.98]">
             <div class="flex items-center gap-3">
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              {{ _('Services') }}
+              Services
             </div>
             <svg id="servicesArrow" class="w-4 h-4 services-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
           <!-- زیرمنوی خدمات با دسته‌بندی حرفه‌ای -->
-          <div id="servicesSubmenu" class="services-submenu">
+          <div id="servicesSubmenu" class="services-submenu pl-1 pr-0.5 pb-3">
             <!-- Trade & Finance -->
             <div class="service-category trade mb-3">
-              <h4 class="text-gold">{{ _('Trade & Finance') }}</h4>
+              <h4 class="text-gold">Trade & Finance</h4>
               <ul class="space-y-0.5">
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-gold/5">{{ _('Trade Assurance') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-gold/5">{{ _('Payment & Escrow') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-gold/5">{{ _('Trade Credit') }}</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-gold/5">Trade Assurance</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-gold/5">Payment & Escrow</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-gold/5">Trade Credit</a></li>
               </ul>
             </div>
-
-
+            
             <!-- Logistics -->
             <div class="service-category logistics mb-3">
-              <h4 class="text-blue-500">{{ _('Logistics') }}</h4>
+              <h4 class="text-blue-500">Logistics</h4>
               <ul class="space-y-0.5">
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-blue-500/5">{{ _('Smart Logistics') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-blue-500/5">{{ _('Smart Map') }}</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-blue-500/5">Smart Logistics</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-blue-500/5">Smart Map</a></li>
               </ul>
             </div>
             
             <!-- Analytics & AI -->
             <div class="service-category analytics mb-3">
-              <h4 class="text-purple-500">{{ _('Analytics & AI') }}</h4>
+              <h4 class="text-purple-500">Analytics & AI</h4>
               <ul class="space-y-0.5">
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-purple-500/5">{{ _('Market Analytics') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-purple-500/5">{{ _('AI Consultant') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-purple-500/5">{{ _('AI Core') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-purple-500/5">{{ _('Business Intelligence') }}</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-purple-500/5">Market Analytics</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-purple-500/5">AI Consultant</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-purple-500/5">AI Core</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-purple-500/5">Business Intelligence</a></li>
               </ul>
             </div>
             
             <!-- Business Tools -->
             <div class="service-category business mb-3">
-              <h4 class="text-green-500">{{ _('Business Tools') }}</h4>
+              <h4 class="text-green-500">Business Tools</h4>
               <ul class="space-y-0.5">
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-green-500/5">{{ _('CRM') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-green-500/5">{{ _('Marketplace') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-green-500/5">{{ _('Consortium') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-green-500/5">{{ _('Trust Score') }}</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-green-500/5">CRM</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-green-500/5">Marketplace</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-green-500/5">Consortium</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-green-500/5">Trust Score</a></li>
               </ul>
             </div>
             
             <!-- Learning & Engagement -->
             <div class="service-category learning mb-2">
-              <h4 class="text-orange-500">{{ _('Learning & Engagement') }}</h4>
+              <h4 class="text-orange-500">Learning & Engagement</h4>
               <ul class="space-y-0.5">
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-orange-500/5">{{ _('Trade Academy') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-orange-500/5">{{ _('Gamification') }}</a></li>
-                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-orange-500/5">{{ _('Trade Media') }}</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-orange-500/5">Trade Academy</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-orange-500/5">Gamification</a></li>
+                <li><a href="#" class="service-link text-sm text-gray-600 dark:text-slate-400 hover:text-gold hover:bg-orange-500/5">Trade Media</a></li>
               </ul>
             </div>
           </div>
@@ -927,13 +915,13 @@
             <svg class="w-6 h-6 mb-1 text-gray-500 dark:text-slate-400 group-hover:text-blue-900 dark:group-hover:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <span class="text-xs font-medium text-gray-600 dark:text-slate-400 group-hover:text-blue-900 dark:group-hover:text-blue-300">{{ _('About Us') }}</span>
+            <span class="text-xs font-medium text-gray-600 dark:text-slate-400 group-hover:text-blue-900 dark:group-hover:text-blue-300">About Us</span>
           </a>
           <a href="/contact" class="flex flex-col items-center justify-center p-3 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition group">
             <svg class="w-6 h-6 mb-1 text-gray-500 dark:text-slate-400 group-hover:text-blue-900 dark:group-hover:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
-            <span class="text-xs font-medium text-gray-600 dark:text-slate-400 group-hover:text-blue-900 dark:group-hover:text-blue-300">{{ _('Contact Us') }}</span>
+            <span class="text-xs font-medium text-gray-600 dark:text-slate-400 group-hover:text-blue-900 dark:group-hover:text-blue-300">Contact Us</span>
           </a>
         </div>
         
@@ -944,13 +932,13 @@
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
-          <span class="text-sm font-medium">{{ _('Chat with Support') }}</span>
+          <span class="text-sm font-medium">Chat with Support</span>
         </a>
       </nav>
       
       <!-- فوتر منو: فقط لینک‌های ضروری -->
       <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gold/10">
-        <p class="text-xs text-gray-500 dark:text-slate-500 text-center mb-3">{{ _('Quick Links') }}</p>
+        <p class="text-xs text-gray-500 dark:text-slate-500 text-center mb-3">Quick Links</p>
             <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
               <!-- دکمه اول: درخواست دسترسی انحصاری -->
               <a href="/users/login" class="group relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl
@@ -961,7 +949,7 @@
                         hover:shadow-xl hover:shadow-gold/40
                         hover:scale-[1.03] active:scale-[0.98]
                         transition-all duration-300 ease-out overflow-hidden no-select">
-                <span class="relative z-10">{{ _('Request Exclusive Access') }}</span>
+                <span class="relative z-10">Request Exclusive Access</span>
                 <!-- افکت درخشش طلایی هنگام هاور -->
                 <span class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-200/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"></span>
               </a>
@@ -975,7 +963,7 @@
                         hover:shadow-xl hover:shadow-gold/40
                         hover:scale-[1.03] active:scale-[0.98]
                         transition-all duration-300 ease-out overflow-hidden no-select">
-                <span class="relative z-10">{{ _('Apply for Membership') }}</span>
+                <span class="relative z-10">Apply for Membership</span>
                 <span class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-200/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"></span>
               </a>
             </div>
@@ -1007,7 +995,11 @@
     <div class="absolute inset-0 bg-gradient-to-t from-gray-50/90 dark:from-dark-900/90 via-gray-50/40 dark:via-dark-900/40 to-transparent z-5 pointer-events-none"></div>
     -->
 
+
+
+
    <div class="relative z-10 flex flex-col items-center gap-6 sm:gap-8 px-4 text-center max-w-4xl">
+
 
 
       <!-- دکمه‌های فراخوان (CTA) -->
@@ -1021,7 +1013,7 @@
                     hover:shadow-xl hover:shadow-gold/40
                     hover:scale-[1.03] active:scale-[0.98]
                     transition-all duration-300 ease-out overflow-hidden no-select">
-            <span class="relative z-10">{{ _('Request Exclusive Access') }}</span>
+            <span class="relative z-10">Request Exclusive Access</span>
             <!-- افکت درخشش طلایی هنگام هاور -->
             <span class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-200/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"></span>
           </a>
@@ -1035,7 +1027,7 @@
                     hover:shadow-xl hover:shadow-gold/40
                     hover:scale-[1.03] active:scale-[0.98]
                     transition-all duration-300 ease-out overflow-hidden no-select">
-            <span class="relative z-10">{{ _('Apply for Membership') }}</span>
+            <span class="relative z-10">Apply for Membership</span>
             <span class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-200/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"></span>
           </a>
         </div>
@@ -1059,23 +1051,32 @@
       <div class="hidden sm:flex items-center gap-8 mt-4 text-sm text-gray-600 dark:text-slate-400">
         <div class="text-center">
           <span class="block text-2xl font-bold text-gold">500+</span>
-          <span>{{ _('Active Brokers') }}</span>
+          <span>Active Brokers</span>
         </div>
         <div class="w-px h-10 bg-gray-300 dark:bg-gold/20"></div>
         <div class="text-center">
           <span class="block text-2xl font-bold text-gold">80+</span>
-          <span>{{ _('Countries Covered') }}</span>
+          <span>Countries Covered</span>
         </div>
         <div class="w-px h-10 bg-gray-300 dark:bg-gold/20"></div>
         <div class="text-center">
           <span class="block text-2xl font-bold text-gold">AI</span>
-          <span>{{ _('Smart Consultant') }}</span>
+          <span>Smart Consultant</span>
         </div>
       </div>
 
     </div>
 
 
+
+
+
+
+
+
+
+
+    
     <!-- نشانگر اسکرول به پایین -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
       <svg class="w-6 h-6 text-gray-400 dark:text-gold/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1090,10 +1091,10 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 fade-in-up">
-          {{ _('TrustScore™ Verification System') }}
+          TrustScore™ Verification System
         </h2>
         <p class="text-gray-600 dark:text-slate-400 max-w-2xl mx-auto text-lg fade-in-up delay-100">
-          {{ _('Our proprietary trust metric ensures only verified, elite traders gain access to the network') }}
+          Our proprietary trust metric ensures only verified, elite traders gain access to the network
         </p>
       </div>
       
@@ -1115,11 +1116,11 @@
             </svg>
             <div class="absolute inset-0 flex flex-col items-center justify-center">
               <span id="trustscore-value" class="text-5xl font-bold text-gold">0</span>
-              <span class="text-sm text-gray-500 dark:text-slate-400">{{ _('TrustScore™') }}</span>
+              <span class="text-sm text-gray-500 dark:text-slate-400">TrustScore™</span>
             </div>
           </div>
           <p class="text-sm text-gray-600 dark:text-slate-400">
-            {{ _('AI-powered verification based on trade history, credentials, and network endorsements') }}
+            AI-powered verification based on trade history, credentials, and network endorsements
           </p>
         </div>
         
@@ -1127,26 +1128,26 @@
         <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div class="glass-card rounded-2xl p-6 fade-in-up delay-300">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-2xl mb-4">🛡️</div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{{ _('100% Verified Members') }}</h3>
-            <p class="text-sm text-gray-600 dark:text-slate-400">{{ _('Every member undergoes rigorous verification through our TrustScore™ system') }}</p>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">100% Verified Members</h3>
+            <p class="text-sm text-gray-600 dark:text-slate-400">Every member undergoes rigorous verification through our TrustScore™ system</p>
           </div>
           
           <div class="glass-card rounded-2xl p-6 fade-in-up delay-400">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-2xl mb-4">🤖</div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{{ _('24/7 AI-Powered Insights') }}</h3>
-            <p class="text-sm text-gray-600 dark:text-slate-400">{{ _('Continuous monitoring and scoring based on real-time trade data') }}</p>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">24/7 AI-Powered Insights</h3>
+            <p class="text-sm text-gray-600 dark:text-slate-400">Continuous monitoring and scoring based on real-time trade data</p>
           </div>
           
           <div class="glass-card rounded-2xl p-6 fade-in-up delay-500">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-2xl mb-4">✨</div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{{ _('0 Spam Guarantee') }}</h3>
-            <p class="text-sm text-gray-600 dark:text-slate-400">{{ _('Our exclusive network ensures zero tolerance for unverified solicitations') }}</p>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">0 Spam Guarantee</h3>
+            <p class="text-sm text-gray-600 dark:text-slate-400">Our exclusive network ensures zero tolerance for unverified solicitations</p>
           </div>
           
           <div class="glass-card rounded-2xl p-6 fade-in-up delay-500">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-2xl mb-4">🌐</div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{{ _('Global Recognition') }}</h3>
-            <p class="text-sm text-gray-600 dark:text-slate-400">{{ _('TrustScore™ is recognized by leading trade organizations worldwide') }}</p>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Global Recognition</h3>
+            <p class="text-sm text-gray-600 dark:text-slate-400">TrustScore™ is recognized by leading trade organizations worldwide</p>
           </div>
         </div>
       </div>
@@ -1157,14 +1158,14 @@
   <div class="relative z-20 w-full bg-gray-100/50 dark:bg-gold/5 border-y border-gray-200 dark:border-gold/15 overflow-hidden transition-colors">
     <div class="ticker-wrap whitespace-nowrap py-2.5">
       <div class="animate-ticker inline-block text-sm">
-        <span class="mx-8 text-gray-600 dark:text-slate-400">🔍 <span class="text-gold font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
-        <span class="mx-8 text-gray-600 dark:text-slate-400">📢 {{ _('New Route:') }} <span class="text-gold font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
-        <span class="mx-8 text-gray-600 dark:text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-gold font-semibold">{{ _('Reduced by 5%') }}</span></span>
-        <span class="mx-8 text-gray-600 dark:text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-gold font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
-        <span class="mx-8 text-gray-600 dark:text-slate-400">✅ 3 {{ _('new') }} <span class="text-gold font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
+        <span class="mx-8 text-gray-600 dark:text-slate-400">🔍 <span class="text-gold font-semibold">Tehran, Oranges:</span> Customs Clearance Active</span>
+        <span class="mx-8 text-gray-600 dark:text-slate-400">📢 New Route: <span class="text-gold font-semibold">Bandar Abbas → Sohar</span> is now active</span>
+        <span class="mx-8 text-gray-600 dark:text-slate-400">📉 Oman Customs Tariffs <span class="text-gold font-semibold">Reduced by 5%</span></span>
+        <span class="mx-8 text-gray-600 dark:text-slate-400">⚠️ Alert: <span class="text-gold font-semibold">Germany</span> import regulations change next month</span>
+        <span class="mx-8 text-gray-600 dark:text-slate-400">✅ 3 new <span class="text-gold font-semibold">Saffron</span> buyers registered in Frankfurt</span>
         <!-- تکرار آیتم‌ها برای حلقه بی‌پایان و نرم -->
-        <span class="mx-8 text-gray-600 dark:text-slate-400">🔍 <span class="text-gold font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
-        <span class="mx-8 text-gray-600 dark:text-slate-400">📢 {{ _('New Route:') }} <span class="text-gold font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
+        <span class="mx-8 text-gray-600 dark:text-slate-400">🔍 <span class="text-gold font-semibold">Tehran, Oranges:</span> Customs Clearance Active</span>
+        <span class="mx-8 text-gray-600 dark:text-slate-400">📢 New Route: <span class="text-gold font-semibold">Bandar Abbas → Sohar</span> is now active</span>
       </div>
     </div>
   </div>
@@ -1175,9 +1176,9 @@
       
       <!-- هدر بخش: عنوان و توضیحات -->
       <div class="text-center mb-12 sm:mb-16">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">{{ _('Platform Services') }}</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Platform Services</h2>
         <p class="text-gray-600 dark:text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
-          {{ _('Intelligent solutions for global trade expansion, from consultation to execution') }}
+          Intelligent solutions for global trade expansion, from consultation to execution
         </p>
       </div>
       
@@ -1189,9 +1190,9 @@
                     border-l-4 border-[var(--color-trade)] hover:border-[var(--color-trade-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-trade-light)] border border-[var(--color-trade)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🤖</div>
-          <h3 class="text-[var(--color-trade)] font-bold text-center mb-2 text-base">{{ _('AI Consultant') }}</h3>
+          <h3 class="text-[var(--color-trade)] font-bold text-center mb-2 text-base">AI Consultant</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Smart export advisor: Customs rules, tariffs, and logistics routing') }}
+            Smart export advisor: Customs rules, tariffs, and logistics routing
           </p>
         </div>
         
@@ -1199,9 +1200,9 @@
                     border-l-4 border-[var(--color-trade)] hover:border-[var(--color-trade-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-trade-light)] border border-[var(--color-trade)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🤝</div>
-          <h3 class="text-[var(--color-trade)] font-bold text-center mb-2 text-base">{{ _('Consortium') }}</h3>
+          <h3 class="text-[var(--color-trade)] font-bold text-center mb-2 text-base">Consortium</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Smart consortium formation and contract management system') }}
+            Smart consortium formation and contract management system
           </p>
         </div>
         
@@ -1209,9 +1210,9 @@
                     border-l-4 border-[var(--color-trade)] hover:border-[var(--color-trade-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-trade-light)] border border-[var(--color-trade)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">✅</div>
-          <h3 class="text-[var(--color-trade)] font-bold text-center mb-2 text-base">{{ _('Trust Score') }}</h3>
+          <h3 class="text-[var(--color-trade)] font-bold text-center mb-2 text-base">Trust Score</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Multi-layer verification system and dynamic trust scoring') }}
+            Multi-layer verification system and dynamic trust scoring
           </p>
         </div>
         
@@ -1219,9 +1220,9 @@
                     border-l-4 border-[var(--color-trade)] hover:border-[var(--color-trade-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-trade-light)] border border-[var(--color-trade)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">💰</div>
-          <h3 class="text-[var(--color-trade)] font-bold text-center mb-2 text-base">{{ _('Trade Credit') }}</h3>
+          <h3 class="text-[var(--color-trade)] font-bold text-center mb-2 text-base">Trade Credit</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Smart trade credit system and financial facilities') }}
+            Smart trade credit system and financial facilities
           </p>
         </div>
         
@@ -1230,9 +1231,9 @@
                     border-l-4 border-[var(--color-logistics)] hover:border-[var(--color-logistics-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-logistics-light)] border border-[var(--color-logistics)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🗺️</div>
-          <h3 class="text-[var(--color-logistics)] font-bold text-center mb-2 text-base">{{ _('Smart Map') }}</h3>
+          <h3 class="text-[var(--color-logistics)] font-bold text-center mb-2 text-base">Smart Map</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Interactive logistics map: Geopolitical risks and export opportunities') }}
+            Interactive logistics map: Geopolitical risks and export opportunities
           </p>
         </div>
         
@@ -1240,9 +1241,9 @@
                     border-l-4 border-[var(--color-logistics)] hover:border-[var(--color-logistics-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-logistics-light)] border border-[var(--color-logistics)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🏪</div>
-          <h3 class="text-[var(--color-logistics)] font-bold text-center mb-2 text-base">{{ _('Marketplace') }}</h3>
+          <h3 class="text-[var(--color-logistics)] font-bold text-center mb-2 text-base">Marketplace</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('B2B marketplace and RFQ system for purchase requests') }}
+            B2B marketplace and RFQ system for purchase requests
           </p>
         </div>
         
@@ -1250,9 +1251,9 @@
                     border-l-4 border-[var(--color-logistics)] hover:border-[var(--color-logistics-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-logistics-light)] border border-[var(--color-logistics)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">💳</div>
-          <h3 class="text-[var(--color-logistics)] font-bold text-center mb-2 text-base">{{ _('Escrow') }}</h3>
+          <h3 class="text-[var(--color-logistics)] font-bold text-center mb-2 text-base">Escrow</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Secure financial layer and Escrow for international transactions') }}
+            Secure financial layer and Escrow for international transactions
           </p>
         </div>
         
@@ -1261,9 +1262,9 @@
                     border-l-4 border-[var(--color-analytics)] hover:border-[var(--color-analytics-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-analytics-light)] border border-[var(--color-analytics)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🧠</div>
-          <h3 class="text-[var(--color-analytics)] font-bold text-center mb-2 text-base">{{ _('AI Core') }}</h3>
+          <h3 class="text-[var(--color-analytics)] font-bold text-center mb-2 text-base">AI Core</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Advanced AI engine for analyzing global trade data patterns') }}
+            Advanced AI engine for analyzing global trade data patterns
           </p>
         </div>
         
@@ -1271,9 +1272,9 @@
                     border-l-4 border-[var(--color-analytics)] hover:border-[var(--color-analytics-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-analytics-light)] border border-[var(--color-analytics)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">📊</div>
-          <h3 class="text-[var(--color-analytics)] font-bold text-center mb-2 text-base">{{ _('Business Intelligence') }}</h3>
+          <h3 class="text-[var(--color-analytics)] font-bold text-center mb-2 text-base">Business Intelligence</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Analytical dashboards and smart business reporting tools') }}
+            Analytical dashboards and smart business reporting tools
           </p>
         </div>
         
@@ -1281,9 +1282,9 @@
                     border-l-4 border-[var(--color-analytics)] hover:border-[var(--color-analytics-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-analytics-light)] border border-[var(--color-analytics)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">👥</div>
-          <h3 class="text-[var(--color-analytics)] font-bold text-center mb-2 text-base">{{ _('CRM') }}</h3>
+          <h3 class="text-[var(--color-analytics)] font-bold text-center mb-2 text-base">CRM</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Customer relationship management and trade lead tracking') }}
+            Customer relationship management and trade lead tracking
           </p>
         </div>
         
@@ -1292,9 +1293,9 @@
                     border-l-4 border-[var(--color-tools)] hover:border-[var(--color-tools-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-tools-light)] border border-[var(--color-tools)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🏆</div>
-          <h3 class="text-[var(--color-tools)] font-bold text-center mb-2 text-base">{{ _('Gamification') }}</h3>
+          <h3 class="text-[var(--color-tools)] font-bold text-center mb-2 text-base">Gamification</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Reward system and points for active user engagement') }}
+            Reward system and points for active user engagement
           </p>
         </div>
         
@@ -1303,9 +1304,9 @@
                     border-l-4 border-[var(--color-learning)] hover:border-[var(--color-learning-hover)] transition-all duration-300 group">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-learning-light)] border border-[var(--color-learning)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🎓</div>
-          <h3 class="text-[var(--color-learning)] font-bold text-center mb-2 text-base">{{ _('Academy') }}</h3>
+          <h3 class="text-[var(--color-learning)] font-bold text-center mb-2 text-base">Academy</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Specialized courses for international trade and export') }}
+            Specialized courses for international trade and export
           </p>
         </div>
         
@@ -1313,9 +1314,9 @@
                     border-l-4 border-[var(--color-learning)] hover:border-[var(--color-learning-hover)] transition-all duration-300 group sm:col-span-2 lg:col-span-1">
           <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[var(--color-learning-light)] border border-[var(--color-learning)]/20 
                       flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">📰</div>
-          <h3 class="text-[var(--color-learning)] font-bold text-center mb-2 text-base">{{ _('Trade Media') }}</h3>
+          <h3 class="text-[var(--color-learning)] font-bold text-center mb-2 text-base">Trade Media</h3>
           <p class="text-gray-600 dark:text-slate-400 text-xs sm:text-sm text-center leading-relaxed">
-            {{ _('Specialized magazine and analytical media for global markets') }}
+            Specialized magazine and analytical media for global markets
           </p>
         </div>
         
@@ -1328,10 +1329,10 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 fade-in-up">
-          {{ _('Exclusive Membership Levels') }}
+          Exclusive Membership Levels
         </h2>
         <p class="text-gray-600 dark:text-slate-400 max-w-2xl mx-auto text-lg fade-in-up delay-100">
-          {{ _('Choose your tier in the invitation-only network of elite traders') }}
+          Choose your tier in the invitation-only network of elite traders
         </p>
       </div>
       
@@ -1340,15 +1341,15 @@
         <div class="membership-card glass-card rounded-3xl p-6 text-center fade-in-up delay-200">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-700 to-amber-900 flex items-center justify-center text-3xl">🥉</div>
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Bronze</h3>
-          <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">{{ _('Entry-level access for emerging traders') }}</p>
+          <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">Entry-level access for emerging traders</p>
           <ul class="text-sm text-gray-600 dark:text-slate-400 space-y-2 mb-6">
-            <li>✓ {{ _('Basic Market Access') }}</li>
-            <li>✓ {{ _('Limited AI Insights') }}</li>
-            <li>✓ {{ _('Community Forum') }}</li>
-            <li>✓ {{ _('TrustScore™ Tracking') }}</li>
+            <li>✓ Basic Market Access</li>
+            <li>✓ Limited AI Insights</li>
+            <li>✓ Community Forum</li>
+            <li>✓ TrustScore™ Tracking</li>
           </ul>
           <a href="{{ url_for('users.register') }}" class="inline-block w-full px-6 py-3 rounded-xl border-2 border-amber-700 text-amber-700 font-semibold hover:bg-amber-700 hover:text-white transition">
-            {{ _('Request Access') }}
+            Request Access
           </a>
         </div>
         
@@ -1356,37 +1357,37 @@
         <div class="membership-card glass-card rounded-3xl p-6 text-center fade-in-up delay-300">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center text-3xl">🥈</div>
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Silver</h3>
-          <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">{{ _('Enhanced tools for growing businesses') }}</p>
+          <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">Enhanced tools for growing businesses</p>
           <ul class="text-sm text-gray-600 dark:text-slate-400 space-y-2 mb-6">
-            <li>✓ {{ _('Full Market Access') }}</li>
-            <li>✓ {{ _('Advanced AI Analytics') }}</li>
-            <li>✓ {{ _('Priority Support') }}</li>
-            <li>✓ {{ _('Trade Verification') }}</li>
-            <li>✓ {{ _('Network Introductions') }}</li>
+            <li>✓ Full Market Access</li>
+            <li>✓ Advanced AI Analytics</li>
+            <li>✓ Priority Support</li>
+            <li>✓ Trade Verification</li>
+            <li>✓ Network Introductions</li>
           </ul>
           <a href="{{ url_for('users.register') }}" class="inline-block w-full px-6 py-3 rounded-xl border-2 border-gray-500 text-gray-500 font-semibold hover:bg-gray-500 hover:text-white transition">
-            {{ _('Apply for Membership') }}
+            Apply for Membership
           </a>
         </div>
         
         <!-- Gold Tier (Featured) -->
         <div class="membership-card glass-card rounded-3xl p-8 text-center relative fade-in-up delay-400 gold-glow-hover" style="border: 2px solid #d4af37;">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-gold to-gold-dark text-dark-900 text-xs font-bold rounded-full uppercase tracking-wide">
-            {{ _('Most Popular') }}
+            Most Popular
           </div>
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-3xl">🥇</div>
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Gold</h3>
-          <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">{{ _('Premium access for established traders') }}</p>
+          <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">Premium access for established traders</p>
           <ul class="text-sm text-gray-600 dark:text-slate-400 space-y-2 mb-6">
-            <li>✓ {{ _('Unlimited Market Access') }}</li>
-            <li>✓ {{ _('Real-time AI Insights') }}</li>
-            <li>✓ {{ _('Dedicated Account Manager') }}</li>
-            <li>✓ {{ _('Verified Badge') }}</li>
-            <li>✓ {{ _('Exclusive Deal Flow') }}</li>
-            <li>✓ {{ _('Trade Finance Access') }}</li>
+            <li>✓ Unlimited Market Access</li>
+            <li>✓ Real-time AI Insights</li>
+            <li>✓ Dedicated Account Manager</li>
+            <li>✓ Verified Badge</li>
+            <li>✓ Exclusive Deal Flow</li>
+            <li>✓ Trade Finance Access</li>
           </ul>
           <a href="{{ url_for('users.register') }}" class="inline-block w-full px-6 py-3 rounded-xl bg-gradient-to-br from-gold to-gold-dark text-dark-900 font-bold hover:shadow-lg transition">
-            {{ _('Begin Application') }}
+            Begin Application
           </a>
         </div>
         
@@ -1394,17 +1395,17 @@
         <div class="membership-card glass-card rounded-3xl p-6 text-center fade-in-up delay-500">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-slate-300 to-slate-500 flex items-center justify-center text-3xl">💎</div>
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Platinum</h3>
-          <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">{{ _('Invite-only for industry leaders') }}</p>
+          <p class="text-sm text-gray-600 dark:text-slate-400 mb-4">Invite-only for industry leaders</p>
           <ul class="text-sm text-gray-600 dark:text-slate-400 space-y-2 mb-6">
-            <li>✓ {{ _('All Gold Features') }}</li>
-            <li>✓ {{ _('White-Glove Concierge') }}</li>
-            <li>✓ {{ _('Private Deal Rooms') }}</li>
-            <li>✓ {{ _('Custom Integrations') }}</li>
-            <li>✓ {{ _('Board Advisory Access') }}</li>
-            <li>✓ {{ _('Global Events Access') }}</li>
+            <li>✓ All Gold Features</li>
+            <li>✓ White-Glove Concierge</li>
+            <li>✓ Private Deal Rooms</li>
+            <li>✓ Custom Integrations</li>
+            <li>✓ Board Advisory Access</li>
+            <li>✓ Global Events Access</li>
           </ul>
           <a href="{{ url_for('users.register') }}" class="inline-block w-full px-6 py-3 rounded-xl border-2 border-slate-400 text-slate-400 font-semibold hover:bg-slate-400 hover:text-white transition">
-            {{ _('Invitation Only') }}
+            Invitation Only
           </a>
         </div>
       </div>
@@ -1416,10 +1417,10 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 fade-in-up">
-          {{ _('Your Journey Starts Here') }}
+          Your Journey Starts Here
         </h2>
         <p class="text-gray-600 dark:text-slate-400 max-w-2xl mx-auto text-lg fade-in-up delay-100">
-          {{ _('Four simple steps to join the exclusive network of verified global traders') }}
+          Four simple steps to join the exclusive network of verified global traders
         </p>
       </div>
       
@@ -1429,9 +1430,9 @@
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-3xl shadow-lg shadow-gold/30">
             📝
           </div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">1. {{ _('Request Access') }}</h3>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">1. Request Access</h3>
           <p class="text-sm text-gray-600 dark:text-slate-400">
-            {{ _('Submit your application with basic professional information and trade credentials') }}
+            Submit your application with basic professional information and trade credentials
           </p>
         </div>
         
@@ -1440,9 +1441,9 @@
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-3xl shadow-lg shadow-gold/30">
             🔍
           </div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">2. {{ _('Complete Verification') }}</h3>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">2. Complete Verification</h3>
           <p class="text-sm text-gray-600 dark:text-slate-400">
-            {{ _('Our AI-powered system verifies your credentials and calculates your initial TrustScore™') }}
+            Our AI-powered system verifies your credentials and calculates your initial TrustScore™
           </p>
         </div>
         
@@ -1451,9 +1452,9 @@
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-3xl shadow-lg shadow-gold/30">
             🤝
           </div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">3. {{ _('Build Your Network') }}</h3>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">3. Build Your Network</h3>
           <p class="text-sm text-gray-600 dark:text-slate-400">
-            {{ _('Connect with verified members, join exclusive groups, and access curated opportunities') }}
+            Connect with verified members, join exclusive groups, and access curated opportunities
           </p>
         </div>
         
@@ -1462,16 +1463,16 @@
           <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-3xl shadow-lg shadow-gold/30">
             📈
           </div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">4. {{ _('Execute Deals') }}</h3>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3">4. Execute Deals</h3>
           <p class="text-sm text-gray-600 dark:text-slate-400">
-            {{ _('Leverage AI insights, secure financing, and close deals with confidence in our trusted ecosystem') }}
+            Leverage AI insights, secure financing, and close deals with confidence in our trusted ecosystem
           </p>
         </div>
       </div>
       
       <div class="text-center mt-12 fade-in-up delay-500">
         <a href="{{ url_for('users.register') }}" class="inline-flex items-center px-8 py-4 rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-dark-900 font-bold text-lg shadow-xl shadow-gold/30 hover:shadow-gold/50 hover:scale-105 transition gold-glow-hover">
-          {{ _('Begin Your Application') }}
+          Begin Your Application
         </a>
       </div>
     </div>
@@ -1482,17 +1483,17 @@
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 fade-in-up">
-          {{ _('Trusted by Professionals Worldwide') }}
+          Trusted by Professionals Worldwide
         </h2>
         <p class="text-gray-600 dark:text-slate-400 max-w-2xl mx-auto text-lg fade-in-up delay-100">
-          {{ _('Join elite traders from leading global organizations') }}
+          Join elite traders from leading global organizations
         </p>
       </div>
       
       <!-- Social Proof Logos -->
       <div class="mb-12 fade-in-up delay-200">
         <p class="text-center text-sm text-gray-500 dark:text-slate-500 mb-6 uppercase tracking-wide font-semibold">
-          {{ _('Trusted by professionals from leading organizations') }}
+          Trusted by professionals from leading organizations
         </p>
         <div class="flex flex-wrap justify-center items-center gap-8 opacity-70">
           <span class="text-lg font-bold text-gray-400 dark:text-slate-600">Goldman Sachs</span>
@@ -1514,11 +1515,11 @@
             <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-white font-bold mr-4">AK</div>
             <div>
               <h4 class="font-bold text-gray-900 dark:text-white">Ali Karimi</h4>
-              <p class="text-xs text-gray-500 dark:text-slate-400">{{ _('Export Director, Tehran') }}</p>
+              <p class="text-xs text-gray-500 dark:text-slate-400">Export Director, Tehran</p>
             </div>
           </div>
           <p class="text-sm text-gray-600 dark:text-slate-300 italic">
-            "{{ _('Metisma\'s TrustScore™ system gave me instant credibility with international buyers. Closed 3 major deals in my first month.') }}"
+            "Metisma's TrustScore™ system gave me instant credibility with international buyers. Closed 3 major deals in my first month."
           </p>
           <div class="mt-4 flex text-gold">★★★★★</div>
         </div>
@@ -1528,11 +1529,11 @@
             <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-white font-bold mr-4">SM</div>
             <div>
               <h4 class="font-bold text-gray-900 dark:text-white">Sarah Mitchell</h4>
-              <p class="text-xs text-gray-500 dark:text-slate-400">{{ _('Trade Manager, Dubai') }}</p>
+              <p class="text-xs text-gray-500 dark:text-slate-400">Trade Manager, Dubai</p>
             </div>
           </div>
           <p class="text-sm text-gray-600 dark:text-slate-300 italic">
-            "{{ _('The exclusive network is real. Quality connections, zero spam. The AI insights have transformed how we identify opportunities.') }}"
+            "The exclusive network is real. Quality connections, zero spam. The AI insights have transformed how we identify opportunities."
           </p>
           <div class="mt-4 flex text-gold">★★★★★</div>
         </div>
@@ -1542,11 +1543,11 @@
             <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-white font-bold mr-4">MR</div>
             <div>
               <h4 class="font-bold text-gray-900 dark:text-white">Michael Rodriguez</h4>
-              <p class="text-xs text-gray-500 dark:text-slate-400">{{ _('CEO, Santiago') }}</p>
+              <p class="text-xs text-gray-500 dark:text-slate-400">CEO, Santiago</p>
             </div>
           </div>
           <p class="text-sm text-gray-600 dark:text-slate-300 italic">
-            "{{ _('Gold membership paid for itself within weeks. The verified badge opens doors that were previously closed to us.') }}"
+            "Gold membership paid for itself within weeks. The verified badge opens doors that were previously closed to us."
           </p>
           <div class="mt-4 flex text-gold">★★★★★</div>
         </div>
@@ -1557,9 +1558,9 @@
   <!-- بخش شرکت‌های همکار با اسلایدر چرخشی -->
   <section class="py-16 bg-white dark:bg-dark-800/50 backdrop-blur-sm border-t border-gray-200 dark:border-gold/10 transition-colors">
     <div class="container mx-auto px-6 text-center">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-gold mb-3">{{ _('Trusted Partners') }}</h3>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-gold mb-3">Trusted Partners</h3>
         <p class="text-gray-600 dark:text-slate-400 mb-10 text-sm">
-            {{ _('Collaborating with leading organizations worldwide') }}
+            Collaborating with leading organizations worldwide
         </p>
 
         <!-- اسلایدر چرخشی -->
@@ -1573,20 +1574,20 @@
             <div id="partner-slider" class="flex whitespace-nowrap gap-8 sm:gap-12 animate-marquee hover:[animation-play-state:paused]">
                 
                 <!-- مجموعه اول لوگوها -->
-                <img src="/static/images/partners/partner1.png" alt="{{ _('Partner 1') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner2.png" alt="{{ _('Partner 2') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner3.png" alt="{{ _('Partner 3') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner4.png" alt="{{ _('Partner 4') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner5.png" alt="{{ _('Partner 5') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner6.png" alt="{{ _('Partner 6') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner1.png" alt="Partner 1" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner2.png" alt="Partner 2" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner3.png" alt="Partner 3" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner4.png" alt="Partner 4" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner5.png" alt="Partner 5" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner6.png" alt="Partner 6" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
 
                 <!-- مجموعه دوم (تکرار برای حلقه بی‌پایان) -->
-                <img src="/static/images/partners/partner1.png" alt="{{ _('Partner 1') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner2.png" alt="{{ _('Partner 2') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner3.png" alt="{{ _('Partner 3') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner4.png" alt="{{ _('Partner 4') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner5.png" alt="{{ _('Partner 5') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
-                <img src="/static/images/partners/partner6.png" alt="{{ _('Partner 6') }}" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner1.png" alt="Partner 1" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner2.png" alt="Partner 2" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner3.png" alt="Partner 3" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner4.png" alt="Partner 4" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner5.png" alt="Partner 5" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
+                <img src="/static/images/partners/partner6.png" alt="Partner 6" class="partner-logo h-12 object-contain w-32 flex-shrink-0">
                 
             </div>
         </div>
@@ -1603,34 +1604,35 @@
           <div class="flex items-center gap-3 mb-4">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold to-gold-dark 
                         flex items-center justify-center text-lg">
-              <img src="{{ url_for('static', filename='images/logo.png') }}" alt="{{ _('Metisma Logo') }}" class="h-10 w-auto object-contain">
+              <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Metisma Logo" class="h-10 w-auto object-contain">
             </div>
             <span class="text-xl font-bold text-gray-900 dark:text-gold">Metisma</span>
           </div>
           <p class="text-gray-600 dark:text-slate-400 text-sm leading-relaxed max-w-md">
-            {{ _('Intelligent B2B platform connecting producers to global markets with AI-powered tools, verified networks, and end-to-end trade services.') }}
+            Intelligent B2B platform connecting producers to global markets 
+            with AI-powered tools, verified networks, and end-to-end trade services.
           </p>
         </div>
         
         <!-- لینک‌های دسترسی سریع -->
         <div>
-          <h4 class="text-gray-900 dark:text-white font-bold mb-4 text-sm">{{ _('Quick Links') }}</h4>
+          <h4 class="text-gray-900 dark:text-white font-bold mb-4 text-sm">Quick Links</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Services') }}</a></li>
-            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Smart Map') }}</a></li>
-            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Consortium') }}</a></li>
-            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Academy') }}</a></li>
+            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Services</a></li>
+            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Smart Map</a></li>
+            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Consortium</a></li>
+            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Academy</a></li>
           </ul>
         </div>
         
         <!-- لینک‌های حقوقی -->
         <div>
-          <h4 class="text-gray-900 dark:text-white font-bold mb-4 text-sm">{{ _('Legal') }}</h4>
+          <h4 class="text-gray-900 dark:text-white font-bold mb-4 text-sm">Legal</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Privacy Policy') }}</a></li>
-            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Terms of Service') }}</a></li>
-            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Support') }}</a></li>
-            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">{{ _('Contact Us') }}</a></li>
+            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Privacy Policy</a></li>
+            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Terms of Service</a></li>
+            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Support</a></li>
+            <li><a href="#" class="text-gray-600 dark:text-slate-400 hover:text-gold transition">Contact Us</a></li>
           </ul>
         </div>
         
@@ -1638,7 +1640,7 @@
       
       <!-- کپی‌رایت -->
       <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gold/10 text-center text-xs text-gray-500 dark:text-slate-500">
-        © 2026 Metisma. {{ _('All rights reserved.') }}
+        © 2026 Metisma. All rights reserved.
       </div>
     </div>
   </footer>
@@ -1671,24 +1673,19 @@
   function setLanguage(lang) {
     const html = document.documentElement;
     
-    // ✅ تغییر: نرمال‌سازی fa به fa_IR
-    const normalizedLang = (lang === 'fa' || lang === 'ar') ? 'fa_IR' : 'en';
-    const displayLang = (lang === 'fa' || lang === 'ar') ? 'fa' : 'en';
-    
     // Update UI immediately
-    if (normalizedLang === 'fa_IR') {
+    if (lang === 'fa' || lang === 'ar') {
       html.setAttribute('dir', 'rtl');
-      html.setAttribute('lang', displayLang);
+      html.setAttribute('lang', lang);
+      localStorage.setItem('lang', lang);
     } else {
       html.setAttribute('dir', 'ltr');
       html.setAttribute('lang', 'en');
+      localStorage.setItem('lang', 'en');
     }
     
-    // ✅ تغییر: ذخیره کد استاندارد در localStorage
-    localStorage.setItem('lang', normalizedLang);
-    
     // Send request to backend to persist language preference
-    fetch(`/language/set_language/${normalizedLang}`, {
+    fetch(`/language/set_language/${lang === 'fa' ? 'fa_IR' : 'en'}`, {
       method: 'GET',
       credentials: 'same-origin'
     }).catch(err => console.warn('Language sync failed:', err));
@@ -1780,309 +1777,334 @@
    - /static/textures/earth-clouds.jpg
   ═══════════════════════════════════════════════════════════
   -->
- <script>
+  <script>
 // ═══════════════════════════════════════════════════════════
 //  کد کره زمین واقعی - نسخه آفلاین (بدون تغییر)
 // ══════════════════════════════════════════════════════════
 
+(function() {
+  const canvas = document.getElementById('globe-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-function initGlobe() {
-  if (typeof THREE === 'undefined') { setTimeout(initGlobe, 100); return; }
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 3.0);
+  camera.position.set(0, 0, 3.0);
 
-  // 👇 کل کد اصلی کره زمین شما دقیقاً اینجا باشد (بدون تغییر) 👇
-  (function() {
-    const canvas = document.getElementById('globe-canvas');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const isMobile = window.innerWidth <= 768;
+  camera.position.z = isMobile ? 6: 3;
+
+  window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    camera.position.z = width <= 768 ? 6 : 3;
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+  });
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const sun = new THREE.DirectionalLight(0xffffff, 1.0);
+  sun.position.set(5, 3, 5);
+  scene.add(sun);
+  const rim = new THREE.DirectionalLight(0x4488ff, 0.3);
+  rim.position.set(-3, 1, -2);
+  scene.add(rim);
+
+  const texLoader = new THREE.TextureLoader();
+  // حذف مرجع به loadingText چون دیگر از آن استفاده نمی‌کنیم
+  let loadedCount = 0;
+  const totalTextures = 3;
+  let earthMesh, cloudMesh;
+
+  function onTextureLoad() {
+    loadedCount++;
+    if(loadedCount >= totalTextures) {
+      // لودر قبلاً توسط تایمر اصلی مخفی شده است
+    }
+  }
+
+  function onErrorLoad(url) {
+    console.warn(`Texture failed to load: ${url}. Using fallback.`);
+    loadedCount++;
+    if(loadedCount >= totalTextures) {
+      // لودر قبلاً توسط تایمر اصلی مخفی شده است
+    }
+    if(!earthMesh) createFallbackEarth();
+  }
+
+  const earthGeo = new THREE.SphereGeometry(1, 128, 128);
+  const earthDayUrl = '/static/textures/earth-blue-marble.jpg';
+  const earthBumpUrl = '/static/textures/earth-topology.png';
+  
+  const earthDayTex = texLoader.load(earthDayUrl, (tex) => {
+    tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    earthMat.map = tex;
+    earthMat.needsUpdate = true;
+    onTextureLoad();
+  }, undefined, () => onErrorLoad(earthDayUrl));
+
+  const earthBumpTex = texLoader.load(earthBumpUrl, (tex) => {
+    earthMat.bumpMap = tex;
+    earthMat.needsUpdate = true;
+    onTextureLoad();
+  }, undefined, () => onErrorLoad(earthBumpUrl));
+
+  const earthMat = new THREE.MeshPhongMaterial({
+    color: 0x2255aa,
+    specular: new THREE.Color(0x333333),
+    shininess: 15,
+    bumpScale: 0.03,
+  });
+  
+  earthMesh = new THREE.Mesh(earthGeo, earthMat);
+  scene.add(earthMesh);
+
+  function createFallbackEarth() {
+    const fallbackMat = new THREE.MeshPhongMaterial({
+      color: 0x1a3a5c,
+      specular: 0x112244,
+      shininess: 10,
+    });
+    earthMesh.material = fallbackMat;
+  }
+
+  const cloudGeo = new THREE.SphereGeometry(1.01, 128, 128);
+  const cloudTexUrl = '/static/textures/earth-clouds.jpg';
+  
+  const cloudTex = texLoader.load(cloudTexUrl, (tex) => {
+    cloudMat.map = tex;
+    cloudMat.needsUpdate = true;
+    onTextureLoad();
+  }, undefined, () => onErrorLoad(cloudTexUrl));
+
+  const cloudMat = new THREE.MeshPhongMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.05,
+    depthWrite: false,
+  });
+  
+  cloudMesh = new THREE.Mesh(cloudGeo, cloudMat);
+  scene.add(cloudMesh);
+
+  const atmosGeo = new THREE.SphereGeometry(1.15, 64, 64);
+  const atmosMat = new THREE.ShaderMaterial({
+    vertexShader: `varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+    fragmentShader: `varying vec3 vNormal; void main(){ float intensity = pow(0.62 - dot(vNormal, vec3(0,0,1)), 2.8); gl_FragColor = vec4(0.23, 0.51, 0.96, intensity * 1.8); }`,
+    blending: THREE.AdditiveBlending,
+    side: THREE.BackSide,
+    transparent: true,
+    depthWrite: false,
+  });
+  scene.add(new THREE.Mesh(atmosGeo, atmosMat));
+
+  const rimGeo = new THREE.SphereGeometry(1.03, 64, 64);
+  const rimMat = new THREE.ShaderMaterial({
+    vertexShader: `varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+    fragmentShader: `varying vec3 vNormal; void main(){ float intensity = pow(0.55 - dot(vNormal, vec3(0,0,1)), 3.5); gl_FragColor = vec4(0.15, 0.35, 0.85, intensity * 0.8); }`,
+    blending: THREE.AdditiveBlending,
+    side: THREE.FrontSide,
+    transparent: true,
+    depthWrite: false,
+  });
+  scene.add(new THREE.Mesh(rimGeo, rimMat));
+
+  const starsGeo = new THREE.BufferGeometry();
+  const starsPos = [];
+  for(let i = 0; i < 4000; i++) {
+    const r = 30 + Math.random() * 70;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    starsPos.push(r*Math.sin(phi)*Math.cos(theta), r*Math.sin(phi)*Math.sin(theta), r*Math.cos(phi));
+  }
+  starsGeo.setAttribute('position', new THREE.Float32BufferAttribute(starsPos, 3));
+  scene.add(new THREE.Points(starsGeo, new THREE.PointsMaterial({ size: 0.12, color: 0xffffff, transparent: true, opacity: 0.8 })));
+
+  function createRing(radius, color, opacity, rotX, rotY) {
+    const geo = new THREE.TorusGeometry(radius, 0.004, 8, 256);
+    const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity });
+    const ring = new THREE.Mesh(geo, mat);
+    ring.rotation.x = rotX;
+    ring.rotation.y = rotY;
+    scene.add(ring);
+    return ring;
+  }
+  const ring1 = createRing(1.55, 0x3b82f6, 0.15, Math.PI*0.4, Math.PI*0.2);
+  const ring2 = createRing(1.70, 0xd4af37, 0.08, -Math.PI*0.3, Math.PI*0.5);
+
+  const cities = [
+    { name: 'Lagos', lat: 6.5244, lng: 3.3792 }, { name: 'Cape Town', lat: -33.9249, lng: 18.4241 },
+    { name: 'Durban', lat: -29.8587, lng: 31.0218 }, { name: 'Alexandria', lat: 31.2001, lng: 29.9187 },
+    { name: 'Casablanca', lat: 33.5731, lng: -7.5898 }, { name: 'Mombasa', lat: -4.0435, lng: 39.6682 },
+    { name: 'Abidjan', lat: 5.3600, lng: -4.0083 }, { name: 'Sao Paulo', lat: -23.5505, lng: -46.6333 },
+    { name: 'Rio de Janeiro', lat: -22.9068, lng: -43.1729 }, { name: 'Buenos Aires', lat: -34.6037, lng: -58.3816 },
+    { name: 'Valparaiso', lat: -33.0472, lng: -71.6127 }, { name: 'Cartagena', lat: 10.3910, lng: -75.4794 },
+    { name: 'Sydney', lat: -33.8688, lng: 151.2093 }, { name: 'Melbourne', lat: -37.8136, lng: 144.9631 },
+    { name: 'Auckland', lat: -36.8485, lng: 174.7633 }, { name: 'Moscow', lat: 55.7558, lng: 37.6173 },
+    { name: 'St Petersburg', lat: 59.9311, lng: 30.3609 }, { name: 'Almaty', lat: 43.2220, lng: 76.8512 },
+    { name: 'Tashkent', lat: 41.2995, lng: 69.2401 }, { name:'Tehran', lat:35.68, lng:51.39 },
+    { name:'Bandar Abbas', lat:27.18, lng:56.28 }, { name:'Dubai', lat:25.20, lng:55.27 },
+    { name:'Muscat', lat:23.58, lng:58.38 }, { name:'Sohar', lat:24.35, lng:56.74 },
+    { name:'Istanbul', lat:41.00, lng:28.97 }, { name:'Frankfurt', lat:50.11, lng:8.68 },
+    { name:'Baku', lat:40.40, lng:49.86 }, { name:'Shenzhen', lat:22.54, lng:114.05},
+    { name:'Delhi', lat:28.61, lng:77.20 }, { name:'New York', lat:40.71, lng:-74.00},
+    { name:'Shanghai', lat:31.23, lng:121.47}, { name:'Singapore', lat:1.35, lng:103.81},
+  ];
+
+  function latLngToVec3(lat, lng, r) {
+    const phi = (90 - lat) * Math.PI / 180;
+    const theta = (lng + 180) * Math.PI / 180;
+    return new THREE.Vector3(
+      -r * Math.sin(phi) * Math.cos(theta),
+       r * Math.cos(phi),
+       r * Math.sin(phi) * Math.sin(theta)
+    );
+  }
+
+  cities.forEach(city => {
+    const pos = latLngToVec3(city.lat, city.lng, 1.015);
+    const glowGeo = new THREE.SphereGeometry(0.035, 16, 16);
+    const glowMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.35 });
+    const glow = new THREE.Mesh(glowGeo, glowMat);
+    glow.position.copy(pos);
+    earthMesh.add(glow);
+    const dotGeo = new THREE.SphereGeometry(0.015, 12, 12);
+    const dotMat = new THREE.MeshBasicMaterial({ color: 0xffee88 });
+    const dot = new THREE.Mesh(dotGeo, dotMat);
+    dot.position.copy(pos);
+    earthMesh.add(dot);
+    const linePts = [latLngToVec3(city.lat, city.lng, 1.0), latLngToVec3(city.lat, city.lng, 1.12)];
+    const lineGeo = new THREE.BufferGeometry().setFromPoints(linePts);
+    const lineMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.3 });
+    earthMesh.add(new THREE.Line(lineGeo, lineMat));
+  });
+
+  const routes = [
+    { from:'Bandar Abbas', to:'Sohar', color:'#10b981' }, { from:'Bandar Abbas', to:'Dubai', color:'#10b981' },
+    { from:'Bandar Abbas', to:'Singapore', color:'#10b981' }, { from:'Tehran', to:'Baku', color:'#10b981' },
+    { from:'Tehran', to:'Muscat', color:'#10b981' }, { from:'Dubai', to:'Frankfurt', color:'#10b981' },
+    { from:'Muscat', to:'Delhi', color:'#10b981' }, { from:'Sohar', to:'Dubai', color:'#10b981' },
+    { from:'Istanbul', to:'Frankfurt', color:'#10b981' }, { from:'Shanghai', to:'Singapore', color:'#10b981' },
+    { from:'Tehran', to:'Istanbul', color:'#f59e0b' }, { from:'Bandar Abbas', to:'Delhi', color:'#f59e0b' },
+    { from:'Tehran', to:'Frankfurt', color:'#ef4444' }, { from:'Tehran', to:'New York', color:'#ef4444' },
+    { from:'Bandar Abbas', to:'Shenzhen', color:'#ef4444' }, { from: 'Tehran', to: 'Lagos', color: '#10b981' },
+    { from: 'Tehran', to: 'Alexandria', color: '#10b981' }, { from: 'Dubai', to: 'Mombasa', color: '#10b981' },
+    { from: 'Dubai', to: 'Durban', color: '#10b981' }, { from: 'Singapore', to: 'Cape Town', color: '#10b981' },
+    { from: 'Casablanca', to: 'Frankfurt', color: '#f59e0b' }, { from: 'Lagos', to: 'New York', color: '#ef4444' },
+    { from: 'Tehran', to: 'Sao Paulo', color: '#ef4444' }, { from: 'Bandar Abbas', to: 'Rio de Janeiro', color: '#ef4444' },
+    { from: 'Dubai', to: 'Buenos Aires', color: '#f59e0b' }, { from: 'New York', to: 'Sao Paulo', color: '#10b981' },
+    { from: 'Shanghai', to: 'Valparaiso', color: '#10b981' }, { from: 'Singapore', to: 'Sydney', color: '#10b981' },
+    { from: 'Shanghai', to: 'Melbourne', color: '#10b981' }, { from: 'Dubai', to: 'Auckland', color: '#f59e0b' },
+    { from: 'Tehran', to: 'Moscow', color: '#10b981' }, { from: 'Tehran', to: 'Almaty', color: '#10b981' },
+    { from: 'Tehran', to: 'Tashkent', color: '#10b981' }, { from: 'Moscow', to: 'Frankfurt', color: '#f59e0b' },
+    { from: 'Shanghai', to: 'Almaty', color: '#10b981' },
+  ];
+
+  const arcAnimators = [];
+  routes.forEach(route => {
+    const from = cities.find(c => c.name === route.from);
+    const to = cities.find(c => c.name === route.to);
+    if(!from || !to) return;
+    const startPos = latLngToVec3(from.lat, from.lng, 1.02);
+    const endPos = latLngToVec3(to.lat, to.lng, 1.02);
+    const mid = startPos.clone().add(endPos).multiplyScalar(0.5);
+    const dist = startPos.distanceTo(endPos);
+    mid.normalize().multiplyScalar(1.0 + dist * 0.45);
+    const curve = new THREE.QuadraticBezierCurve3(startPos, mid, endPos);
+    const pts = curve.getPoints(80);
+    const arcGeo = new THREE.BufferGeometry().setFromPoints(pts);
+    const arcMat = new THREE.LineBasicMaterial({ color: route.color, transparent: true, opacity: 0.45 });
+    earthMesh.add(new THREE.Line(arcGeo, arcMat));
+    const dotGeo = new THREE.SphereGeometry(0.012, 8, 8);
+    const dotMat = new THREE.MeshBasicMaterial({ color: route.color });
+    const animDot = new THREE.Mesh(dotGeo, dotMat);
+    earthMesh.add(animDot);
+    arcAnimators.push({ curve, dot: animDot, speed: 0.002 + Math.random()*0.004, t: Math.random() });
+  });
+
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.008;
+    if(earthMesh) earthMesh.rotation.y += 0.003;
+    if(cloudMesh) cloudMesh.rotation.y += 0.09;
+    arcAnimators.forEach(a => {
+      a.t += a.speed;
+      if(a.t > 1) a.t = 0;
+      a.dot.position.copy(a.curve.getPoint(a.t));
+    });
+    earthMesh.children.forEach(child => {
+      if(child.material && child.material.opacity !== undefined && child.geometry && child.geometry.type === 'SphereGeometry' && child.geometry.parameters.radius < 0.05) {
+        child.material.opacity = 0.25 + Math.sin(time * 2.5) * 0.15;
+        const s = 1 + Math.sin(time * 2) * 0.25;
+        child.scale.set(s, s, s);
+      }
+    });
+    ring1.rotation.z += 0.0008;
+    ring2.rotation.y += 0.0006;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+  });
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 0, 3.0);
-    camera.position.set(0, 0, 3.0);
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = (e.clientX / window.innerWidth - 0.5) * 0.3;
+    my = (e.clientY / window.innerHeight - 0.5) * 0.15;
+  });
+  function camUpdate() {
+    requestAnimationFrame(camUpdate);
+    camera.position.x += (mx - camera.position.x) * 0.02;
+    camera.position.y += (-my + 0.3 - camera.position.y) * 0.02;
+    camera.lookAt(0, 0, 0);
+  }
+  camUpdate();
 
-    const isMobile = window.innerWidth <= 768;
-      camera.position.z = isMobile ? 6: 3;
+})();
 
-      window.addEventListener('resize', () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        camera.position.z = width <= 768 ? 6 : 3;
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-        renderer.setSize(width, height);
-      });
-
-      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-      const sun = new THREE.DirectionalLight(0xffffff, 1.0);
-      sun.position.set(5, 3, 5);
-      scene.add(sun);
-      const rim = new THREE.DirectionalLight(0x4488ff, 0.3);
-      rim.position.set(-3, 1, -2);
-      scene.add(rim);
-
-      const texLoader = new THREE.TextureLoader();
-      const loadingEl = document.getElementById('loading');
-      const loadingText = loadingEl?.querySelector('.loading-text');
-      let loadedCount = 0;
-      const totalTextures = 3;
-      let earthMesh, cloudMesh;
-
-      function onTextureLoad() {
-        loadedCount++;
-        if(loadingText) loadingText.textContent = `Loading ${loadedCount} of ${totalTextures}...`;
-        if(loadedCount >= totalTextures) {
-          setTimeout(() => loadingEl && loadingEl.classList.add('hidden'), 300);
-        }
+// ✅ NEW: TrustScore Animation
+document.addEventListener('DOMContentLoaded', function() {
+  const trustscoreValue = document.getElementById('trustscore-value');
+  const trustscoreProgress = document.getElementById('trustscore-progress');
+  
+  if (trustscoreValue && trustscoreProgress) {
+    // Animate TrustScore from 0 to 850
+    let currentScore = 0;
+    const targetScore = 850;
+    const duration = 2000; // 2 seconds
+    const startTime = performance.now();
+    
+    function animateTrustScore(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      
+      currentScore = Math.floor(targetScore * easeOutQuart);
+      trustscoreValue.textContent = currentScore;
+      
+      // Update SVG ring progress
+      const circumference = 2 * Math.PI * 52; // 2πr where r=52
+      const offset = circumference * (1 - currentScore / 850);
+      trustscoreProgress.style.strokeDashoffset = offset;
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateTrustScore);
       }
-
-      function onErrorLoad(url) {
-        console.warn(`Texture failed to load: ${url}. Using fallback.`);
-        loadedCount++;
-        if(loadingText) loadingText.textContent = `Load error, using fallback mode...`;
-        if(loadedCount >= totalTextures) {
-          setTimeout(() => loadingEl && loadingEl.classList.add('hidden'), 500);
-        }
-        if(!earthMesh) createFallbackEarth();
-      }
-
-      const earthGeo = new THREE.SphereGeometry(1, 128, 128);
-      const earthDayUrl = '/static/textures/earth-blue-marble.jpg';
-      const earthBumpUrl = '/static/textures/earth-topology.png';
-
-      const earthDayTex = texLoader.load(earthDayUrl, (tex) => {
-        tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-        earthMat.map = tex;
-        earthMat.needsUpdate = true;
-        onTextureLoad();
-      }, undefined, () => onErrorLoad(earthDayUrl));
-
-      const earthBumpTex = texLoader.load(earthBumpUrl, (tex) => {
-        earthMat.bumpMap = tex;
-        earthMat.needsUpdate = true;
-        onTextureLoad();
-      }, undefined, () => onErrorLoad(earthBumpUrl));
-
-      const earthMat = new THREE.MeshPhongMaterial({
-        color: 0x2255aa,
-        specular: new THREE.Color(0x333333),
-        shininess: 15,
-        bumpScale: 0.03,
-      });
-
-      earthMesh = new THREE.Mesh(earthGeo, earthMat);
-      scene.add(earthMesh);
-
-      function createFallbackEarth() {
-        const fallbackMat = new THREE.MeshPhongMaterial({
-          color: 0x1a3a5c,
-          specular: 0x112244,
-          shininess: 10,
-        });
-        earthMesh.material = fallbackMat;
-      }
-
-      const cloudGeo = new THREE.SphereGeometry(1.01, 128, 128);
-      const cloudTexUrl = '/static/textures/earth-clouds.jpg';
-
-      const cloudTex = texLoader.load(cloudTexUrl, (tex) => {
-        cloudMat.map = tex;
-        cloudMat.needsUpdate = true;
-        onTextureLoad();
-      }, undefined, () => onErrorLoad(cloudTexUrl));
-
-      const cloudMat = new THREE.MeshPhongMaterial({
-        color: 0xffffff,
-        transparent: true,
-        opacity: 0.05,
-        depthWrite: false,
-      });
-
-      cloudMesh = new THREE.Mesh(cloudGeo, cloudMat);
-      scene.add(cloudMesh);
-
-      const atmosGeo = new THREE.SphereGeometry(1.15, 64, 64);
-      const atmosMat = new THREE.ShaderMaterial({
-        vertexShader: `varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
-        fragmentShader: `varying vec3 vNormal; void main(){ float intensity = pow(0.62 - dot(vNormal, vec3(0,0,1)), 2.8); gl_FragColor = vec4(0.23, 0.51, 0.96, intensity * 1.8); }`,
-        blending: THREE.AdditiveBlending,
-        side: THREE.BackSide,
-        transparent: true,
-        depthWrite: false,
-      });
-      scene.add(new THREE.Mesh(atmosGeo, atmosMat));
-
-      const rimGeo = new THREE.SphereGeometry(1.03, 64, 64);
-      const rimMat = new THREE.ShaderMaterial({
-        vertexShader: `varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
-        fragmentShader: `varying vec3 vNormal; void main(){ float intensity = pow(0.55 - dot(vNormal, vec3(0,0,1)), 3.5); gl_FragColor = vec4(0.15, 0.35, 0.85, intensity * 0.8); }`,
-        blending: THREE.AdditiveBlending,
-        side: THREE.FrontSide,
-        transparent: true,
-        depthWrite: false,
-      });
-      scene.add(new THREE.Mesh(rimGeo, rimMat));
-
-      const starsGeo = new THREE.BufferGeometry();
-      const starsPos = [];
-      for(let i = 0; i < 4000; i++) {
-        const r = 30 + Math.random() * 70;
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2 * Math.random() - 1);
-        starsPos.push(r*Math.sin(phi)*Math.cos(theta), r*Math.sin(phi)*Math.sin(theta), r*Math.cos(phi));
-      }
-      starsGeo.setAttribute('position', new THREE.Float32BufferAttribute(starsPos, 3));
-      scene.add(new THREE.Points(starsGeo, new THREE.PointsMaterial({ size: 0.12, color: 0xffffff, transparent: true, opacity: 0.8 })));
-
-      function createRing(radius, color, opacity, rotX, rotY) {
-        const geo = new THREE.TorusGeometry(radius, 0.004, 8, 256);
-        const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity });
-        const ring = new THREE.Mesh(geo, mat);
-        ring.rotation.x = rotX;
-        ring.rotation.y = rotY;
-        scene.add(ring);
-        return ring;
-      }
-      const ring1 = createRing(1.55, 0x3b82f6, 0.15, Math.PI*0.4, Math.PI*0.2);
-      const ring2 = createRing(1.70, 0xd4af37, 0.08, -Math.PI*0.3, Math.PI*0.5);
-
-      const cities = [
-        { name: 'Lagos', lat: 6.5244, lng: 3.3792 }, { name: 'Cape Town', lat: -33.9249, lng: 18.4241 },
-        { name: 'Durban', lat: -29.8587, lng: 31.0218 }, { name: 'Alexandria', lat: 31.2001, lng: 29.9187 },
-        { name: 'Casablanca', lat: 33.5731, lng: -7.5898 }, { name: 'Mombasa', lat: -4.0435, lng: 39.6682 },
-        { name: 'Abidjan', lat: 5.3600, lng: -4.0083 }, { name: 'Sao Paulo', lat: -23.5505, lng: -46.6333 },
-        { name: 'Rio de Janeiro', lat: -22.9068, lng: -43.1729 }, { name: 'Buenos Aires', lat: -34.6037, lng: -58.3816 },
-        { name: 'Valparaiso', lat: -33.0472, lng: -71.6127 }, { name: 'Cartagena', lat: 10.3910, lng: -75.4794 },
-        { name: 'Sydney', lat: -33.8688, lng: 151.2093 }, { name: 'Melbourne', lat: -37.8136, lng: 144.9631 },
-        { name: 'Auckland', lat: -36.8485, lng: 174.7633 }, { name: 'Moscow', lat: 55.7558, lng: 37.6173 },
-        { name: 'St Petersburg', lat: 59.9311, lng: 30.3609 }, { name: 'Almaty', lat: 43.2220, lng: 76.8512 },
-        { name: 'Tashkent', lat: 41.2995, lng: 69.2401 }, { name:'Tehran', lat:35.68, lng:51.39 },
-        { name:'Bandar Abbas', lat:27.18, lng:56.28 }, { name:'Dubai', lat:25.20, lng:55.27 },
-        { name:'Muscat', lat:23.58, lng:58.38 }, { name:'Sohar', lat:24.35, lng:56.74 },
-        { name:'Istanbul', lat:41.00, lng:28.97 }, { name:'Frankfurt', lat:50.11, lng:8.68 },
-        { name:'Baku', lat:40.40, lng:49.86 }, { name:'Shenzhen', lat:22.54, lng:114.05},
-        { name:'Delhi', lat:28.61, lng:77.20 }, { name:'New York', lat:40.71, lng:-74.00},
-        { name:'Shanghai', lat:31.23, lng:121.47}, { name:'Singapore', lat:1.35, lng:103.81},
-      ];
-
-      function latLngToVec3(lat, lng, r) {
-        const phi = (90 - lat) * Math.PI / 180;
-        const theta = (lng + 180) * Math.PI / 180;
-        return new THREE.Vector3(
-          -r * Math.sin(phi) * Math.cos(theta),
-           r * Math.cos(phi),
-           r * Math.sin(phi) * Math.sin(theta)
-        );
-      }
-
-      cities.forEach(city => {
-        const pos = latLngToVec3(city.lat, city.lng, 1.015);
-        const glowGeo = new THREE.SphereGeometry(0.035, 16, 16);
-        const glowMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.35 });
-        const glow = new THREE.Mesh(glowGeo, glowMat);
-        glow.position.copy(pos);
-        earthMesh.add(glow);
-        const dotGeo = new THREE.SphereGeometry(0.015, 12, 12);
-        const dotMat = new THREE.MeshBasicMaterial({ color: 0xffee88 });
-        const dot = new THREE.Mesh(dotGeo, dotMat);
-        dot.position.copy(pos);
-        earthMesh.add(dot);
-        const linePts = [latLngToVec3(city.lat, city.lng, 1.0), latLngToVec3(city.lat, city.lng, 1.12)];
-        const lineGeo = new THREE.BufferGeometry().setFromPoints(linePts);
-        const lineMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.3 });
-        earthMesh.add(new THREE.Line(lineGeo, lineMat));
-      });
-
-      const routes = [
-        { from:'Bandar Abbas', to:'Sohar', color:'#10b981' }, { from:'Bandar Abbas', to:'Dubai', color:'#10b981' },
-        { from:'Bandar Abbas', to:'Singapore', color:'#10b981' }, { from:'Tehran', to:'Baku', color:'#10b981' },
-        { from:'Tehran', to:'Muscat', color:'#10b981' }, { from:'Dubai', to:'Frankfurt', color:'#10b981' },
-        { from:'Muscat', to:'Delhi', color:'#10b981' }, { from:'Sohar', to:'Dubai', color:'#10b981' },
-        { from:'Istanbul', to:'Frankfurt', color:'#10b981' }, { from:'Shanghai', to:'Singapore', color:'#10b981' },
-        { from:'Tehran', to:'Istanbul', color:'#f59e0b' }, { from:'Bandar Abbas', to:'Delhi', color:'#f59e0b' },
-        { from:'Tehran', to:'Frankfurt', color:'#ef4444' }, { from:'Tehran', to:'New York', color:'#ef4444' },
-        { from:'Bandar Abbas', to:'Shenzhen', color:'#ef4444' }, { from: 'Tehran', to: 'Lagos', color: '#10b981' },
-        { from: 'Tehran', to: 'Alexandria', color: '#10b981' }, { from: 'Dubai', to: 'Mombasa', color: '#10b981' },
-        { from: 'Dubai', to: 'Durban', color: '#10b981' }, { from: 'Singapore', to: 'Cape Town', color: '#10b981' },
-        { from: 'Casablanca', to: 'Frankfurt', color: '#f59e0b' }, { from: 'Lagos', to: 'New York', color: '#ef4444' },
-        { from: 'Tehran', to: 'Sao Paulo', color: '#ef4444' }, { from: 'Bandar Abbas', to: 'Rio de Janeiro', color: '#ef4444' },
-        { from: 'Dubai', to: 'Buenos Aires', color: '#f59e0b' }, { from: 'New York', to: 'Sao Paulo', color: '#10b981' },
-        { from: 'Shanghai', to: 'Valparaiso', color: '#10b981' }, { from: 'Singapore', to: 'Sydney', color: '#10b981' },
-        { from: 'Shanghai', to: 'Melbourne', color: '#10b981' }, { from: 'Dubai', to: 'Auckland', color: '#f59e0b' },
-        { from: 'Tehran', to: 'Moscow', color: '#10b981' }, { from: 'Tehran', to: 'Almaty', color: '#10b981' },
-        { from: 'Tehran', to: 'Tashkent', color: '#10b981' }, { from: 'Moscow', to: 'Frankfurt', color: '#f59e0b' },
-        { from: 'Shanghai', to: 'Almaty', color: '#10b981' },
-      ];
-
-      const arcAnimators = [];
-      routes.forEach(route => {
-        const from = cities.find(c => c.name === route.from);
-        const to = cities.find(c => c.name === route.to);
-        if(!from || !to) return;
-        const startPos = latLngToVec3(from.lat, from.lng, 1.02);
-        const endPos = latLngToVec3(to.lat, to.lng, 1.02);
-        const mid = startPos.clone().add(endPos).multiplyScalar(0.5);
-        const dist = startPos.distanceTo(endPos);
-        mid.normalize().multiplyScalar(1.0 + dist * 0.45);
-        const curve = new THREE.QuadraticBezierCurve3(startPos, mid, endPos);
-        const pts = curve.getPoints(80);
-        const arcGeo = new THREE.BufferGeometry().setFromPoints(pts);
-        const arcMat = new THREE.LineBasicMaterial({ color: route.color, transparent: true, opacity: 0.45 });
-        earthMesh.add(new THREE.Line(arcGeo, arcMat));
-        const dotGeo = new THREE.SphereGeometry(0.012, 8, 8);
-        const dotMat = new THREE.MeshBasicMaterial({ color: route.color });
-        const animDot = new THREE.Mesh(dotGeo, dotMat);
-        earthMesh.add(animDot);
-        arcAnimators.push({ curve, dot: animDot, speed: 0.002 + Math.random()*0.004, t: Math.random() });
-      });
-
-      let time = 0;
-      function animate() {
-        requestAnimationFrame(animate);
-        time += 0.008;
-        if(earthMesh) earthMesh.rotation.y += 0.003;
-        if(cloudMesh) cloudMesh.rotation.y += 0.09;
-        arcAnimators.forEach(a => {
-          a.t += a.speed;
-          if(a.t > 1) a.t = 0;
-          a.dot.position.copy(a.curve.getPoint(a.t));
-        });
-        earthMesh.children.forEach(child => {
-          if(child.material && child.material.opacity !== undefined && child.geometry && child.geometry.type === 'SphereGeometry' && child.geometry.parameters.radius < 0.05) {
-            child.material.opacity = 0.25 + Math.sin(time * 2.5) * 0.15;
-            const s = 1 + Math.sin(time * 2) * 0.25;
-            child.scale.set(s, s, s);
-          }
-        });
-        ring1.rotation.z += 0.0008;
-        ring2.rotation.y += 0.0006;
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-
-      let mx = 0, my = 0;
-      document.addEventListener('mousemove', e => {
-        mx = (e.clientX / window.innerWidth - 0.5) * 0.3;
-        my = (e.clientY / window.innerHeight - 0.5) * 0.15;
-      });
-      function camUpdate() {
-        requestAnimationFrame(camUpdate);
-        camera.position.x += (mx - camera.position.x) * 0.02;
-        camera.position.y += (-my + 0.3 - camera.position.y) * 0.02;
-        camera.lookAt(0, 0, 0);
-      }
-      camUpdate();
-  })();
-}
-document.addEventListener('DOMContentLoaded', initGlobe);
-</script>
-
+    }
+    
+    requestAnimationFrame(animateTrustScore);
+  }
+});
   </script>
 </body>
 </html>

@@ -9,7 +9,8 @@ from flask import Blueprint, session, request, redirect, url_for
 from functools import wraps
 
 language_bp = Blueprint('language', __name__)
-
+def normalize_locale(code):
+    return {'fa': 'fa_IR', 'fa_IR': 'fa_IR', 'en': 'en'}.get(code, 'fa_IR')
 
 @language_bp.route('/set_language/<lang>')
 def set_language(lang):
@@ -25,7 +26,7 @@ def set_language(lang):
     supported_languages = ['fa_IR', 'en']
     
     if lang in supported_languages:
-        session['lang'] = lang
+        session['lang'] = normalize_locale(lang)
         # Log language change (optional)
         print(f"Language changed to: {lang}")
     

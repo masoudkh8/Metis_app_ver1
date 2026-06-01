@@ -3,8 +3,8 @@ import sys
 import subprocess
 
 # File paths
-po_file = "translations/fa/LC_MESSAGES/messages.po"
-mo_file = "translations/fa/LC_MESSAGES/messages.mo"
+po_file = "translations/fa_IR/LC_MESSAGES/messages.po"
+mo_file = "translations/fa_IR/LC_MESSAGES/messages.mo"
 
 def compile_po_to_mo(po_path, mo_path):
     """

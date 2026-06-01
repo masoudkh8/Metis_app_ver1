@@ -1,158 +1,1213 @@
-# Persian (Farsi) Translations for Metisma
-# Copyright (C) 2024 Metisma Platform
+# Persian translations for Metisma Platform
+# Copyright (C) 2026 Metisma
 # This file is distributed under the same license as the Metisma package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Metisma 1.0\n"
-"Report-Msgid-Bugs-To: support@metisma.com\n"
-"POT-Creation-Date: 2024-01-01 00:00+0330\n"
-"PO-Revision-Date: 2024-01-01 00:00+0330\n"
-"Last-Translator: Metisma Team\n"
-"Language-Team: Persian\n"
+"POT-Creation-Date: 2026-05-30 12:00+0000\n"
+"PO-Revision-Date: 2026-05-30 12:00+0000\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manual Translation\n"
 
-# Authentication & Registration
-msgid "Welcome to Metisma"
-msgstr "به متیسمای خوش آمدید"
+#: base_pwa.html
+msgid "3-30 characters, letters and numbers only"
+msgstr "۳ تا ۳۰ کاراکتر، فقط حروف و اعداد"
 
-msgid "Login"
-msgstr "ورود"
+msgid "Account Settings"
+msgstr "تنظیمات حساب کاربری"
 
-msgid "Register"
-msgstr "ثبت‌نام"
+msgid "Academy"
+msgstr "آکادمی"
 
-msgid "Logout"
-msgstr "خروج"
+msgid "Advanced AI Analytics"
+msgstr "تحلیل‌های پیشرفته هوش مصنوعی"
 
-msgid "Username"
-msgstr "نام کاربری"
+msgid "AI Core"
+msgstr "هسته هوش مصنوعی"
 
-msgid "Email"
-msgstr "ایمیل"
+msgid "AI Consultant"
+msgstr "مشاور هوش مصنوعی"
 
-msgid "Password"
-msgstr "رمز عبور"
+msgid "AI-powered verification based on trade history, credentials, and network endorsements"
+msgstr "تأیید مبتنی بر هوش مصنوعی بر اساس سابقه تجاری، مدارک و تأییدیه‌های شبکه"
 
-msgid "Confirm Password"
-msgstr "تأیید رمز عبور"
+msgid "All rights reserved."
+msgstr "تمامی حقوق محفوظ است."
 
-msgid "Forgot Password?"
-msgstr "رمز عبور را فراموش کرده‌اید؟"
-
-msgid "Reset Password"
-msgstr "بازنشانی رمز عبور"
-
-msgid "Remember Me"
-msgstr "مرا به خاطر بسپار"
-
-msgid "Don't have an account?"
-msgstr "حساب کاربری ندارید؟"
+msgid "All Gold Features"
+msgstr "تمامی ویژگی‌های طلایی"
 
 msgid "Already have an account?"
-msgstr "حساب کاربری دارید؟"
+msgstr "قبلاً حساب کاربری دارید؟"
 
-msgid "Sign Up Now"
-msgstr "همین حالا ثبت‌نام کنید"
+msgid "Analytics & AI"
+msgstr "تحلیل‌ها و هوش مصنوعی"
 
-msgid "Sign In"
-msgstr "ورود به حساب"
+msgid "Analytics"
+msgstr "تحلیل ها"
 
-# Registration Steps
-msgid "Step 1: Basic Information"
-msgstr "مرحله ۱: اطلاعات پایه"
+msgid "Tools"
+msgstr "ابزارها"
 
-msgid "Step 2: Professional Information"
-msgstr "مرحله ۲: اطلاعات حرفه‌ای"
+msgid "Active Brokers"
+msgstr "بروکرهای فعال"
 
-msgid "Step 3: Security & Verification"
-msgstr "مرحله ۳: امنیت و تأیید"
+msgid "Countries Covered"
+msgstr "کشورهای تحت پوشش"
 
-msgid "Next Step"
-msgstr "مرحله بعد"
+msgid "Smart Consultant"
+msgstr "مشاور هوشمند"
 
-msgid "Previous Step"
-msgstr "مرحله قبل"
+msgid "Our proprietary trust metric ensures only verified, elite traders gain access to the network"
+msgstr "معیار اعتماد اختصاصی ما تضمین می‌کند که فقط معامله‌گران تایید شده و نخبه به شبکه دسترسی پیدا می‌کنند."
 
-msgid "Complete Registration"
-msgstr "تکمیل ثبت‌نام"
+msgid "TrustScore™ Verification System"
+msgstr "سیستم تأیید و احراز هویت TrustScore™"
 
-msgid "Select Your Role"
-msgstr "نقش خود را انتخاب کنید"
+msgid "Learn"
+msgstr "یادگیری"
 
-msgid "Producer"
-msgstr "تولیدکننده"
+msgid "Apply for Membership"
+msgstr "درخواست عضویت"
 
-msgid "Buyer"
-msgstr "خریدار"
+msgid "At least 8 characters"
+msgstr "حداقل ۸ کاراکتر"
 
-msgid "Broker"
-msgstr "کارگزار"
+msgid "Authentication Code"
+msgstr "کد احراز هویت"
 
-msgid "Corporate Agent"
-msgstr "نماینده شرکتی"
+msgid "Automotive Parts & Vehicles"
+msgstr "قطعات خودرو و وسایل نقلیه"
 
-msgid "Logistics Provider"
-msgstr "ارائه‌دهنده خدمات لجستیک"
+msgid "B2B marketplace and RFQ system for purchase requests"
+msgstr "بازار B2B و سیستم درخواست پیشنهاد قیمت (RFQ)"
 
-msgid "Legal Advisor"
-msgstr "مشاور حقوقی"
+msgid "Back"
+msgstr "بازگشت"
 
-msgid "Tech Partner"
-msgstr "شریک فناوری"
+msgid "Back to login"
+msgstr "بازگشت به صفحه ورود"
 
-msgid "Investor"
-msgstr "سرمایه‌گذار"
+msgid "Backup Code"
+msgstr "کد پشتیبان"
 
-# Profile & Dashboard
-msgid "Dashboard"
-msgstr "داشبورد"
+msgid "Bandar Abbas → Sohar"
+msgstr "بندرعباس → صحار"
 
-msgid "Profile"
-msgstr "پروفایل"
+msgid "Basic Information"
+msgstr "اطلاعات پایه"
 
-msgid "Edit Profile"
-msgstr "ویرایش پروفایل"
+msgid "Basic Info"
+msgstr "اطلاعات اولیه"
 
-msgid "My Documents"
-msgstr "مدارک من"
+msgid "Basic Market Access"
+msgstr "دسترسی پایه به بازار"
 
-msgid "Upload Documents"
-msgstr "آپلود مدارک"
+msgid "Begin Application"
+msgstr "شروع درخواست"
+
+msgid "Begin Your Application"
+msgstr "درخواست خود را شروع کنید"
+
+msgid "Bronze"
+msgstr "برنزی"
+
+msgid "Board Advisory Access"
+msgstr "دسترسی مشاوره هیئت مدیره"
+
+msgid "Business Intelligence"
+msgstr "هوش تجاری"
+
+msgid "Business Tools"
+msgstr "ابزارهای کسب‌وکار"
+
+msgid "Buyers registered in Frankfurt"
+msgstr "خریدار ثبت‌نام شده در فرانکفورت"
+
+msgid "CEO, Santiago"
+msgstr "مدیرعامل، سانتیاگو"
+
+msgid "Characters (English only)"
+msgstr "کاراکتر (فقط انگلیسی)"
+
+msgid "Chat with Support"
+msgstr "چت با پشتیبانی"
+
+msgid "Choose your tier in the invitation-only network of elite traders"
+msgstr "سطح عضویت خود را در شبکه اختصاصی تجار برتر انتخاب کنید"
+
+msgid "Codes refresh every 30 seconds"
+msgstr "کدها هر ۳۰ ثانیه به‌روز می‌شوند"
+
+msgid "Collaborating with leading organizations worldwide"
+msgstr "همکاری با سازمان‌های پیشرو در سراسر جهان"
+
+msgid "Community Forum"
+msgstr "انجمن گفتگو"
+
+msgid "Company License *"
+msgstr "جواز کسب / ثبت شرکت *"
 
 msgid "Company Name"
 msgstr "نام شرکت"
 
+msgid "Consortium"
+msgstr "کنسرسیوم"
+
+msgid "Contact Us"
+msgstr "تماس با ما"
+
+msgid "Continuous monitoring and scoring based on real-time trade data"
+msgstr "پایش و امتیازدهی مداوم بر اساس داده‌های تجاری لحظه‌ای"
+
+msgid "Continue"
+msgstr "ادامه"
+
+msgid "Continue to Documents"
+msgstr "ادامه به بخش مدارک"
+
+msgid "Country"
+msgstr "کشور"
+
+msgid "Crude Oil & Condensates"
+msgstr "نفت خام و میعانات گازی"
+
+msgid "Create Account"
+msgstr "ایجاد حساب کاربری"
+
+msgid "Create Your Account"
+msgstr "حساب کاربری خود را بسازید"
+
+msgid "CRM"
+msgstr "مدیریت ارتباط با مشتری"
+
+msgid "Customs Clearance Active"
+msgstr "ترخیص کالا فعال است"
+
+msgid "Custom Integrations"
+msgstr "یکپارچه‌سازی‌های سفارشی"
+
+msgid "Dedicated Account Manager"
+msgstr "مدیر اختصاصی حساب"
+
+msgid "Destination"
+msgstr "مقصد"
+
+msgid "Don't have an account?"
+msgstr "حساب کاربری ندارید؟"
+
+msgid "Dark Mode"
+msgstr "حالت تاریک"
+
+msgid "Edit Profile"
+msgstr "ویرایش پروفایل"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+msgid "Enter 6-digit code"
+msgstr "کد ۶ رقمی را وارد کنید"
+
+msgid "Enter an IMO number to view the ship's real-time position and navigation details."
+msgstr "برای مشاهده موقعیت لحظه‌ای و جزئیات ناوبری کشتی، شماره IMO را وارد کنید."
+
+msgid "Enter number without leading zero (e.g., 9123456789)"
+msgstr "شماره را بدون صفر ابتدایی وارد کنید (مثلاً: ۹۱۲۳۴۵۶۷۸۹)"
+
+msgid "Enter the 6-digit code sent to"
+msgstr "کد ۶ رقمی ارسال شده به"
+
+msgid "Enter the code from your authenticator app"
+msgstr "کد را از برنامه احراز هویت خود وارد کنید"
+
+msgid "Enter your email"
+msgstr "ایمیل خود را وارد کنید"
+
+msgid "Enter your password"
+msgstr "رمز عبور خود را وارد کنید"
+
+msgid "Escrow"
+msgstr "حساب امانی"
+
+msgid "ETA"
+msgstr "زمان تخمینی رسیدن"
+
+msgid "Exclusive Deal Flow"
+msgstr "جریان معاملات اختصاصی"
+
+msgid "Exclusive Membership Levels"
+msgstr "سطوح عضویت اختصاصی"
+
+msgid "Execute Deals"
+msgstr "اجرای معاملات"
+
+msgid "Export Director, Tehran"
+msgstr "مدیر صادرات، تهران"
+
+msgid "Financial & Consulting Services"
+msgstr "خدمات مالی و مشاوره"
+
+msgid "Find the entry for \"Metisma\""
+msgstr "ورودی مربوط به \"Metisma\" را پیدا کنید"
+
+msgid "Forgot password?"
+msgstr "رمز عبور را فراموش کرده‌اید؟"
+
+msgid "Four simple steps to join the exclusive network of verified global traders"
+msgstr "چهار مرحله ساده برای پیوستن به شبکه اختصاصی تجار جهانی تأییدشده"
+
+msgid "Fresh Fruits & Vegetables"
+msgstr "میوه‌ها و سبزیجات تازه"
+
+msgid "Full Market Access"
+msgstr "دسترسی کامل به بازار"
+
+msgid "GDPR Compliant"
+msgstr "مطابق با GDPR"
+
+msgid "Germany"
+msgstr "آلمان"
+
+msgid "Global Access"
+msgstr "دسترسی جهانی"
+
+msgid "Global Events Access"
+msgstr "دسترسی به رویدادهای جهانی"
+
+msgid "Global Recognition"
+msgstr "اعتبار جهانی"
+
+msgid "Gold"
+msgstr "طلایی"
+
+msgid "Goldman Sachs"
+msgstr "گلدمن ساکس"
+
+msgid "Grains & Cereals (Wheat, Rice, Barley)"
+msgstr "غلات و حبوبات (گندم، برنج، جو)"
+
+msgid "Healthcare & Pharmaceuticals"
+msgstr "بهداشت و دارویی"
+
+msgid "Home"
+msgstr "صفحه اصلی"
+
+msgid "How to use:"
+msgstr "نحوه استفاده:"
+
+msgid "I agree to Metisma's"
+msgstr "من با"
+
+msgid "I am a"
+msgstr "نقش من:"
+
+msgid "I understand that my data will be processed according to these terms."
+msgstr "متوجه هستم که داده‌های من مطابق این شرایط پردازش خواهد شد."
+
+msgid "IMO"
+msgstr "شماره IMO"
+
+msgid "IMO Number"
+msgstr "شماره IMO"
+
+msgid "Import regulations change next month"
+msgstr "مقررات واردات ماه آینده تغییر می‌کند"
+
+msgid "Install App"
+msgstr "نصب اپلیکیشن"
+
+msgid "Intelligent B2B platform connecting producers to global markets with AI-powered tools, verified networks, and end-to-end trade services."
+msgstr "پلتفرم هوشمند B2B برای اتصال تولیدکنندگان به بازارهای جهانی با ابزارهای هوش مصنوعی، شبکه‌های تأییدشده و خدمات تجاری یکپارچه."
+
+msgid "Intelligent solutions for global trade expansion, from consultation to execution"
+msgstr "راهکارهای هوشمند برای توسعه تجارت جهانی، از مشاوره تا اجرا"
+
+msgid "Interactive logistics map: Geopolitical risks and export opportunities"
+msgstr "نقشه تعاملی لجستیک: ریسک‌های ژئوپلیتیک و فرصت‌های صادراتی"
+
+msgid "Invite-only for industry leaders"
+msgstr "فقط با دعوت‌نامه برای رهبران صنعت"
+
+msgid "Invitation Only"
+msgstr "فقط با دعوت‌نامه"
+
+msgid "is now active"
+msgstr "اکنون فعال است"
+
 msgid "Job Title"
 msgstr "عنوان شغلی"
 
-msgid "Expertise Area"
+msgid "Join elite traders from leading global organizations"
+msgstr "به تجار برتر سازمان‌های پیشرو جهانی بپیوندید"
+
+msgid "Join Metisma's global network of trade professionals and unlock AI-powered business intelligence."
+msgstr "به شبکه جهانی حرفه‌ای‌های تجارت متیسما بپیوندید و از هوش تجاری مبتنی بر هوش مصنوعی بهره‌مند شوید."
+
+msgid "Legal"
+msgstr "قوانین"
+
+msgid "Learning & Engagement"
+msgstr "آموزش و تعامل"
+
+msgid "Legumes & Pulses"
+msgstr "حبوبات و غلات فرعی"
+
+msgid "Limited AI Insights"
+msgstr "بینش‌های محدود هوش مصنوعی"
+
+msgid "Livestock & Animal Products"
+msgstr "دام و فرآورده‌های دامی"
+
+msgid "Loading Metisma..."
+msgstr "در حال بارگذاری متیسما..."
+
+msgid "Logged in as:"
+msgstr "وارد شده به عنوان:"
+
+msgid "Log In"
+msgstr "ورود"
+
+msgid "Login to your account"
+msgstr "ورود به حساب کاربری"
+
+msgid "Log in to the Metisma platform"
+msgstr "ورود به پلتفرم متیسما"
+
+msgid "Longitude"
+msgstr "طول جغرافیایی"
+
+msgid "Logout"
+msgstr "خروج"
+
+msgid "Machinery & Industrial Equipment"
+msgstr "ماشین‌آلات و تجهیزات صنعتی"
+
+msgid "Manage Permissions"
+msgstr "مدیریت دسترسی‌ها"
+
+msgid "Market Analytics"
+msgstr "تحلیل بازار"
+
+msgid "Marketplace"
+msgstr "بازارگاه"
+
+msgid "Menu"
+msgstr "منو"
+
+msgid "Metisma"
+msgstr "متیسما"
+
+msgid "Metisma - Intelligent Global Trade Platform"
+msgstr "متیسما - پلتفرم هوشمند تجارت جهانی"
+
+msgid "Metisma's TrustScore™ system gave me instant credibility with international buyers. Closed 3 major deals in my first month."
+msgstr "سیستم TrustScore™ متیسما بلافاصله برایم اعتبار بین‌المللی ایجاد کرد. در اولین ماه ۳ معامله بزرگ بستم."
+
+msgid "Metals & Minerals"
+msgstr "فلزات و مواد معدنی"
+
+msgid "MMSI"
+msgstr "شماره MMSI"
+
+msgid "Most Popular"
+msgstr "محبوب‌ترین"
+
+msgid "My Orders"
+msgstr "سفارش‌های من"
+
+msgid "My Profile"
+msgstr "پروفایل من"
+
+msgid "Natural Gas & LNG"
+msgstr "گاز طبیعی و LNG"
+
+msgid "Network Introductions"
+msgstr "معرفی‌های شبکه"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "New Route:"
+msgstr "مسیر جدید:"
+
+msgid "Notifications"
+msgstr "اعلان‌ها"
+
+msgid "Nuts & Dried Fruits"
+msgstr "خشکبار و میوه خشک"
+
+msgid "0 Spam Guarantee"
+msgstr "تضمین صفر اسپم"
+
+msgid "One lowercase letter"
+msgstr "یک حرف کوچک"
+
+msgid "One number"
+msgstr "یک عدد"
+
+msgid "One uppercase letter"
+msgstr "یک حرف بزرگ"
+
+msgid "Open your authenticator app (Google Authenticator, Authy, etc.)"
+msgstr "برنامه احراز هویت خود را باز کنید (Google Authenticator, Authy و غیره)"
+
+msgid "Oman Customs Tariffs"
+msgstr "تعرفه‌های گمرکی عمان"
+
+msgid "Other (Please specify in Bio)"
+msgstr "سایر (لطفاً در بیو مشخص کنید)"
+
+msgid "Passport Copy *"
+msgstr "کپی گذرنامه *"
+
+msgid "Password"
+msgstr "رمز عبور"
+
+msgid "Payment & Escrow"
+msgstr "پرداخت و حساب امانی"
+
+msgid "Petrochemicals & Polymers"
+msgstr "پتروشیمی و پلیمرها"
+
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+msgid "Please check your inbox and click the verification link."
+msgstr "لطفاً صندوق ورودی خود را بررسی کرده و روی لینک تأیید کلیک کنید."
+
+msgid "Platinum"
+msgstr "پلاتینیوم"
+
+msgid "Platform Services"
+msgstr "خدمات پلتفرم"
+
+msgid "Premium"
+msgstr "ویژه"
+
+msgid "Premium access for established traders"
+msgstr "دسترسی ویژه برای تجار جاافتاده"
+
+msgid "Privacy Policy"
+msgstr "سیاست حریم خصوصی"
+
+msgid "Priority Support"
+msgstr "پشتیبانی اولویت‌دار"
+
+msgid "Private Deal Rooms"
+msgstr "اتاق‌های معاملات خصوصی"
+
+msgid "Processed Food Products"
+msgstr "فرآورده‌های غذایی"
+
+msgid "Product Category"
+msgstr "دسته‌بندی محصول"
+
+msgid "Profile"
+msgstr "پروفایل"
+
+msgid "Professional"
+msgstr "حرفه‌ای"
+
+msgid "Professional Bio"
+msgstr "بیوگرافی حرفه‌ای"
+
+msgid "Professional Details"
+msgstr "جزئیات حرفه‌ای"
+
+msgid "Quick Links"
+msgstr "دسترسی سریع"
+
+msgid "Real-time AI Insights"
+msgstr "بینش‌های هوش مصنوعی لحظه‌ای"
+
+msgid "Refined Petroleum Products"
+msgstr "فرآورده‌های نفتی تصفیه‌شده"
+
+msgid "Register - Metisma"
+msgstr "ثبت‌نام - متیسما"
+
+msgid "Remember me"
+msgstr "مرا به خاطر بسپار"
+
+msgid "Renewable Energy Solutions"
+msgstr "راهکارهای انرژی‌های تجدیدپذیر"
+
+msgid "Request Access"
+msgstr "درخواست دسترسی"
+
+msgid "Request Exclusive Access"
+msgstr "درخواست دسترسی اختصاصی"
+
+msgid "Return"
+msgstr "بازگشت"
+
+msgid "Return to Upgrade Steps"
+msgstr "بازگشت به مراحل ارتقا"
+
+msgid "Reward system and points for active user engagement"
+msgstr "سیستم پاداش و امتیاز برای تعامل فعال کاربران"
+
+msgid "Saffron"
+msgstr "زعفران"
+
+msgid "Search Vessel"
+msgstr "جستجوی شناور"
+
+msgid "Secure financial layer and Escrow for international transactions"
+msgstr "لایه مالی امن و حساب امانی برای تراکنش‌های بین‌المللی"
+
+msgid "Security"
+msgstr "امنیت"
+
+msgid "Security Settings"
+msgstr "تنظیمات امنیتی"
+
+msgid "Select a category..."
+msgstr "یک دسته‌بندی انتخاب کنید..."
+
+msgid "Select your primary trade category"
+msgstr "دسته‌بندی تجاری اصلی خود را انتخاب کنید"
+
+msgid "Services"
+msgstr "خدمات"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Ship Name"
+msgstr "نام کشتی"
+
+msgid "Sign in instead"
+msgstr "به جای آن وارد شوید"
+
+msgid "Sign Up"
+msgstr "ثبت‌نام"
+
+msgid "Silver"
+msgstr "نقره‌ای"
+
+msgid "Smart Consortium formation and contract management system"
+msgstr "سیستم هوشمند تشکیل کنسرسیوم و مدیریت قراردادها"
+
+msgid "Smart Export advisor: Customs rules, tariffs, and logistics routing"
+msgstr "مشاور هوشمند صادرات: قوانین گمرکی، تعرفه‌ها و مسیریابی لجستیک"
+
+msgid "Smart Logistics"
+msgstr "لجستیک هوشمند"
+
+msgid "Smart Map"
+msgstr "نقشه هوشمند"
+
+msgid "Smart Trade credit system and financial facilities"
+msgstr "سیستم هوشمند اعتبار تجاری و تسهیلات مالی"
+
+msgid "Speed (knots)"
+msgstr "سرعت (گره)"
+
+msgid "Specialized courses for international trade and export"
+msgstr "دوره‌های تخصصی تجارت بین‌الملل و صادرات"
+
+msgid "Specialized magazine and analytical media for global markets"
+msgstr "مجله تخصصی و رسانه تحلیلی برای بازارهای جهانی"
+
+msgid "Spam/Junk"
+msgstr "هرزنامه/اسپم"
+
+msgid "Spices & Herbs (Saffron, Thyme, etc.)"
+msgstr "ادویه‌ها و گیاهان دارویی (زعفران، آویشن و غیره)"
+
+msgid "SSL Encrypted"
+msgstr "رمزنگاری SSL"
+
+msgid "Submit your application with basic professional information and trade credentials"
+msgstr "درخواست خود را همراه با اطلاعات حرفه‌ای پایه و مدارک تجاری ارسال کنید"
+
+msgid "Support"
+msgstr "پشتیبانی"
+
+msgid "Technology & Software"
+msgstr "فناوری و نرم‌افزار"
+
+msgid "Terms of Service"
+msgstr "شرایط استفاده از خدمات"
+
+msgid "Tehran, Oranges:"
+msgstr "تهران، پرتقال:"
+
+msgid "Tell us about your trade experience..."
+msgstr "درباره تجربه تجاری خود بنویسید..."
+
+msgid "Textiles & Apparel"
+msgstr "نساجی و پوشاک"
+
+msgid "The IMO (International Maritime Organization) identifier is a unique 7-digit code assigned to each vessel."
+msgstr "شناسه IMO (سازمان بین‌المللی دریانوردی) یک کد ۷ رقمی منحصر به فرد است که به هر شناور اختصاص داده می‌شود."
+
+msgid "The exclusive network is real. Quality connections, zero spam. The AI insights have transformed how we identify opportunities."
+msgstr "این شبکه اختصاصی واقعی است. ارتباطات باکیفیت، بدون اسپم. بینش‌های هوش مصنوعی نحوه شناسایی فرصت‌ها را متحول کرده است."
+
+msgid "To complete the upgrade process, please upload clear scans or photos."
+msgstr "برای تکمیل فرآیند ارتقا، لطفاً اسکن یا عکس واضح آپلود کنید."
+
+msgid "Toggle Theme"
+msgstr "تغییر تم"
+
+msgid "Too many failed attempts will temporarily lock your account."
+msgstr "تلاش‌های ناموفق زیاد، حساب شما را موقتاً قفل می‌کند."
+
+msgid "Track ships in real-time using their unique IMO number"
+msgstr "شناورها را به صورت لحظه‌ای با استفاده از شماره IMO منحصر به فرد آن‌ها ردیابی کنید"
+
+msgid "Trade Academy"
+msgstr "آکادمی تجارت"
+
+msgid "Trade Assurance"
+msgstr "تضمین تجارت"
+
+msgid "Trade Credit"
+msgstr "اعتبار تجاری"
+
+msgid "Trade Finance Access"
+msgstr "دسترسی به تأمین مالی تجاری"
+
+msgid "Trade Manager, Dubai"
+msgstr "مدیر تجارت، دبی"
+
+msgid "Trade Media"
+msgstr "رسانه تجاری"
+
+msgid "Trade Verification"
+msgstr "تأییدیه تجاری"
+
+msgid "Trusted by professionals from leading organizations"
+msgstr "مورد اعتماد حرفه‌ای‌های سازمان‌های پیشرو"
+
+msgid "Trusted by professionals worldwide"
+msgstr "مورد اعتماد حرفه‌ای‌ها در سراسر جهان"
+
+msgid "Trusted by Professionals Worldwide"
+msgstr "مورد اعتماد حرفه‌ای‌ها در سراسر جهان"
+
+msgid "Trusted Partners"
+msgstr "شرکای مورد اعتماد"
+
+msgid "TrustScore™ is recognized by leading trade organizations worldwide"
+msgstr "TrustScore™ توسط سازمان‌های تجاری پیشرو در سراسر جهان به رسمیت شناخته شده است"
+
+msgid "TrustScore™ Tracking"
+msgstr "ردیابی TrustScore™"
+
+msgid "Trust Score"
+msgstr "امتیاز اعتماد"
+
+msgid "Two-Factor Authentication"
+msgstr "احراز هویت دو مرحله‌ای"
+
+msgid "Uncertain"
+msgstr "نامشخص"
+
+msgid "Unlimited Market Access"
+msgstr "دسترسی نامحدود به بازار"
+
+msgid "Upload & Continue to Payment"
+msgstr "آپلود و ادامه به پرداخت"
+
+msgid "Upload company registration or business license."
+msgstr "ثبت شرکت یا جواز کسب را آپلود کنید."
+
+msgid "Upload Documents"
+msgstr "آپلود مدارک"
+
+msgid "Upload PDF or image of your passport."
+msgstr "PDF یا تصویر گذرنامه خود را آپلود کنید."
+
+msgid "Username"
+msgstr "نام کاربری"
+
+msgid "Verified Badge"
+msgstr "نشان تأیید شده"
+
+msgid "Verify & Login"
+msgstr "تأیید و ورود"
+
+msgid "Verify Code"
+msgstr "تأیید کد"
+
+msgid "Verify Mobile Number"
+msgstr "تأیید شماره موبایل"
+
+msgid "Verify Your Email"
+msgstr "تأیید ایمیل شما"
+
+msgid "Verification Code"
+msgstr "کد تأیید"
+
+msgid "View Document Status"
+msgstr "مشاهده وضعیت مدارک"
+
+msgid "Vessel Details"
+msgstr "جزئیات شناور"
+
+msgid "Vessel Finder"
+msgstr "یابنده شناور"
+
+msgid "Website / LinkedIn"
+msgstr "وب‌سایت / لینکدین"
+
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+msgid "White-Glove Concierge"
+msgstr "خدمات ویژه و شخصی‌سازی شده"
+
+msgid "⚠️ Security Notice:"
+msgstr "⚠️ اعلان امنیتی:"
+
+msgid "💡 How to use:"
+msgstr "💡 نحوه استفاده:"
+
+msgid "✅ 0 Spam Guarantee"
+msgstr "✅ تضمین صفر اسپم"
+
+msgid "✅ 3 new Saffron buyers registered in Frankfurt"
+msgstr "✅ ۳ خریدار جدید زعفران در فرانکفورت ثبت‌نام کردند"
+
+msgid "🛡️ 100% Verified Members"
+msgstr "🛡️ ۱۰۰٪ اعضای تأییدشده"
+
+msgid "100% Verified Members"
+msgstr "۱۰۰٪ اعضای تأییدشده"
+
+msgid "24/7 AI-Powered Insights"
+msgstr "بینش‌های هوش مصنوعی ۲۴/۷"
+
+msgid "🤖 24/7 AI-Powered Insights"
+msgstr "🤖 بینش‌های هوش مصنوعی ۲۴/۷"
+
+msgid "AI Consultant"
+msgstr "مشاور هوش مصنوعی"
+
+msgid "Every member undergoes rigorous verification through our TrustScore™ system"
+msgstr "هر عضو از طریق سیستم TrustScore™ ما تحت تأیید دقیق قرار می‌گیرد"
+
+msgid "Our exclusive network ensures zero tolerance for unverified solicitations"
+msgstr "شبکه انحصاری ما، عدم تحمل هرگونه درخواست تایید نشده را تضمین می‌کند."
+
+msgid "Smart trade credit system and financial facilities"
+msgstr "سیستم اعتبار تجاری هوشمند و تسهیلات مالی"
+
+msgid "Multi-layer verification system and dynamic trust scoring"
+msgstr "سیستم تأیید چند لایه و امتیازدهی پویای اعتماد"
+
+msgid "Smart consortium formation and contract management system"
+msgstr "سیستم هوشمند تشکیل کنسرسیوم و مدیریت قرارداد"
+
+msgid "Smart export advisor: Customs rules, tariffs, and logistics routing"
+msgstr "مشاور صادرات هوشمند: قوانین گمرکی، تعرفه‌ها و مسیریابی لجستیک"
+
+msgid "Advanced AI engine for analyzing global trade data patterns"
+msgstr "موتور هوش مصنوعی پیشرفته برای تجزیه و تحلیل الگوهای داده‌های تجارت جهانی"
+
+msgid "Analytical dashboards and smart business reporting tools"
+msgstr "داشبوردهای تحلیلی و ابزارهای گزارش‌دهی هوشمند کسب و کار"
+
+msgid "Enhanced tools for growing businesses"
+msgstr "ابزارهای پیشرفته برای کسب و کارهای در حال رشد"
+
+msgid "Entry-level access for emerging traders"
+msgstr "دسترسی سطح مبتدی برای معامله‌گران نوظهور"
+
+msgid "Your Journey Starts Here"
+msgstr "سفر شما از اینجا شروع می‌شود"
+
+msgid "Complete Verification"
+msgstr "تأیید کامل"
+
+msgid "Build Your Network"
+msgstr "شبکه خود را بسازید"
+
+msgid "Our AI-powered system verifies your credentials and calculates your initial TrustScore™"
+msgstr "سیستم مبتنی بر هوش مصنوعی ما اعتبارنامه‌های شما را تأیید می‌کند و امتیاز اعتماد اولیه شما را محاسبه می‌کند"
+
+msgid "Connect with verified members, join exclusive groups, and access curated opportunities"
+msgstr "با اعضای تأیید شده ارتباط برقرار کنید، به گروه‌های اختصاصی بپیوندید و به فرصت‌های برگزیده دسترسی پیدا کنید"
+
+msgid "Leverage AI insights, secure financing, and close deals with confidence in our trusted ecosystem"
+msgstr "از بینش‌های هوش مصنوعی استفاده کنید، تأمین مالی امن داشته باشید و با اطمینان در اکوسیستم مورد اعتماد ما معاملات را ببندید"
+
+msgid "Gold membership paid for itself within weeks. The verified badge opens doors that were previously closed to us."
+msgstr ".عضویت طلایی هزینه خود را ظرف چند هفته جبران کرد. نشان تأیید شده درهایی را باز می‌کند که قبلاً به روی ما بسته بودند"
+
+msgid "🤖 AI Consultant"
+msgstr "🤖 مشاور هوش مصنوعی"
+
+msgid "🤝 3. Build Your Network"
+msgstr "🤝 ۳. شبکه خود را بسازید"
+
+msgid "🤝 Connect with verified members, join exclusive groups, and access curated opportunities"
+msgstr "🤝 با اعضای تأییدشده ارتباط برقرار کنید، به گروه‌های اختصاصی بپیوندید و به فرصت‌های گلچین‌شده دسترسی پیدا کنید"
+
+msgid "🥇 Gold"
+msgstr "🥇 طلایی"
+
+msgid "🥈 Silver"
+msgstr "🥈 نقره‌ای"
+
+msgid "🥉 Bronze"
+msgstr "🥉 برنزی"
+
+msgid "🌐 Global Recognition"
+msgstr "🌐 اعتبار جهانی"
+
+msgid "🌍 Global Access"
+msgstr "🌍 دسترسی جهانی"
+
+msgid "🎓 Academy"
+msgstr "🎓 آکادمی"
+
+msgid "🏆 Gamification"
+msgstr "🏆 گیمیفیکیشن"
+
+msgid "Gamification"
+msgstr "گیمیفیکیشن"
+
+msgid "🏪 Marketplace"
+msgstr "🏪 بازارگاه"
+
+msgid "📝 1. Request Access"
+msgstr "📝 ۱. درخواست دسترسی"
+
+msgid "📈 4. Execute Deals"
+msgstr "📈 ۴. اجرای معاملات"
+
+msgid "📊 Business Intelligence"
+msgstr "📊 هوش تجاری"
+
+msgid "📰 Trade Media"
+msgstr "📰 رسانه تجاری"
+
+msgid "🔍 2. Complete Verification"
+msgstr "🔍 ۲. تکمیل تأییدیه"
+
+msgid "🔒 SSL Encrypted"
+msgstr "🔒 رمزنگاری SSL"
+
+msgid "🗺️ Smart Map"
+msgstr "🗺️ نقشه هوشمند"
+
+msgid "💳 Escrow"
+msgstr "💳 حساب امانی"
+
+msgid "💰 Trade Credit"
+msgstr "💰 اعتبار تجاری"
+
+msgid "🧠 AI Core"
+msgstr "🧠 هسته هوش مصنوعی"
+
+msgid "👥 CRM"
+msgstr "👥 مدیریت ارتباط با مشتری"
+
+msgid "Alert:"
+msgstr "هشدار:"
+
+msgid "Enter the 6-digit code from Google Authenticator or similar app"
+msgstr "کد ۶ رقمی را از Google Authenticator یا برنامه مشابه وارد کنید"
+
+msgid "If you don't have access to your authenticator app"
+msgstr "اگر به برنامه احراز هویت خود دسترسی ندارید"
+
+msgid "If you don't see the email, please check your"
+msgstr "اگر ایمیل را نمی‌بینید، لطفاً پوشه"
+
+msgid "folder."
+msgstr "را بررسی کنید."
+
+msgid "and"
+msgstr "و"
+
+msgid "A confirmation email has been sent to"
+msgstr "یک ایمیل تأیید به"
+
+msgid "moafegham."
+msgstr "موافقم."
+
+msgid "I agree to Metisma's"
+msgstr "من با"
+
+msgid "Terms of Service"
+msgstr "شرایط استفاده"
+
+msgid "and"
+msgstr "و"
+
+msgid "Privacy Policy"
+msgstr "سیاست حریم خصوصی"
+
+#: sessions.html
+msgid "Manage Sessions"
+msgstr "مدیریت نشست‌ها"
+
+msgid "Manage Active Sessions"
+msgstr "مدیریت نشست‌های فعال"
+
+msgid "Review and manage your active login sessions across devices."
+msgstr "نشست‌های ورود فعال خود را در دستگاه‌های مختلف بررسی و مدیریت کنید."
+
+msgid "Unknown Device"
+msgstr "دستگاه ناشناس"
+
+msgid "Location Unknown"
+msgstr "موقعیت مکانی نامشخص"
+
+msgid "Last active:"
+msgstr "آخرین فعالیت:"
+
+msgid "Current"
+msgstr "فعلی"
+
+msgid "Revoke"
+msgstr "لغو دسترسی"
+
+msgid "No active sessions found."
+msgstr "هیچ نشست فعالی یافت نشد."
+
+#: support.html
+msgid "Support - Contact Admin"
+msgstr "پشتیبانی - تماس با مدیریت"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "This section allows non-premium users to receive messages from the admin. You can request assistance here."
+msgstr "این بخش به کاربران غیر ویژه امکان دریافت پیام از مدیریت را می‌دهد. می‌توانید در اینجا درخواست کمک کنید."
+
+msgid "Upgrade to premium for full chat access."
+msgstr "برای دسترسی کامل به چت، به نسخه ویژه ارتقا دهید."
+
+msgid "Upgrade Now"
+msgstr "همین حالا ارتقا دهید"
+
+msgid "No messages yet. Send a message to start."
+msgstr "هنوز پیامی وجود ندارد. برای شروع پیامی ارسال کنید."
+
+msgid "Type your message..."
+msgstr "پیام خود را بنویسید..."
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "You have full chat access. Please use the chat section."
+msgstr "شما دسترسی کامل به چت دارید. لطفاً از بخش چت استفاده کنید."
+
+msgid "Go to Chat →"
+msgstr "رفتن به چت ←"
+
+#: reset_password.html
+msgid "Reset Password"
+msgstr "بازیابی رمز عبور"
+
+msgid "Enter your new password below"
+msgstr "رمز عبور جدید خود را در زیر وارد کنید"
+
+msgid "New Password"
+msgstr "رمز عبور جدید"
+
+msgid "Must be at least 8 characters"
+msgstr "باید حداقل ۸ کاراکتر باشد"
+
+msgid "Confirm Password"
+msgstr "تأیید رمز عبور"
+
+msgid "Change Password"
+msgstr "تغییر رمز عبور"
+
+msgid "Notice:"
+msgstr "توجه:"
+
+msgid "After changing your password, you will be logged out from all active sessions."
+msgstr "پس از تغییر رمز عبور، از تمام نشست‌های فعال خارج خواهید شد."
+
+#: show_backup_codes.html
+msgid "Backup Codes"
+msgstr "کدهای پشتیبان"
+
+msgid "Save these codes in a secure location"
+msgstr "این کدها را در مکانی امن ذخیره کنید"
+
+msgid "Very Important!"
+msgstr "بسیار مهم!"
+
+msgid "These codes are shown only once"
+msgstr "این کدها فقط یک‌بار نمایش داده می‌شوند"
+
+msgid "Each code can be used only once"
+msgstr "هر کد فقط یک‌بار قابل استفاده است"
+
+msgid "If you lose access to your phone, these are your only way to log in"
+msgstr "اگر به گوشی خود دسترسی نداشته باشید، این تنها راه ورود شماست"
+
+msgid "Store them in a secure place away from others"
+msgstr "آن‌ها را در مکانی امن و دور از دسترس دیگران نگهداری کنید"
+
+msgid "Code"
+msgstr "کد"
+
+msgid "Print Codes"
+msgstr "چاپ کدها"
+
+msgid "Got it, Continue"
+msgstr "متوجه شدم، ادامه"
+
+msgid "Tip:"
+msgstr "نکته:"
+
+msgid "You can take a picture of these codes or store them in a password manager like LastPass or 1Password."
+msgstr "می‌توانید از این کدها عکس بگیرید یا آن‌ها را در مدیریت‌کننده‌های رمز عبور مانند LastPass یا 1Password ذخیره کنید."
+
+#: upgrade_premium.html
+msgid "Premium Level 1 - Verified Member"
+msgstr "سطح ویژه ۱ - عضو تأییدشده"
+
+msgid "Complete verification steps to unlock all premium features and increase your Trust Score"
+msgstr "مراحل تأیید را تکمیل کنید تا به تمام ویژگی‌های ویژه دسترسی پیدا کرده و امتیاز اعتماد خود را افزایش دهید."
+
+msgid "Start Your Premium Journey"
+msgstr "سفر ویژه خود را آغاز کنید"
+
+msgid "By completing these steps, you'll become a"
+msgstr "با تکمیل این مراحل، شما به یک"
+
+msgid "Premium Level 1 (Verified)"
+msgstr "سطح ویژه ۱ (تأییدشده)"
+
+msgid "member with:"
+msgstr "تبدیل خواهید شد با دسترسی‌های:"
+
+msgid "Access to Smart Chat with verified traders"
+msgstr "دسترسی به چت هوشمند با تجار تأییدشده"
+
+msgid "Interactive Port Finder & Vessel Tracking"
+msgstr "جستجوگر تعاملی بنادر و ردیابی شناورها"
+
+msgid "Advanced Analytics & Trade Intelligence"
+msgstr "تحلیل‌های پیشرفته و هوش تجاری"
+
+msgid "Priority Support & Dedicated Account Manager"
+msgstr "پشتیبانی اولویت‌دار و مدیر اختصاصی حساب"
+
+msgid "Increased Trust Score & Credibility Badge"
+msgstr "امتیاز اعتماد بالاتر و نشان اعتبار"
+
+msgid "Current Phone:"
+msgstr "شماره فعلی:"
+
+msgid "Not set (set in profile)"
+msgstr "تنظیم نشده (در پروفایل تنظیم کنید)"
+
+msgid "Phone verification is temporarily disabled. Proceed with document upload."
+msgstr "تأیید شماره تلفن موقتاً غیرفعال است. ادامه دهید با آپلود مدارک."
+
+msgid "Start Premium Verification"
+msgstr "شروع تأیید ویژه"
+
+msgid "Continue Your Premium Journey"
+msgstr "ادامه سفر ویژه"
+
+msgid "You have started the verification process but haven't uploaded your documents yet."
+msgstr "شما فرآیند تأیید را آغاز کرده‌اید اما هنوز مدارک خود را آپلود نکرده‌اید."
+
+msgid "Upload Documents Now"
+msgstr "همین حالا مدارک را آپلود کنید"
+
+msgid "Progress Status"
+msgstr "وضعیت پیشرفت"
+
+msgid "Completed ✅"
+msgstr "تکمیل شده ✅"
+
+msgid "Rejected ❌"
+msgstr "رد شده ❌"
+
+msgid "In Progress..."
+msgstr "در حال انجام..."
+
+msgid "Verify Email"
+msgstr "تأیید ایمیل"
+
+msgid "Done"
+msgstr "انجام شد"
+
+msgid "Upload Documents (Passport & License)"
+msgstr "آپلود مدارک (گذرنامه و جواز کسب)"
+
+msgid "Payment ($1,000 Annual Fee)"
+msgstr "پرداخت (هزینه سالانه ۱,۰۰۰ دلار)"
+
+msgid "Step 2 Required"
+msgstr "مرحله ۲ الزامی است"
+
+msgid "Admin Review & Approval"
+msgstr "بررسی و تأیید مدیریت"
+
+msgid "Waiting"
+msgstr "در انتظار"
+
+msgid "Request History"
+msgstr "تاریخچه درخواست‌ها"
+
+msgid "Request"
+msgstr "درخواست"
+
+msgid "Need Help?"
+msgstr "نیاز به کمک دارید؟"
+
+msgid "If you have any questions during the verification process, please contact our support team at"
+msgstr "اگر در طول فرآیند تأیید سوالی دارید، لطفاً با تیم پشتیبانی ما تماس بگیرید از طریق"
+
+#: profile_edit.html
+msgid "Edit Profile"
+msgstr "ویرایش پروفایل"
+
+msgid "Update your professional information and contact details"
+msgstr "اطلاعات حرفه‌ای و جزئیات تماس خود را به‌روز کنید"
+
+msgid "Basic Information"
+msgstr "اطلاعات پایه"
+
+msgid "Company Name"
+msgstr "نام شرکت"
+
+msgid "Country"
+msgstr "کشور"
+
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+msgid "Professional Information"
+msgstr "اطلاعات حرفه‌ای"
+
+msgid "Job Title"
+msgstr "عنوان شغلی"
+
+msgid "Area of Expertise"
 msgstr "حوزه تخصصی"
 
 msgid "Bio"
 msgstr "بیوگرافی"
 
 msgid "Website"
-msgstr "وبسایت"
+msgstr "وب‌سایت"
 
-msgid "Phone Number"
-msgstr "شماره تلفن"
-
-msgid "Country"
-msgstr "کشور"
-
-msgid "City"
-msgstr "شهر"
-
-msgid "Address"
-msgstr "آدرس"
-
-msgid "Social Links"
-msgstr "لینک‌های اجتماعی"
+msgid "Social Media Links"
+msgstr "لینک‌های شبکه‌های اجتماعی"
 
 msgid "LinkedIn"
 msgstr "لینکدین"
@@ -167,44 +1222,2048 @@ msgid "Save Changes"
 msgstr "ذخیره تغییرات"
 
 msgid "Cancel"
-msgstr "انصراف"
+msgstr "لغو"
 
-# Trust Score
-msgid "Trust Score"
-msgstr "امتیاز اعتماد"
+msgid "Account Settings"
+msgstr "تنظیمات حساب کاربری"
+
+msgid "Manage password, security, and preferences"
+msgstr "مدیریت رمز عبور، امنیت و ترجیحات"
+
+msgid "Go to Settings"
+msgstr "رفتن به تنظیمات"
+
+msgid "Upload Documents"
+msgstr "آپلود مدارک"
+
+msgid "Submit verification documents for Premium status"
+msgstr "ارسال مدارک تأییدیه برای دریافت وضعیت ویژه"
+
+msgid "Premium Member"
+msgstr "عضو ویژه"
+
+msgid "Your documents have been verified"
+msgstr "مدارک شما تأیید شده‌اند"
+
+msgid "View Documents"
+msgstr "مشاهده مدارک"
+
+#: profile.html
+msgid "User Profile"
+msgstr "پروفایل کاربری"
+
+msgid "Manage Permissions"
+msgstr "مدیریت دسترسی‌ها"
+
+msgid "Smart Dashboard"
+msgstr "داشبورد هوشمند"
+
+msgid "Premium Member"
+msgstr "عضو ویژه"
+
+msgid "Identity Verified"
+msgstr "هویت تأیید شده"
+
+msgid "View Documents"
+msgstr "مشاهده مدارک"
+
+msgid "Under Review"
+msgstr "در حال بررسی"
+
+msgid "View Status"
+msgstr "مشاهده وضعیت"
+
+msgid "Documents Required"
+msgstr "مدارک مورد نیاز"
+
+msgid "Start Process"
+msgstr "شروع فرآیند"
+
+msgid "Edit Profile"
+msgstr "ویرایش پروفایل"
+
+msgid "My Documents"
+msgstr "مدارک من"
+
+msgid "Upgrade to Premium"
+msgstr "ارتقا به ویژه"
+
+msgid "Trust Score - Trust Core"
+msgstr "امتیاز اعتماد - هسته اعتماد"
+
+msgid "New Member"
+msgstr "عضو جدید"
+
+msgid "Total Score"
+msgstr "امتیاز کل"
+
+msgid "Identity Verified"
+msgstr "تأیید هویت"
+
+msgid "Expertise Verified"
+msgstr "تأیید تخصص"
+
+msgid "Social & Dynamic"
+msgstr "اجتماعی و پویا"
+
+msgid "Trust Progress"
+msgstr "پیشرفت اعتماد"
+
+msgid "Tip:"
+msgstr "نکته:"
+
+msgid "Increase your trust score by completing documents and activities"
+msgstr "با تکمیل مدارک و فعالیت‌ها، امتیاز اعتماد خود را افزایش دهید"
+
+msgid "Permission Management"
+msgstr "مدیریت دسترسی‌ها"
+
+msgid "Configure modular access for different users based on roles and services"
+msgstr "پیکربندی دسترسی‌های ماژولار برای کاربران مختلف بر اساس نقش‌ها و خدمات"
+
+msgid "Orders"
+msgstr "سفارش‌ها"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "View and manage your trade orders."
+msgstr "مشاهده و مدیریت سفارش‌های تجاری خود."
+
+msgid "View Orders →"
+msgstr "مشاهده سفارش‌ها ←"
+
+msgid "Manage Orders"
+msgstr "مدیریت سفارش‌ها"
+
+msgid "Process incoming orders from buyers."
+msgstr "پردازش سفارش‌های دریافتی از خریداران."
+
+msgid "Manage →"
+msgstr "مدیریت ←"
+
+msgid "Smart Chat"
+msgstr "چت هوشمند"
+
+msgid "Connect with verified traders worldwide."
+msgstr "اتصال به تجار تأییدشده در سراسر جهان."
+
+msgid "Open Chat →"
+msgstr "باز کردن چت ←"
+
+msgid "Premium feature: Chat with verified traders."
+msgstr "ویژه: چت با تجار تأییدشده."
+
+msgid "Unlock →"
+msgstr "فعال‌سازی ←"
+
+msgid "Support"
+msgstr "پشتیبانی"
+
+msgid "Get help from our expert team."
+msgstr "دریافت کمک از تیم متخصص ما."
+
+msgid "Contact Support →"
+msgstr "تماس با پشتیبانی ←"
+
+msgid "Port Finder"
+msgstr "جستجوگر بندر"
+
+msgid "Find optimal ports for your shipments."
+msgstr "یافتن بنادر بهینه برای محموله‌های شما."
+
+msgid "Open Map →"
+msgstr "باز کردن نقشه ←"
+
+msgid "Premium: Interactive port & vessel tracking."
+msgstr "ویژه: ردیابی تعاملی بنادر و شناورها."
+
+msgid "Start Premium Journey"
+msgstr "شروع سفر ویژه"
+
+msgid "Upload documents, get verified & unlock all features (Premium Level 1)"
+msgstr "مدارک را آپلود کنید، تأیید شوید و به تمام ویژگی‌ها دسترسی پیدا کنید (سطح ویژه ۱)"
+
+msgid "Start Premium"
+msgstr "شروع ویژه"
+
+msgid "You're a Premium Member! 🌟"
+msgstr "شما یک عضو ویژه هستید! 🌟"
+
+msgid "Enjoy unlimited access to all Metisma features."
+msgstr "از دسترسی نامحدود به تمام ویژگی‌های متیسما لذت ببرید."
+
+msgid "Sign Out"
+msgstr "خروج"
+
+#: public_profile.html
+msgid "Public Profile"
+msgstr "پروفایل عمومی"
+
+msgid "Edit Profile"
+msgstr "ویرایش پروفایل"
+
+msgid "Not specified"
+msgstr "مشخص نشده"
+
+msgid "Member since"
+msgstr "عضو از"
+
+msgid "Follow"
+msgstr "دنبال کردن"
+
+msgid "Following"
+msgstr "دنبال‌شده"
+
+msgid "Login / Register"
+msgstr "ورود / ثبت‌نام"
+
+msgid "Followers"
+msgstr "دنبال‌کنندگان"
+
+msgid "Following"
+msgstr "دنبال‌شوندگان"
+
+msgid "Posts"
+msgstr "پست‌ها"
+
+msgid "About"
+msgstr "درباره"
+
+msgid "About Us"
+msgstr "درباره ما"
+
+msgid "Expertise"
+msgstr "تخصص‌ها"
+
+msgid "Contact Information"
+msgstr "اطلاعات تماس"
+
+msgid "Activity"
+msgstr "فعالیت‌ها"
+
+msgid "Public"
+msgstr "عمومی"
+
+msgid "Likes"
+msgstr "پسند"
+
+msgid "Comments"
+msgstr "نظرات"
+
+msgid "Shares"
+msgstr "اشتراک‌گذاری‌ها"
+
+msgid "No posts published yet"
+msgstr "هنوز پستی منتشر نشده است"
+
+msgid "Publish your first post!"
+msgstr "اولین پست خود را منتشر کنید!"
+
+#: register.html
+msgid "Create Your Account"
+msgstr "حساب کاربری خود را بسازید"
+
+msgid "Join Metisma's global network of trade professionals and unlock AI-powered business intelligence."
+msgstr "به شبکه جهانی حرفه‌ای‌های تجارت متیسما بپیوندید و از هوش تجاری مبتنی بر هوش مصنوعی بهره‌مند شوید."
+
+msgid "Basic Info"
+msgstr "اطلاعات پایه"
+
+msgid "Professional"
+msgstr "حرفه‌ای"
+
+msgid "Security"
+msgstr "امنیت"
+
+msgid "Username"
+msgstr "نام کاربری"
+
+msgid "3-30 characters, letters and numbers only"
+msgstr "۳ تا ۳۰ کاراکتر، فقط حروف و اعداد"
+
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+msgid "Enter number without leading zero (e.g., 9123456789)"
+msgstr "شماره را بدون صفر ابتدایی وارد کنید (مثلاً: ۹۱۲۳۴۵۶۷۸۹)"
+
+msgid "I am a"
+msgstr "نقش من:"
+
+msgid "Select a category..."
+msgstr "یک دسته‌بندی انتخاب کنید..."
+
+msgid "Grains & Cereals (Wheat, Rice, Barley)"
+msgstr "غلات و حبوبات (گندم، برنج، جو)"
+
+msgid "Legumes & Pulses"
+msgstr "حبوبات"
+
+msgid "Spices & Herbs (Saffron, Thyme, etc.)"
+msgstr "ادویه‌ها و گیاهان دارویی (زعفران، آویشن و غیره)"
+
+msgid "Nuts & Dried Fruits"
+msgstr "خشکبار و میوه خشک"
+
+msgid "Fresh Fruits & Vegetables"
+msgstr "میوه‌ها و سبزیجات تازه"
+
+msgid "Livestock & Animal Products"
+msgstr "دام و فرآورده‌های دامی"
+
+msgid "Processed Food Products"
+msgstr "فرآورده‌های غذایی"
+
+msgid "Crude Oil & Condensates"
+msgstr "نفت خام و میعانات گازی"
+
+msgid "Refined Petroleum Products"
+msgstr "فرآورده‌های نفتی تصفیه‌شده"
+
+msgid "Petrochemicals & Polymers"
+msgstr "پتروشیمی و پلیمرها"
+
+msgid "Natural Gas & LNG"
+msgstr "گاز طبیعی و LNG"
+
+msgid "Renewable Energy Solutions"
+msgstr "راهکارهای انرژی‌های تجدیدپذیر"
+
+msgid "Metals & Minerals"
+msgstr "فلزات و مواد معدنی"
+
+msgid "Construction Materials"
+msgstr "مصالح ساختمانی"
+
+msgid "Machinery & Industrial Equipment"
+msgstr "ماشین‌آلات و تجهیزات صنعتی"
+
+msgid "Automotive Parts & Vehicles"
+msgstr "قطعات خودرو و وسایل نقلیه"
+
+msgid "Textiles & Apparel"
+msgstr "نساجی و پوشاک"
+
+msgid "Logistics & Freight Forwarding"
+msgstr "لجستیک و حمل‌ونقل بین‌المللی"
+
+msgid "Financial & Consulting Services"
+msgstr "خدمات مالی و مشاوره"
+
+msgid "Technology & Software"
+msgstr "فناوری و نرم‌افزار"
+
+msgid "Healthcare & Pharmaceuticals"
+msgstr "بهداشت و دارویی"
+
+msgid "Other (Please specify in Bio)"
+msgstr "سایر (لطفاً در بیو مشخص کنید)"
+
+msgid "Select your primary trade category"
+msgstr "دسته‌بندی تجاری اصلی خود را انتخاب کنید"
+
+msgid "Professional Bio"
+msgstr "بیوگرافی حرفه‌ای"
+
+msgid "Tell us about your trade experience..."
+msgstr "درباره تجربه تجاری خود بنویسید..."
+
+msgid "characters (English only)"
+msgstr "کاراکتر (فقط انگلیسی)"
+
+msgid "Website / LinkedIn"
+msgstr "وب‌سایت / لینکدین"
+
+msgid "Continue"
+msgstr "ادامه"
+
+msgid "Back"
+msgstr "بازگشت"
+
+msgid "Password"
+msgstr "رمز عبور"
+
+msgid "At least 8 characters"
+msgstr "حداقل ۸ کاراکتر"
+
+msgid "One uppercase letter"
+msgstr "یک حرف بزرگ"
+
+msgid "One lowercase letter"
+msgstr "یک حرف کوچک"
+
+msgid "One number"
+msgstr "یک عدد"
+
+msgid "Confirm Password"
+msgstr "تأیید رمز عبور"
+
+msgid "I agree to Metisma's"
+msgstr "من با"
+
+msgid "Terms of Service"
+msgstr "شرایط استفاده از خدمات"
+
+msgid "and"
+msgstr "و"
+
+msgid "Privacy Policy"
+msgstr "سیاست حریم خصوصی"
+
+msgid "I understand that my data will be processed according to these terms."
+msgstr "متوجه هستم که داده‌های من مطابق این شرایط پردازش خواهد شد."
+
+msgid "Create Account"
+msgstr "ایجاد حساب کاربری"
+
+msgid "Already have an account?"
+msgstr "قبلاً حساب کاربری دارید؟"
+
+msgid "Sign in instead"
+msgstr "به جای آن وارد شوید"
+
+msgid "Trusted by professionals worldwide"
+msgstr "مورد اعتماد حرفه‌ای‌ها در سراسر جهان"
+
+msgid "SSL Encrypted"
+msgstr "رمزنگاری SSL"
+
+msgid "GDPR Compliant"
+msgstr "مطابق با GDPR"
+
+msgid "Global Access"
+msgstr "دسترسی جهانی"
+
+#: producer_orders.html
+msgid "Seller Panel"
+msgstr "پنل فروشنده"
+
+msgid "Manage your incoming orders"
+msgstr "سفارش‌های دریافتی خود را مدیریت کنید"
+
+msgid "Return to Profile"
+msgstr "بازگشت به پروفایل"
+
+msgid "Order"
+msgstr "سفارش"
+
+msgid "Pending"
+msgstr "در انتظار"
+
+msgid "Confirmed"
+msgstr "تأیید شده"
+
+msgid "Cancelled"
+msgstr "لغو شده"
+
+msgid "In Transit"
+msgstr "در حال انتقال"
+
+msgid "Delivered"
+msgstr "تحویل داده شده"
+
+msgid "tons of"
+msgstr "تن از"
+
+msgid "Buyer Information"
+msgstr "اطلاعات خریدار"
+
+msgid "Name:"
+msgstr "نام:"
+
+msgid "Company:"
+msgstr "شرکت:"
+
+msgid "Country:"
+msgstr "کشور:"
+
+msgid "Order Date:"
+msgstr "تاریخ سفارش:"
+
+msgid "Confirm"
+msgstr "تأیید"
+
+msgid "Reject"
+msgstr "رد"
+
+msgid "Confirmed"
+msgstr "تأیید شد"
+
+msgid "Rejected"
+msgstr "رد شد"
+
+msgid "Chat"
+msgstr "چت"
+
+msgid "No Orders Received"
+msgstr "سفارشی دریافت نشده است"
+
+msgid "Your order list is empty. Buyers will see your products soon!"
+msgstr "لیست سفارش‌های شما خالی است. خریداران به‌زودی محصولات شما را خواهند دید!"
+
+msgid "Back to Profile"
+msgstr "بازگشت به پروفایل"
+
+#: orders.html
+msgid "My Orders"
+msgstr "سفارش‌های من"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "New Order"
+msgstr "سفارش جدید"
+
+msgid "Order"
+msgstr "سفارش"
+
+msgid "Pending"
+msgstr "در انتظار"
+
+msgid "Confirmed"
+msgstr "تأیید شده"
+
+msgid "Cancelled"
+msgstr "لغو شده"
+
+msgid "In Transit"
+msgstr "در حال انتقال"
+
+msgid "Delivered"
+msgstr "تحویل داده شده"
+
+msgid "tons of"
+msgstr "تن از"
+
+msgid "Shipped"
+msgstr "ارسال شده"
+
+msgid "View Details"
+msgstr "مشاهده جزئیات"
+
+msgid "Details"
+msgstr "جزئیات"
+
+msgid "Product"
+msgstr "محصول"
+
+msgid "Quantity"
+msgstr "مقدار"
+
+msgid "tons"
+msgstr "تن"
+
+msgid "Price per Ton"
+msgstr "قیمت هر تن"
+
+msgid "Total Price"
+msgstr "قیمت کل"
+
+msgid "Route"
+msgstr "مسیر"
+
+msgid "Status History"
+msgstr "تاریخچه وضعیت"
+
+msgid "Notes"
+msgstr "یادداشت‌ها"
+
+msgid "Timeline"
+msgstr "خط زمانی"
+
+msgid "Created"
+msgstr "ایجاد شده"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "No Orders Yet"
+msgstr "هنوز سفارشی وجود ندارد"
+
+msgid "Start your first trade order to see it here."
+msgstr "اولین سفارش تجاری خود را ثبت کنید تا اینجا نمایش داده شود."
+
+msgid "Place Your First Order"
+msgstr "ثبت اولین سفارش"
+
+#: place_order.html
+msgid "Place New Order"
+msgstr "ثبت سفارش جدید"
+
+msgid "Complete your export or import order details"
+msgstr "جزئیات سفارش صادرات یا واردات خود را تکمیل کنید"
+
+msgid "Select product..."
+msgstr "انتخاب محصول..."
+
+msgid "Wheat"
+msgstr "گندم"
+
+msgid "Rice"
+msgstr "برنج"
+
+msgid "Sugar"
+msgstr "شکر"
+
+msgid "Corn"
+msgstr "ذرت"
+
+msgid "Steel"
+msgstr "فولاد"
+
+msgid "Other"
+msgstr "سایر"
+
+msgid "Quantity (Tons)"
+msgstr "مقدار (تن)"
+
+msgid "Price per Ton (USD)"
+msgstr "قیمت هر تن (دلار)"
+
+msgid "Origin Port"
+msgstr "مبدا"
+
+msgid "Destination Port"
+msgstr "مقصد"
+
+msgid "Select Producer"
+msgstr "انتخاب تولیدکننده"
+
+msgid "Choose a verified producer..."
+msgstr "انتخاب یک تولیدکننده تأییدشده..."
+
+msgid "Additional Notes"
+msgstr "یادداشت‌های اضافی"
+
+msgid "(Optional)"
+msgstr "(اختیاری)"
+
+msgid "Place Order"
+msgstr "ثبت سفارش"
+
+msgid "Return to Profile"
+msgstr "بازگشت به پروفایل"
+
+#: post_detail.html
+msgid "Post"
+msgstr "پست"
+
+msgid "Comments"
+msgstr "نظرات"
+
+msgid "Add a comment..."
+msgstr "افزودن نظر..."
+
+msgid "Post Comment"
+msgstr "ارسال نظر"
+
+msgid "Please"
+msgstr "لطفاً"
+
+msgid "log in"
+msgstr "وارد شوید"
+
+msgid "to leave a comment."
+msgstr "برای گذاشتن نظر."
+
+msgid "No comments yet. Be the first to share your thoughts!"
+msgstr "هنوز نظری وجود ندارد. اولین نفری باشید که نظر خود را به اشتراک می‌گذارد!"
+
+msgid "Share to:"
+msgstr "اشتراک‌گذاری در:"
+
+msgid "Telegram"
+msgstr "تلگرام"
+
+msgid "Twitter"
+msgstr "توییتر"
+
+msgid "WhatsApp"
+msgstr "واتساپ"
+
+msgid "Link copied!"
+msgstr "لینک کپی شد!"
+
+msgid "Copy Link"
+msgstr "کپی لینک"
+
+msgid "Related Posts"
+msgstr "پست‌های مرتبط"
+
+msgid "Back"
+msgstr "بازگشت"
+
+#: payment_confirmation.html
+msgid "Payment Received"
+msgstr "پرداخت دریافت شد"
+
+msgid "Your premium upgrade request has been received. Our team will review your documents within"
+msgstr "درخواست ارتقای ویژه شما دریافت شد. تیم ما مدارک شما را در عرض"
+
+msgid "24-48 business hours"
+msgstr "۲۴ تا ۴۸ ساعت کاری"
+
+msgid "and notify you via email."
+msgstr "بررسی کرده و از طریق ایمیل به شما اطلاع خواهد داد."
+
+msgid "Payment Details"
+msgstr "جزئیات پرداخت"
+
+msgid "Amount"
+msgstr "مبلغ"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Pending Review"
+msgstr "در انتظار بررسی"
+
+msgid "Submitted"
+msgstr "ارسال شده"
+
+msgid "Back to Profile"
+msgstr "بازگشت به پروفایل"
+
+msgid "Contact Support"
+msgstr "تماس با پشتیبانی"
+
+#: notifications.html
+msgid "Notifications"
+msgstr "اعلان‌ها"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "Mark all as read"
+msgstr "علامت‌گذاری همه به عنوان خوانده‌شده"
+
+msgid "You're all caught up! New notifications will appear here."
+msgstr "همه موارد به‌روز شد! اعلان‌های جدید در اینجا نمایش داده خواهند شد."
+
+msgid "No Notifications"
+msgstr "اعلانی وجود ندارد"
+
+#: manage_permissions.html
+msgid "Access Permissions Management"
+msgstr "مدیریت دسترسی‌ها"
+
+msgid "Fine-grained and advanced user access management"
+msgstr "مدیریت پیشرفته و دقیق دسترسی کاربران"
+
+msgid "Admin Panel"
+msgstr "پنل مدیریت"
+
+msgid "Select User for Permission Management"
+msgstr "انتخاب کاربر برای مدیریت دسترسی‌ها"
+
+msgid "Target User:"
+msgstr "کاربر هدف:"
+
+msgid "Load Permissions"
+msgstr "بارگذاری دسترسی‌ها"
+
+msgid "User Permissions:"
+msgstr "دسترسی‌های کاربر:"
+
+msgid "Your Role Default Permissions:"
+msgstr "دسترسی‌های پیش‌فرض نقش شما:"
+
+msgid "Custom Permissions Enabled"
+msgstr "دسترسی‌های سفارشی فعال است"
+
+msgid "Using Default"
+msgstr "استفاده از پیش‌فرض"
+
+msgid "Permissions"
+msgstr "دسترسی‌ها"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Reset to Default"
+msgstr "بازنشانی به پیش‌فرض"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Note:"
+msgstr "توجه:"
+
+msgid "Only system administrator can change permissions. You are viewing your role's default permissions."
+msgstr "فقط مدیر سیستم می‌تواند دسترسی‌ها را تغییر دهد. شما در حال مشاهده دسترسی‌های پیش‌فرض نقش خود هستید."
+
+msgid "Permissions System Guide"
+msgstr "راهنمای سیستم دسترسی‌ها"
+
+msgid "Default Permissions:"
+msgstr "دسترسی‌های پیش‌فرض:"
+
+msgid "Each user role has a set of default permissions defined based on that role's duties."
+msgstr "هر نقش کاربری مجموعه‌ای از دسترسی‌های پیش‌فرض دارد که بر اساس وظایف آن نقش تعریف شده است."
+
+msgid "Custom Permissions:"
+msgstr "دسترسی‌های سفارشی:"
+
+msgid "System administrator can enable or disable specific permissions for each user. These permissions replace the default permissions."
+msgstr "مدیر سیستم می‌تواند دسترسی‌های خاصی را برای هر کاربر فعال یا غیرفعال کند. این دسترسی‌ها جایگزین دسترسی‌های پیش‌فرض می‌شوند."
+
+msgid "Unauthenticated Users:"
+msgstr "کاربران احراز هویت نشده:"
+
+msgid "Only have access to public permissions (view products and about us)."
+msgstr "فقط به دسترسی‌های عمومی (مشاهده محصولات و درباره ما) دسترسی دارند."
+
+msgid "Role Change:"
+msgstr "تغییر نقش:"
+
+msgid "When changing a user's role, their default permissions also change unless custom permissions are set."
+msgstr "با تغییر نقش کاربر، دسترسی‌های پیش‌فرض او نیز تغییر می‌کند مگر اینکه دسترسی‌های سفارشی تنظیم شده باشد."
+
+#: make_payment.html
+msgid "Upgrade to Premium"
+msgstr "ارتقا به ویژه"
+
+msgid "Please upload the receipt after making the payment."
+msgstr "لطفاً پس از پرداخت، رسید را آپلود کنید."
+
+msgid "Company Account Information"
+msgstr "اطلاعات حساب شرکت"
+
+msgid "Bank Name:"
+msgstr "نام بانک:"
+
+msgid "Account Number:"
+msgstr "شماره حساب:"
+
+msgid "Account Holder:"
+msgstr "صاحب حساب:"
+
+msgid "IBAN:"
+msgstr "شماره شبا/IBAN:"
+
+msgid "SWIFT:"
+msgstr "سوئیفت کد:"
+
+msgid "Upload Payment Receipt"
+msgstr "آپلود رسید پرداخت"
+
+msgid "Upload a photo or PDF file of your payment receipt."
+msgstr "عکس یا فایل PDF رسید پرداخت خود را آپلود کنید."
+
+msgid "Upload Receipt & Send"
+msgstr "آپلود رسید و ارسال"
+
+msgid "View Payment Status"
+msgstr "مشاهده وضعیت پرداخت"
+
+msgid "Return to Upgrade Steps"
+msgstr "بازگشت به مراحل ارتقا"
+
+#: map.html
+msgid "Metisma Smart Map - Intelligent Trade Navigation"
+msgstr "نقشه هوشمند متیسما - مسیریابی هوشمند تجاری"
+
+msgid "Smart Map"
+msgstr "نقشه هوشمند"
+
+msgid "Intelligent navigation for global trade routes"
+msgstr "مسیریابی هوشمند برای مسیرهای تجاری جهانی"
+
+msgid "Layers"
+msgstr "لایه‌ها"
+
+msgid "Expand Map"
+msgstr "بزرگ‌نمایی نقشه"
+
+msgid "Loading map data..."
+msgstr "در حال بارگذاری داده‌های نقشه..."
+
+msgid "Route Planner"
+msgstr "برنامه‌ریز مسیر"
+
+msgid "Origin Country"
+msgstr "کشور مبدأ"
+
+msgid "Destination Country"
+msgstr "کشور مقصد"
+
+msgid "Find Best Route"
+msgstr "یافتن بهترین مسیر"
+
+msgid "Map Layers"
+msgstr "لایه‌های نقشه"
+
+msgid "Ports & Harbors"
+msgstr "بنادر و لنگرگاه‌ها"
+
+msgid "active ports"
+msgstr "بندر فعال"
+
+msgid "Transit Routes"
+msgstr "مسیرهای ترانزیتی"
+
+msgid "Land & sea corridors"
+msgstr "کریدورهای زمینی و دریایی"
+
+msgid "Conflicts & Risks"
+msgstr "درگیری‌ها و ریسک‌ها"
+
+msgid "Active zones"
+msgstr "مناطق فعال"
+
+msgid "Free Trade Zones"
+msgstr "مناطق آزاد تجاری"
+
+msgid "Economic areas"
+msgstr "مناطق اقتصادی"
+
+msgid "Weather & Conditions"
+msgstr "آب و هوا و شرایط"
+
+msgid "Maritime forecasts"
+msgstr "پیش‌بینی‌های دریایی"
+
+msgid "Quick Filters"
+msgstr "فیلترهای سریع"
+
+msgid "Active Only"
+msgstr "فقط فعال"
+
+msgid "Major Ports"
+msgstr "بنادر اصلی"
+
+msgid "Customs Active"
+msgstr "گمرک فعال"
+
+msgid "Selected Item"
+msgstr "آیتم انتخاب‌شده"
+
+msgid "Click on a map element to view details."
+msgstr "برای مشاهده جزئیات روی یک المان نقشه کلیک کنید."
+
+msgid "Legend"
+msgstr "راهنمای نقشه"
+
+msgid "Active Port"
+msgstr "بندر فعال"
+
+msgid "Inactive Port"
+msgstr "بندر غیرفعال"
+
+msgid "Transit Route"
+msgstr "مسیر ترانزیتی"
+
+msgid "Conflict Zone"
+msgstr "منطقه درگیری"
+
+msgid "Free Trade Zone"
+msgstr "منطقه آزاد تجاری"
+
+#: manage_sessions.html
+msgid "Session Management"
+msgstr "مدیریت نشست‌ها"
+
+msgid "Active Devices Management"
+msgstr "مدیریت دستگاه‌های فعال"
+
+msgid "View and manage devices logged into your account"
+msgstr "مشاهده و مدیریت دستگاه‌های وارد شده به حساب شما"
+
+msgid "on"
+msgstr "روی"
+
+msgid "Current Device"
+msgstr "دستگاه فعلی"
+
+msgid "Last Activity:"
+msgstr "آخرین فعالیت:"
+
+msgid "Log Out Device"
+msgstr "خروج از دستگاه"
+
+msgid "Log Out All Devices (except current device)"
+msgstr "خروج از تمام دستگاه‌ها (به جز دستگاه فعلی)"
+
+msgid "No sessions found"
+msgstr "هیچ نشستی یافت نشد"
+
+msgid "No active devices found."
+msgstr "هیچ دستگاه فعالی یافت نشد."
+
+msgid "Security Tips:"
+msgstr "نکات امنیتی:"
+
+msgid "Regularly check your active devices"
+msgstr "به طور منظم دستگاه‌های فعال خود را بررسی کنید"
+
+msgid "If you see an unknown device, log it out immediately"
+msgstr "اگر دستگاه ناشناسی دیدید، فوراً از آن خارج شوید"
+
+msgid "Always log out after using public devices"
+msgstr "پس از استفاده از دستگاه‌های عمومی همیشه خارج شوید"
+
+msgid "Enable two-factor authentication"
+msgstr "احراز هویت دو مرحله‌ای را فعال کنید"
+
+#: my_documents.html
+msgid "My Verified Documents"
+msgstr "مدارک تأیید شده من"
+
+msgid "Back to Profile"
+msgstr "بازگشت به پروفایل"
+
+msgid "Premium Level 1 - Verified"
+msgstr "سطح ویژه ۱ - تأیید شده"
+
+msgid "Your identity has been verified. All documents are confirmed."
+msgstr "هویت شما تأیید شده است. تمامی مدارک تأیید شده‌اند."
+
+msgid "Verified Since:"
+msgstr "تأیید شده از:"
+
+msgid "Trust Score Bonus:"
+msgstr "امتیاز اعتماد اضافه:"
+
+msgid "Points"
+msgstr "امتیاز"
+
+msgid "Under Review"
+msgstr "در حال بررسی"
+
+msgid "Admin is reviewing your documents. This usually takes 24-48 hours."
+msgstr "مدیریت در حال بررسی مدارک شماست. این فرآیند معمولاً ۲۴ تا ۴۸ ساعت طول می‌کشد."
+
+msgid "Request Rejected"
+msgstr "درخواست رد شد"
+
+msgid "Please contact support for more information."
+msgstr "لطفاً برای اطلاعات بیشتر با پشتیبانی تماس بگیرید."
+
+msgid "Uploaded Documents"
+msgstr "مدارک آپلود شده"
+
+msgid "Passport Copy"
+msgstr "کپی گذرنامه"
+
+msgid "Uploaded:"
+msgstr "آپلود شده در:"
+
+msgid "View"
+msgstr "مشاهده"
+
+msgid "Not Uploaded"
+msgstr "آپلود نشده"
+
+msgid "Company License"
+msgstr "جواز کسب / ثبت شرکت"
+
+msgid "Payment Receipt"
+msgstr "رسید پرداخت"
+
+msgid "Admin Notes"
+msgstr "یادداشت‌های مدیریت"
+
+msgid "Submitted:"
+msgstr "ارسال شده در:"
+
+msgid "Reviewed:"
+msgstr "بررسی شده در:"
+
+#: login.html
+msgid "Login to your account"
+msgstr "ورود به حساب کاربری"
+
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+msgid "Log in to the Metisma platform"
+msgstr "ورود به پلتفرم متیسما"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Enter your email"
+msgstr "ایمیل خود را وارد کنید"
+
+msgid "Password"
+msgstr "رمز عبور"
+
+msgid "Enter your password"
+msgstr "رمز عبور خود را وارد کنید"
+
+msgid "Remember me"
+msgstr "مرا به خاطر بسپار"
+
+msgid "Forgot password?"
+msgstr "رمز عبور را فراموش کرده‌اید؟"
+
+msgid "Don't have an account?"
+msgstr "حساب کاربری ندارید؟"
+
+msgid "Sign up"
+msgstr "ثبت‌نام"
+
+msgid "⚠️ Security Notice:"
+msgstr "⚠️ اعلان امنیتی:"
+
+msgid "Too many failed attempts will temporarily lock your account."
+msgstr "تلاش‌های ناموفق زیاد، حساب شما را موقتاً قفل می‌کند."
+
+#: following_list.html
+msgid "Following"
+msgstr "دنبال‌شوندگان"
+
+msgid "Back"
+msgstr "بازگشت"
+
+msgid "You are not following anyone yet."
+msgstr "هنوز کسی را دنبال نکرده‌اید."
+
+msgid "Follow"
+msgstr "دنبال کردن"
+
+#: followers_list.html
+msgid "Followers"
+msgstr "دنبال‌کنندگان"
+
+msgid "No followers yet."
+msgstr "هنوز دنبال‌کننده‌ای ندارید."
+
+#: feed.html
+msgid "News Feed"
+msgstr "خوراک خبری"
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Create a New Post"
+msgstr "ایجاد پست جدید"
+
+msgid "What's on your mind?"
+msgstr "چه چیزی در ذهن دارید؟"
+
+msgid "Visibility"
+msgstr "محدوده مشاهده"
+
+msgid "Public"
+msgstr "عمومی"
+
+msgid "Followers Only"
+msgstr "فقط دنبال‌کنندگان"
+
+msgid "Private"
+msgstr "خصوصی"
+
+msgid "Add Media"
+msgstr "افزودن رسانه"
+
+msgid "You can tag products and add files or images."
+msgstr "می‌توانید محصولات را تگ کرده و فایل یا تصویر اضافه کنید."
+
+msgid "Publish Post"
+msgstr "انتشار پست"
+
+msgid "No posts in your feed yet."
+msgstr "هنوز پستی در خوراک خبری شما نیست."
+
+msgid "Explore Users"
+msgstr "کاوش کاربران"
 
 msgid "Your Trust Score"
 msgstr "امتیاز اعتماد شما"
 
-msgid "Trust Level"
-msgstr "سطح اعتماد"
+msgid "Complete your profile to increase your score."
+msgstr "برای افزایش امتیاز، پروفایل خود را تکمیل کنید."
 
-msgid "Bronze"
-msgstr "برنز"
+#: forgot_password.html
+msgid "Forgot Password"
+msgstr "فراموشی رمز عبور"
 
-msgid "Silver"
-msgstr "نقره‌ای"
+msgid "Enter your email to receive a reset link"
+msgstr "برای دریافت لینک بازیابی، ایمیل خود را وارد کنید"
 
-msgid "Gold"
-msgstr "طلایی"
+msgid "Enter your registered email"
+msgstr "ایمیل ثبت‌نام شده خود را وارد کنید"
 
-msgid "Platinum"
-msgstr "پلاتینیوم"
+msgid "Send Reset Link"
+msgstr "ارسال لینک بازیابی"
 
-msgid "Newcomer"
-msgstr "تازه‌وارد"
+msgid "Remember your password?"
+msgstr "رمز عبور خود را به یاد دارید؟"
 
-msgid "Identity Verification"
-msgstr "تأیید هویت"
+msgid "Back to Login"
+msgstr "بازگشت به صفحه ورود"
 
-msgid "Expertise Verification"
-msgstr "تأیید تخصص"
+msgid "💡 Tip:"
+msgstr "💡 نکته:"
 
-msgid "Social Credibility"
-msgstr "اعتبار اجتماعی"
+msgid "If you don't receive an email, check your Spam folder or contact support."
+msgstr "اگر ایمیلی دریافت نکردید، پوشه اسپم را بررسی کنید یا با پشتیبانی تماس بگیرید."
 
-msgid "Dynamic Score"
-msgstr "امتیاز پویا"
+msgid "🔒 Security:"
+msgstr "🔒 امنیت:"
+
+msgid "For your protection, password reset links expire after 1 hour."
+msgstr "برای حفاظت از شما، لینک‌های بازیابی رمز عبور پس از ۱ ساعت منقضی می‌شوند."
+
+#: chat.html
+msgid "Chat"
+msgstr "چت"
+
+msgid "Premium Feature"
+msgstr "ویژگی ویژه"
+
+msgid "Only premium users can access the chat system."
+msgstr "فقط کاربران ویژه می‌توانند به سیستم چت دسترسی داشته باشند."
+
+msgid "Upgrade to Premium"
+msgstr "ارتقا به ویژه"
+
+msgid "Contacts"
+msgstr "مخاطبین"
+
+msgid "Contact"
+msgstr "ارتباط"
+
+msgid "Return to Profile"
+msgstr "بازگشت به پروفایل"
+
+msgid "Premium Contact"
+msgstr "مخاطب ویژه"
+
+msgid "No messages yet. Start the conversation!"
+msgstr "هنوز پیامی وجود ندارد. مکالمه را شروع کنید!"
+
+msgid "Type your message..."
+msgstr "پیام خود را بنویسید..."
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "Select a Contact"
+msgstr "انتخاب مخاطب"
+
+msgid "To start a chat, select a specific contact from the list."
+msgstr "برای شروع چت، یک مخاطب خاص را از لیست انتخاب کنید."
+
+#: dashboard.html
+msgid "Dashboard"
+msgstr "داشبورد"
+
+msgid "Return to Profile"
+msgstr "بازگشت به پروفایل"
+
+msgid "Manage Permissions"
+msgstr "مدیریت دسترسی‌ها"
+
+msgid "Premium Member"
+msgstr "عضو ویژه"
+
+msgid "Identity Verified"
+msgstr "هویت تأیید شده"
+
+msgid "View Documents"
+msgstr "مشاهده مدارک"
+
+msgid "Under Review"
+msgstr "در حال بررسی"
+
+msgid "View Status"
+msgstr "مشاهده وضعیت"
+
+msgid "Documents Required"
+msgstr "مدارک مورد نیاز"
+
+msgid "Start Process"
+msgstr "شروع فرآیند"
+
+msgid "Edit Profile"
+msgstr "ویرایش پروفایل"
+
+msgid "My Documents"
+msgstr "مدارک من"
+
+msgid "Access Permissions Management"
+msgstr "مدیریت دسترسی‌ها"
+
+msgid "Configure modular access for different users based on role and services"
+msgstr "پیکربندی دسترسی‌های ماژولار برای کاربران مختلف بر اساس نقش‌ها و خدمات"
+
+msgid "Orders"
+msgstr "سفارش‌ها"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "View and manage your trade orders."
+msgstr "مشاهده و مدیریت سفارش‌های تجاری خود."
+
+msgid "View Orders →"
+msgstr "مشاهده سفارش‌ها ←"
+
+msgid "Manage Orders"
+msgstr "مدیریت سفارش‌ها"
+
+msgid "Process incoming orders from buyers."
+msgstr "پردازش سفارش‌های دریافتی از خریداران."
+
+msgid "Manage →"
+msgstr "مدیریت ←"
+
+msgid "Smart Chat"
+msgstr "چت هوشمند"
+
+msgid "Connect with verified traders worldwide."
+msgstr "اتصال به تجار تأییدشده در سراسر جهان."
+
+msgid "Open Chat →"
+msgstr "باز کردن چت ←"
+
+msgid "Premium feature: Chat with verified traders."
+msgstr "ویژه: چت با تجار تأییدشده."
+
+msgid "Unlock →"
+msgstr "فعال‌سازی ←"
+
+msgid "Support"
+msgstr "پشتیبانی"
+
+msgid "Get help from our expert team."
+msgstr "دریافت کمک از تیم متخصص ما."
+
+msgid "Contact Support →"
+msgstr "تماس با پشتیبانی ←"
+
+msgid "Port Finder"
+msgstr "جستجوگر بندر"
+
+msgid "Find optimal ports for your shipments."
+msgstr "یافتن بنادر بهینه برای محموله‌های شما."
+
+msgid "Open Map →"
+msgstr "باز کردن نقشه ←"
+
+msgid "Premium: Interactive port & vessel tracking."
+msgstr "ویژه: ردیابی تعاملی بنادر و شناورها."
+
+msgid "Start Premium Journey"
+msgstr "شروع سفر ویژه"
+
+msgid "Upload documents, get verified & unlock all features (Premium Level 1)"
+msgstr "مدارک را آپلود کنید، تأیید شوید و به تمام ویژگی‌ها دسترسی پیدا کنید (سطح ویژه ۱)"
+
+msgid "Start Premium"
+msgstr "شروع ویژه"
+
+msgid "You're a Premium Member! 🌟"
+msgstr "شما یک عضو ویژه هستید! 🌟"
+
+msgid "Enjoy unlimited access to all Metisma features."
+msgstr "از دسترسی نامحدود به تمام ویژگی‌های متیسما لذت ببرید."
+
+msgid "Sign Out"
+msgstr "خروج"
+
+#: explore.html
+msgid "Explore"
+msgstr "کاوش"
+
+msgid "Featured Posts"
+msgstr "پست‌های ویژه"
+
+msgid "No posts published yet"
+msgstr "هنوز پستی منتشر نشده است"
+
+msgid "Suggested Users"
+msgstr "کاربران پیشنهادی"
+
+msgid "View Profile"
+msgstr "مشاهده پروفایل"
+
+msgid "Login to Connect"
+msgstr "ورود برای اتصال"
+
+msgid "No users found"
+msgstr "کاربری یافت نشد"
+
+msgid "Your Trust Score"
+msgstr "امتیاز اعتماد شما"
+
+msgid "High Trust"
+msgstr "اعتماد بالا"
+
+msgid "Medium Trust"
+msgstr "اعتماد متوسط"
+
+msgid "Low Trust"
+msgstr "اعتماد پایین"
+
+msgid "Trending Tags"
+msgstr "برچسب‌های پرطرفدار"
+
+msgid "Products"
+msgstr "محصولات"
+
+msgid "Trading"
+msgstr "تجارت"
+
+msgid "Exhibition"
+msgstr "نمایشگاه"
+
+msgid "Market"
+msgstr "بازار"
+
+msgid "New"
+msgstr "جدید"
+
+#: enable_2fa.html
+msgid "Enable Two-Factor Authentication"
+msgstr "فعال‌سازی احراز هویت دو مرحله‌ای"
+
+msgid "Increase your account security with two-factor authentication"
+msgstr "امنیت حساب خود را با احراز هویت دو مرحله‌ای افزایش دهید"
+
+msgid "Step 1: Scan QR Code"
+msgstr "مرحله ۱: اسکن کد QR"
+
+msgid "Install Google Authenticator or Authy app"
+msgstr "نصب برنامه Google Authenticator یا Authy"
+
+msgid "Scan the QR code above"
+msgstr "اسکن کد QR بالا"
+
+msgid "Or enter the code below manually:"
+msgstr "یا کد زیر را دستی وارد کنید:"
+
+msgid "Step 2: Verify Code"
+msgstr "مرحله ۲: تأیید کد"
+
+msgid "6-digit verification code"
+msgstr "کد تأیید ۶ رقمی"
+
+msgid "Enter the 6-digit code displayed in the app"
+msgstr "کد ۶ رقمی نمایش داده شده در برنامه را وارد کنید"
+
+msgid "Tip:"
+msgstr "نکته:"
+
+msgid "After activation, store backup codes in a secure location. These codes are used for emergencies."
+msgstr "پس از فعال‌سازی، کدهای پشتیبان را در مکانی امن ذخیره کنید. این کدها برای مواقع اضطراری استفاده می‌شوند."
+
+msgid "Cancel and return to profile"
+msgstr "لغو و بازگشت به پروفایل"
+
+#: create_post.html
+msgid "Create Post"
+msgstr "ایجاد پست"
+
+msgid "Back to Feed"
+msgstr "بازگشت به خوراک خبری"
+
+msgid "What's on your mind?"
+msgstr "چه چیزی در ذهن دارید؟"
+
+msgid "Type your post content here..."
+msgstr "محتوای پست خود را اینجا بنویسید..."
+
+msgid "characters"
+msgstr "کاراکتر"
+
+msgid "Visibility"
+msgstr "محدوده مشاهده"
+
+msgid "Public"
+msgstr "عمومی"
+
+msgid "Followers Only"
+msgstr "فقط دنبال‌کنندگان"
+
+msgid "Private"
+msgstr "خصوصی"
+
+msgid "Add Media"
+msgstr "افزودن رسانه"
+
+msgid "Upload images or files"
+msgstr "آپلود تصاویر یا فایل‌ها"
+
+msgid "or"
+msgstr "یا"
+
+msgid "attach documents"
+msgstr "پیوست اسناد"
+
+msgid "Tags"
+msgstr "برچسب‌ها"
+
+msgid "Tag Products"
+msgstr "تگ محصولات"
+
+msgid "Tag Companies"
+msgstr "تگ شرکت‌ها"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Publish Post"
+msgstr "انتشار پست"
+
+#: view_premium_request.html
+msgid "Upgrade Request Details"
+msgstr "جزئیات درخواست ارتقا"
+
+msgid "Back to Requests"
+msgstr "بازگشت به درخواست‌ها"
+
+msgid "User Information"
+msgstr "اطلاعات کاربر"
+
+msgid "Username:"
+msgstr "نام کاربری:"
+
+msgid "Email:"
+msgstr "ایمیل:"
+
+msgid "Company:"
+msgstr "شرکت:"
+
+msgid "Country:"
+msgstr "کشور:"
+
+msgid "Phone for Verification:"
+msgstr "شماره تلفن برای تأیید:"
+
+msgid "Current Tier:"
+msgstr "سطح فعلی:"
+
+msgid "Trust Score:"
+msgstr "امتیاز اعتماد:"
+
+msgid "Step Verification Status"
+msgstr "وضعیت تأیید مراحل"
+
+msgid "Mobile Verification"
+msgstr "تأیید شماره موبایل"
+
+msgid "Confirmed"
+msgstr "تأیید شده"
+
+msgid "Not Verified"
+msgstr "تأیید نشده"
+
+msgid "Email Verification"
+msgstr "تأیید ایمیل"
+
+msgid "Payment"
+msgstr "پرداخت"
+
+msgid "Paid"
+msgstr "پرداخت شده"
+
+msgid "Not Paid"
+msgstr "پرداخت نشده"
+
+msgid "Overall Status"
+msgstr "وضعیت کلی"
+
+msgid "Awaiting Review"
+msgstr "در انتظار بررسی"
+
+msgid "Approved"
+msgstr "تأیید شده"
+
+msgid "Rejected"
+msgstr "رد شده"
+
+msgid "Uploaded Documents"
+msgstr "مدارک آپلود شده"
+
+msgid "Passport Copy"
+msgstr "کپی گذرنامه"
+
+msgid "View File →"
+msgstr "مشاهده فایل ←"
+
+msgid "Not Uploaded"
+msgstr "آپلود نشده"
+
+msgid "Company License"
+msgstr "جواز کسب"
+
+msgid "Payment Receipt"
+msgstr "رسید پرداخت"
+
+msgid "Submitted:"
+msgstr "ارسال شده در:"
+
+msgid "Reviewed:"
+msgstr "بررسی شده در:"
+
+msgid "Confirm Request"
+msgstr "تأیید درخواست"
+
+msgid "Reject Request"
+msgstr "رد درخواست"
+
+#: view_all_documents.html
+msgid "User Documents - Admin"
+msgstr "مدارک کاربران - مدیریت"
+
+msgid "Back to Admin Dashboard"
+msgstr "بازگشت به داشبورد مدیریت"
+
+msgid "User Documents"
+msgstr "مدارک کاربران"
+
+msgid "Pending Review"
+msgstr "در انتظار بررسی"
+
+msgid "All"
+msgstr "همه"
+
+msgid "User"
+msgstr "کاربر"
+
+msgid "Role"
+msgstr "نقش"
+
+msgid "Number of Documents"
+msgstr "تعداد مدارک"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Membership Date"
+msgstr "تاریخ عضویت"
+
+msgid "Actions"
+msgstr "عملیات"
+
+msgid "Documents"
+msgstr "مدارک"
+
+msgid "No user found with this status."
+msgstr "کاربری با این وضعیت یافت نشد."
+
+msgid "Page"
+msgstr "صفحه"
+
+msgid "of"
+msgstr "از"
+
+msgid "Previous"
+msgstr "قبلی"
+
+msgid "Next"
+msgstr "بعدی"
+
+#: premium_requests.html
+msgid "Premium Upgrade Requests"
+msgstr "درخواست‌های ارتقای ویژه"
+
+msgid "Phone"
+msgstr "تلفن"
+
+msgid "No requests found."
+msgstr "هیچ درخواستی یافت نشد."
+
+msgid "View"
+msgstr "مشاهده"
+
+msgid "Approve"
+msgstr "تأیید"
+
+msgid "Reject"
+msgstr "رد"
+
+#: view_user_documents.html
+msgid "View User Documents"
+msgstr "مشاهده مدارک کاربر"
+
+msgid "Documents of User"
+msgstr "مدارک کاربر"
+
+msgid "Back to User Management"
+msgstr "بازگشت به مدیریت کاربران"
+
+msgid "Verification Status:"
+msgstr "وضعیت تأیید:"
+
+msgid "Pending Review"
+msgstr "در انتظار بررسی"
+
+msgid "List of Uploaded Documents"
+msgstr "لیست مدارک آپلود شده"
+
+msgid "Passport"
+msgstr "گذرنامه"
+
+msgid "ID Card"
+msgstr "کارت شناسایی"
+
+msgid "Other Documents"
+msgstr "سایر مدارک"
+
+msgid "View File"
+msgstr "مشاهده فایل"
+
+msgid "No document has been uploaded"
+msgstr "هیچ مدرکی آپلود نشده است"
+
+msgid "Approve Documents"
+msgstr "تأیید مدارک"
+
+msgid "Reject Documents"
+msgstr "رد مدارک"
+
+msgid "This user's documents have already been approved"
+msgstr "مدارک این کاربر پیش‌تر تأیید شده‌اند"
+
+#: permission_dashboard.html
+msgid "Permissions and Access Management Dashboard"
+msgstr "داشبورد مدیریت دسترسی‌ها و مجوزها"
+
+msgid "Professional centralized management of roles, permissions and user access"
+msgstr "مدیریت متمرکز و حرفه‌ای نقش‌ها، مجوزها و دسترسی کاربران"
+
+msgid "Active User Roles"
+msgstr "نقش‌های فعال کاربری"
+
+msgid "Defined Permissions"
+msgstr "مجوزهای تعریف‌شده"
+
+msgid "Registered Users"
+msgstr "کاربران ثبت‌نام‌شده"
+
+msgid "Active Systems"
+msgstr "سیستم‌های فعال"
+
+msgid "Role Access Matrix"
+msgstr "ماتریس دسترسی نقش‌ها"
+
+msgid "Special User Management"
+msgstr "مدیریت کاربران ویژه"
+
+msgid "User Menu Preview"
+msgstr "پیش‌نمایش منوی کاربر"
+
+msgid "Default Role Access Table"
+msgstr "جدول دسترسی پیش‌فرض نقش‌ها"
+
+msgid "Guide:"
+msgstr "راهنما:"
+
+msgid "indicates authorized access and ❌"
+msgstr "نشان‌دهنده دسترسی مجاز و ❌"
+
+msgid "indicates no access. Use the buttons below the table to edit each role's access."
+msgstr "نشان‌دهنده عدم دسترسی است. از دکمه‌های زیر جدول برای ویرایش دسترسی هر نقش استفاده کنید."
+
+msgid "Permission / Role"
+msgstr "مجوز / نقش"
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Grant Exceptional Permission to User"
+msgstr "اعطای مجوز استثنایی به کاربر"
+
+msgid "Select User:"
+msgstr "انتخاب کاربر:"
+
+msgid "Select a user"
+msgstr "انتخاب یک کاربر"
+
+msgid "Application:"
+msgstr "کاربرد:"
+
+msgid "Use this section to grant special permissions to special users. These permissions are exceptionally added to the role's default access and have higher priority."
+msgstr "از این بخش برای اعطای مجوزهای ویژه به کاربران خاص استفاده کنید. این مجوزها به صورت استثنایی به دسترسی پیش‌فرض نقش اضافه شده و اولویت بالاتری دارند."
+
+msgid "Important Points:"
+msgstr "نکات مهم:"
+
+msgid "Custom permissions have priority over role permissions"
+msgstr "مجوزهای سفارشی نسبت به مجوزهای نقش اولویت دارند"
+
+msgid "To delete custom permission, refer to user management page"
+msgstr "برای حذف مجوز سفارشی، به صفحه مدیریت کاربران مراجعه کنید"
+
+msgid "Changes are applied immediately"
+msgstr "تغییرات بلافاصله اعمال می‌شوند"
+
+msgid "Manage Permissions"
+msgstr "مدیریت دسترسی‌ها"
+
+msgid "Custom Access Statistics"
+msgstr "آمار دسترسی‌های سفارشی"
+
+msgid "In this section you can view and manage users who have custom permissions."
+msgstr "در این بخش می‌توانید کاربرانی که مجوزهای سفارشی دارند را مشاهده و مدیریت کنید."
+
+msgid "Total Users"
+msgstr "کل کاربران"
+
+msgid "With custom permission"
+msgstr "دارای مجوز سفارشی"
+
+msgid "View List of special users"
+msgstr "مشاهده لیست کاربران ویژه"
+
+msgid "Preview of services visible to user"
+msgstr "پیش‌نمایش خدمات قابل مشاهده برای کاربر"
+
+msgid "In this section you can see a preview of modules and services that a specific user can view. This tool is very useful for testing and verifying permission settings."
+msgstr "در این بخش می‌توانید پیش‌نمایشی از ماژول‌ها و خدماتی که یک کاربر خاص می‌تواند مشاهده کند را ببینید. این ابزار برای آزمایش و تأیید تنظیمات مجوز بسیار مفید است."
+
+msgid "Select user for preview:"
+msgstr "انتخاب کاربر برای پیش‌نمایش:"
+
+msgid "Load Preview"
+msgstr "بارگذاری پیش‌نمایش"
+
+msgid "Note:"
+msgstr "توجه:"
+
+msgid "The preview is displayed based on the user's role permissions plus any granted custom permissions."
+msgstr "پیش‌نمایش بر اساس مجوزهای نقش کاربر به همراه هرگونه مجوز سفارشی اعطا شده نمایش داده می‌شود."
+
+msgid "Visible Modules:"
+msgstr "ماژول‌های قابل مشاهده:"
+
+msgid "To view preview, select a user and click the load button."
+msgstr "برای مشاهده پیش‌نمایش، یک کاربر را انتخاب و دکمه بارگذاری را کلیک کنید."
+
+# Persian translations for Metisma Admin Panel
+# Copyright (C) 2026 Metisma
+# This file is distributed under the same license as the Metisma package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Metisma 1.0\n"
+"POT-Creation-Date: 2026-05-30 23:00+0000\n"
+"PO-Revision-Date: 2026-05-30 23:00+0000\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: dashboard.html
+msgid "Admin Dashboard"
+msgstr "داشبورد مدیریت"
+
+msgid "new notifications"
+msgstr "اعلان جدید"
+
+msgid "View All"
+msgstr "مشاهده همه"
+
+msgid "Total Users"
+msgstr "کل کاربران"
+
+msgid "Premium Requests"
+msgstr "درخواست‌های ویژه"
+
+msgid "Awaiting Review"
+msgstr "در انتظار بررسی"
+
+msgid "Pending Documents"
+msgstr "مدارک در انتظار"
+
+msgid "Quick Actions"
+msgstr "دسترسی سریع"
+
+msgid "User Management"
+msgstr "مدیریت کاربران"
+
+msgid "User Documents"
+msgstr "مدارک کاربران"
+
+msgid "Permission Management"
+msgstr "مدیریت دسترسی‌ها"
+
+msgid "Admin Chat"
+msgstr "چت مدیریت"
+
+#: edit_role_perms.html
+msgid "Edit Role Permissions"
+msgstr "ویرایش دسترسی‌های نقش"
+
+msgid "Configure permissions for this role. Changes will affect all users with this role."
+msgstr "دسترسی‌های این نقش را پیکربندی کنید. تغییرات بر تمام کاربران با این نقش تأثیر می‌گذارد."
+
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
+
+msgid "Order Management"
+msgstr "مدیریت سفارشات"
+
+msgid "Logistics"
+msgstr "لجستیک"
+
+msgid "Trade & Finance"
+msgstr "تجارت و امور مالی"
+
+msgid "TRADE & FINANCE"
+msgstr "تجارت و امور مالی"
+
+msgid "Legal Affairs"
+msgstr "امور حقوقی"
+
+msgid "Finance"
+msgstr "امور مالی"
+
+msgid "Investment"
+msgstr "سرمایه‌گذاری"
+
+msgid "Technical Inspection"
+msgstr "بازرسی فنی"
+
+msgid "Dashboard"
+msgstr "داشبورد"
+
+msgid "Profile"
+msgstr "پروفایل"
+
+msgid "Public Access"
+msgstr "دسترسی عمومی"
+
+msgid "Select All"
+msgstr "انتخاب همه"
+
+msgid "Active permissions selected"
+msgstr "دسترسی فعال انتخاب شده"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+
+msgid "Important Notice:"
+msgstr "نکته مهم:"
+
+msgid "These changes will affect all users who have the role"
+msgstr "این تغییرات بر تمام کاربرانی که نقش را دارند تأثیر می‌گذارد"
+
+msgid "If custom permissions are defined for a user, those will take precedence."
+msgstr "اگر دسترسی‌های سفارشی برای کاربری تعریف شده باشد، آن‌ها اولویت خواهند داشت."
+
+#: manage_user_perms.html
+msgid "Manage User Permissions"
+msgstr "مدیریت دسترسی‌های کاربر"
+
+msgid "Back to Panel"
+msgstr "بازگشت به پنل"
+
+msgid "User Information"
+msgstr "اطلاعات کاربر"
+
+msgid "Username:"
+msgstr "نام کاربری:"
+
+msgid "Role:"
+msgstr "نقش:"
+
+msgid "Email:"
+msgstr "ایمیل:"
+
+msgid "Membership Date:"
+msgstr "تاریخ عضویت:"
+
+msgid "Manage Custom Permissions"
+msgstr "مدیریت دسترسی‌های سفارشی"
+
+msgid "In this section, you can exceptionally grant permissions to the user or revoke their default permissions."
+msgstr "در این بخش می‌توانید به صورت استثنایی دسترسی‌هایی را به کاربر اعطا یا دسترسی‌های پیش‌فرض او را لغو کنید."
+
+msgid "Select Permission..."
+msgstr "انتخاب دسترسی..."
+
+msgid "Grant Permission"
+msgstr "اعطای دسترسی"
+
+msgid "Revoke Permission"
+msgstr "لغو دسترسی"
+
+msgid "Current Custom Permissions"
+msgstr "دسترسی‌های سفارشی فعلی"
+
+msgid "Remove"
+msgstr "حذف"
+
+msgid "No custom permissions registered for this user."
+msgstr "هیچ دسترسی سفارشی برای این کاربر ثبت نشده است."
+
+msgid "Final Access Preview"
+msgstr "پیش‌نمایش دسترسی نهایی"
+
+msgid "After saving changes, the user will have access to the following permissions:"
+msgstr "پس از ذخیره تغییرات، کاربر به دسترسی‌های زیر خواهد داشت:"
+
+msgid "No permissions defined."
+msgstr "هیچ دسترسی‌ای تعریف نشده است."
+
+msgid "Total Permissions:"
+msgstr "کل دسترسی‌ها:"
+
+#: login.html (Admin)
+msgid "Admin Login"
+msgstr "ورود مدیریت"
+
+msgid "Admin Panel"
+msgstr "پنل مدیریت"
+
+msgid "Restricted access for administrators only"
+msgstr "دسترسی محدود فقط برای مدیران"
+
+msgid "Password"
+msgstr "رمز عبور"
+
+msgid "Login to Admin Panel"
+msgstr "ورود به پنل مدیریت"
+
+msgid "Return to Main Page"
+msgstr "بازگشت به صفحه اصلی"
+
+msgid "All rights reserved."
+msgstr "تمامی حقوق محفوظ است."
+
+#: manage_users.html
+msgid "Back to Admin Dashboard"
+msgstr "بازگشت به داشبورد مدیریت"
+
+msgid "Active (%(num)s)"
+msgstr "فعال (%(num)s)"
+
+msgid "Disabled (%(num)s)"
+msgstr "غیرفعال (%(num)s)"
+
+msgid "All Users"
+msgstr "همه کاربران"
+
+msgid "Username"
+msgstr "نام کاربری"
+
+msgid "Email Verified"
+msgstr "تأیید ایمیل"
+
+msgid "Role"
+msgstr "نقش"
+
+msgid "Premium"
+msgstr "ویژه"
+
+msgid "Documents"
+msgstr "مدارک"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Actions"
+msgstr "عملیات"
 
 msgid "Verified"
 msgstr "تأیید شده"
@@ -212,359 +3271,1499 @@ msgstr "تأیید شده"
 msgid "Not Verified"
 msgstr "تأیید نشده"
 
-msgid "Pending Verification"
-msgstr "در انتظار تأیید"
+msgid "Yes"
+msgstr "بله"
 
-# Messages & Notifications
-msgid "Success"
-msgstr "موفقیت"
+msgid "No"
+msgstr "خیر"
 
-msgid "Error"
-msgstr "خطا"
+msgid "View Documents"
+msgstr "مشاهده مدارک"
 
-msgid "Warning"
-msgstr "هشدار"
+msgid "No Documents"
+msgstr "بدون مدرک"
 
-msgid "Info"
-msgstr "اطلاعات"
+msgid "Active"
+msgstr "فعال"
 
-msgid "Please login first."
-msgstr "لطفاً ابتدا وارد شوید."
+msgid "Disabled"
+msgstr "غیرفعال"
 
-msgid "Access denied."
-msgstr "دسترسی غیرمجاز."
+msgid "Remove Premium"
+msgstr "لغو ویژه"
 
-msgid "Invalid credentials."
-msgstr "اطلاعات ورود نامعتبر است."
+msgid "Make Premium"
+msgstr "تبدیل به ویژه"
 
-msgid "Account created successfully."
-msgstr "حساب کاربری با موفقیت ایجاد شد."
+msgid "Disable"
+msgstr "غیرفعال کردن"
 
-msgid "Profile updated successfully."
-msgstr "پروفایل با موفقیت به‌روزرسانی شد."
+msgid "Activate"
+msgstr "فعال کردن"
 
-msgid "Documents uploaded successfully."
-msgstr "مدارک با موفقیت آپلود شدند."
+msgid "You"
+msgstr "شما"
 
-msgid "File type not allowed."
-msgstr "نوع فایل مجاز نیست."
+msgid "No users found."
+msgstr "کاربری یافت نشد."
 
-msgid "File size exceeds limit."
-msgstr "حجم فایل از حد مجاز بیشتر است."
+msgid "Previous"
+msgstr "قبلی"
 
-msgid "Password reset link sent to your email."
-msgstr "لینک بازنشانی رمز عبور به ایمیل شما ارسال شد."
+msgid "Next"
+msgstr "بعدی"
 
-msgid "Old password is incorrect."
-msgstr "رمز عبور قدیمی نادرست است."
+#: chat_with_user.html
+msgid "Chat with %(username)s"
+msgstr "چت با %(username)s"
 
-msgid "Passwords do not match."
-msgstr "رمزهای عبور مطابقت ندارند."
+msgid "Active"
+msgstr "فعال"
 
-msgid "Username already exists."
-msgstr "نام کاربری قبلاً گرفته شده است."
+msgid "Disabled"
+msgstr "غیرفعال"
 
-msgid "Email already exists."
-msgstr "ایمیل قبلاً ثبت شده است."
+msgid "Back to Users"
+msgstr "بازگشت به کاربران"
 
-msgid "Too many requests. Please try again later."
-msgstr "درخواست‌های زیادی ارسال شده است. لطفاً بعداً تلاش کنید."
+msgid "● New"
+msgstr "● جدید"
 
-# Forms & Validation
-msgid "Required"
-msgstr "الزامی"
+msgid "No messages yet. Start the conversation!"
+msgstr "هنوز پیامی وجود ندارد. مکالمه را شروع کنید!"
 
-msgid "This field is required."
-msgstr "این فیلد الزامی است."
-
-msgid "Enter a valid email address."
-msgstr "یک آدرس ایمیل معتبر وارد کنید."
-
-msgid "Password must be at least 8 characters."
-msgstr "رمز عبور باید حداقل ۸ کاراکتر باشد."
-
-msgid "Password must contain uppercase, lowercase, and numbers."
-msgstr "رمز عبور باید شامل حروف بزرگ، کوچک و اعداد باشد."
-
-msgid "Please accept the terms and conditions."
-msgstr "لطفاً شرایط و قوانین را بپذیرید."
-
-msgid "I agree to the Terms of Service"
-msgstr "با شرایط خدمات موافقم"
-
-msgid "I agree to the Privacy Policy"
-msgstr "با سیاست حریم خصوصی موافقم"
-
-# Navigation & Menu
-msgid "Home"
-msgstr "خانه"
-
-msgid "Marketplace"
-msgstr "بازار"
-
-msgid "Products"
-msgstr "محصولات"
-
-msgid "Services"
-msgstr "خدمات"
-
-msgid "Consortium"
-msgstr "کنسرسیوم"
-
-msgid "Smart Chat"
-msgstr "چت هوشمند"
-
-msgid "Map"
-msgstr "نقشه"
-
-msgid "Learning"
-msgstr "یادگیری"
-
-msgid "Courses"
-msgstr "دوره‌ها"
-
-msgid "Webinars"
-msgstr "وبینارها"
-
-msgid "CRM"
-msgstr "مدیریت ارتباط با مشتری"
-
-msgid "Leads"
-msgstr "سرنخ‌ها"
-
-msgid "Network"
-msgstr "شبکه"
-
-msgid "Exhibition"
-msgstr "نمایشگاه"
-
-msgid "Trading Hall"
-msgstr "تالار معاملات"
-
-msgid "Magazine"
-msgstr "مجله"
-
-msgid "News"
-msgstr "اخبار"
-
-msgid "Settings"
-msgstr "تنظیمات"
-
-msgid "Help"
-msgstr "راهنما"
-
-msgid "Contact Us"
-msgstr "تماس با ما"
-
-msgid "About Us"
-msgstr "درباره ما"
-
-msgid "Terms of Service"
-msgstr "شرایط خدمات"
-
-msgid "Privacy Policy"
-msgstr "سیاست حریم خصوصی"
-
-# Actions
-msgid "View"
-msgstr "مشاهده"
-
-msgid "Edit"
-msgstr "ویرایش"
-
-msgid "Delete"
-msgstr "حذف"
-
-msgid "Create"
-msgstr "ایجاد"
-
-msgid "Update"
-msgstr "به‌روزرسانی"
-
-msgid "Search"
-msgstr "جستجو"
-
-msgid "Filter"
-msgstr "فیلتر"
-
-msgid "Export"
-msgstr "خروجی"
-
-msgid "Import"
-msgstr "ورود"
-
-msgid "Download"
-msgstr "دانلود"
-
-msgid "Upload"
-msgstr "آپلود"
-
-msgid "Share"
-msgstr "اشتراک‌گذاری"
+msgid "Type your message..."
+msgstr "پیام خود را بنویسید..."
 
 msgid "Send"
 msgstr "ارسال"
 
-msgid "Submit"
-msgstr "ثبت"
+#: create_first_admin.html
+msgid "Create First Admin | Metisma"
+msgstr "ایجاد اولین مدیر | متیسما"
 
-msgid "Apply"
-msgstr "درخواست"
+msgid "Create First Admin"
+msgstr "ایجاد اولین مدیر"
 
-msgid "Accept"
-msgstr "پذیرفتن"
+msgid "Initialize the admin system by creating the first administrator account."
+msgstr "سیستم مدیریت را با ایجاد اولین حساب مدیر راه‌اندازی کنید."
 
-msgid "Reject"
-msgstr "رد کردن"
+msgid "This account will have full access to all system features."
+msgstr "این حساب به تمام ویژگی‌های سیستم دسترسی کامل خواهد داشت."
 
-msgid "Confirm"
-msgstr "تأیید"
+msgid "Important:"
+msgstr "مهم:"
 
-msgid "Approve"
-msgstr "تصویب"
+msgid "This action can only be performed once. Make sure to use secure credentials and store them safely."
+msgstr "این عملیات فقط یک‌بار قابل انجام است. اطمینان حاصل کنید که از اطلاعات ورود امن استفاده کرده و آن‌ها را به طور ایمن ذخیره می‌کنید."
 
-# Time & Dates
-msgid "Today"
-msgstr "امروز"
+msgid "Username"
+msgstr "نام کاربری"
 
-msgid "Yesterday"
-msgstr "دیروز"
+msgid "Email Address"
+msgstr "آدرس ایمیل"
 
-msgid "This Week"
-msgstr "این هفته"
+msgid "Password"
+msgstr "رمز عبور"
 
-msgid "This Month"
-msgstr "این ماه"
+msgid "Confirm Password"
+msgstr "تأیید رمز عبور"
 
-msgid "This Year"
-msgstr "امسال"
+msgid "Create Admin Account"
+msgstr "ایجاد حساب مدیریت"
 
-msgid "Created At"
-msgstr "ایجاد شده در"
+msgid "Password encrypted with bcrypt"
+msgstr "رمز عبور با bcrypt رمزنگاری شده است"
 
-msgid "Updated At"
-msgstr "به‌روزرسانی شده در"
+msgid "Full admin privileges granted"
+msgstr "دسترسی‌های کامل مدیریت اعطا شد"
 
-msgid "Last Login"
-msgstr "آخرین ورود"
+msgid "Activity logged for security"
+msgstr "فعالیت‌ها برای امنیت ثبت می‌شوند"
 
-msgid "Date"
-msgstr "تاریخ"
+msgid "KYC verified automatically"
+msgstr "احراز هویت به صورت خودکار انجام می‌شود"
 
-msgid "Time"
-msgstr "زمان"
+msgid "Already have an admin account?"
+msgstr "قبلاً حساب مدیریت دارید؟"
 
-# Status
-msgid "Active"
-msgstr "فعال"
-
-msgid "Inactive"
-msgstr "غیرفعال"
-
-msgid "Pending"
-msgstr "در انتظار"
-
-msgid "Approved"
-msgstr "تصویب شده"
-
-msgid "Rejected"
-msgstr "رد شده"
-
-msgid "Draft"
-msgstr "پیش‌نویس"
-
-msgid "Published"
-msgstr "منتشر شده"
-
-msgid "Archived"
-msgstr "بایگانی شده"
-
-# Financial
-msgid "Wallet"
-msgstr "کیف پول"
-
-msgid "Balance"
-msgstr "موجودی"
-
-msgid "Transaction"
-msgstr "تراکنش"
-
-msgid "Transactions"
-msgstr "تراکنش‌ها"
-
-msgid "Deposit"
-msgstr "واریز"
-
-msgid "Withdraw"
-msgstr "برداشت"
-
-msgid "Payment"
-msgstr "پرداخت"
-
-msgid "Invoice"
-msgstr "فاکتور"
-
-msgid "Credit"
-msgstr "اعتبار"
-
-msgid "Debit"
-msgstr "بدهی"
-
-msgid "Trade Credit"
-msgstr "اعتبار تجاری"
-
-msgid "Escrow"
-msgstr "امانت"
-
-# Miscellaneous
-msgid "Loading..."
-msgstr "در حال بارگذاری..."
-
-msgid "No results found."
-msgstr "نتیجه‌ای یافت نشد."
-
-msgid "Show more"
-msgstr "نمایش بیشتر"
-
-msgid "Show less"
-msgstr "نمایش کمتر"
-
-msgid "Back to top"
-msgstr "بازگشت به بالا"
-
-msgid "Copyright"
-msgstr "حق کپی‌رایت"
+msgid "Login here"
+msgstr "اینجا وارد شوید"
 
 msgid "All rights reserved."
 msgstr "تمامی حقوق محفوظ است."
 
-msgid "Made with"
-msgstr "ساخته شده با"
+#: chat.html (Admin List)
+msgid "💬 Admin Chat"
+msgstr "💬 چت مدیریت"
 
-msgid "in Iran"
-msgstr "در ایران"
+msgid "Back to Dashboard"
+msgstr "بازگشت به داشبورد"
 
-# Roles Description
-msgid "Producer Description"
-msgstr "تولیدکنندگان کالا و خدمات صادراتی"
+msgid "Select a user to start a conversation. You can chat with all active users."
+msgstr "یک کاربر را برای شروع مکالمه انتخاب کنید. می‌توانید با تمام کاربران فعال چت کنید."
 
-msgid "Buyer Description"
-msgstr "خریداران بین‌المللی و واردکنندگان"
+msgid "Premium"
+msgstr "ویژه"
 
-msgid "Broker Description"
-msgstr "کارگزاران و واسطه‌های تجاری"
+msgid "No active users found."
+msgstr "هیچ کاربر فعالی یافت نشد."
 
-msgid "Corporate Agent Description"
-msgstr "نمایندگان رسمی شرکت‌های بزرگ"
+#: advertisement.html
+msgid "Advertising Request - Imazhe Magazine"
+msgstr "درخواست تبلیغات - مجله ایماژه"
 
-msgid "Logistics Provider Description"
-msgstr "ارائه‌دهندگان خدمات حمل‌ونقل و لجستیک"
+msgid "Advertising Request"
+msgstr "درخواست تبلیغات"
 
-msgid "Legal Advisor Description"
-msgstr "مشاوران حقوقی و قراردادهای بین‌المللی"
+msgid "To register an advertisement in the magazine, complete the form below."
+msgstr "برای ثبت تبلیغ در مجله، فرم زیر را تکمیل کنید."
 
-msgid "Tech Partner Description"
-msgstr "شریک‌های فناوری و پلتفرم‌های دیجیتال"
+msgid "Name and Surname *"
+msgstr "نام و نام خانوادگی *"
 
-msgid "Investor Description"
-msgstr "سرمایه‌گذاران و صندوق‌های سرمایه‌گذاری"
+msgid "Company / Brand"
+msgstr "شرکت / برند"
+
+msgid "Email *"
+msgstr "ایمیل *"
+
+msgid "Phone Number *"
+msgstr "شماره تلفن *"
+
+msgid "Type of Advertisement *"
+msgstr "نوع تبلیغات *"
+
+msgid "Choose..."
+msgstr "انتخاب کنید..."
+
+msgid "Full Page"
+msgstr "تمام صفحه"
+
+msgid "Half Page"
+msgstr "نیم صفحه"
+
+msgid "Quarter Page"
+msgstr "یک چهارم صفحه"
+
+msgid "Back Cover"
+msgstr "پشت جلد"
+
+msgid "Inner Cover"
+msgstr "جلد داخلی"
+
+msgid "Advertising Banner"
+msgstr "بنر تبلیغاتی"
+
+msgid "Ad Size"
+msgstr "اندازه تبلیغ"
+
+msgid "Publication Duration *"
+msgstr "مدت زمان انتشار *"
+
+msgid "1 Issue"
+msgstr "۱ شماره"
+
+msgid "3 Issues"
+msgstr "۳ شماره"
+
+msgid "6 Issues"
+msgstr "۶ شماره"
+
+msgid "Annual (12 Issues)"
+msgstr "سالانه (۱۲ شماره)"
+
+msgid "Message and Description"
+msgstr "پیام و توضیحات"
+
+msgid "Submit Advertising Request"
+msgstr "ثبت درخواست تبلیغ"
+
+msgid "Return to Magazine Home"
+msgstr "بازگشت به صفحه اصلی مجله"
+
+#: sponsorship.html
+msgid "Sponsorship Request - Imazhe Magazine"
+msgstr "درخواست حمایت مالی - مجله ایماژه"
+
+msgid "Request for Sponsorship"
+msgstr "درخواست حمایت مالی"
+
+msgid "To collaborate and sponsor the magazine, complete the form below."
+msgstr "برای همکاری و حمایت مالی از مجله، فرم زیر را تکمیل کنید."
+
+msgid "Company Name"
+msgstr "نام شرکت"
+
+msgid "Submit Sponsorship Request"
+msgstr "ثبت درخواست حمایت مالی"
+
+#: index.html (Magazine)
+msgid "Imazhe Magazine"
+msgstr "مجله ایماژه"
+
+msgid "Specialized reference for domestic and international trade, maritime transport and logistics"
+msgstr "مرجع تخصصی برای تجارت داخلی و بین‌المللی، حمل و نقل دریایی و لجستیک"
+
+msgid "Sponsorship Request"
+msgstr "درخواست حمایت مالی"
+
+msgid "Advertising in the Magazine"
+msgstr "تبلیغات در مجله"
+
+msgid "Annual Subscription"
+msgstr "اشتراک سالانه"
+
+msgid "📚 Published Issues"
+msgstr "📚 شماره‌های منتشر شده"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "Description will be added soon."
+msgstr "توضیحات به زودی اضافه خواهد شد."
+
+msgid "downloads"
+msgstr "دانلود"
+
+msgid "TBD"
+msgstr "به زودی"
+
+msgid "Download Digital Version"
+msgstr "دانلود نسخه دیجیتال"
+
+msgid "📚 No issue has been published yet"
+msgstr "📚 هنوز شماره‌ای منتشر نشده است"
+
+msgid "The first issue of the magazine will be available soon."
+msgstr "اولین شماره مجله به زودی در دسترس خواهد بود."
+
+#: subscribe.html
+msgid "Subscription - Imazhe Magazine"
+msgstr "اشتراک - مجله ایماژه"
+
+msgid "Imazhe Magazine Subscription"
+msgstr "اشتراک مجله ایماژه"
+
+msgid "Choose your subscription plan to receive print and digital editions."
+msgstr "طرح اشتراک خود را برای دریافت نسخه‌های چاپی و دیجیتال انتخاب کنید."
+
+msgid "Tomans"
+msgstr "تومان"
+
+msgid "12 printed issues annually"
+msgstr "۱۲ شماره چاپی در سال"
+
+msgid "Access to digital version"
+msgstr "دسترسی به نسخه دیجیتال"
+
+msgid "Free postage"
+msgstr "ارسال رایگان"
+
+msgid "Special discounts for events"
+msgstr "تخفیف‌های ویژه برای رویدادها"
+
+msgid "Select Plan"
+msgstr "انتخاب طرح"
+
+msgid "Best Value"
+msgstr "بهترین ارزش"
+
+msgid "6-Month Subscription"
+msgstr "اشتراک ۶ ماهه"
+
+msgid "6 printed issues"
+msgstr "۶ شماره چاپی"
+
+msgid "Subscriber Details"
+msgstr "مشخصات مشترک"
+
+msgid "Complete Postal Address *"
+msgstr "آدرس پستی کامل *"
+
+msgid "Complete Subscription"
+msgstr "تکمیل اشتراک"
+
+#: market.html
+msgid "Metisma Trading Hall | Metisma Trading"
+msgstr "تالار معاملات متیسما | معاملات متیسما"
+
+msgid "📊 Metisma Trading Hall"
+msgstr "📊 تالار معاملات متیسما"
+
+msgid "Fast, Secure and Transparent Digital Currency Pair Trading"
+msgstr "معاملات جفت ارز دیجیتال سریع، امن و شفاف"
+
+msgid "24h Volume"
+msgstr "حجم معاملات ۲۴ ساعته"
+
+msgid "24h Trades"
+msgstr "تعداد معاملات ۲۴ ساعته"
+
+msgid "Active Pairs"
+msgstr "جفت‌های فعال"
+
+msgid "Trading Fee"
+msgstr "کارمزد معاملات"
+
+msgid "🔥 Top Performing Pairs"
+msgstr "🔥 جفت‌های برتر عملکرد"
+
+msgid "Trade"
+msgstr "معامله"
+
+msgid "📋 All Markets"
+msgstr "📋 همه بازارها"
+
+msgid "Pair Name"
+msgstr "نام جفت ارز"
+
+msgid "Last Price"
+msgstr "آخرین قیمت"
+
+msgid "24h Change"
+msgstr "تغییر ۲۴ ساعته"
+
+msgid "Action"
+msgstr "عملیات"
+
+msgid "View →"
+msgstr "مشاهده ←"
+
+msgid "Ready to Start Trading?"
+msgstr "آماده شروع معامله هستید؟"
+
+msgid "Create your account now and make your first trade."
+msgstr "همین حالا حساب خود را ایجاد کنید و اولین معامله خود را انجام دهید."
+
+msgid "Go to Wallet"
+msgstr "رفتن به کیف پول"
+
+msgid "Login / Register"
+msgstr "ورود / ثبت‌نام"
+
+#: booth_detail.html
+msgid "Back to Exhibition Hall"
+msgstr "بازگشت به سالن نمایشگاه"
+
+msgid "Featured Booth"
+msgstr "غرفه ویژه"
+
+msgid "Booth #"
+msgstr "غرفه شماره"
+
+msgid "About This Booth"
+msgstr "درباره این غرفه"
+
+msgid "No description available."
+msgstr "توضیحاتی موجود نیست."
+
+msgid "Featured Products"
+msgstr "محصولات برجسته"
+
+msgid "Virtual Tour"
+msgstr "تور مجازی"
+
+msgid "Virtual tour will be available soon."
+msgstr "تور مجازی به زودی در دسترس خواهد بود."
+
+msgid "Contact Information"
+msgstr "اطلاعات تماس"
+
+msgid "Contact information not available."
+msgstr "اطلاعات تماس موجود نیست."
+
+msgid "Book an Appointment"
+msgstr "رزرو وقت ملاقات"
+
+msgid "Select Date & Time"
+msgstr "انتخاب تاریخ و ساعت"
+
+msgid "Message (Optional)"
+msgstr "پیام (اختیاری)"
+
+msgid "Request Appointment"
+msgstr "درخواست ملاقات"
+
+msgid "Available Time Slots:"
+msgstr "ساعات خالی موجود:"
+
+msgid "Quick Actions"
+msgstr "دسترسی سریع"
+
+msgid "Like Booth"
+msgstr "پسندیدن غرفه"
+
+msgid "Share Booth"
+msgstr "اشتراک‌گذاری غرفه"
+
+msgid "Save Booth"
+msgstr "ذخیره غرفه"
+
+msgid "Please log in to interact."
+msgstr "لطفاً برای تعامل وارد شوید."
+
+msgid "Booth Statistics"
+msgstr "آمار غرفه"
+
+msgid "Views:"
+msgstr "بازدیدها:"
+
+msgid "Interactions:"
+msgstr "تعاملات:"
+
+msgid "Leads:"
+msgstr "سرنخ‌ها:"
+
+msgid "Related Booths in This Exhibition"
+msgstr "غرفه‌های مرتبط در این نمایشگاه"
+
+#: hall.html
+msgid "Metisma Online Exhibition | Metisma Exhibition"
+msgstr "نمایشگاه آنلاین متیسما"
+
+msgid "Customer relationship management and trade lead tracking"
+msgstr "مدیریت ارتباط با مشتری و ردیابی سرنخ‌های تجاری"
+
+msgid "Discover Business Opportunities in Interactive Virtual Booths"
+msgstr "کشف فرصت‌های تجاری در غرفه‌های مجازی تعاملی"
+
+msgid "Active Booths"
+msgstr "غرفه‌های فعال"
+
+msgid "Visitors"
+msgstr "بازدیدکنندگان"
+
+msgid "Exhibitions"
+msgstr "نمایشگاه‌ها"
+
+msgid "Featured Booths"
+msgstr "غرفه‌های ویژه"
+
+msgid "Featured"
+msgstr "ویژه"
+
+msgid "views"
+msgstr "بازدید"
+
+msgid "View Booth →"
+msgstr "مشاهده غرفه ←"
+
+msgid "View All Booths →"
+msgstr "مشاهده همه غرفه‌ها ←"
+
+msgid "Active Exhibitions"
+msgstr "نمایشگاه‌های فعال"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Booths"
+msgstr "غرفه‌ها"
+
+msgid "Enter Exhibition →"
+msgstr "ورود به نمایشگاه ←"
+
+msgid "Are You an Exhibitor?"
+msgstr "آیا شما غرفه‌دار هستید؟"
+
+msgid "Create your virtual booth today and connect with thousands of visitors."
+msgstr "همین امروز غرفه مجازی خود را بسازید و با هزاران بازدیدکننده ارتباط برقرار کنید."
+
+msgid "Create New Booth"
+msgstr "ایجاد غرفه جدید"
+
+#: resend_form.html
+msgid "Resend Verification Email"
+msgstr "ارسال مجدد ایمیل تأیید"
+
+msgid "Enter your email address and we'll send you a new verification link."
+msgstr "آدرس ایمیل خود را وارد کنید تا لینک تأیید جدیدی برایتان ارسال کنیم."
+
+msgid "Email Address *"
+msgstr "آدرس ایمیل *"
+
+msgid "Send Verification Email"
+msgstr "ارسال ایمیل تأیید"
+
+msgid "Back to Login"
+msgstr "بازگشت به صفحه ورود"
+
+msgid "Didn't receive the email?"
+msgstr "ایمیل را دریافت نکردید؟"
+
+msgid "Check your spam/junk folder"
+msgstr "پوشه اسپم یا هرزنامه خود را بررسی کنید"
+
+msgid "Make sure your email address is correct"
+msgstr "اطمینان حاصل کنید آدرس ایمیل شما صحیح است"
+
+msgid "Wait a few minutes and try again"
+msgstr "چند دقیقه صبر کنید و مجدداً تلاش کنید"
+
+#: password_reset.html
+msgid "Password Reset - Metisma"
+msgstr "بازیابی رمز عبور - متیسما"
+
+msgid "Password Reset Request"
+msgstr "درخواست بازیابی رمز عبور"
+
+msgid "Metisma - Global Trade Intelligence Platform"
+msgstr "متیسما - پلتفرم هوشمند تجارت جهانی"
+
+msgid "Hello,"
+msgstr "سلام،"
+
+msgid "We received a request to reset your password for your Metisma account. Click the button below to create a new password and regain access to your account."
+msgstr "ما درخواستی برای بازیابی رمز عبور حساب متیسما شما دریافت کردیم. برای ایجاد رمز عبور جدید و دسترسی مجدد به حساب خود، روی دکمه زیر کلیک کنید."
+
+msgid "Reset My Password"
+msgstr "بازیابی رمز عبور من"
+
+msgid "Or copy and paste this link into your browser:"
+msgstr "یا این لینک را در مرورگر خود کپی کنید:"
+
+msgid "Important Security Information:"
+msgstr "اطلاعات امنیتی مهم:"
+
+msgid "This password reset link is only valid for 1 hour."
+msgstr "این لینک بازیابی رمز عبور تنها به مدت ۱ ساعت معتبر است."
+
+msgid "If you didn't request this password reset, please ignore this email."
+msgstr "اگر شما این درخواست را انجام نداده‌اید، لطفاً این ایمیل را نادیده بگیرید."
+
+msgid "For security, you will be logged out of all active sessions after reset."
+msgstr "به دلایل امنیتی، پس از بازیابی از تمام نشست‌های فعال خارج خواهید شد."
+
+msgid "Never share your password with anyone, including Metisma staff."
+msgstr "هرگز رمز عبور خود را با کسی، از جمله کارکنان متیسما، در میان نگذارید."
+
+msgid "Need help? Contact our support team."
+msgstr "نیاز به کمک دارید؟ با تیم پشتیبانی ما تماس بگیرید."
+
+msgid "Global Trade Intelligence Platform. All rights reserved."
+msgstr "پلتفرم هوشمند تجارت جهانی. تمامی حقوق محفوظ است."
+
+#: verify_email.html
+msgid "Verify Your Email - Metisma"
+msgstr "تأیید ایمیل شما - متیسما"
+
+msgid "Verify Your Email"
+msgstr "تأیید ایمیل شما"
+
+msgid "Welcome to Metisma - Global Trade Intelligence Platform"
+msgstr "به متیسما - پلتفرم هوشمند تجارت جهانی خوش آمدید"
+
+msgid "Hello %(username)s!"
+msgstr "سلام %(username)s!"
+
+msgid "Thank you for registering with Metisma. To complete your registration and unlock all platform features, please verify your email address by clicking the button below."
+msgstr "از ثبت‌نام شما در متیسما متشکریم. برای تکمیل ثبت‌نام و فعال‌سازی تمام ویژگی‌های پلتفرم، لطفاً با کلیک روی دکمه زیر، آدرس ایمیل خود را تأیید کنید."
+
+msgid "Verify My Email Address"
+msgstr "تأیید آدرس ایمیل من"
+
+msgid "Important Information:"
+msgstr "اطلاعات مهم:"
+
+msgid "This verification link will expire in 24 hours."
+msgstr "این لینک تأیید ظرف ۲۴ ساعت منقضی خواهد شد."
+
+msgid "If you didn't create this account, please ignore this email."
+msgstr "اگر شما این حساب را ایجاد نکرده‌اید، لطفاً این ایمیل را نادیده بگیرید."
+
+msgid "Email verification unlocks all platform features and capabilities."
+msgstr "تأیید ایمیل، تمام ویژگی‌ها و قابلیت‌های پلتفرم را فعال می‌کند."
+
+msgid "For security reasons, verification is required before login."
+msgstr "به دلایل امنیتی، پیش از ورود به سیستم، تأیید الزامی است."
+
+msgid "Thank you for choosing Metisma."
+msgstr "از انتخاب متیسما سپاسگزاریم."
+
+#: breadcrumb.html
+msgid "Breadcrumb"
+msgstr "مسیر راهنما"
+
+msgid "Current page"
+msgstr "صفحه فعلی"
+
+#: routes.py
+msgid "Please log in first."
+msgstr "لطفاً ابتدا وارد شوید."
+
+msgid "Unauthorized access. This section is for specific roles."
+msgstr "دسترسی غیرمجاز. این بخش مختص نقش‌های خاص است."
+
+msgid "No file selected."
+msgstr "هیچ فایلی انتخاب نشده است."
+
+msgid "File type not allowed (JPG, PNG, GIF, WEBP only)"
+msgstr "نوع فایل مجاز نیست (فقط JPG, PNG, GIF, WEBP)"
+
+msgid "File type not allowed (PDF, PNG, JPG only)"
+msgstr "نوع فایل مجاز نیست (فقط PDF, PNG, JPG)"
+
+msgid "File size must not exceed %(size).0fMB"
+msgstr "حجم فایل نباید بیشتر از %(size).0f مگابایت باشد."
+
+msgid "There is already an admin."
+msgstr "در حال حاضر یک مدیر وجود دارد."
+
+msgid "❌ Please fill in all fields."
+msgstr "❌ لطفاً تمام فیلدها را پر کنید."
+
+msgid "❌ Username must be at least 3 characters long."
+msgstr "❌ نام کاربری باید حداقل ۳ کاراکتر باشد."
+
+msgid "❌ The email address is invalid."
+msgstr "❌ آدرس ایمیل نامعتبر است."
+
+msgid "❌ The password must be at least 8 characters long."
+msgstr "❌ رمز عبور باید حداقل ۸ کاراکتر باشد."
+
+msgid "❌ Username already taken."
+msgstr "❌ نام کاربری قبلاً گرفته شده است."
+
+msgid "❌ Email already used."
+msgstr "❌ این ایمیل قبلاً استفاده شده است."
+
+msgid "✅ The first admin was created successfully. Please log in."
+msgstr "✅ اولین مدیر با موفقیت ایجاد شد. لطفاً وارد شوید."
+
+msgid "❌ An error occurred while creating the admin."
+msgstr "❌ خطایی در ایجاد مدیر رخ داد."
+
+msgid "You already have an account. Please log out first to register a new account."
+msgstr "شما از قبل حساب کاربری دارید. لطفاً ابتدا خارج شوید تا حساب جدیدی ثبت کنید."
+
+msgid "reCAPTCHA verification failed. Please try again."
+msgstr "تأیید reCAPTCHA ناموفق بود. لطفاً مجدداً تلاش کنید."
+
+msgid "Invalid email address."
+msgstr "آدرس ایمیل نامعتبر است."
+
+msgid "Passwords do not match."
+msgstr "رمزهای عبور مطابقت ندارند."
+
+msgid "Password should contain uppercase, lowercase, and numbers for better security."
+msgstr "برای امنیت بیشتر، رمز عبور باید شامل حروف بزرگ، کوچک و اعداد باشد."
+
+msgid "Invalid role selected."
+msgstr "نقش انتخاب‌شده نامعتبر است."
+
+msgid "Invalid phone number."
+msgstr "شماره تلفن نامعتبر است."
+
+msgid "✅ Registration successful! Verification email sent."
+msgstr "✅ ثبت‌نام موفقیت‌آمیز بود! ایمیل تأیید ارسال شد."
+
+msgid "⚠️ Account created but email failed: %(error)s"
+msgstr "⚠️ حساب ایجاد شد اما ارسال ایمیل ناموفق بود: %(error)s"
+
+msgid "⚠️ Account created but email system error: %(error)s"
+msgstr "⚠️ حساب ایجاد شد اما خطای سیستم ایمیل رخ داد: %(error)s"
+
+msgid "❌ Registration error: %(error)s"
+msgstr "❌ خطای ثبت‌نام: %(error)s"
+
+msgid "❌ Your account is locked until %(lock_time)s due to failed attempts."
+msgstr "❌ حساب شما به دلیل تلاش‌های ناموفق تا %(lock_time)s قفل شده است."
+
+msgid "❌ Please verify your email before logging in. Check your inbox for the verification link."
+msgstr "❌ لطفاً پیش از ورود، ایمیل خود را تأیید کنید. صندوق ورودی خود را برای لینک تأیید بررسی کنید."
+
+msgid "✅ Password verified. Please enter your 2FA code."
+msgstr "✅ رمز عبور تأیید شد. لطفاً کد احراز هویت دو مرحله‌ای خود را وارد کنید."
+
+msgid "✅ Welcome!"
+msgstr "✅ خوش آمدید!"
+
+msgid "❌ Your account has been locked for 15 minutes due to too many failed attempts."
+msgstr "❌ حساب شما به دلیل تلاش‌های ناموفق زیاد به مدت ۱۵ دقیقه قفل شد."
+
+msgid "❌ Incorrect email or password. %(attempts)s more attempts before account is locked."
+msgstr "❌ ایمیل یا رمز عبور اشتباه است. %(attempts)s تلاش دیگر پیش از قفل شدن حساب."
+
+msgid "❌ Incorrect email or password."
+msgstr "❌ ایمیل یا رمز عبور اشتباه است."
+
+msgid "❌ %(error)s"
+msgstr "❌ %(error)s"
+
+msgid "✅ Profile picture updated successfully."
+msgstr "✅ عکس پروفایل با موفقیت به‌روز شد."
+
+msgid "✅ Profile updated successfully."
+msgstr "✅ پروفایل با موفقیت به‌روز شد."
+
+msgid "❌ The current password is incorrect."
+msgstr "❌ رمز عبور فعلی نادرست است."
+
+msgid "❌ New password and repeat password do not match."
+msgstr "❌ رمز عبور جدید و تکرار آن مطابقت ندارند."
+
+msgid "⚠️ New password must not be the same as previous password."
+msgstr "⚠️ رمز عبور جدید نباید مشابه رمز قبلی باشد."
+
+msgid "✅ Your password has been changed successfully."
+msgstr "✅ رمز عبور شما با موفقیت تغییر یافت."
+
+msgid "❌ An error occurred while changing the password. Please try again."
+msgstr "❌ خطایی در تغییر رمز عبور رخ داد. لطفاً مجدداً تلاش کنید."
+
+msgid "⚠️ Please check the confirmation checkbox to delete the account."
+msgstr "⚠️ لطفاً برای حذف حساب، کادر تأیید را تیک بزنید."
+
+msgid "🗑️ Your account has been successfully deleted. Thank you for your cooperation."
+msgstr "🗑️ حساب شما با موفقیت حذف شد. از همکاری شما سپاسگزاریم."
+
+msgid "❌ An error occurred while deleting the account. Please contact support."
+msgstr "❌ خطایی در حذف حساب رخ داد. لطفاً با پشتیبانی تماس بگیرید."
+
+msgid "👋 You have successfully logged out."
+msgstr "👋 شما با موفقیت خارج شدید."
+
+msgid "❌ This account is inactive."
+msgstr "❌ این حساب غیرفعال است."
+
+msgid "✅ You have already become a special user."
+msgstr "✅ شما از قبل کاربر ویژه شده‌اید."
+
+msgid "⚠️ Your request is under review by admin."
+msgstr "⚠️ درخواست شما در حال بررسی توسط مدیریت است."
+
+msgid "You are already a Premium member. Your documents have been verified."
+msgstr "شما از قبل عضو ویژه هستید. مدارک شما تأیید شده‌اند."
+
+msgid "You already have a pending verification request."
+msgstr "شما از قبل یک درخواست تأیید در حال انتظار دارید."
+
+msgid "The upgrade process has started. Please upload your documents."
+msgstr "فرآیند ارتقا آغاز شد. لطفاً مدارک خود را آپلود کنید."
+
+msgid "Please start the premium verification process first."
+msgstr "لطفاً ابتدا فرآیند تأیید ویژه را آغاز کنید."
+
+msgid "Your documents have been verified. You cannot modify them."
+msgstr "مدارک شما تأیید شده‌اند و قابل تغییر نیستند."
+
+msgid "Your documents are under review by admin."
+msgstr "مدارک شما در حال بررسی توسط مدیریت است."
+
+msgid "✅ Documents uploaded successfully."
+msgstr "✅ مدارک با موفقیت آپلود شدند."
+
+msgid "❌ No files were found to upload. Please select files and try again."
+msgstr "❌ هیچ فایلی برای آپلود یافت نشد. لطفاً فایل‌ها را انتخاب و مجدداً تلاش کنید."
+
+msgid "No verification request found."
+msgstr "هیچ درخواست تأییدی یافت نشد."
+
+msgid "Please upload your documents first."
+msgstr "لطفاً ابتدا مدارک خود را آپلود کنید."
+
+msgid "Payment receipt received. Reviewing..."
+msgstr "رسید پرداخت دریافت شد. در حال بررسی..."
+
+msgid "❌ You do not have permission to manage orders."
+msgstr "❌ شما مجوز مدیریت سفارشات را ندارید."
+
+msgid "❌ Please enter the product name."
+msgstr "❌ لطفاً نام محصول را وارد کنید."
+
+msgid "❌ Please select origin and destination."
+msgstr "❌ لطفاً مبدأ و مقصد را انتخاب کنید."
+
+msgid "❌ Invalid quantity or price."
+msgstr "❌ مقدار یا قیمت نامعتبر است."
+
+msgid "❌ The seller is invalid."
+msgstr "❌ فروشنده نامعتبر است."
+
+msgid "❌ The desired seller was not found."
+msgstr "❌ فروشنده مورد نظر یافت نشد."
+
+msgid "❌ The selected user is not a producer."
+msgstr "❌ کاربر انتخاب‌شده تولیدکننده نیست."
+
+msgid "✅ Order successfully placed."
+msgstr "✅ سفارش با موفقیت ثبت شد."
+
+msgid "❌ An error occurred while placing your order. Please try again."
+msgstr "❌ خطایی در ثبت سفارش رخ داد. لطفاً مجدداً تلاش کنید."
+
+msgid "❌ You can only cancel your own orders."
+msgstr "❌ شما فقط می‌توانید سفارشات خود را لغو کنید."
+
+msgid "🗑️ Order #%(order_id)s has been cancelled."
+msgstr "🗑️ سفارش #%(order_id)s لغو شد."
+
+msgid "⚠️ This order cannot be cancelled as it has already been processed."
+msgstr "⚠️ این سفارش به دلیل پردازش شدن قابل لغو نیست."
+
+msgid "✅ The order was confirmed and the notification was sent"
+msgstr "✅ سفارش تأیید شد و اعلان ارسال گردید"
+
+msgid "⚠️This order has already been approved or rejected."
+msgstr "⚠️ این سفارش پیش‌تر تأیید یا رد شده است."
+
+msgid "🗑️ Order #%(order_id)s rejected."
+msgstr "🗑️ سفارش #%(order_id)s رد شد."
+
+msgid "⚠️ This order has already changed status."
+msgstr "⚠️ وضعیت این سفارش قبلاً تغییر کرده است."
+
+msgid "❌ You can only update your own orders."
+msgstr "❌ شما فقط می‌توانید سفارشات خود را به‌روز کنید."
+
+msgid "✅ Order status updated to In Transit"
+msgstr "✅ وضعیت سفارش به «در حال انتقال» به‌روز شد"
+
+msgid "✅ Order marked as Delivered"
+msgstr "✅ سفارش به عنوان «تحویل داده شده» علامت‌گذاری شد"
+
+msgid "⚠️ Cannot update order status at this stage."
+msgstr "⚠️ در این مرحله امکان به‌روزرسانی وضعیت سفارش وجود ندارد."
+
+msgid "✅ All notifications marked as read"
+msgstr "✅ تمام اعلان‌ها به عنوان خوانده‌شده علامت‌گذاری شدند"
+
+msgid "❌ Limited access: Only special users can send messages."
+msgstr "❌ دسترسی محدود: فقط کاربران ویژه می‌توانند پیام ارسال کنند."
+
+msgid "❌ Access denied: Non-special users can only view messages from admin."
+msgstr "❌ دسترسی رد شد: کاربران غیر ویژه فقط می‌توانند پیام‌های مدیریت را مشاهده کنند."
+
+msgid "❌ This user is not special and you cannot chat with him/her."
+msgstr "❌ این کاربر ویژه نیست و نمی‌توانید با او چت کنید."
+
+msgid "✉️ Message sent."
+msgstr "✉️ پیام ارسال شد."
+
+msgid "⚠️ No admin found to contact."
+msgstr "⚠️ مدیری برای تماس یافت نشد."
+
+msgid "❌ Please enter a message."
+msgstr "❌ لطفاً پیامی وارد کنید."
+
+msgid "✅ Your message was sent to support."
+msgstr "✅ پیام شما به پشتیبانی ارسال شد."
+
+msgid "❌ Access is only allowed for special users."
+msgstr "❌ دسترسی فقط برای کاربران ویژه مجاز است."
+
+msgid "❌ Please enter a valid 7-digit ID (IMO)."
+msgstr "❌ لطفاً یک شناسه ۷ رقمی معتبر (IMO) وارد کنید."
+
+msgid "⚠️ Network unavailable. Showing demo data."
+msgstr "⚠️ شبکه در دسترس نیست. نمایش داده‌های نمونه."
+
+msgid "❌ No data found for this ship."
+msgstr "❌ داده‌ای برای این کشتی یافت نشد."
+
+msgid "❌ The request to the server was scheduled. Please try again."
+msgstr "❌ درخواست به سرور زمان‌بندی شد. لطفاً مجدداً تلاش کنید."
+
+msgid "❌ An error occurred with the ship tracking service."
+msgstr "❌ خطایی در سرویس ردیابی کشتی رخ داد."
+
+msgid "❌ The received data is invalid."
+msgstr "❌ داده‌های دریافتی نامعتبر هستند."
+
+msgid "❌ Only special users can access the map."
+msgstr "❌ دسترسی به نقشه فقط برای کاربران ویژه مجاز است."
+
+msgid "⚠️ No port data available."
+msgstr "⚠️ داده‌ای از بنادر در دسترس نیست."
+
+msgid "❌ Please enter your mobile number in your profile first."
+msgstr "❌ لطفاً ابتدا شماره موبایل خود را در پروفایل وارد کنید."
+
+msgid "✅ Your mobile number has already been verified."
+msgstr "✅ شماره موبایل شما پیش‌تر تأیید شده است."
+
+msgid "New code sent."
+msgstr "کد جدید ارسال شد."
+
+msgid "❌ There was a problem sending the code."
+msgstr "❌ مشکلی در ارسال کد رخ داد."
+
+msgid "Please enter the code."
+msgstr "لطفاً کد را وارد کنید."
+
+msgid "✅ Mobile number successfully verified."
+msgstr "✅ شماره موبایل با موفقیت تأیید شد."
+
+msgid "❌ The code is invalid."
+msgstr "❌ کد نامعتبر است."
+
+msgid "A verification code has been sent to your number."
+msgstr "یک کد تأیید به شماره شما ارسال شد."
+
+msgid "Confirmation email sent."
+msgstr "ایمیل تأیید ارسال شد."
+
+msgid "❌ There was an error sending the email."
+msgstr "❌ خطایی در ارسال ایمیل رخ داد."
+
+msgid "❌ The link has expired."
+msgstr "❌ لینک منقضی شده است."
+
+msgid "❌ The link is invalid."
+msgstr "❌ لینک نامعتبر است."
+
+msgid "❌ This link is not for you."
+msgstr "❌ این لینک متعلق به شما نیست."
+
+msgid "❌ No request found."
+msgstr "❌ هیچ درخواستی یافت نشد."
+
+msgid "✅ Email has been verified."
+msgstr "✅ ایمیل تأیید شد."
+
+msgid "❌ Please enter your email."
+msgstr "❌ لطفاً ایمیل خود را وارد کنید."
+
+msgid "✅ If your email is registered in the system, a recovery link will be sent to you."
+msgstr "✅ اگر ایمیل شما در سیستم ثبت شده باشد، لینک بازیابی برایتان ارسال خواهد شد."
+
+msgid "❌ The recovery link is invalid or expired."
+msgstr "❌ لینک بازیابی نامعتبر یا منقضی شده است."
+
+msgid "❌ User not found."
+msgstr "❌ کاربر یافت نشد."
+
+msgid "❌ Password and repeat do not match."
+msgstr "❌ رمز عبور و تکرار آن مطابقت ندارند."
+
+msgid "⚠️ Two-factor authentication is already enabled."
+msgstr "⚠️ احراز هویت دو مرحله‌ای از قبل فعال است."
+
+msgid "❌ The information is incomplete."
+msgstr "❌ اطلاعات ناقص است."
+
+msgid "✅ Two-factor authentication enabled. Save backup codes!"
+msgstr "✅ احراز هویت دو مرحله‌ای فعال شد. کدهای پشتیبان را ذخیره کنید!"
+
+msgid "⚠️ No backup codes found."
+msgstr "⚠️ هیچ کد پشتیبانی یافت نشد."
+
+msgid "⚠️ Two-factor authentication is not enabled."
+msgstr "⚠️ احراز هویت دو مرحله‌ای فعال نیست."
+
+msgid "✅ Two-factor authentication disabled."
+msgstr "✅ احراز هویت دو مرحله‌ای غیرفعال شد."
+
+msgid "❌ No pending login found. Please log in first."
+msgstr "❌ هیچ ورود در انتظاری یافت نشد. لطفاً ابتدا وارد شوید."
+
+msgid "✅ Welcome! Two-factor authentication successful."
+msgstr "✅ خوش آمدید! احراز هویت دو مرحله‌ای موفقیت‌آمیز بود."
+
+msgid "❌ The code entered is not valid. Please try again."
+msgstr "❌ کد وارد شده نامعتبر است. لطفاً مجدداً تلاش کنید."
+
+msgid "✅ Session successfully canceled."
+msgstr "✅ نشست با موفقیت لغو شد."
+
+msgid "❌ Session not found."
+msgstr "❌ نشست یافت نشد."
+
+msgid "✅ All sessions have been canceled."
+msgstr "✅ تمام نشست‌ها لغو شدند."
+
+#: permissions_routes.py
+msgid "Profile for user %(username)s was automatically created."
+msgstr "پروفایل برای کاربر %(username)s به صورت خودکار ایجاد شد."
+
+msgid "Security error: Invalid CSRF token."
+msgstr "خطای امنیتی: توکن CSRF نامعتبر است."
+
+msgid "Permissions for user %(username)s updated successfully. (%(count)s active permissions)"
+msgstr "دسترسی‌های کاربر %(username)s با موفقیت به‌روز شد. (%(count)s دسترسی فعال)"
+
+msgid "Permissions for user %(username)s reverted to default."
+msgstr "دسترسی‌های کاربر %(username)s به حالت پیش‌فرض بازگردانده شد."
+
+#: routes/admin/routes.py
+msgid "❌ Please log in first."
+msgstr "❌ لطفاً ابتدا وارد شوید."
+
+msgid "❌ Access denied: Only admin can access this page."
+msgstr "❌ دسترسی رد شد: فقط مدیر می‌تواند به این صفحه دسترسی داشته باشد."
+
+msgid "❌ The role is invalid."
+msgstr "❌ نقش انتخاب‌شده نامعتبر است."
+
+msgid "✅ User role %(username)s changed to '%(role)s'."
+msgstr "✅ نقش کاربر %(username)s به '%(role)s' تغییر یافت."
+
+msgid "✅ User '%(username)s' successfully promoted to Premium Level 1 (Verified). Trust Score increased by 20 points!"
+msgstr "✅ کاربر '%(username)s' با موفقیت به سطح ویژه ۱ (تأییدشده) ارتقا یافت. امتیاز اعتماد ۲۰ واحد افزایش یافت!"
+
+msgid "❌ Upgrade Request for '%(username)s' rejected."
+msgstr "❌ درخواست ارتقای '%(username)s' رد شد."
+
+msgid "⚠️ Invalid action."
+msgstr "⚠️ عملیات نامعتبر."
+
+msgid "✅ User '%(username)s' Successfully promoted to special user."
+msgstr "✅ کاربر '%(username)s' با موفقیت به کاربر ویژه ارتقا یافت."
+
+msgid "❌ You cannot chat with yourself."
+msgstr "❌ نمی‌توانید با خودتان چت کنید."
+
+msgid "✅ Message sent to user."
+msgstr "✅ پیام به کاربر ارسال شد."
+
+msgid "✅ Welcome, admin.!"
+msgstr "✅ خوش آمدید، مدیر!"
+
+msgid "❌ Access denied: Only admin can log in."
+msgstr "❌ دسترسی رد شد: فقط مدیر می‌تواند وارد شود."
+
+msgid "❌ The email or password is incorrect."
+msgstr "❌ ایمیل یا رمز عبور نادرست است."
+
+msgid "⚠️ Admin already exists. Please log in."
+msgstr "⚠️ مدیر از قبل وجود دارد. لطفاً وارد شوید."
+
+msgid "❌ First admin account created successfully! Please log in."
+msgstr "✅ اولین حساب مدیریت با موفقیت ایجاد شد! لطفاً وارد شوید."
+
+#: routes/users/routes.py
+msgid "Please log in first."
+msgstr "لطفاً ابتدا وارد شوید."
+
+msgid "Unauthorized access. This section is for specific roles."
+msgstr "دسترسی غیرمجاز. این بخش مختص نقش‌های خاص است."
+
+msgid "No file selected."
+msgstr "هیچ فایلی انتخاب نشده است."
+
+msgid "File type not allowed (JPG, PNG, GIF, WEBP only)"
+msgstr "نوع فایل مجاز نیست (فقط JPG, PNG, GIF, WEBP)"
+
+msgid "File type not allowed (PDF, PNG, JPG only)"
+msgstr "نوع فایل مجاز نیست (فقط PDF, PNG, JPG)"
+
+msgid "File size must not exceed %(size).0fMB"
+msgstr "حجم فایل نباید بیشتر از %(size).0f مگابایت باشد."
+
+msgid "There is already an admin."
+msgstr "در حال حاضر یک مدیر وجود دارد."
+
+msgid "❌ Please fill in all fields."
+msgstr "❌ لطفاً تمام فیلدها را پر کنید."
+
+msgid "❌ Username must be at least 3 characters long."
+msgstr "❌ نام کاربری باید حداقل ۳ کاراکتر باشد."
+
+msgid "❌ The email address is invalid."
+msgstr "❌ آدرس ایمیل نامعتبر است."
+
+msgid "❌ The password must be at least 8 characters long."
+msgstr "❌ رمز عبور باید حداقل ۸ کاراکتر باشد."
+
+msgid "❌ Username already taken."
+msgstr "❌ نام کاربری قبلاً گرفته شده است."
+
+msgid "❌ Email already used."
+msgstr "❌ این ایمیل قبلاً استفاده شده است."
+
+msgid "❌ An error occurred while creating the admin."
+msgstr "❌ خطایی در ایجاد مدیر رخ داد."
+
+msgid "You already have an account. Please log out first to register a new account."
+msgstr "شما از قبل حساب کاربری دارید. لطفاً ابتدا خارج شوید تا حساب جدیدی ثبت کنید."
+
+msgid "reCAPTCHA verification failed. Please try again."
+msgstr "تأیید reCAPTCHA ناموفق بود. لطفاً مجدداً تلاش کنید."
+
+msgid "Invalid email address."
+msgstr "آدرس ایمیل نامعتبر است."
+
+msgid "Passwords do not match."
+msgstr "رمزهای عبور مطابقت ندارند."
+
+msgid "Password should contain uppercase, lowercase, and numbers for better security."
+msgstr "برای امنیت بیشتر، رمز عبور باید شامل حروف بزرگ، کوچک و اعداد باشد."
+
+msgid "Invalid role selected."
+msgstr "نقش انتخاب‌شده نامعتبر است."
+
+msgid "Invalid phone number."
+msgstr "شماره تلفن نامعتبر است."
+
+msgid "✅ Registration successful! Verification email sent."
+msgstr "✅ ثبت‌نام موفقیت‌آمیز بود! ایمیل تأیید ارسال شد."
+
+msgid "⚠️ Account created but email failed: %(error)s"
+msgstr "⚠️ حساب ایجاد شد اما ارسال ایمیل ناموفق بود: %(error)s"
+
+msgid "⚠️ Account created but email system error: %(error)s"
+msgstr "⚠️ حساب ایجاد شد اما خطای سیستم ایمیل رخ داد: %(error)s"
+
+msgid "❌ Registration error: %(error)s"
+msgstr "❌ خطای ثبت‌نام: %(error)s"
+
+msgid "❌ Your account is locked until %(lock_time)s due to failed attempts."
+msgstr "❌ حساب شما به دلیل تلاش‌های ناموفق تا %(lock_time)s قفل شده است."
+
+msgid "❌ Please verify your email before logging in. Check your inbox for the verification link."
+msgstr "❌ لطفاً پیش از ورود، ایمیل خود را تأیید کنید. صندوق ورودی خود را برای لینک تأیید بررسی کنید."
+
+msgid "✅ Password verified. Please enter your 2FA code."
+msgstr "✅ رمز عبور تأیید شد. لطفاً کد احراز هویت دو مرحله‌ای خود را وارد کنید."
+
+msgid "✅ Welcome!"
+msgstr "✅ خوش آمدید!"
+
+msgid "❌ Your account has been locked for 15 minutes due to too many failed attempts."
+msgstr "❌ حساب شما به دلیل تلاش‌های ناموفق زیاد به مدت ۱۵ دقیقه قفل شد."
+
+msgid "❌ Incorrect email or password. %(attempts)s more attempts before account is locked."
+msgstr "❌ ایمیل یا رمز عبور اشتباه است. %(attempts)s تلاش دیگر پیش از قفل شدن حساب."
+
+msgid "❌ Incorrect email or password."
+msgstr "❌ ایمیل یا رمز عبور اشتباه است."
+
+msgid "✅ Profile picture updated successfully."
+msgstr "✅ عکس پروفایل با موفقیت به‌روز شد."
+
+msgid "✅ Profile updated successfully."
+msgstr "✅ پروفایل با موفقیت به‌روز شد."
+
+msgid "❌ The current password is incorrect."
+msgstr "❌ رمز عبور فعلی نادرست است."
+
+msgid "❌ New password must be at least 8 characters long."
+msgstr "❌ رمز عبور جدید باید حداقل ۸ کاراکتر باشد."
+
+msgid "❌ New password and repeat password do not match."
+msgstr "❌ رمز عبور جدید و تکرار آن مطابقت ندارند."
+
+msgid "⚠️ New password must not be the same as previous password."
+msgstr "⚠️ رمز عبور جدید نباید مشابه رمز قبلی باشد."
+
+msgid "✅ Your password has been changed successfully."
+msgstr "✅ رمز عبور شما با موفقیت تغییر یافت."
+
+msgid "❌ An error occurred while changing the password. Please try again."
+msgstr "❌ خطایی در تغییر رمز عبور رخ داد. لطفاً مجدداً تلاش کنید."
+
+msgid "⚠️ Please check the confirmation checkbox to delete the account."
+msgstr "⚠️ لطفاً برای حذف حساب، کادر تأیید را تیک بزنید."
+
+msgid "🗑️ Your account has been successfully deleted. Thank you for your cooperation."
+msgstr "🗑️ حساب شما با موفقیت حذف شد. از همکاری شما سپاسگزاریم."
+
+msgid "❌ An error occurred while deleting the account. Please contact support."
+msgstr "❌ خطایی در حذف حساب رخ داد. لطفاً با پشتیبانی تماس بگیرید."
+
+msgid "👋 You have successfully logged out."
+msgstr "👋 شما با موفقیت خارج شدید."
+
+msgid "❌ This account is inactive."
+msgstr "❌ این حساب غیرفعال است."
+
+msgid "✅ You have already become a special user."
+msgstr "✅ شما از قبل کاربر ویژه شده‌اید."
+
+msgid "⚠️ Your request is under review by admin."
+msgstr "⚠️ درخواست شما در حال بررسی توسط مدیریت است."
+
+msgid "You are already a Premium member. Your documents have been verified."
+msgstr "شما از قبل عضو ویژه هستید. مدارک شما تأیید شده‌اند."
+
+msgid "You already have a pending verification request."
+msgstr "شما از قبل یک درخواست تأیید در حال انتظار دارید."
+
+msgid "The upgrade process has started. Please upload your documents."
+msgstr "فرآیند ارتقا آغاز شد. لطفاً مدارک خود را آپلود کنید."
+
+msgid "Please start the premium verification process first."
+msgstr "لطفاً ابتدا فرآیند تأیید ویژه را آغاز کنید."
+
+msgid "Your documents have been verified. You cannot modify them."
+msgstr "مدارک شما تأیید شده‌اند و قابل تغییر نیستند."
+
+msgid "Your documents are under review by admin."
+msgstr "مدارک شما در حال بررسی توسط مدیریت است."
+
+msgid "✅ Documents uploaded successfully."
+msgstr "✅ مدارک با موفقیت آپلود شدند."
+
+msgid "❌ No files were found to upload. Please select files and try again."
+msgstr "❌ هیچ فایلی برای آپلود یافت نشد. لطفاً فایل‌ها را انتخاب و مجدداً تلاش کنید."
+
+msgid "No verification request found."
+msgstr "هیچ درخواست تأییدی یافت نشد."
+
+msgid "Please upload your documents first."
+msgstr "لطفاً ابتدا مدارک خود را آپلود کنید."
+
+msgid "Payment receipt received. Reviewing..."
+msgstr "رسید پرداخت دریافت شد. در حال بررسی..."
+
+msgid "❌ You do not have permission to manage orders."
+msgstr "❌ شما مجوز مدیریت سفارشات را ندارید."
+
+msgid "❌ Please enter the product name."
+msgstr "❌ لطفاً نام محصول را وارد کنید."
+
+msgid "❌ Please select origin and destination."
+msgstr "❌ لطفاً مبدأ و مقصد را انتخاب کنید."
+
+msgid "❌ Invalid quantity or price."
+msgstr "❌ مقدار یا قیمت نامعتبر است."
+
+msgid "❌ The seller is invalid."
+msgstr "❌ فروشنده نامعتبر است."
+
+msgid "❌ The desired seller was not found."
+msgstr "❌ فروشنده مورد نظر یافت نشد."
+
+msgid "❌ The selected user is not a producer."
+msgstr "❌ کاربر انتخاب‌شده تولیدکننده نیست."
+
+msgid "✅ Order successfully placed."
+msgstr "✅ سفارش با موفقیت ثبت شد."
+
+msgid "❌ An error occurred while placing your order. Please try again."
+msgstr "❌ خطایی در ثبت سفارش رخ داد. لطفاً مجدداً تلاش کنید."
+
+msgid "❌ You can only cancel your own orders."
+msgstr "❌ شما فقط می‌توانید سفارشات خود را لغو کنید."
+
+msgid "🗑️ Order #%(order_id)s has been cancelled."
+msgstr "🗑️ سفارش #%(order_id)s لغو شد."
+
+msgid "⚠️ This order cannot be cancelled as it has already been processed."
+msgstr "⚠️ این سفارش به دلیل پردازش شدن قابل لغو نیست."
+
+msgid "✅ The order was confirmed and the notification was sent"
+msgstr "✅ سفارش تأیید شد و اعلان ارسال گردید"
+
+msgid "⚠️This order has already been approved or rejected."
+msgstr "⚠️ این سفارش پیش‌تر تأیید یا رد شده است."
+
+msgid "🗑️ Order #%(order_id)s rejected."
+msgstr "🗑️ سفارش #%(order_id)s رد شد."
+
+msgid "⚠️ This order has already changed status."
+msgstr "⚠️ وضعیت این سفارش قبلاً تغییر کرده است."
+
+msgid "❌ You can only update your own orders."
+msgstr "❌ شما فقط می‌توانید سفارشات خود را به‌روز کنید."
+
+msgid "✅ Order status updated to In Transit"
+msgstr "✅ وضعیت سفارش به «در حال انتقال» به‌روز شد"
+
+msgid "✅ Order marked as Delivered"
+msgstr "✅ سفارش به عنوان «تحویل داده شده» علامت‌گذاری شد"
+
+msgid "⚠️ Cannot update order status at this stage."
+msgstr "⚠️ در این مرحله امکان به‌روزرسانی وضعیت سفارش وجود ندارد."
+
+msgid "✅ All notifications marked as read"
+msgstr "✅ تمام اعلان‌ها به عنوان خوانده‌شده علامت‌گذاری شدند"
+
+msgid "❌ Limited access: Only special users can send messages."
+msgstr "❌ دسترسی محدود: فقط کاربران ویژه می‌توانند پیام ارسال کنند."
+
+msgid "❌ Access denied: Non-special users can only view messages from admin."
+msgstr "❌ دسترسی رد شد: کاربران غیر ویژه فقط می‌توانند پیام‌های مدیریت را مشاهده کنند."
+
+msgid "❌ This user is not special and you cannot chat with him/her."
+msgstr "❌ این کاربر ویژه نیست و نمی‌توانید با او چت کنید."
+
+msgid "✉️ Message sent."
+msgstr "✉️ پیام ارسال شد."
+
+msgid "⚠️ No admin found to contact."
+msgstr "⚠️ مدیری برای تماس یافت نشد."
+
+msgid "❌ Please enter a message."
+msgstr "❌ لطفاً پیامی وارد کنید."
+
+msgid "✅ Your message was sent to support."
+msgstr "✅ پیام شما به پشتیبانی ارسال شد."
+
+msgid "❌ Access is only allowed for special users."
+msgstr "❌ دسترسی فقط برای کاربران ویژه مجاز است."
+
+msgid "❌ Please enter a valid 7-digit ID (IMO)."
+msgstr "❌ لطفاً یک شناسه ۷ رقمی معتبر (IMO) وارد کنید."
+
+msgid "⚠️ Network unavailable. Showing demo data."
+msgstr "⚠️ شبکه در دسترس نیست. نمایش داده‌های نمونه."
+
+msgid "❌ No data found for this ship."
+msgstr "❌ داده‌ای برای این کشتی یافت نشد."
+
+msgid "❌ The request to the server was scheduled. Please try again."
+msgstr "❌ درخواست به سرور زمان‌بندی شد. لطفاً مجدداً تلاش کنید."
+
+msgid "❌ An error occurred with the ship tracking service."
+msgstr "❌ خطایی در سرویس ردیابی کشتی رخ داد."
+
+msgid "❌ The received data is invalid."
+msgstr "❌ داده‌های دریافتی نامعتبر هستند."
+
+msgid "❌ Only special users can access the map."
+msgstr "❌ دسترسی به نقشه فقط برای کاربران ویژه مجاز است."
+
+msgid "⚠️ No port data available."
+msgstr "⚠️ داده‌ای از بنادر در دسترس نیست."
+
+#: auth.py
+msgid "❌ Please enter your mobile number in your profile first."
+msgstr "❌ لطفاً ابتدا شماره موبایل خود را در پروفایل وارد کنید."
+
+msgid "✅ Your mobile number has already been verified."
+msgstr "✅ شماره موبایل شما پیش‌تر تأیید شده است."
+
+msgid "New code sent."
+msgstr "کد جدید ارسال شد."
+
+msgid "❌ There was a problem sending the code."
+msgstr "❌ مشکلی در ارسال کد رخ داد."
+
+msgid "Please enter the code."
+msgstr "لطفاً کد را وارد کنید."
+
+msgid "✅ Mobile number successfully verified."
+msgstr "✅ شماره موبایل با موفقیت تأیید شد."
+
+msgid "❌ The code is invalid."
+msgstr "❌ کد نامعتبر است."
+
+msgid "A verification code has been sent to your number."
+msgstr "یک کد تأیید به شماره شما ارسال شد."
+
+msgid "Confirmation email sent."
+msgstr "ایمیل تأیید ارسال شد."
+
+msgid "❌ There was an error sending the email."
+msgstr "❌ خطایی در ارسال ایمیل رخ داد."
+
+msgid "❌ The link has expired."
+msgstr "❌ لینک منقضی شده است."
+
+msgid "❌ The link is invalid."
+msgstr "❌ لینک نامعتبر است."
+
+msgid "❌ This link is not for you."
+msgstr "❌ این لینک متعلق به شما نیست."
+
+msgid "❌ No request found."
+msgstr "❌ هیچ درخواستی یافت نشد."
+
+msgid "✅ Email has been verified."
+msgstr "✅ ایمیل تأیید شد."
+
+msgid "❌ Please enter your email."
+msgstr "❌ لطفاً ایمیل خود را وارد کنید."
+
+msgid "✅ If your email is registered in the system, a recovery link will be sent to you."
+msgstr "✅ اگر ایمیل شما در سیستم ثبت شده باشد، لینک بازیابی برایتان ارسال خواهد شد."
+
+msgid "❌ The recovery link is invalid or expired."
+msgstr "❌ لینک بازیابی نامعتبر یا منقضی شده است."
+
+msgid "❌ User not found."
+msgstr "❌ کاربر یافت نشد."
+
+msgid "❌ Password and repeat do not match."
+msgstr "❌ رمز عبور و تکرار آن مطابقت ندارند."
+
+msgid "⚠️ Two-factor authentication is already enabled."
+msgstr "⚠️ احراز هویت دو مرحله‌ای از قبل فعال است."
+
+msgid "❌ The information is incomplete."
+msgstr "❌ اطلاعات ناقص است."
+
+msgid "✅ Two-factor authentication enabled. Save backup codes!"
+msgstr "✅ احراز هویت دو مرحله‌ای فعال شد. کدهای پشتیبان را ذخیره کنید!"
+
+msgid "❌ The code entered is not valid."
+msgstr "❌ کد وارد شده نامعتبر است."
+
+msgid "⚠️ No backup codes found."
+msgstr "⚠️ هیچ کد پشتیبانی یافت نشد."
+
+msgid "⚠️ Two-factor authentication is not enabled."
+msgstr "⚠️ احراز هویت دو مرحله‌ای فعال نیست."
+
+msgid "✅ Two-factor authentication disabled."
+msgstr "✅ احراز هویت دو مرحله‌ای غیرفعال شد."
+
+msgid "❌ No pending login found. Please log in first."
+msgstr "❌ هیچ ورود در انتظاری یافت نشد. لطفاً ابتدا وارد شوید."
+
+msgid "✅ Welcome! Two-factor authentication successful."
+msgstr "✅ خوش آمدید! احراز هویت دو مرحله‌ای موفقیت‌آمیز بود."
+
+msgid "✅ Session successfully canceled."
+msgstr "✅ نشست با موفقیت لغو شد."
+
+msgid "❌ Session not found."
+msgstr "❌ نشست یافت نشد."
+
+msgid "✅ All sessions have been canceled."
+msgstr "✅ تمام نشست‌ها لغو شدند."
+
+#: permissions_routes.py & permissions.py
+msgid "Profile for user %(username)s was automatically created."
+msgstr "پروفایل برای کاربر %(username)s به صورت خودکار ایجاد شد."
+
+msgid "Security error: Invalid CSRF token."
+msgstr "خطای امنیتی: توکن CSRF نامعتبر است."
+
+msgid "Permissions for user %(username)s updated successfully. (%(count)s active permissions)"
+msgstr "دسترسی‌های کاربر %(username)s با موفقیت به‌روز شد. (%(count)s دسترسی فعال)"
+
+msgid "Permissions for user %(username)s reverted to default."
+msgstr "دسترسی‌های کاربر %(username)s به حالت پیش‌فرض بازگردانده شد."
+
+msgid "User %(username)s profile created automatically."
+msgstr "پروفایل کاربر %(username)s به صورت خودکار ایجاد شد."
+
+msgid "Invalid permission."
+msgstr "دسترسی نامعتبر است."
+
+msgid "Permission %(perm)s granted to user %(username)s."
+msgstr "دسترسی %(perm)s به کاربر %(username)s اعطا شد."
+
+msgid "Permission %(perm)s already granted to user."
+msgstr "دسترسی %(perm)s پیش‌تر به کاربر اعطا شده است."
+
+msgid "Permission %(perm)s revoked from user %(username)s."
+msgstr "دسترسی %(perm)s از کاربر %(username)s لغو شد."
+
+msgid "Permission %(perm)s was not in user's permission list."
+msgstr "دسترسی %(perm)s در لیست دسترسی‌های کاربر وجود نداشت."
+
+msgid "You do not have permission to access this page."
+msgstr "شما مجوز دسترسی به این صفحه را ندارید."
+
+#: utils & email templates
+msgid "No account found with this email."
+msgstr "حسابی با این ایمیل یافت نشد."
+
+msgid "✅ Your email is already verified."
+msgstr "✅ ایمیل شما قبلاً تأیید شده است."
+
+msgid "📧 New verification email sent! Please check your inbox."
+msgstr "📧 ایمیل تأیید جدید ارسال شد! لطفاً صندوق ورودی خود را بررسی کنید."
+
+msgid "⚠️ Failed to send email: %(error)s"
+msgstr "⚠️ ارسال ایمیل ناموفق بود: %(error)s"
+
+msgid "✅ Your email is already verified. You can login."
+msgstr "✅ ایمیل شما قبلاً تأیید شده است. می‌توانید وارد شوید."
+
+msgid "🎉 Email verified successfully! Welcome to Metisma."
+msgstr "🎉 ایمیل با موفقیت تأیید شد! به متیسما خوش آمدید."

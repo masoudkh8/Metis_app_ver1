@@ -41,6 +41,9 @@ socketio = SocketIO(
     logger=False
 )
 
+def normalize_locale(code):
+    mapping = {'fa': 'fa_IR', 'fa_IR': 'fa_IR', 'en': 'en', 'en_US': 'en'}
+    return mapping.get(code, 'fa_IR')
 
 def setup_logging(app):
     """Setup structured logging configuration for the application."""
@@ -159,10 +162,10 @@ def create_app():
     trans_dir = os.path.join(base_dir, 'translations')
 
     # === Flask-Babel Setup (Compatible with v4.x) ===
-    babel = Babel(app)
-    app.config['BABEL_DEFAULT_LOCALE'] = 'fa_IR'
-    app.config['BABEL_TRANSLATION_DIRECTORIES'] = trans_dir
-    app.config['BABEL_SUPPORTED_LANGUAGES'] = ['fa_IR', 'en']
+    # babel = Babel(app)
+    # app.config['BABEL_DEFAULT_LOCALE'] = 'fa_IR'
+    # app.config['BABEL_TRANSLATION_DIRECTORIES'] = trans_dir
+    # app.config['BABEL_SUPPORTED_LANGUAGES'] = ['fa_IR', 'en']
 
 
     def from_json_filter(value):
@@ -295,12 +298,40 @@ def create_app():
     babel.init_app(app, locale_selector=get_locale)
 
     # Inject _ function for translations in templates
-    @app.context_processor
-    def inject_babel_underscore():
-        return {'_': gettext}
+    # @app.context_processor
+    # def inject_babel_underscore():
+    #     return {'_': gettext}
     # === End Babel Setup ===
 
     app.config.from_object(Config)
+
+
+    # === Flask-Babel Setup ===
+    app.config['BABEL_DEFAULT_LOCALE'] = 'fa_IR'
+    app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
+    app.config['BABEL_SUPPORTED_LOCALES'] = ['fa_IR', 'en']
+
+
+    def get_locale():
+        lang = request.args.get('lang')
+        if lang:
+            session['lang'] = normalize_locale(lang)
+            return session['lang']
+        if session.get('lang'):
+            return session['lang']
+        return request.accept_languages.best_match(['fa_IR', 'en'], 'fa_IR')
+
+
+    babel.init_app(app, locale_selector=get_locale)
+
+
+    @app.context_processor
+    def inject_translations():
+        return {'_': gettext}
+        # === End Babel Setup ===
+
+
+
 
     # Initialize extensions
     db.init_app(app)
@@ -328,12 +359,12 @@ def create_app():
     os.makedirs(Config.MAGAZINE_UPLOAD_FOLDER, exist_ok=True)
 
     # Inject translator from utils (dynamically based on user's language)
-    @app.context_processor
-    def inject_translator():
-        from utils.translations import Translator
-        lang = session.get('lang', 'fa')
-        current_translator = Translator(lang)
-        return {'t': current_translator.t, 't_': current_translator.t}
+    # @app.context_processor
+    # def inject_translator():
+    #     from utils.translations import Translator
+    #     lang = session.get('lang', 'fa')
+    #     current_translator = Translator(lang)
+    #     return {'t': current_translator.t, 't_': current_translator.t}
 
     # ✅ Inject current_locale for all templates (FIXES UndefinedError)
     @app.context_processor

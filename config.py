@@ -90,7 +90,10 @@ class Config:
     
     # Internationalization (i18n) Configuration
     BABEL_DEFAULT_LOCALE = 'fa_IR'  # Default to Persian
-    BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, 'translations')
-    LANGUAGES = ['fa_IR', 'en']
+    # BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, 'translations')
+    BABEL_TRANSLATION_DIRECTORIES = 'translations'
+    # LANGUAGES = ['fa_IR', 'en']
+    BABEL_SUPPORTED_LOCALES = ['fa_IR', 'en']
+
     DEFAULT_LANGUAGE = 'fa_IR'
 

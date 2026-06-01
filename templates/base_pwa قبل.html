@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ _('Metisma - Intelligent Global Trade Platform') }}{% endblock %}</title>
+    <title>{% block title %}Metisma - Intelligent Global Trade Platform{% endblock %}</title>
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#d4af37">
@@ -14,8 +14,8 @@
     <meta name="application-name" content="Metisma">
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="{{ _('Metisma - Intelligent Global Trade Platform') }}">
-    <meta name="keywords" content="{{ _('trade, global, business, platform, AI') }}">
+    <meta name="description" content="Metisma - Intelligent Global Trade Platform">
+    <meta name="keywords" content="trade, global, business, platform, AI">
     <meta name="author" content="Metisma">
 
     <style>
@@ -138,7 +138,7 @@
         class="theme-toggle fixed bottom-6 left-6 z-50 p-3.5 rounded-full 
                bg-white dark:bg-dark-700 shadow-lg border border-gray-200 dark:border-dark-600 
                hover:shadow-xl transition-all duration-300"
-        aria-label="{{ _('Toggle Dark Mode') }}" title="{{ _('Toggle Theme') }}">
+        aria-label="Toggle Dark Mode" title="Toggle Theme">
 
     <!-- آیکون ماه (نمایش در حالت لایت) -->
     <svg id="icon-moon" class="w-5 h-5 text-gray-700 dark:hidden transition-transform duration-300"
@@ -160,7 +160,7 @@
 <!-- لایه لودینگ اولیه (ساده‌شده) -->
 <div id="loading" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-dark-900">
     <div class="loader"></div>
-    <p class="mt-4 text-gold text-sm font-medium">{{ _('Loading Metisma...') }}</p>
+    <p class="mt-4 text-gold text-sm font-medium">Loading Metisma...</p>
 </div>
 
 <!-- هدر سایت: چسبان به بالا با افکت شیشه‌ای -->
@@ -171,19 +171,19 @@
     <a href="{{ url_for('root.main_page') }}" class="flex items-center gap-3 group">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold to-gold-dark
                   flex items-center justify-center shadow-lg shadow-gold/20 group-hover:scale-105 transition">
-            <img src="/static/images/logo.png" alt="{{ _('Metisma Logo') }}" class="h-8 w-auto object-contain">
+            <img src="/static/images/logo.png" alt="Metisma Logo" class="h-8 w-auto object-contain">
         </div>
         <span class="text-xl font-bold text-gold tracking-tight hidden sm:block">Metisma</span>
     </a>
 
     <!-- منوی ناوبری دسکتاپ -->
     <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
-        <a href="{{ url_for('root.main_page') }}" class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30">{{ _('Home') }}</a>
+        <a href="{{ url_for('root.main_page') }}" class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30">Home</a>
         
-        <!-- дропداون خدمات -->
+        <!-- дропداун خدمات -->
         <div class="relative group">
             <button class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30 flex items-center gap-1.5">
-                {{ _('Services') }}
+                Services
                 <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
@@ -195,39 +195,39 @@
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                         </svg>
-                        {{ _('Trade Assurance') }}
+                        Trade Assurance
                     </a>
                     <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        {{ _('Payment & Escrow') }}
+                        Payment & Escrow
                     </a>
                     <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                         </svg>
-                        {{ _('Smart Logistics') }}
+                        Smart Logistics
                     </a>
                     <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
-                        {{ _('Market Analytics') }}
+                        Market Analytics
                     </a>
                     <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
-                        {{ _('Trade Academy') }}
+                        Trade Academy
                     </a>
                 </div>
             </div>
         </div>
         
-        <a href="#" class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30">{{ _('Smart Map') }}</a>
-        <a href="#" class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30">{{ _('Consortium') }}</a>
-        <a href="#" class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30">{{ _('Academy') }}</a>
+        <a href="#" class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30">Smart Map</a>
+        <a href="#" class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30">Consortium</a>
+        <a href="#" class="px-4 py-2 text-slate-400 hover:text-gold transition rounded-lg hover:bg-dark-800/30">Academy</a>
     </nav>
 
     <!-- دکمه‌های سمت چپ هدر -->
@@ -236,7 +236,7 @@
         <!-- جستجوی سراسری (فقط دسکتاپ) -->
         {% if current_user.is_authenticated %}
         <div class="hidden lg:flex items-center relative">
-            <input type="text" id="globalSearch" placeholder="{{ _('Search...') }}" 
+            <input type="text" id="globalSearch" placeholder="Search..." 
                    class="w-48 xl:w-64 px-4 py-2.5 rounded-xl bg-dark-800/50 border border-gold/15 
                           text-sm text-slate-300 placeholder-slate-500 
                           focus:outline-none focus:border-gold/30 focus:ring-1 focus:ring-gold/20
@@ -252,7 +252,7 @@
         {% if current_user.is_authenticated and current_user.role.value == 'admin' %}
             <a href="{{ url_for('admin.dashboard') }}"
                class="p-2.5 rounded-xl hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-               aria-label="{{ _('Dashboard') }}" title="{{ _('Dashboard') }}">
+               aria-label="Dashboard" title="Dashboard">
                 <svg class="w-5 h-5 text-slate-400 hover:text-gold transition-colors"
                      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -267,7 +267,7 @@
             <!-- دکمه اعلانات (فقط برای کاربران لاگین) -->
             <a href="{{ url_for('users.notifications') }}" 
                class="relative p-2.5 rounded-xl hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-               aria-label="{{ _('Notifications') }}">
+               aria-label="Notifications">
                 <svg class="w-5 h-5 text-slate-400 hover:text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
@@ -283,7 +283,7 @@
             <!-- دکمه پشتیبانی -->
             <a href="{{ url_for('users.support') }}"
                class=" sm:flex p-2.5 rounded-xl hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-               aria-label="{{ _('Support') }}">
+               aria-label="Support">
                 <svg class="w-5 h-5 text-slate-400 hover:text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -294,7 +294,7 @@
             <div class="relative ml-1">
                 <button id="userMenuBtn" 
                         class="flex items-center gap-2 p-1.5 pr-3 rounded-xl hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-                        aria-label="{{ _('User Menu') }}" aria-expanded="false">
+                        aria-label="User Menu" aria-expanded="false">
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-dark-900 font-bold text-sm">
                         {{ current_user.username[0]|upper }}
                     </div>
@@ -311,7 +311,7 @@
                         <p class="text-xs text-slate-400">{{ current_user.email }}</p>
                         {% if current_user.is_premium %}
                             <span class="inline-flex items-center gap-1 mt-1.5 px-2 py-0.5 rounded-full bg-gold/10 text-gold text-[10px] font-bold">
-                                🌟 {{ _('Premium') }}
+                                🌟 Premium
                             </span>
                         {% endif %}
                     </div>
@@ -321,20 +321,20 @@
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
                             </svg>
-                            {{ _('Smart Dashboard') }}
+                            داشبورد هوشمند
                         </a>
                         <a href="{{ url_for('users.profile') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                             </svg>
-                            {{ _('My Profile') }}
+                            My Profile
                         </a>
                         {% if current_user.role.value == 'admin' %}
                         <a href="{{ url_for('users.manage_permissions') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-purple-300 hover:bg-purple-900/30 hover:text-purple-200 transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                             </svg>
-                            {{ _('Manage Permissions') }}
+                            مدیریت مجوزها
                         </a>
                         {% endif %}
                         <a href="{{ url_for('users.account_settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition text-sm">
@@ -342,31 +342,31 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
-                            {{ _('Account Settings') }}
+                            Account Settings
                         </a>
                         <a href="{{ url_for('users.my_orders') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                             </svg>
-                            {{ _('My Orders') }}
+                            My Orders
                         </a>
                         <a href="{{ url_for('users.notifications') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                             </svg>
-                            {{ _('Notifications') }}
+                            Notifications
                         </a>
                         <a href="{{ url_for('users.support') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
                             </svg>
-                            {{ _('Support') }}
+                            Support
                         </a>
                         <a href="{{ url_for('users.edit_profile') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                             </svg>
-                            {{ _('Edit Profile') }}
+                            Edit Profile
                         </a>
                     </div>
                     <div class="p-2 border-t border-gray-200 dark:border-dark-700">
@@ -374,7 +374,7 @@
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                             </svg>
-                            {{ _('Logout') }}
+                            Logout
                         </a>
                     </div>
                 </div>
@@ -383,7 +383,7 @@
             <!-- دکمه Dark Mode در هدر -->
             <button onclick="toggleDarkMode()"
                     class="p-2.5 rounded-xl hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-                    aria-label="{{ _('Toggle Dark Mode') }}" title="{{ _('Toggle Theme') }}">
+                    aria-label="Toggle Dark Mode" title="Toggle Theme">
                 <!-- آیکون ماه (نمایش در حالت لایت) -->
                 <svg id="header-icon-moon" class="w-5 h-5 text-slate-400 hover:text-gold dark:hidden transition-transform duration-300"
                      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -410,7 +410,7 @@
             <!-- دکمه پشتیبانی -->
             <a href="{{ url_for('users.support') }}"
                class="hidden sm:flex p-2.5 rounded-xl hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-               aria-label="{{ _('Support') }}">
+               aria-label="Support">
                 <svg class="w-5 h-5 text-slate-400 hover:text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -420,19 +420,19 @@
             <!-- دکمه ورود -->
             <a href="{{ url_for('users.login') }}" 
                class="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gold/30 text-gold font-medium text-sm hover:bg-gold/10 transition no-select">
-                {{ _('Log In') }}
+                Log In
             </a>
             
             <!-- دکمه ثبت‌نام -->
             <a href="{{ url_for('users.register') }}" 
                class="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold text-dark-900 font-bold text-sm hover:bg-gold-light transition no-select">
-                {{ _('Sign Up') }}
+                Sign Up
             </a>
             
             <!-- دکمه Dark Mode در هدر -->
             <button onclick="toggleDarkMode()"
                     class="p-2.5 rounded-xl hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-                    aria-label="{{ _('Toggle Dark Mode') }}" title="{{ _('Toggle Theme') }}">
+                    aria-label="Toggle Dark Mode" title="Toggle Theme">
                 <svg id="header-icon-moon" class="w-5 h-5 text-slate-400 hover:text-gold dark:hidden transition-transform duration-300"
                      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -449,7 +449,7 @@
         <!-- دکمه منوی موبایل (همبرگری) -->
         <button id="mobileMenuBtn"
                 class="lg:hidden p-2.5 rounded-xl hover:bg-dark-800/50 transition border border-transparent hover:border-gold/20"
-                aria-label="{{ _('Menu') }}" aria-expanded="false" aria-controls="mobileMenu">
+                aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
             <div class="w-6 h-5 flex flex-col justify-between">
                 <span class="hamburger-line h-0.5 w-full bg-slate-300 rounded-full"></span>
                 <span class="hamburger-line h-0.5 w-full bg-slate-300 rounded-full"></span>
@@ -470,8 +470,8 @@
 
         <!-- هدر منو: عنوان و دکمه بستن -->
         <div class="flex items-center justify-between mb-6 pb-4 border-b border-gold/10">
-            <span class="text-lg font-bold text-gold">{{ _('Menu') }}</span>
-            <button id="closeMenuBtn" class="p-2 rounded-lg hover:bg-dark-700 transition" aria-label="{{ _('Close Menu') }}">
+            <span class="text-lg font-bold text-gold">Menu</span>
+            <button id="closeMenuBtn" class="p-2 rounded-lg hover:bg-dark-700 transition" aria-label="Close Menu">
                 <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
@@ -490,14 +490,14 @@
                         <p class="text-xs text-slate-400 truncate">{{ current_user.email }}</p>
                         {% if current_user.is_premium %}
                             <span class="inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full bg-gold/10 text-gold text-[10px] font-bold">
-                                🌟 {{ _('Premium') }}
+                                🌟 Premium
                             </span>
                         {% endif %}
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <a href="{{ url_for('users.profile') }}" class="px-3 py-2 rounded-lg bg-dark-600 text-slate-300 hover:text-gold transition text-xs text-center">{{ _('Profile') }}</a>
-                    <a href="{{ url_for('users.edit_profile') }}" class="px-3 py-2 rounded-lg bg-dark-600 text-slate-300 hover:text-gold transition text-xs text-center">{{ _('Settings') }}</a>
+                    <a href="{{ url_for('users.profile') }}" class="px-3 py-2 rounded-lg bg-dark-600 text-slate-300 hover:text-gold transition text-xs text-center">Profile</a>
+                    <a href="{{ url_for('users.edit_profile') }}" class="px-3 py-2 rounded-lg bg-dark-600 text-slate-300 hover:text-gold transition text-xs text-center">Settings</a>
                 </div>
             </div>
             
@@ -509,7 +509,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                     </svg>
-                    {{ _('Home') }}
+                    Home
                 </a>
                 
                 <!-- آکاردئون خدمات -->
@@ -521,7 +521,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
-                            {{ _('Services') }}
+                            Services
                         </div>
                         <svg id="servicesArrow" class="w-4 h-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -533,31 +533,31 @@
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                             </svg>
-                            {{ _('Trade Assurance') }}
+                            Trade Assurance
                         </a>
                         <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            {{ _('Payment & Escrow') }}
+                            Payment & Escrow
                         </a>
                         <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                             </svg>
-                            {{ _('Smart Logistics') }}
+                            Smart Logistics
                         </a>
                         <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                             </svg>
-                            {{ _('Market Analytics') }}
+                            Market Analytics
                         </a>
                         <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                             </svg>
-                            {{ _('Trade Academy') }}
+                            Trade Academy
                         </a>
                     </div>
                 </div>
@@ -568,7 +568,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                     </svg>
-                    {{ _('Smart Map') }}
+                    Smart Map
                 </a>
                 <a href="#"
                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-dark-700 hover:text-gold transition">
@@ -576,7 +576,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
-                    {{ _('Consortium') }}
+                    Consortium
                 </a>
                 <a href="#"
                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-dark-700 hover:text-gold transition">
@@ -584,7 +584,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                     </svg>
-                    {{ _('Academy') }}
+                    Academy
                 </a>
                 
                 <!-- جداکننده -->
@@ -597,7 +597,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                     </svg>
-                    {{ _('My Orders') }}
+                    My Orders
                 </a>
                 <a href="{{ url_for('users.notifications') }}"
                    class="flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-dark-700 hover:text-gold transition">
@@ -606,7 +606,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                         </svg>
-                        {{ _('Notifications') }}
+                        Notifications
                     </div>
                     <span class="w-2 h-2 bg-red-500 rounded-full"></span>
                 </a>
@@ -616,7 +616,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
-                    {{ _('Support') }}
+                    Support
                 </a>
             </nav>
             
@@ -639,7 +639,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
-                    {{ _('Toggle Theme') }}
+                    Toggle Theme
                 </button>
                 
                 <!-- دکمه خروج -->
@@ -649,7 +649,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                     </svg>
-                    {{ _('Logout') }}
+                    Logout
                 </a>
             </div>
             
@@ -662,7 +662,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                     </svg>
-                    {{ _('Home') }}
+                    Home
                 </a>
                 
                 <!-- آکاردئون خدمات -->
@@ -674,7 +674,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
-                            {{ _('Services') }}
+                            Services
                         </div>
                         <svg id="servicesArrow" class="w-4 h-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -682,11 +682,11 @@
                     </button>
                     <!-- زیرمنوی خدمات -->
                     <div id="servicesSubmenu" class="hidden ml-4 mt-1 space-y-1 pl-4 border-l-2 border-gold/20">
-                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">{{ _('Trade Assurance') }}</a>
-                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">{{ _('Payment & Escrow') }}</a>
-                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">{{ _('Smart Logistics') }}</a>
-                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">{{ _('Market Analytics') }}</a>
-                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">{{ _('Trade Academy') }}</a>
+                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">Trade Assurance</a>
+                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">Payment & Escrow</a>
+                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">Smart Logistics</a>
+                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">Market Analytics</a>
+                        <a href="#" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-dark-700 hover:text-gold transition text-sm">Trade Academy</a>
                     </div>
                 </div>
                 
@@ -696,7 +696,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                     </svg>
-                    {{ _('Smart Map') }}
+                    Smart Map
                 </a>
                 <a href="#"
                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-dark-700 hover:text-gold transition">
@@ -704,7 +704,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
-                    {{ _('Consortium') }}
+                    Consortium
                 </a>
                 <a href="#"
                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-dark-700 hover:text-gold transition">
@@ -712,7 +712,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                     </svg>
-                    {{ _('Academy') }}
+                    Academy
                 </a>
                 <a href="{{ url_for('users.support') }}"
                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-dark-700 hover:text-gold transition">
@@ -720,7 +720,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
-                    {{ _('Support') }}
+                    Support
                 </a>
             </nav>
             
@@ -743,15 +743,15 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
-                    {{ _('Toggle Theme') }}
+                    Toggle Theme
                 </button>
                 
                 <!-- دکمه‌های احراز هویت -->
                 <div class="grid grid-cols-2 gap-3">
                     <a href="{{ url_for('users.login') }}"
-                       class="px-4 py-3 rounded-xl border border-gold/30 text-gold text-sm font-medium text-center hover:bg-gold/10 transition">{{ _('Log In') }}</a>
+                       class="px-4 py-3 rounded-xl border border-gold/30 text-gold text-sm font-medium text-center hover:bg-gold/10 transition">Log In</a>
                     <a href="{{ url_for('users.register') }}"
-                       class="px-4 py-3 rounded-xl bg-gold text-dark-900 text-sm font-bold text-center hover:bg-gold-light transition">{{ _('Sign Up') }}</a>
+                       class="px-4 py-3 rounded-xl bg-gold text-dark-900 text-sm font-bold text-center hover:bg-gold-light transition">Sign Up</a>
                 </div>
             </div>
         {% endif %}
@@ -765,22 +765,22 @@
   <div class="ticker-wrap whitespace-nowrap ">
     <div class="animate-ticker inline-flex items-center text-sm " dir="ltr">
       <!-- آیتم ۱ -->
-      <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
+      <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> Customs Clearance Active</span>
       <!-- آیتم ۲ -->
-      <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
+      <span class="mx-6 text-slate-400">📢 New Route: <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> is now active</span>
       <!-- آیتم ۳ -->
-      <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
+      <span class="mx-6 text-slate-400">📉 Oman Customs Tariffs <span class="text-amber-400 font-semibold">Reduced by 5%</span></span>
       <!-- آیتم ۴ -->
-      <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
+      <span class="mx-6 text-slate-400">⚠️ Alert: <span class="text-amber-400 font-semibold">Germany</span> import regulations change next month</span>
       <!-- آیتم ۵ -->
-      <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
+      <span class="mx-6 text-slate-400">✅ 3 new <span class="text-amber-400 font-semibold">Saffron</span> buyers registered in Frankfurt</span>
 
       <!-- ⬇️ تکرار دقیقاً همان آیتم‌ها برای حلقه نرم -->
-      <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
-      <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
-      <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
-      <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
-      <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
+      <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> Customs Clearance Active</span>
+      <span class="mx-6 text-slate-400">📢 New Route: <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> is now active</span>
+      <span class="mx-6 text-slate-400">📉 Oman Customs Tariffs <span class="text-amber-400 font-semibold">Reduced by 5%</span></span>
+      <span class="mx-6 text-slate-400">⚠️ Alert: <span class="text-amber-400 font-semibold">Germany</span> import regulations change next month</span>
+      <span class="mx-6 text-slate-400">✅ 3 new <span class="text-amber-400 font-semibold">Saffron</span> buyers registered in Frankfurt</span>
     </div>
   </div>
 </div>
@@ -862,34 +862,35 @@
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold to-gold-dark
                         flex items-center justify-center text-lg">
-                        <img src="/static/images/logo.png" alt="{{ _('Metisma Logo') }}" class="h-8 w-auto object-contain">
+                        <img src="/static/images/logo.png" alt="Metisma Logo" class="h-8 w-auto object-contain">
                     </div>
                     <span class="text-xl font-bold text-gold">Metisma</span>
                 </div>
                 <p class="text-slate-400 text-sm leading-relaxed max-w-md">
-                    {{ _('Intelligent B2B platform connecting producers to global markets with AI-powered tools, verified networks, and end-to-end trade services.') }}
+                    Intelligent B2B platform connecting producers to global markets
+                    with AI-powered tools, verified networks, and end-to-end trade services.
                 </p>
             </div>
 
             <!-- لینک‌های دسترسی سریع -->
             <div>
-                <h4 class="text-white font-bold mb-4 text-sm">{{ _('Quick Links') }}</h4>
+                <h4 class="text-white font-bold mb-4 text-sm">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="text-slate-400 hover:text-gold transition">{{ _('Services') }}</a></li>
-                    <li><a href="#" class="text-slate-400 hover:text-gold transition">{{ _('Smart Map') }}</a></li>
-                    <li><a href="#" class="text-slate-400 hover:text-gold transition">{{ _('Consortium') }}</a></li>
-                    <li><a href="#" class="text-slate-400 hover:text-gold transition">{{ _('Academy') }}</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-gold transition">Services</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-gold transition">Smart Map</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-gold transition">Consortium</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-gold transition">Academy</a></li>
                 </ul>
             </div>
 
             <!-- لینک‌های حقوقی -->
             <div>
-                <h4 class="text-white font-bold mb-4 text-sm">{{ _('Legal') }}</h4>
+                <h4 class="text-white font-bold mb-4 text-sm">Legal</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="text-slate-400 hover:text-gold transition">{{ _('Privacy Policy') }}</a></li>
-                    <li><a href="#" class="text-slate-400 hover:text-gold transition">{{ _('Terms of Service') }}</a></li>
-                    <li><a href="#" class="text-slate-400 hover:text-gold transition">{{ _('Support') }}</a></li>
-                    <li><a href="#" class="text-slate-400 hover:text-gold transition">{{ _('Contact Us') }}</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-gold transition">Privacy Policy</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-gold transition">Terms of Service</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-gold transition">Support</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-gold transition">Contact Us</a></li>
                 </ul>
             </div>
 
@@ -897,7 +898,7 @@
 
         <!-- کپی‌رایت -->
         <div class="mt-12 pt-8 border-t border-gold/10 text-center text-xs text-slate-500">
-            © 2026 Metisma. {{ _('All rights reserved.') }}
+            © 2026 Metisma. All rights reserved.
         </div>
     </div>
 </footer>
@@ -905,7 +906,7 @@
 <!-- دکمه نصب PWA (در صورت نیاز) -->
 <button id="installPwaBtn"
         class="fixed bottom-6 right-6 bg-gold hover:bg-gold-light text-dark-900 px-4 py-2.5 rounded-full shadow-lg font-medium text-sm z-50 transition transform hover:-translate-y-1 hidden items-center gap-2">
-    <span>📥</span> {{ _('Install App') }}
+    <span>📥</span> Install App
 </button>
 <!-- اسکریپت‌های مشترک -->
 <!-- ✅ اسکریپت‌های جاوااسکریپت -->
