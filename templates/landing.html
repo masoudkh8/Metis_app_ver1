@@ -816,6 +816,7 @@
     </div>
   </header>
 
+
   <!-- منوی کشویی موبایل (اورلی) -->
   <div id="mobileMenu" class="fixed inset-0 z-40 lg:hidden hidden" role="dialog" aria-modal="true">
     <!-- پس‌زمینه تیره برای بستن منو با کلیک -->
@@ -979,23 +980,51 @@
                 <span class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-200/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"></span>
               </a>
             </div>
-{#        <div class="grid grid-cols-2 gap-3">#}
-{#          <a href="/about" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-gray-100 dark:hover:bg-dark-600 transition text-sm font-medium text-gray-700 dark:text-slate-300">#}
-{#            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
-{#              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>#}
-{#            </svg>#}
-{#            About#}
-{#          </a>#}
-{#          <a href="/contact" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-50 dark:bg-dark-700/50 hover:bg-gray-100 dark:hover:bg-dark-600 transition text-sm font-medium text-gray-700 dark:text-slate-300">#}
-{#            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
-{#              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>#}
-{#            </svg>#}
-{#            Contact#}
-{#          </a>#}
-{#        </div>#}
+
       </div>
     </div>
   </div>
+ <!-- نوار اخبار متحرک (تیکر) -->
+  {% block ticker %}
+    <div class="relative x-auto px-20 mt-20 space-y+2 z-50 h-full w-full border-gold/30 border-y dark:border-gold/30 overflow-hidden">
+
+      <div class="ticker-wrap whitespace-nowrap ">
+        <div class="animate-ticker inline-flex items-center text-sm " dir="ltr">
+          <!-- آیتم ۱ -->
+          <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
+          <!-- آیتم ۲ -->
+          <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
+          <!-- آیتم ۳ -->
+          <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
+          <!-- آیتم ۴ -->
+          <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
+          <!-- آیتم ۵ -->
+          <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
+
+          <!-- ⬇️ تکرار دقیقاً همان آیتم‌ها برای حلقه نرم -->
+          <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
+          <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
+          <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
+          <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
+          <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
+        </div>
+      </div>
+    </div>
+  <style>
+  .animate-ticker {
+    animation: ticker-scroll 35s linear infinite;
+    will-change: transform;
+  }
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  /* توقف حرکت هنگام هاور */
+  .ticker-wrap:hover .animate-ticker {
+    animation-play-state: paused;
+  }
+  </style>
+  {% endblock %}
 
   <!-- بخش هیرو (اصلی) با پس‌زمینه کره زمین -->
   <section class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-gray-50 dark:bg-dark-900 transition-colors">
@@ -1039,21 +1068,8 @@
             <span class="absolute inset-0 bg-gradient-to-r from-transparent via-amber-200/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none"></span>
           </a>
         </div>
-{#      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">#}
-{#          <!-- دکمه اول: درخواست دسترسی انحصاری -->#}
-{#          <a href="/users/login" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl#}
-{#                    bg-gold/50 border-2 border-gold text-gold font-bold text-base#}
-{#                    shadow-xl shadow-gold/30 hover:shadow-gold/50 hover:scale-[1.02] active:scale-[0.98]#}
-{#                    transition no-select gold-glow-hover">#}
-{#            Request Exclusive Access#}
-{#          </a>#}
-{#          <a href="/users/register" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl#}
-{#                  bg-gold/50 border-2 border-gold text-gold font-bold text-base#}
-{#                  hover:bg-gold/60 hover:scale-[1.02] active:scale-[0.98]#}
-{#                  transition no-select gold-glow-hover">#}
-{#          Apply for Membership#}
-{#          </a>#}
-{#      </div>#}
+
+
 
       <!-- آمار و ارقام (نمایش در دسکتاپ) -->
       <div class="hidden sm:flex items-center gap-8 mt-4 text-sm text-gray-600 dark:text-slate-400">
