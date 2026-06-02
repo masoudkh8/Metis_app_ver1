@@ -141,7 +141,25 @@
            shadow-[0_4px_20px_rgba(0,0,0,0.03)]
            hover:shadow-[0_12px_30px_rgba(212,175,55,0.12)];
   }
+.social-icon {
+    @apply w-9 h-9 rounded-lg border border-gold/10
+           flex items-center justify-center
+           text-gray-500 text-sm
+           transition-all duration-300;
+  }
 
+  .social-icon:hover {
+    @apply border-gold/30 bg-gold/5 text-gold
+           scale-110 shadow-lg shadow-gold/20;
+  }
+
+  .dark .social-icon {
+    @apply text-slate-400;
+  }
+
+  .dark .social-icon:hover {
+    @apply text-gold;
+  }
 }
 /* ✅ حذف تعریف تکراری خارج از @layer */
 

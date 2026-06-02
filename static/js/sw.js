@@ -7,9 +7,11 @@ const OFFLINE_URL = '/offline.html';
 const urlsToCache = [
     '/',
     '/static/css/output.css',
+    '/static/js/lucide.min.js',
     '/static/js/three.min.js',
     '/static/icons/icon-192.png',
     '/static/icons/icon-512.png',
+	
     '/static/manifest.json',
     OFFLINE_URL,
     // Cache common fonts (local fallback)
