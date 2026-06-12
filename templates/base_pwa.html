@@ -369,6 +369,13 @@
                             {{ _('Edit Profile') }}
                         </a>
                     </div>
+
+                    <div class="sm:flex items-center gap-1 bg-dark-800/50 rounded-lg p-1 border border-gold/10">
+                        <a href="{{ url_for('language.set_language', lang='fa_IR') }}"
+                           class="px-3 py-1.5 text-xs font-medium rounded-md {% if session.get('lang') == 'fa_IR' %}bg-gold text-dark-900{% else %}text-slate-400 hover:text-gold{% endif %} transition">FA</a>
+                        <a href="{{ url_for('language.set_language', lang='en') }}"
+                           class="px-3 py-1.5 text-xs font-medium rounded-md {% if session.get('lang') != 'fa_IR' %}bg-gold text-dark-900{% else %}text-slate-400 hover:text-gold{% endif %} transition">EN</a>
+                    </div>
                     <div class="p-2 border-t border-gray-200 dark:border-dark-700">
                         <a href="{{ url_for('users.logout') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-400 hover:bg-red-500/10 hover:text-red-300 transition text-sm">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -623,10 +630,12 @@
             <!-- فوتر منو: دکمه خروج و Dark Mode -->
             <div class="pt-4 mt-4 border-t border-gold/10 space-y-3">
                 <!-- انتخابگر زبان موبایل -->
-                <div class="flex items-center justify-center gap-1 bg-dark-700 rounded-lg p-1">
-                    <button class="flex-1 px-3 py-2 text-xs font-medium rounded-md text-slate-400">FA</button>
-                    <button class="flex-1 px-3 py-2 text-xs font-medium rounded-md bg-gold text-dark-900">EN</button>
-                </div>
+                   <div class="hidden sm:flex items-center gap-1 bg-dark-800/50 rounded-lg p-1 border border-gold/10">
+                        <a href="{{ url_for('language.set_language', lang='fa_IR') }}"
+                           class="px-3 py-1.5 text-xs font-medium rounded-md {% if session.get('lang') == 'fa_IR' %}bg-gold text-dark-900{% else %}text-slate-400 hover:text-gold{% endif %} transition">FA</a>
+                        <a href="{{ url_for('language.set_language', lang='en') }}"
+                           class="px-3 py-1.5 text-xs font-medium rounded-md {% if session.get('lang') != 'fa_IR' %}bg-gold text-dark-900{% else %}text-slate-400 hover:text-gold{% endif %} transition">EN</a>
+                    </div>
                 
                 <!-- دکمه Dark Mode -->
                 <button onclick="toggleDarkMode()"
@@ -760,27 +769,26 @@
 
 <!-- نوار اخبار متحرک (تیکر) -->
 {% block ticker %}
-<div class="relative x-auto px-20 mt-20 space-y+2 z-50 h-full w-full border-gold/30 border-y dark:border-gold/30 overflow-hidden">
+<div class="relative px-20 mt-20 z-10 w-full bg-gray-100/50 dark:bg-gold/5 border-y border-gray-200 dark:border-gold/15 overflow-hidden transition-colors">
+    <div class="ticker-wrap whitespace-nowrap py-2.5">
+        <div class="animate-ticker inline-block text-sm">
+          <!-- آیتم ۱ -->
+          <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
+          <!-- آیتم ۲ -->
+          <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
+          <!-- آیتم ۳ -->
+          <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
+          <!-- آیتم ۴ -->
+          <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
+          <!-- آیتم ۵ -->
+          <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
 
-  <div class="ticker-wrap whitespace-nowrap ">
-    <div class="animate-ticker inline-flex items-center text-sm " dir="ltr">
-      <!-- آیتم ۱ -->
-      <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
-      <!-- آیتم ۲ -->
-      <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
-      <!-- آیتم ۳ -->
-      <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
-      <!-- آیتم ۴ -->
-      <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
-      <!-- آیتم ۵ -->
-      <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
-
-      <!-- ⬇️ تکرار دقیقاً همان آیتم‌ها برای حلقه نرم -->
-      <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
-      <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
-      <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
-      <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
-      <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
+          <!-- ⬇️ تکرار دقیقاً همان آیتم‌ها برای حلقه نرم -->
+          <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
+          <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
+          <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
+          <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
+          <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
     </div>
   </div>
 </div>

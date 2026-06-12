@@ -1,6 +1,6 @@
 {% extends "base_pwa.html" %}
 
-{% block title %}{{ t_('common.account_settings') }} - {{ user.username }}{% endblock %}
+{% block title %}{{ _('common.account_settings') }} - {{ user.username }}{% endblock %}
 
 {% block content %}
 <!-- Modern Account Settings Page -->
@@ -24,10 +24,10 @@
                     </div>
                     <div class="flex-1 text-center md:text-right">
                         <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
-                            {{ t_('common.account_settings') }}
+                            {{ _('common.account_settings') }}
                         </h1>
                         <p class="text-gray-600 dark:text-slate-400 text-lg">
-                            {{ t_('profile.account_settings_subtitle') }}
+                            {{ _('profile.account_settings_subtitle') }}
                         </p>
                         <div class="flex flex-wrap justify-center md:justify-end gap-3 mt-3">
                             <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-sm font-semibold">
@@ -42,7 +42,7 @@
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                {{ t_('security.2fa_active') }}
+                                {{ _('security.2fa_active') }}
                             </span>
                             {% endif %}
                         </div>
@@ -120,8 +120,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h2 class="text-2xl font-bold text-white">{{ t_('profile.change_password_title') }}</h2>
-                                <p class="text-blue-100 text-sm">{{ t_('profile.change_password_desc') }}</p>
+                                <h2 class="text-2xl font-bold text-white">{{ _('profile.change_password_title') }}</h2>
+                                <p class="text-blue-100 text-sm">{{ _('profile.change_password_desc') }}</p>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                                         <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
                                         </svg>
-                                        {{ t_('labels.current_password') }}
+                                        {{ _('labels.current_password') }}
                                     </span>
                                 </label>
                                 <input type="password" name="current_password" required
@@ -152,7 +152,7 @@
                                             <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
                                             </svg>
-                                            {{ t_('labels.new_password') }}
+                                            {{ _('labels.new_password') }}
                                         </span>
                                     </label>
                                     <input type="password" name="new_password" id="new_password" required minlength="8"
@@ -166,7 +166,7 @@
                                             <svg class="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
                                             </svg>
-                                            {{ t_('labels.confirm_new_password') }}
+                                            {{ _('labels.confirm_new_password') }}
                                         </span>
                                     </label>
                                     <input type="password" name="confirm_password" id="confirm_password" required minlength="8"
@@ -181,26 +181,26 @@
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                                     </svg>
-                                    {{ t_('profile.password_requirements') }}
+                                    {{ _('profile.password_requirements') }}
                                 </p>
                                 <ul class="text-sm text-blue-700 dark:text-blue-400 space-y-2">
                                     <li class="flex items-center gap-2.5">
                                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        {{ t_('profile.password_min_length') }}
+                                        {{ _('profile.password_min_length') }}
                                     </li>
                                     <li class="flex items-center gap-2.5">
                                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        {{ t_('profile.password_use_uppercase') }}
+                                        {{ _('profile.password_use_uppercase') }}
                                     </li>
                                     <li class="flex items-center gap-2.5">
                                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
-                                        {{ t_('profile.password_use_numbers') }}
+                                        {{ _('profile.password_use_numbers') }}
                                     </li>
                                 </ul>
                             </div>
@@ -210,7 +210,7 @@
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                                 </svg>
-                                {{ t_('common.change_password') }}
+                                {{ _('common.change_password') }}
                             </button>
                         </form>
                     </div>
@@ -229,8 +229,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h2 class="text-2xl font-bold text-white">{{ t_('security.two_factor_auth') }}</h2>
-                                <p class="text-purple-100 text-sm">{{ t_('security.two_factor_desc') }}</p>
+                                <h2 class="text-2xl font-bold text-white">{{ _('security.two_factor_auth') }}</h2>
+                                <p class="text-purple-100 text-sm">{{ _('security.two_factor_desc') }}</p>
                             </div>
                         </div>
                     </div>
@@ -247,26 +247,26 @@
                                         </svg>
                                     </div>
                                     <div class="flex-1">
-                                        <h3 class="font-bold text-green-900 dark:text-green-300 text-xl mb-2">{{ t_('security.two_factor_enabled') }}</h3>
-                                        <p class="text-sm text-green-700 dark:text-green-400 mb-4">{{ t_('security.two_factor_active_msg') }}</p>
+                                        <h3 class="font-bold text-green-900 dark:text-green-300 text-xl mb-2">{{ _('security.two_factor_enabled') }}</h3>
+                                        <p class="text-sm text-green-700 dark:text-green-400 mb-4">{{ _('security.two_factor_active_msg') }}</p>
                                         
                                         <form method="POST" action="{{ url_for('users.disable_2fa') }}" class="space-y-3">
                                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                             <div>
                                                 <label class="block text-sm font-bold text-green-900 dark:text-green-300 mb-2">
-                                                    {{ t_('security.enter_code_to_disable') }}
+                                                    {{ _('security.enter_code_to_disable') }}
                                                 </label>
                                                 <input type="text" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required
                                                        class="w-full px-4 py-3 border-2 border-green-300 dark:border-green-700 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all font-mono text-center tracking-[0.5em] text-lg"
                                                        placeholder="000000" dir="ltr">
                                             </div>
                                             <button type="submit" 
-                                                    onclick="return confirm('{{ t_('security.confirm_disable_2fa') }}')"
+                                                    onclick="return confirm('{{ _('security.confirm_disable_2fa') }}')"
                                                     class="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 px-6 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
                                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                                                 </svg>
-                                                {{ t_('security.disable_2fa') }}
+                                                {{ _('security.disable_2fa') }}
                                             </button>
                                         </form>
                                     </div>
@@ -282,26 +282,26 @@
                                         </svg>
                                     </div>
                                     <div class="flex-1">
-                                        <h3 class="font-bold text-amber-900 dark:text-amber-300 text-xl mb-2">{{ t_('security.two_factor_disabled') }}</h3>
-                                        <p class="text-sm text-amber-700 dark:text-amber-400 mb-4">{{ t_('security.two_factor_inactive_msg') }}</p>
+                                        <h3 class="font-bold text-amber-900 dark:text-amber-300 text-xl mb-2">{{ _('security.two_factor_disabled') }}</h3>
+                                        <p class="text-sm text-amber-700 dark:text-amber-400 mb-4">{{ _('security.two_factor_inactive_msg') }}</p>
                                         <div class="space-y-2">
                                             <div class="flex items-center gap-2.5 text-sm text-amber-800 dark:text-amber-300">
                                                 <svg class="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                                 </svg>
-                                                {{ t_('security.two_factor_benefit_1') }}
+                                                {{ _('security.two_factor_benefit_1') }}
                                             </div>
                                             <div class="flex items-center gap-2.5 text-sm text-amber-800 dark:text-amber-300">
                                                 <svg class="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                                 </svg>
-                                                {{ t_('security.two_factor_benefit_2') }}
+                                                {{ _('security.two_factor_benefit_2') }}
                                             </div>
                                             <div class="flex items-center gap-2.5 text-sm text-amber-800 dark:text-amber-300">
                                                 <svg class="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                                 </svg>
-                                                {{ t_('security.two_factor_benefit_3') }}
+                                                {{ _('security.two_factor_benefit_3') }}
                                             </div>
                                         </div>
                                     </div>
@@ -313,7 +313,7 @@
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                                 </svg>
-                                {{ t_('security.enable_2fa_btn') }}
+                                {{ _('security.enable_2fa_btn') }}
                             </a>
                         {% endif %}
                         
@@ -323,20 +323,20 @@
                                 <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                                 </svg>
-                                {{ t_('security.security_tips') }}
+                                {{ _('security.security_tips') }}
                             </h4>
                             <ul class="text-sm text-gray-700 dark:text-slate-300 space-y-2">
                                 <li class="flex items-start gap-2">
                                     <span class="text-blue-500 font-bold">•</span>
-                                    {{ t_('security.tip_use_authenticator') }}
+                                    {{ _('security.tip_use_authenticator') }}
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-blue-500 font-bold">•</span>
-                                    {{ t_('security.tip_save_backup_codes') }}
+                                    {{ _('security.tip_save_backup_codes') }}
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-blue-500 font-bold">•</span>
-                                    {{ t_('security.tip_never_share_codes') }}
+                                    {{ _('security.tip_never_share_codes') }}
                                 </li>
                             </ul>
                         </div>
@@ -351,7 +351,7 @@
                 <svg class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                {{ t_('common.quick_navigation') }}
+                {{ _('common.quick_navigation') }}
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <a href="{{ url_for('users.profile') }}" 
@@ -359,21 +359,21 @@
                     <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
-                    {{ t_('common.back_to_profile') }}
+                    {{ _('common.back_to_profile') }}
                 </a>
                 <a href="{{ url_for('users.edit_profile') }}" 
                    class="group flex items-center justify-center gap-3 bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 dark:from-indigo-600 dark:to-indigo-700 dark:hover:from-indigo-700 dark:hover:to-indigo-800 text-white py-4 px-6 rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                     <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                     </svg>
-                    {{ t_('common.edit_profile') }}
+                    {{ _('common.edit_profile') }}
                 </a>
                 <a href="{{ url_for('users.dashboard') }}" 
                    class="group flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 dark:from-emerald-600 dark:to-teal-700 dark:hover:from-emerald-700 dark:hover:to-teal-800 text-white py-4 px-6 rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                     <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                     </svg>
-                    {{ t_('common.dashboard') }}
+                    {{ _('common.dashboard') }}
                 </a>
             </div>
         </div>

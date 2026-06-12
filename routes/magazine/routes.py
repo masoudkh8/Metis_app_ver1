@@ -5,6 +5,7 @@ from models import db, MagazineIssue, SponsorshipRequest, AdvertisementRequest, 
 from werkzeug.utils import secure_filename
 import os
 import pytz
+from flask_babel import gettext as _
 from datetime import datetime
 tehran_tz = pytz.timezone('Asia/Tehran')
 
@@ -22,7 +23,7 @@ def download_issue(issue_id):
     issue = MagazineIssue.query.get_or_404(issue_id)
     
     if not issue.is_published:
-        flash('This issue has not been published yet.', 'error')
+        flash(_('This issue has not been published yet.'), 'error')
         return redirect(url_for('magazine.index'))
     
     # مسیر فایل را برگردانید
@@ -36,7 +37,7 @@ def download_issue(issue_id):
             download_name=f"imazheh-issue-{issue.issue_number}.pdf"
         )
     else:
-        flash('Magazine file not found.', 'error')
+        flash(_('Magazine file not found.'), 'error')
         return redirect(url_for('magazine.index'))
 
 # فرم درخواست اسپانسری
@@ -51,7 +52,7 @@ def sponsorship_request():
         message = request.form.get('message')
         
         if not all([name, email, phone]):
-            flash('Please fill in the required fields.', 'error')
+            flash(_('Please fill in the required fields.'), 'error')
             return redirect(url_for('magazine.sponsorship_request'))
         
         new_request = SponsorshipRequest(
@@ -65,7 +66,7 @@ def sponsorship_request():
         db.session.add(new_request)
         db.session.commit()
         
-        flash('Your sponsorship request has been successfully submitted. We will contact you soon.', 'success')
+        flash(_('Your sponsorship request has been successfully submitted. We will contact you soon.'), 'success')
         return redirect(url_for('magazine.index'))
     
     return render_template('magazine/sponsorship.html')
@@ -85,7 +86,7 @@ def advertisement_request():
         message = request.form.get('message')
         
         if not all([name, email, phone, ad_type]):
-            flash('Please fill in the required fields.', 'error')
+            flash(_('Please fill in the required fields.'), 'error')
             return redirect(url_for('magazine.advertisement_request'))
         
         new_request = AdvertisementRequest(
@@ -102,7 +103,7 @@ def advertisement_request():
         db.session.add(new_request)
         db.session.commit()
         
-        flash('Your advertising request has been successfully submitted. We will contact you soon.', 'success')
+        flash(_('Your advertising request has been successfully submitted. We will contact you soon.'), 'success')
         return redirect(url_for('magazine.index'))
     
     return render_template('magazine/advertisement.html')
@@ -119,7 +120,7 @@ def subscribe():
         subscription_type = request.form.get('subscription_type')
         
         if not all([name, email, phone, address]):
-            flash('Please fill in the required fields.', 'error')
+            flash(_('Please fill in the required fields.'), 'error')
             return redirect(url_for('magazine.subscribe'))
         
         new_subscription = Subscription(
@@ -134,7 +135,7 @@ def subscribe():
         db.session.add(new_subscription)
         db.session.commit()
         
-        flash('Your annual subscription has been successfully registered. Information will be sent soon.', 'success')
+        flash(_('Your annual subscription has been successfully registered. Information will be sent soon.'), 'success')
         return redirect(url_for('magazine.index'))
     
     return render_template('magazine/subscribe.html')

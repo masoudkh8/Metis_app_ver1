@@ -3,7 +3,7 @@
 Metisma Social Network Routes Module
 Includes: Public Profile, News Feed, Follow/Unfollow, Like, Comment, Share
 """
-
+from flask_babel import gettext as _
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify, current_app
 from flask_login import login_required, current_user
 from models import db
@@ -12,7 +12,7 @@ from models.social import Post, Comment, Like, Follow
 from models.notification import Notification
 from datetime import datetime
 import pytz
-
+from celery_app import celery, send_notification_task
 tehran_tz = pytz.timezone('Asia/Tehran')
 
 social_bp = Blueprint('social', __name__, url_prefix='/social')
@@ -24,7 +24,6 @@ def send_notification_async(user_id, notification_data):
     Falls back to synchronous if Celery is not available.
     """
     try:
-        from celery_app import celery
         task = send_notification_task.delay(user_id, notification_data)
         return task
     except Exception:
@@ -78,7 +77,7 @@ def follow_user(user_id):
     Follow a user
     """
     if current_user.id == user_id:
-        return jsonify({'error': t_('social.cannot_follow_self')}), 400
+        return jsonify({'error': _('social.cannot_follow_self')}), 400
     
     user_to_follow = User.query.get_or_404(user_id)
     
@@ -95,8 +94,8 @@ def follow_user(user_id):
         
         # Create notification data
         notification_data = {
-            'title': t_('social.new_follower_notification'),
-            'message': f'{current_user.username} {t_("social.followed_you")}',
+            'title': _('social.new_follower_notification'),
+            'message': f'{current_user.username} {_("social.followed_you")}',
             'type': 'follow',
             'actor_id': current_user.id
         }
@@ -108,11 +107,11 @@ def follow_user(user_id):
         
         return jsonify({
             'success': True,
-            'message': t_('social.now_following').format(username=user_to_follow.username),
+            'message': _('social.now_following').format(username=user_to_follow.username),
             'followers_count': Follow.get_followers_count(user_id)
         })
     else:
-        return jsonify({'error': t_('social.already_following')}), 400
+        return jsonify({'error': _('social.already_following')}), 400
 
 
 @social_bp.route('/unfollow/<int:user_id>', methods=['POST'])
@@ -122,7 +121,7 @@ def unfollow_user(user_id):
     Unfollow a user
     """
     if current_user.id == user_id:
-        return jsonify({'error': t_('social.cannot_follow_self')}), 400
+        return jsonify({'error': _('social.cannot_follow_self')}), 400
     
     # Find follow record
     follow = Follow.query.filter_by(
@@ -136,11 +135,11 @@ def unfollow_user(user_id):
         
         return jsonify({
             'success': True,
-            'message': t_('social.unfollowed'),
+            'message': _('social.unfollowed'),
             'followers_count': Follow.get_followers_count(user_id)
         })
     else:
-        return jsonify({'error': t_('social.not_following')}), 400
+        return jsonify({'error': _('social.not_following')}), 400
 
 
 @social_bp.route('/followers/<int:user_id>')
@@ -198,7 +197,7 @@ def create_post():
         visibility = request.form.get('visibility', 'public')
         
         if not content:
-            flash(t_('social.post_content_empty'), 'error')
+            flash(_('social.post_content_empty'), 'error')
             return redirect(url_for('social.news_feed'))
         
         # Process uploaded files (if any)
@@ -222,7 +221,7 @@ def create_post():
         db.session.add(post)
         db.session.commit()
         
-        flash(t_('social.post_published'), 'success')
+        flash(_('social.post_published'), 'success')
         return redirect(url_for('social.public_profile', username=current_user.username))
     
     return render_template('users/create_post.html')
@@ -257,13 +256,13 @@ def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     
     if post.author_id != current_user.id and not current_user.is_admin_or_moderator:
-        flash(t_('messages.access_denied'), 'error')
+        flash(_('messages.access_denied'), 'error')
         return redirect(url_for('social.view_post', post_id=post_id))
     
     db.session.delete(post)
     db.session.commit()
     
-    flash(t_('social.post_deleted'), 'success')
+    flash(_('social.post_deleted'), 'success')
     return redirect(url_for('social.public_profile', username=post.author.username))
 
 
@@ -296,8 +295,8 @@ def like_post(post_id):
         # Create notification for post author (if not liking own post)
         if post.author_id != current_user.id:
             notification_data = {
-                'title': t_('social.new_like_notification'),
-                'message': f'{current_user.username} {t_("social.liked_your_post")}',
+                'title': _('social.new_like_notification'),
+                'message': f'{current_user.username} {_("social.liked_your_post")}',
                 'type': 'like',
                 'actor_id': current_user.id,
                 'related_id': post_id,
@@ -331,7 +330,7 @@ def like_post(post_id):
                 'is_liked': False
             })
     
-    return jsonify({'error': t_('messages.error_occurred')}), 500
+    return jsonify({'error': _('messages.error_occurred')}), 500
 
 
 @social_bp.route('/post/<int:post_id>/comment', methods=['POST'])
@@ -346,7 +345,7 @@ def add_comment(post_id):
     parent_id = request.form.get('parent_id', type=int)  # For reply to comment
     
     if not content:
-        flash(t_('social.comment_empty'), 'error')
+        flash(_('social.comment_empty'), 'error')
         return redirect(url_for('social.view_post', post_id=post_id))
     
     comment = Comment(
@@ -364,8 +363,8 @@ def add_comment(post_id):
     # Create notification for post author (if not commenting on own post)
     if post.author_id != current_user.id:
         notification_data = {
-            'title': t_('social.new_comment_notification'),
-            'message': f'{current_user.username} {t_("social.commented_on_your_post")}',
+            'title': _('social.new_comment_notification'),
+            'message': f'{current_user.username} {_("social.commented_on_your_post")}',
             'type': 'comment',
             'actor_id': current_user.id,
             'related_id': post_id,
@@ -378,8 +377,8 @@ def add_comment(post_id):
         parent_comment = db.session.get(Comment, parent_id)
         if parent_comment and parent_comment.author_id != current_user.id:
             notification_data = {
-                'title': t_('social.new_reply_notification'),
-                'message': f'{current_user.username} {t_("social.replied_to_your_comment")}',
+                'title': _('social.new_reply_notification'),
+                'message': f'{current_user.username} {_("social.replied_to_your_comment")}',
                 'type': 'comment_reply',
                 'actor_id': current_user.id,
                 'related_id': post_id,
@@ -389,7 +388,7 @@ def add_comment(post_id):
     
     db.session.commit()
     
-    flash(t_('social.comment_posted'), 'success')
+    flash(_('social.comment_posted'), 'success')
     return redirect(url_for('social.view_post', post_id=post_id))
 
 
@@ -415,8 +414,8 @@ def like_comment(comment_id):
         # Notification for comment owner
         if comment.author_id != current_user.id:
             notification_data = {
-                'title': t_('social.new_like_notification'),
-                'message': f'{current_user.username} {t_("social.liked_your_comment")}',
+                'title': _('social.new_like_notification'),
+                'message': f'{current_user.username} {_("social.liked_your_comment")}',
                 'type': 'like',
                 'actor_id': current_user.id,
                 'related_id': comment_id,
@@ -449,7 +448,7 @@ def like_comment(comment_id):
                 'is_liked': False
             })
     
-    return jsonify({'error': t_('messages.error_occurred')}), 500
+    return jsonify({'error': _('messages.error_occurred')}), 500
 
 
 @social_bp.route('/comment/<int:comment_id>/delete', methods=['POST'])
@@ -461,19 +460,19 @@ def delete_comment(comment_id):
     comment = Comment.query.get_or_404(comment_id)
     
     if comment.author_id != current_user.id and not current_user.is_admin_or_moderator:
-        flash(t_('messages.access_denied'), 'error')
+        flash(_('messages.access_denied'), 'error')
         return redirect(url_for('social.view_post', post_id=comment.post_id))
     
     # Soft delete to preserve conversation thread
     comment.is_deleted = True
-    comment.content = t_('social.this_comment_deleted')
+    comment.content = _('social.this_comment_deleted')
     db.session.commit()
     
     # Decrease post comment counter
     comment.post.comments_count -= 1
     db.session.commit()
     
-    flash(t_('social.comment_deleted'), 'success')
+    flash(_('social.comment_deleted'), 'success')
     return redirect(url_for('social.view_post', post_id=comment.post_id))
 
 

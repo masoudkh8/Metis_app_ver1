@@ -3,12 +3,12 @@ import os
 import logging
 from logging.handlers import RotatingFileHandler
 import click
-from flask import Flask, redirect, url_for, request, session, jsonify, g
-from flask_babel import Babel, gettext
+from flask import Flask, url_for, request, session, jsonify
+from flask_babel import  gettext
 from flask_wtf.csrf import CSRFProtect
 from itsdangerous import URLSafeTimedSerializer
 import json
-from models import db, User, Order, DataProvider, Port, PremiumRequest
+from models import db, User, Order, Port
 from models.user import Role
 from routes.admin.routes import admin_bp
 from routes.admin import init_admin_blueprints  # Import the initializer function
@@ -20,11 +20,12 @@ from flask_login import LoginManager
 from flask_mail import Mail, Message
 from routes.users import root_bp
 # Note: permissions_routes uses the same users_bp, so no separate import needed
-from extensions import mail, cache, limiter, babel
+
 from flask_socketio import SocketIO, emit
 from datetime import datetime
 import time
-from routes.users.routes import api_bp
+from extensions import (mail, cache, limiter, babel,
+    redis_client, get_remote_address_safe)
 import eventlet
 from eventlet import wsgi
 
@@ -33,17 +34,12 @@ login_manager = LoginManager()
 csrf = CSRFProtect()
 
 # Initialize SocketIO with Redis message queue for production
-socketio = SocketIO(
-    cors_allowed_origins="*",
-    async_mode='eventlet',
-    message_queue=os.environ.get("SOCKETIO_MESSAGE_QUEUE", "redis://localhost:6379/0"),
-    engineio_logger=False,
-    logger=False
-)
+socketio = SocketIO()
 
 def normalize_locale(code):
     mapping = {'fa': 'fa_IR', 'fa_IR': 'fa_IR', 'en': 'en', 'en_US': 'en'}
     return mapping.get(code, 'fa_IR')
+
 
 def setup_logging(app):
     """Setup structured logging configuration for the application."""
@@ -51,7 +47,17 @@ def setup_logging(app):
         if not os.path.exists('logs'):
             os.mkdir('logs')
 
-        file_handler = RotatingFileHandler('logs/app.log', maxBytes=10240, backupCount=3 , delay=True)
+        # ✅ استفاده از TimedRotatingFileHandler به جای RotatingFileHandler
+        from logging.handlers import TimedRotatingFileHandler
+
+        file_handler = TimedRotatingFileHandler(
+            'logs/app.log',
+            when='midnight',  # هر روز یک فایل جدید
+            interval=1,
+            backupCount=7,  # نگهداری ۷ روز آخر
+            encoding='utf-8'
+        )
+
         file_handler.setFormatter(logging.Formatter(
             '{"timestamp": "%(asctime)s", "level": "%(levelname)s", "message": "%(message)s", '
             '"module": "%(module)s", "lineno": %(lineno)d}'
@@ -64,15 +70,18 @@ def setup_logging(app):
         ))
         console_handler.setLevel(logging.INFO)
 
-        app.logger.addHandler(file_handler)
-        app.logger.addHandler(console_handler)
+        # ✅ جلوگیری از اضافه شدن handler های تکراری
+        if not app.logger.handlers:
+            app.logger.addHandler(file_handler)
+            app.logger.addHandler(console_handler)
+
         app.logger.setLevel(logging.INFO)
         app.logger.info('Application startup')
     else:
-        logging.basicConfig(level=logging.INFO)
+        # ✅ در حالت debug، فقط console handler
+        if not app.logger.handlers:
+            logging.basicConfig(level=logging.INFO)
         app.logger.info('Application startup in development mode')
-
-
 def setup_monitoring(app):
     """Setup monitoring endpoints and health checks."""
 
@@ -252,7 +261,7 @@ def create_app():
 
                 if dry_run:
                     click.echo(
-                        f"🔍 DRY RUN: Would insert {len(ports_to_insert)} new ports, skip {skipped} existing/invalid")
+                        f"[DEBUG] DRY RUN: Would insert {len(ports_to_insert)} new ports, skip {skipped} existing/invalid")
                     for p in ports_to_insert[:5]:
                         click.echo(f"   • {p['name']}, {p['country']} ({p['latitude']}, {p['longitude']})")
                     if len(ports_to_insert) > 5:
@@ -312,18 +321,6 @@ def create_app():
     app.config['BABEL_SUPPORTED_LOCALES'] = ['fa_IR', 'en']
 
 
-    def get_locale():
-        lang = request.args.get('lang')
-        if lang:
-            session['lang'] = normalize_locale(lang)
-            return session['lang']
-        if session.get('lang'):
-            return session['lang']
-        return request.accept_languages.best_match(['fa_IR', 'en'], 'fa_IR')
-
-
-    babel.init_app(app, locale_selector=get_locale)
-
 
     @app.context_processor
     def inject_translations():
@@ -348,8 +345,72 @@ def create_app():
     if Config.RATELIMIT_ENABLED:
         limiter.init_app(app)
 
+
+    # ✅ اضافه کردن Error Handler هوشمند برای شناسایی مهاجمان (با محافظت از محیط توسعه)
+    @app.errorhandler(429)
+    def ratelimit_handler(e):
+        ip = get_remote_address_safe()
+
+        # ✅ محافظت از محیط توسعه: اگر IP لوکال است یا در حالت development هستیم، بلاک نکن!
+        if ip in ["127.0.0.1", "::1", "localhost"] or os.environ.get("FLASK_ENV") == "development":
+            app.logger.warning(f"[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: {ip} | Path: {request.path}")
+            return jsonify({
+                "error": "Too many requests",
+                "message": "Please wait before trying again. (Dev Mode: Auto-blocking disabled)"
+            }), 429
+
+        # ✅ منطق اصلی برای محیط Production (سرور واقعی)
+        if redis_client:
+            violations_key = f"violations:{ip}"
+            violations = redis_client.incr(violations_key)
+            redis_client.expire(violations_key, 3600)
+
+            app.logger.warning(
+                f"[ALERT] RATE LIMIT EXCEEDED - IP: {ip} | "
+                f"Path: {request.path} | "
+                f"Violations: {violations}/10"
+            )
+
+            # مسدودسازی خودکار بعد از 10 بار نقض
+            if violations >= 10:
+                blocked_key = f"blocked_ip:{ip}"
+                redis_client.setex(blocked_key, 86400, "blocked")
+                app.logger.critical(f"[BLOCKED] IP BLOCKED FOR 24 HOURS: {ip}")
+
+                return jsonify({
+                    "error": "Your IP has been blocked due to repeated violations",
+                    "retry_after": 86400
+                }), 403
+
+        return jsonify({
+            "error": "Too many requests",
+            "message": "Please wait before trying again."
+        }), 429
+
+    # ✅ بررسی IPهای مسدود قبل از هر درخواست
+    @app.before_request
+    def check_blocked_ip():
+        if redis_client:
+            ip = get_remote_address_safe()
+            blocked_key = f"blocked_ip:{ip}"
+
+            if redis_client.exists(blocked_key):
+                app.logger.error(f"[DENIED] BLOCKED IP ATTEMPTED ACCESS: {ip}")
+                return jsonify({
+                    "error": "Your IP has been blocked due to suspicious activity"
+                }), 403
+
+
     # Initialize SocketIO
-    socketio.init_app(app, message_queue=Config.SOCKETIO_MESSAGE_QUEUE, cors_allowed_origins="*")
+    socketio.init_app(app,message_queue = os.environ.get("SOCKETIO_MESSAGE_QUEUE", "redis://localhost:6379/0"),
+        cors_allowed_origins = [
+            "http://localhost:5000",
+            "http://127.0.0.1:5000",
+            "https://metisma.com"
+        ],
+        async_mode = 'eventlet',
+        engineio_logger = False,
+        logger = False)
 
     setup_logging(app)
     setup_monitoring(app)
@@ -470,8 +531,14 @@ def create_app():
     app.register_blueprint(root_bp)
 
     # Initialize admin blueprints (includes permission management)
-    admin_bp_instance = init_admin_blueprints()
-    app.register_blueprint(admin_bp_instance, url_prefix='/admin')
+    # admin_bp_instance = init_admin_blueprints()
+    # app.register_blueprint(admin_bp_instance, url_prefix='/admin')
+
+
+    if not any(bp.name == 'admin' for bp in app.blueprints.values()):
+        admin_bp_instance = init_admin_blueprints()
+        app.register_blueprint(admin_bp_instance, url_prefix='/admin')
+
 
     app.register_blueprint(magazine_bp, url_prefix='/magazine')
     app.register_blueprint(social_bp)
@@ -532,8 +599,17 @@ def create_app():
                 db.session.rollback()
                 click.echo(click.style(f"❌ Database error: {e}", fg='red'))
 
+
     with app.app_context():
-        db.create_all()
+        try:
+            db.create_all()
+            app.logger.info("[SUCCESS] Database tables created successfully.")
+        except Exception as e:
+            # اگر خطا مربوط به وجود داشتن type/table بود، نادیده بگیر
+            if "already exists" in str(e) or "duplicate key" in str(e):
+                app.logger.info("[INFO] Database tables already exist (skipped).")
+            else:
+                app.logger.warning(f"[WARNING] Database creation error: {e}")
 
         # Initialize Exhibition & Trading modules
         from models.exhibition import init_exhibition_db
@@ -541,20 +617,15 @@ def create_app():
 
         try:
             init_exhibition_db()
-            app.logger.info("Exhibition module initialized successfully.")
-        except Exception as e:
-            app.logger.warning(f"Exhibition initialization skipped: {e}")
-
-        try:
             init_trading_db()
-            app.logger.info("Trading module initialized successfully.")
+            app.logger.info("[SUCCESS] Exhibition and Trading modules initialized successfully.")
         except Exception as e:
-            app.logger.warning(f"Trading initialization skipped: {e}")
+            if "already exists" in str(e) or "duplicate key" in str(e):
+                app.logger.info("[INFO] Modules already initialized (skipped).")
+            else:
+                app.logger.warning(f"[WARNING] Module initialization error: {e}")
 
-        app.logger.info("Database and tables created.")
-
-    app.config['START_TIME'] = time.time()
-
+        app.logger.info("Database initialization process completed.")
     # =============================================================================
     # ✅ Global Search Endpoint
     # =============================================================================
@@ -651,9 +722,34 @@ def create_app():
 
         except Exception as e:
             app.logger.error(f'Search error: {e}')
+
             return jsonify({'error': 'Search failed'}), 500
 
+            # ✅ پیام startup واضح و قابل مشاهده
 
+
+    import sys
+
+
+    def print_startup_message():
+        print("\n" + "=" * 60)
+        print("🚀 METISMA PLATFORM IS RUNNING")
+        print("=" * 60)
+        print(f"🌐 Local:    http://127.0.0.1:5000")
+        print(f"🌐 Network:  http://0.0.0.0:5000")
+        print(f"📚 API Docs: http://127.0.0.1:5000/api/docs")
+        print(f"🔧 Debug:    {'ON' if app.debug else 'OFF'}")
+        print(f"🌍 Language: {app.config.get('BABEL_DEFAULT_LOCALE', 'fa_IR')}")
+        print("=" * 60 + "\n")
+        sys.stdout.flush()
+
+
+    # اجرا در اولین request
+    @app.before_request
+    def before_first():
+        if not hasattr(app, '_startup_printed'):
+            print_startup_message()
+            app._startup_printed = True
 
 
     return app
@@ -662,4 +758,16 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
     # Run with SocketIO for real-time features
-    socketio.run(app, host="0.0.0.0", port=5000, debug=True, allow_unsafe_werkzeug=True)
+    # ✅ فقط در development
+    is_production = os.environ.get("FLASK_ENV") == "production"
+    # ✅ غیرفعال کردن cache template در حالت development
+    if os.environ.get("FLASK_ENV") != "production":
+        app.config['TEMPLATES_AUTO_RELOAD'] = True
+        app.jinja_env.auto_reload = True
+    socketio.run(
+        app,
+        host="0.0.0.0",
+        port=5000,
+        debug=is_production,#not is_production,  # در production False باشد
+        allow_unsafe_werkzeug=is_production#not is_production  # در production False باشد
+    )

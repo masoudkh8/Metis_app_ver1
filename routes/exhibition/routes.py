@@ -7,7 +7,7 @@ from flask_login import login_required, current_user
 from datetime import datetime, timedelta
 from sqlalchemy import desc, func
 import random
-
+from flask_babel import gettext as _
 from models.exhibition import Exhibition, Booth, BoothVisit, BoothInteraction, BoothAppointment, ExhibitionVisit
 from models.user import User
 from extensions import db
@@ -97,7 +97,7 @@ def book_appointment(booth_id):
     try:
         appointment_time = datetime.fromisoformat(appointment_time_str.replace('Z', '+00:00'))
     except:
-        flash('Invalid time format.', 'error')
+        flash(_('Invalid time format.'), 'error')
         return redirect(url_for('exhibition.booth_detail', booth_id=booth_id))
     
     # Check availability (simple check for MVP)
@@ -108,7 +108,7 @@ def book_appointment(booth_id):
     ).first()
     
     if existing:
-        flash('This time slot is already booked. Please choose another time.', 'warning')
+        flash(_('This time slot is already booked. Please choose another time.'), 'warning')
         return redirect(url_for('exhibition.booth_detail', booth_id=booth_id))
     
     appointment = BoothAppointment(
@@ -133,7 +133,7 @@ def book_appointment(booth_id):
     
     db.session.commit()
     
-    flash('Your appointment has been successfully booked!', 'success')
+    flash(_('Your appointment has been successfully booked!'), 'success')
     return redirect(url_for('exhibition.booth_detail', booth_id=booth_id))
 
 @exhibition_bp.route('/booth/<uuid:booth_id>/interact', methods=['POST'])
@@ -197,7 +197,7 @@ def create_booth():
         )
         db.session.add(booth)
         db.session.commit()
-        flash('Your booth has been created successfully!', 'success')
+        flash(_('Your booth has been created successfully!'), 'success')
         return redirect(url_for('exhibition.booth_detail', booth_id=booth.id))
     
     exhibitions = Exhibition.query.filter_by(status='active').all()

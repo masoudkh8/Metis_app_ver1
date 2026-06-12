@@ -46,6 +46,16 @@
 	  body {
 		font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Vazirmatn', Tahoma, sans-serif;
 	  }
+              /* اطمینان از اینکه dropdown ها همیشه روی نوار اخبار هستند */
+      nav .group:hover > div {
+          z-index: 9999 !important;
+          pointer-events: auto !important;
+      }
+
+
+      .ticker-wrap:hover {
+          pointer-events: auto;
+      }
 	</style>
 	  
   
@@ -90,7 +100,7 @@
 {#  </script>#}
 {#  #}
   <style>
-  
+
   /* انیمیشن دکمه تغییر تم */
 .theme-toggle {
   transition: transform 0.15s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -546,7 +556,7 @@
   <!-- ✅ دکمه تغییر تم شناور (گوشه پایین چپ) -->
 <!-- ✅ دکمه تغییر تم شناور با آیکون‌های SVG ماه/خورشید -->
 <button onclick="toggleDarkMode()" 
-        class="theme-toggle fixed bottom-6 left-6 z-50 p-3.5 rounded-full 
+        class="theme-toggle fixed bottom-6 left-6 z-50 p-3.5 rounded-full
                bg-white dark:bg-dark-700 shadow-lg border border-gray-200 dark:border-dark-600 
                hover:shadow-xl transition-all duration-300" 
         aria-label="{{ _('Toggle Dark Mode') }}" title="{{ _('Toggle Theme') }}">
@@ -615,7 +625,7 @@
   </div>
 
   <!-- هدر سایت: چسبان به بالا با افکت شیشه‌ای -->
-  <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 
+  <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4
                  bg-white/95 dark:bg-dark-900/85 backdrop-blur-xl border-b border-gray-200 dark:border-gold/15 transition-colors">
     
     <!-- لوگو و نام برند -->
@@ -985,13 +995,15 @@
     </div>
   </div>
  <!-- نوار اخبار متحرک (تیکر) -->
+  <!-- نوار اخبار متحرک (تیکر) -->
   {% block ticker %}
-    <div class="relative x-auto px-20 mt-20 space-y+2 z-50 h-full w-full border-gold/30 border-y dark:border-gold/30 overflow-hidden">
+      <div class="relative px-20 mt-20 z-10 w-full bg-gray-100/50 dark:bg-gold/5 border-y border-gray-200 dark:border-gold/15 overflow-hidden transition-colors">
+        <div class="ticker-wrap whitespace-nowrap py-2.5">
+            <div class="animate-ticker inline-block text-sm">
 
-      <div class="ticker-wrap whitespace-nowrap ">
-        <div class="animate-ticker inline-flex items-center text-sm " dir="ltr">
-          <!-- آیتم ۱ -->
+                          <!-- آیتم ۱ -->
           <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
+          <!-- آیتم ۲ -->
           <!-- آیتم ۲ -->
           <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
           <!-- آیتم ۳ -->
@@ -1001,29 +1013,34 @@
           <!-- آیتم ۵ -->
           <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
 
-          <!-- ⬇️ تکرار دقیقاً همان آیتم‌ها برای حلقه نرم -->
+          <!-- تکرار آیتم‌ها برای حلقه نرم -->
           <span class="mx-6 text-slate-400">🔍 <span class="text-amber-400 font-semibold">Tehran, Oranges:</span> {{ _('Customs Clearance Active') }}</span>
           <span class="mx-6 text-slate-400">📢 {{ _('New Route:') }} <span class="text-amber-400 font-semibold">Bandar Abbas → Sohar</span> {{ _('is now active') }}</span>
           <span class="mx-6 text-slate-400">📉 {{ _('Oman Customs Tariffs') }} <span class="text-amber-400 font-semibold">{{ _('Reduced by 5%') }}</span></span>
           <span class="mx-6 text-slate-400">⚠️ {{ _('Alert:') }} <span class="text-amber-400 font-semibold">Germany</span> {{ _('import regulations change next month') }}</span>
           <span class="mx-6 text-slate-400">✅ 3 {{ _('new') }} <span class="text-amber-400 font-semibold">Saffron</span> {{ _('buyers registered in Frankfurt') }}</span>
+
         </div>
       </div>
     </div>
-  <style>
-  .animate-ticker {
-    animation: ticker-scroll 35s linear infinite;
-    will-change: transform;
-  }
-  @keyframes ticker-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  /* توقف حرکت هنگام هاور */
-  .ticker-wrap:hover .animate-ticker {
-    animation-play-state: paused;
-  }
-  </style>
+
+    <style>
+      .animate-ticker {
+        animation: ticker-scroll 35s linear infinite;
+        will-change: transform;
+      }
+      @keyframes ticker-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* توقف حرکت هنگام هاور روی خود متن نوار اخبار */
+      /* استفاده از !important برای اطمینان از اولویت این استایل */
+      .ticker-wrap:hover .animate-ticker,
+      .animate-ticker:hover {
+        animation-play-state: paused !important;
+      }
+    </style>
   {% endblock %}
 
   <!-- بخش هیرو (اصلی) با پس‌زمینه کره زمین -->

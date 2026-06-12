@@ -137,5 +137,51 @@ def cleanup_old_sessions():
         return {'status': 'error', 'message': str(e)}
 
 
+@celery.task(bind=True, max_retries=3)
+def send_notification_task(self, user_id, notification_data):
+    """
+    Send notification to user via database and optionally via WebSocket.
+    This task runs in background to avoid blocking the main request.
+    """
+    from models import db
+    from models.notification import Notification
+
+    try:
+        # Create notification in database
+        notification = Notification(
+            user_id=user_id,
+            title=notification_data.get('title', ''),
+            message=notification_data.get('message', ''),
+            notification_type=notification_data.get('type', 'system'),
+            actor_id=notification_data.get('actor_id'),
+            related_id=notification_data.get('related_id'),
+            related_type=notification_data.get('related_type')
+        )
+
+        db.session.add(notification)
+        db.session.commit()
+
+        # Optional: Send via WebSocket for real-time delivery
+        # You can implement this later if needed
+        # from app import socketio
+        # socketio.emit('notification', {
+        #     'id': notification.id,
+        #     'title': notification.title,
+        #     'message': notification.message,
+        #     'type': notification.notification_type
+        # }, room=f'user_{user_id}')
+
+        return {
+            'status': 'success',
+            'notification_id': notification.id,
+            'message': f'Notification sent to user {user_id}'
+        }
+
+    except Exception as exc:
+        # Retry on failure (max 3 times with 60 second delay)
+        db.session.rollback()
+        raise self.retry(exc=exc, countdown=60)
+
+
 if __name__ == '__main__':
     celery.start()

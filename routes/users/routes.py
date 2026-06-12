@@ -1,6 +1,6 @@
 # routes/users/routes.py
 import hashlib
-
+from extensions import cache
 from flask_wtf.csrf import generate_csrf
 from datetime import datetime
 import pytz
@@ -22,7 +22,7 @@ from models import Message, Notification, db, user
 from models.user import User, Role
 from models.auth import PasswordResetToken, LoginSession, ActivityLog, EmailVerificationToken, TwoFactorBackupCode
 from models.port import Port
-
+from flask_babel import gettext as _
 from . import users_bp,root_bp
 from .auth import verify_phone, verify_2fa_login, show_verify_email_page
 # Import permissions routes to register them under users_bp
@@ -63,11 +63,11 @@ def role_required(*roles):
         @wraps(f)
         def decorated_function(*args, **kwargs):
             if not current_user.is_authenticated:
-                flash("Please log in first.", "error")
+                flash(_("Please log in first."), "error")
                 return redirect(url_for('users.login'))
             
             if current_user.role.value not in roles:
-                flash("Unauthorized access. This section is for specific roles.", "error")
+                flash(_("Unauthorized access. This section is for specific roles."), "error")
                 return redirect(url_for('users.profile'))
             
             return f(*args, **kwargs)
@@ -118,6 +118,7 @@ def validate_file(file, image_only=False):
 
 # routes/users/routes.py یا app.py
 @root_bp.route('/')
+@cache.cached(timeout=300, query_string=True)  # کش به مدت 5 دقیقه
 def main_page():
     return render_template('landing.html')
 
@@ -132,7 +133,7 @@ def make_session_permanent():
 def create_first_admin():
     # فقط در محیط توسعه یا وقتی هیچ ادمینی وجود ندارد قابل دسترسی است
     if User.query.filter_by(role=Role.ADMIN, is_active=True).first():
-        flash("There is already an admin.")
+        flash(_("There is already an admin."))
         return redirect(url_for('users.login'))
 
     if request.method == 'POST':
@@ -141,27 +142,27 @@ def create_first_admin():
         password = request.form.get('password', '')
 
         if not username or not email or not password:
-            flash("❌ Please fill in all fields.")
+            flash(_("❌ Please fill in all fields."))
             return redirect(url_for('users.create_first_admin'))
 
         if len(username) < 3:
-            flash("❌ Username must be at least 3 characters long.")
+            flash(_("❌ Username must be at least 3 characters long."))
             return redirect(url_for('users.create_first_admin'))
 
         if '@' not in email:
-            flash("❌ The email address is invalid.")
+            flash(_("❌ The email address is invalid."))
             return redirect(url_for('users.create_first_admin'))
 
         if len(password) < 8:
-            flash("❌ The password must be at least 8 characters long.")
+            flash(_("❌ The password must be at least 8 characters long."))
             return redirect(url_for('users.create_first_admin'))
 
         if User.query.filter_by(username=username, is_active=True).first():
-            flash("❌ Username already taken.")
+            flash(_("❌ Username already taken."))
             return redirect(url_for('users.create_first_admin'))
 
         if User.query.filter_by(email=email, is_active=True).first():
-            flash("❌ Email already used.")
+            flash(_("❌ Email already used."))
             return redirect(url_for('users.create_first_admin'))
 
         try:
@@ -177,12 +178,12 @@ def create_first_admin():
 
             db.session.add(user)
             db.session.commit()
-            flash("✅ The first admin was created successfully. Please log in.")
+            flash(_("✅ The first admin was created successfully. Please log in."))
             return redirect(url_for('admin.login'))
         except Exception as e:
             db.session.rollback()
             current_app.logger.error(f"Error creating admin: {e}")
-            flash("❌ An error occurred while creating the admin.")
+            flash(_("❌ An error occurred while creating the admin."))
             return redirect(url_for('users.create_first_admin'))
 
     return render_template('admin/create_first_admin.html')
@@ -215,7 +216,7 @@ def set_language():
 @limiter.limit("5 per minute")  # Rate limiting for registration
 def register():
     if current_user.is_authenticated:
-        flash("You already have an account. Please log out first to register a new account.")
+        flash(_("You already have an account. Please log out first to register a new account."))
         return redirect(url_for('users.profile'))
     
     if request.method == 'POST':
@@ -238,7 +239,7 @@ def register():
         # reCAPTCHA verification
         recaptcha_response = request.form.get('g-recaptcha-response')
         if not verify_recaptcha(recaptcha_response):
-            flash("reCAPTCHA verification failed. Please try again.", "error")
+            flash(_("reCAPTCHA verification failed. Please try again."), "error")
             return redirect(url_for('users.register'))
         
         # Precise input validation (Request 2)
@@ -326,18 +327,25 @@ def register():
 
                 if email_sent:
                     print(f"  → ✅ Email sent to {new_user.email}")
-                    flash("✅ Registration successful! Verification email sent.", "success")
+                    flash(_("✅ Registration successful! Verification email sent."), "success")
                 else:
                     print(f"  → ❌ Email failed: {error_msg}")
-                    flash(f"⚠️ Account created but email failed: {error_msg}", "warning")
+
+                    flash(
+                        _("Account created but email failed: %(error_msg)s") % {"error_msg": error_msg},
+                        "warning"
+                    )
 
             except Exception as email_error:
                 # خطای اختصاصی بخش ایمیل
                 print(f"  → 💥 Email subsystem error: {email_error}")
                 import traceback
                 traceback.print_exc()
-                flash(f"⚠️ Account created but email system error: {str(email_error)}", "warning")
 
+                flash(
+                    _("Account created but email system error: %(error)s") % {"error": str(email_error)},
+                    "warning"
+                )
             return redirect(url_for('users.login'))
 
         except Exception as e:
@@ -346,7 +354,7 @@ def register():
             print(f"💥 CRITICAL ERROR in register: {e}")
             import traceback
             traceback.print_exc()  # چاپ کامل خطا در کنسول
-            flash(f"❌ Registration error: {str(e)}", "error")  # نمایش خطا به کاربر (فقط برای تست)
+            flash(_("Registration error: %(error)s") % {"error": str(e)}, "error")
             return redirect(url_for('users.register'))
 
     return render_template('users/register.html', roles=Role)
@@ -380,7 +388,13 @@ def login():
         # بررسی قفل بودن حساب
         if user and user.locked_until:
             if datetime.utcnow() < user.locked_until:
-                flash(f"❌ Your account is locked until {user.locked_until.strftime('%Y-%m-%d %H:%M')} due to failed attempts.")
+                lock_time = user.locked_until.strftime('%Y-%m-%d %H:%M')
+
+                flash(
+                    _("[LOCKED] Your account is locked until %(lock_time)s due to failed attempts.") % {
+                        "lock_time": lock_time},
+                    "error"
+                )
                 ActivityLog.log_activity(
                     user_id=user.id,
                     activity_type='login_blocked',
@@ -400,7 +414,7 @@ def login():
 
             # ✅ بررسی تأیید ایمیل قبل از ورود
             if not user.is_email_verified:
-                flash("❌ Please verify your email before logging in. Check your inbox for the verification link.",
+                flash(_("❌ Please verify your email before logging in. Check your inbox for the verification link."),
                       "warning")
                 ActivityLog.log_activity(
                     user_id=user.id,
@@ -433,7 +447,7 @@ def login():
                 # ذخیره اطلاعات موقت در session برای مرحله بعد
                 session['2fa_pending_user_id'] = user.id
                 session['2fa_remember_me'] = remember_me
-                flash("✅ Password verified. Please enter your 2FA code.", "info")
+                flash(_("✅ Password verified. Please enter your 2FA code."), "info")
                 return redirect(url_for('users.verify_2fa_login'))
             
             # اگر 2FA فعال نیست، ادامه فرآیند ورود عادی
@@ -451,7 +465,7 @@ def login():
             response = redirect(url_for('users.profile'))
             response.set_cookie('session_token', session_token, httponly=True, secure=True, samesite='Lax')
             
-            flash("✅ Welcome!")
+            flash(_("✅ Welcome!"))
             return response
         else:
             # ورود ناموفق
@@ -472,7 +486,7 @@ def login():
                         failure_reason='too_many_failed_attempts'
                     )
                     
-                    flash("❌ Your account has been locked for 15 minutes due to too many failed attempts.")
+                    flash(_("❌ Your account has been locked for 15 minutes due to too many failed attempts."))
                 else:
                     db.session.commit()
                     
@@ -486,10 +500,15 @@ def login():
                     )
                     
                     remaining_attempts = 5 - user.failed_login_attempts
-                    flash(f"❌ Incorrect email or password. {remaining_attempts} more attempts before account is locked.")
+                    flash(
+                        _("Incorrect email or password. %(attempts)s more attempts before account is locked.") % {
+                            "attempts": remaining_attempts
+                        },
+                        "error"
+                    )
             else:
                 # کاربر وجود ندارد - برای امنیت پیام کلی نمایش می‌دهیم
-                flash("❌ Incorrect email or password.")
+                flash(_("❌ Incorrect email or password."))
     
     support_user = User.query.filter_by(username='masoudkh', is_active=True).first()
     return render_template('users/login.html', support_user=support_user)
@@ -529,7 +548,11 @@ def edit_profile():
         if profile_file and profile_file.filename != '':
             is_valid, error_msg = validate_file(profile_file, image_only=True)
             if not is_valid:
-                flash(f"❌ {error_msg}", "error")
+
+                flash(
+                    _("Error: %(error)s") % {"error": error_msg},
+                    "error"
+                )
             else:
                 upload_folder = current_app.config.get('PROFILE_UPLOAD_FOLDER', 'static/uploads/profiles')
                 os.makedirs(upload_folder, exist_ok=True)
@@ -550,10 +573,10 @@ def edit_profile():
                             current_app.logger.error(f"Error deleting old profile image: {e}")
 
                 current_user.profile_image = url_for('static', filename=f'uploads/profiles/{unique_filename}')
-                flash("✅ Profile picture updated successfully.", "success")
+                flash(_("✅ Profile picture updated successfully."), "success")
 
         db.session.commit()
-        flash("✅ Profile updated successfully.", "success")
+        flash(_("✅ Profile updated successfully."), "success")
         return redirect(url_for('users.profile'))
     
     # GET: نمایش فرم ویرایش پروفایل
@@ -588,22 +611,22 @@ def change_password():
     
     # بررسی رمز عبور فعلی
     if not check_password_hash(current_user.password_hash, current_password):
-        flash("❌ The current password is incorrect.", "error")
+        flash(_("❌ The current password is incorrect."), "error")
         return redirect(url_for('users.account_settings'))
     
     # اعتبارسنجی رمز عبور جدید
     if len(new_password) < 8:
-        flash("❌ New password must be at least 8 characters long.", "error")
+        flash(_("❌ New password must be at least 8 characters long."), "error")
         return redirect(url_for('users.account_settings'))
     
     # بررسی تطابق رمز جدید و تکرار آن
     if new_password != confirm_password:
-        flash("❌ New password and repeat password do not match.", "error")
+        flash(_("❌ New password and repeat password do not match."), "error")
         return redirect(url_for('users.account_settings'))
     
     # بررسی تکراری نبودن رمز عبور جدید با رمز قبلی
     if check_password_hash(current_user.password_hash, new_password):
-        flash("⚠️ New password must not be the same as previous password.", "warning")
+        flash(_("⚠️ New password must not be the same as previous password."), "warning")
         return redirect(url_for('users.account_settings'))
     
     try:
@@ -614,12 +637,12 @@ def change_password():
         # لاگ عملیات برای امنیت
         current_app.logger.info(f"Password changed for user {current_user.id} ({current_user.email})")
 
-        flash("✅ Your password has been changed successfully.", "success")
+        flash(_("✅ Your password has been changed successfully."), "success")
         return redirect(url_for('users.account_settings'))
     except Exception as e:
         db.session.rollback()
         current_app.logger.error(f"Error changing password for user {current_user.id}: {e}")
-        flash("❌ An error occurred while changing the password. Please try again.", "error")
+        flash(_("❌ An error occurred while changing the password. Please try again."), "error")
         return redirect(url_for('users.account_settings'))
 
 
@@ -634,7 +657,7 @@ def delete_account():
     # بررسی وجود چک‌باکس تأیید
     confirmation = request.form.get('confirmation_checkbox')
     if not confirmation:
-        flash("⚠️ Please check the confirmation checkbox to delete the account.", "warning")
+        flash(_("⚠️ Please check the confirmation checkbox to delete the account."), "warning")
         return redirect(url_for('users.account_settings'))
     
     user_id = current_user.id
@@ -671,13 +694,13 @@ def delete_account():
             db.session.rollback()
             current_app.logger.error(f"Error creating admin notification: {notif_error}")
         
-        flash("🗑️ Your account has been successfully deleted. Thank you for your cooperation.", "success")
+        flash(_("🗑️ Your account has been successfully deleted. Thank you for your cooperation."), "success")
         return redirect(url_for('users.register'))
         
     except Exception as e:
         db.session.rollback()
         current_app.logger.error(f"Error deleting account for user {user_id}: {e}")
-        flash("❌ An error occurred while deleting the account. Please contact support.", "error")
+        flash(_("❌ An error occurred while deleting the account. Please contact support."), "error")
         return redirect(url_for('users.account_settings'))
 
 
@@ -706,7 +729,7 @@ def logout():
             login_session.revoke()
     
     logout_user()
-    flash("👋 You have successfully logged out.")
+    flash(_("👋 You have successfully logged out."))
     return redirect(url_for('users.login'))
 
 
@@ -717,7 +740,7 @@ def profile():
 
     if not current_user.is_active:
         logout_user()
-        flash("❌ This account is inactive.")
+        flash(_("❌ This account is inactive."))
         return redirect(url_for('users.login'))
 
     # محاسبه تعداد اعلان‌های خوانده‌نشده
@@ -819,11 +842,11 @@ def place_order():
 
             # ✅ اعتبارسنجی فیلدها
             if not product:
-                flash("❌ Please enter the product name.")
+                flash(_("❌ Please enter the product name."))
                 return redirect(url_for('users.place_order'))
 
             if not origin_port or not destination_port:
-                flash("❌ Please select origin and destination.")
+                flash(_("❌ Please select origin and destination."))
                 return redirect(url_for('users.place_order'))
 
             # ✅ اعتبارسنجی کمیت و قیمت
@@ -833,23 +856,23 @@ def place_order():
                 if quantity <= 0 or price <= 0:
                     raise ValueError
             except (ValueError, TypeError):
-                flash("❌ Invalid quantity or price.")
+                flash(_("❌ Invalid quantity or price."))
                 return redirect(url_for('users.place_order'))
 
             # ✅ اعتبارسنجی فروشنده
             if not seller_id_str.isdigit():
-                flash("❌ The seller is invalid.")
+                flash(_("❌ The seller is invalid."))
                 return redirect(url_for('users.place_order'))
 
             seller_id = int(seller_id_str)
             seller = db.session.get(User, seller_id)
 
             if not seller:
-                flash("❌ The desired seller was not found.")
+                flash(_("❌ The desired seller was not found."))
                 return redirect(url_for('users.place_order'))
 
             if seller.role != Role.PRODUCER:
-                flash("❌ The selected user is not a producer.")
+                flash(_("❌ The selected user is not a producer."))
                 return redirect(url_for('users.place_order'))
 
             # ✅ تعیین بروکر (فقط اگر کاربر ویژه باشد)
@@ -906,13 +929,13 @@ def place_order():
 
 
 
-            flash("✅ Order successfully placed.")
+            flash(_("✅ Order successfully placed."))
             return redirect(url_for('users.my_orders'))
 
         except Exception as e:
             db.session.rollback()  # ⚠️ بازگردانی تراکنش در صورت خطا
             print(f"❌ Error creating order: {e}")
-            flash("❌ An error occurred while placing your order. Please try again.")
+            flash(_("❌ An error occurred while placing your order. Please try again."))
             return redirect(url_for('users.place_order'))
 
     # GET: نمایش فرم — فقط PRODUCERها
@@ -942,7 +965,7 @@ def my_orders():
 def seller_orders():
     # Check if user has permission to manage orders instead of just checking role
     if not has_permission(current_user, Permission.ORDER_EDIT):
-        flash("❌ You do not have permission to manage orders.")
+        flash(_("❌ You do not have permission to manage orders."))
         return redirect(url_for('users.profile'))
 
     orders = Order.query.filter_by(seller_id=current_user.id).order_by(Order.created_at.desc()).all()
@@ -957,7 +980,7 @@ def cancel_order(order_id):
 
     # Only buyer or admin can cancel
     if order.buyer_id != current_user.id and current_user.role != Role.ADMIN:
-        flash("❌ You can only cancel your own orders.")
+        flash(_("❌ You can only cancel your own orders."))
         return redirect(url_for('users.my_orders'))
 
     if order.status == OrderStatus.PENDING:
@@ -990,9 +1013,9 @@ def cancel_order(order_id):
             print(f"Celery not available: {e}")
 
         db.session.commit()
-        flash(f"🗑️ Order #{order_id} has been cancelled.")
+        flash(_("🗑️ Order #{order_id} has been cancelled."))
     else:
-        flash("⚠️ This order cannot be cancelled as it has already been processed.")
+        flash(_("⚠️ This order cannot be cancelled as it has already been processed."))
 
     return redirect(url_for('users.my_orders'))
 
@@ -1006,7 +1029,7 @@ def confirm_order(order_id):
     order = Order.query.get_or_404(order_id)
 
     if current_user.role != Role.PRODUCER or order.seller_id != current_user.id:
-        flash("❌ Unauthorized access.")
+        flash(_("❌ Unauthorized access."))
         return redirect(url_for('users.seller_orders'))
 
     if order.status == OrderStatus.PENDING:
@@ -1043,9 +1066,9 @@ def confirm_order(order_id):
 
         db.session.commit()
 
-        flash("✅ The order was confirmed and the notification was sent")
+        flash(_("✅ The order was confirmed and the notification was sent"))
     else:
-        flash("⚠️This order has already been approved or rejected.")
+        flash(_("⚠️This order has already been approved or rejected."))
 
     return redirect(url_for('users.seller_orders'))
 
@@ -1059,7 +1082,7 @@ def reject_order(order_id):
     order = Order.query.get_or_404(order_id)
 
     if current_user.role != Role.PRODUCER or order.seller_id != current_user.id:
-        flash("❌ Unauthorized access.")
+        flash(_("❌ Unauthorized access."))
         return redirect(url_for('users.seller_orders'))
 
     if order.status == OrderStatus.PENDING:
@@ -1097,9 +1120,9 @@ def reject_order(order_id):
 
 
         db.session.commit()
-        flash(f"🗑️ Order #{order_id} rejected.")
+        flash(_("🗑️ Order #{order_id} rejected."))
     else:
-        flash("⚠️ This order has already changed status.")
+        flash(_("⚠️ This order has already changed status."))
 
     return redirect(url_for('users.seller_orders'))
 
@@ -1115,11 +1138,11 @@ def update_order_status(order_id):
 
     # Only seller can update to in_transit, only admin or seller can mark as delivered
     if current_user.role not in [Role.PRODUCER, Role.ADMIN]:
-        flash("❌ Unauthorized access.")
+        flash(_("❌ Unauthorized access."))
         return redirect(url_for('users.my_orders'))
 
     if order.seller_id != current_user.id and current_user.role != Role.ADMIN:
-        flash("❌ You can only update your own orders.")
+        flash(_("❌ You can only update your own orders."))
         return redirect(url_for('users.seller_orders'))
 
     new_status = request.form.get('status')
@@ -1154,7 +1177,7 @@ def update_order_status(order_id):
         except Exception as e:
             print(f"Celery not available: {e}")
 
-        flash("✅ Order status updated to In Transit")
+        flash(_("✅ Order status updated to In Transit"))
 
     elif new_status == 'delivered' and order.status == OrderStatus.IN_TRANSIT:
         order.status = OrderStatus.DELIVERED
@@ -1186,9 +1209,9 @@ def update_order_status(order_id):
         except Exception as e:
             print(f"Celery not available: {e}")
 
-        flash("✅ Order marked as Delivered")
+        flash(_("✅ Order marked as Delivered"))
     else:
-        flash("⚠️ Cannot update order status at this stage.")
+        flash(_("⚠️ Cannot update order status at this stage."))
 
     db.session.commit()
     return redirect(url_for('users.seller_orders') if current_user.role == Role.PRODUCER else url_for('users.my_orders'))
@@ -1243,7 +1266,7 @@ def chat():
         # اگر کاربر غیر ویژه است، فقط می‌تواند پیام‌های ادمین را ببیند
         # نمی‌تواند به صورت فعال چت جدیدی شروع کند
         if request.method == 'POST':
-            flash("❌ Limited access: Only special users can send messages.", "error")
+            flash(_("❌ Limited access: Only special users can send messages."), "error")
             return redirect(url_for('users.profile'))
         
         # برای کاربران غیر ویژه، فقط نمایش پیام‌های ادمین مجاز است
@@ -1252,7 +1275,7 @@ def chat():
         
         # اگر receiver مشخص شده، باید ادمین باشد
         if receiver and receiver.role != Role.ADMIN:
-            flash("❌ Access denied: Non-special users can only view messages from admin.", "error")
+            flash(_("❌ Access denied: Non-special users can only view messages from admin."), "error")
             return redirect(url_for('users.profile'))
             
     else:
@@ -1264,7 +1287,7 @@ def chat():
 
         # ✅ اگر گیرنده وجود نداشته باشه یا ویژه نباشه (برای کاربران عادی)
         if receiver and not receiver.is_premium:
-            flash("❌ This user is not special and you cannot chat with him/her.", "error")
+            flash(_("❌ This user is not special and you cannot chat with him/her."), "error")
             receiver = None
 
     # ارسال پیام (فقط برای کاربران ویژه)
@@ -1288,7 +1311,7 @@ def chat():
             db.session.add(notification)
             db.session.commit()
 
-            flash("✉️ Message sent.")
+            flash(_("✉️ Message sent."))
         return redirect(url_for('users.chat', receiver_id=receiver.id))
 
     # دریافت پیام‌ها
@@ -1317,7 +1340,7 @@ def support():
     admin_user = User.query.filter_by(role=Role.ADMIN, is_active=True).first()
     
     if not admin_user:
-        flash("⚠️ No admin found to contact.", "warning")
+        flash(_("⚠️ No admin found to contact."), "warning")
         return redirect(url_for('users.profile'))
     
     # اگر درخواست POST است، کاربر می‌خواهد پیام ارسال کند
@@ -1325,7 +1348,7 @@ def support():
         content = request.form.get('message', '').strip()
         
         if not content:
-            flash("❌ Please enter a message.", "error")
+            flash(_("❌ Please enter a message."), "error")
             return redirect(url_for('users.support'))
         
         # ایجاد پیام جدید از کاربر به ادمین
@@ -1345,7 +1368,7 @@ def support():
         db.session.add(notification)
         db.session.commit()
         
-        flash("✅ Your message was sent to support.", "success")
+        flash(_("✅ Your message was sent to support."), "success")
         return redirect(url_for('users.support'))
     
     # دریافت پیام‌های بین کاربر جاری و ادمین
@@ -1397,7 +1420,7 @@ country_codes = provider.COUNTRY_CODES
 @login_required
 def vessel_finder():
     if not current_user.is_premium:
-        flash("❌ Access is only allowed for special users.", "error")
+        flash(_("❌ Access is only allowed for special users."), "error")
         return redirect(url_for('users.profile'))
 
     # فقط در صورت POST و دریافت IMO
@@ -1406,7 +1429,7 @@ def vessel_finder():
 
         # اعتبارسنجی
         if not imo or not imo.isdigit() or len(imo) != 7:
-            flash("❌ Please enter a valid 7-digit ID (IMO).", "error")
+            flash(_("❌ Please enter a valid 7-digit ID (IMO)."), "error")
             return render_template('users/vessel_finder.html')
 
         url = f"https://api.searoutes.com/vessel/v2/{imo}/position"
@@ -1426,7 +1449,7 @@ def vessel_finder():
 
         # If network failed and no fallback data returned, show error
         if not data:
-            flash("⚠️ Network unavailable. Showing demo data.", "warning")
+            flash(_("⚠️ Network unavailable. Showing demo data."), "warning")
             # Return demo/static data when offline
             return render_template(
                 'users/vessel_finder.html',
@@ -1442,7 +1465,7 @@ def vessel_finder():
 
         try:
             if not data:
-                flash("❌ No data found for this ship.", "error")
+                flash(_("❌ No data found for this ship."), "error")
                 return render_template('users/vessel_finder.html')
 
             pos = data[0]['position']
@@ -1461,11 +1484,11 @@ def vessel_finder():
             )
 
         except requests.exceptions.Timeout:
-            flash("❌ The request to the server was scheduled. Please try again.", "error")
+            flash(_("❌ The request to the server was scheduled. Please try again."), "error")
         except requests.exceptions.RequestException as e:
-            flash("❌ An error occurred with the ship tracking service.", "error")
+            flash(_("❌ An error occurred with the ship tracking service."), "error")
         except (KeyError, IndexError) as e:
-            flash("❌ The received data is invalid.", "error")
+            flash(_("❌ The received data is invalid."), "error")
 
     # GET یا خطا: نمایش فرم
     return render_template('users/vessel_finder.html')
@@ -1476,7 +1499,7 @@ def vessel_finder():
 @login_required
 def show_map():
     if not current_user.is_premium:
-        flash("❌ Only special users can access the map.")
+        flash(_("❌ Only special users can access the map."))
         return redirect(url_for('users.profile'))
     
     # Fetch ports with fallback to local DB
@@ -1490,7 +1513,7 @@ def show_map():
     
     # Ensure data structure is consistent
     if not ports_data:
-        flash("⚠️ No port data available.", "warning")
+        flash(_("⚠️ No port data available."), "warning")
         ports_data = []
     
     return render_template('users/map.html', ports=ports_data)
@@ -1604,12 +1627,12 @@ def upgrade_to_premium():
 
     if req:
         if req.status == 'approved':
-            flash("✅ You have already become a special user.")
+            flash(_("✅ You have already become a special user."))
             return redirect(url_for('users.profile'))
         elif req.status == 'pending':
             # فقط اگر مدارک آپلود شده باشند، کاربر در حال بررسی است
             if req.passport_file and req.license_file and req.payment_receipt:
-                flash("⚠️ Your request is under review by admin.")
+                flash(_("⚠️ Your request is under review by admin."))
                 return redirect(url_for('users.view_my_documents'))
             # اگر مدارک آپلود نشده، اجازه ادامه فرآیند را بده
 
@@ -1629,7 +1652,7 @@ def start_upgrade():
     ).first()
     
     if existing_approved:
-        flash("You are already a Premium member. Your documents have been verified.", "info")
+        flash(_("You are already a Premium member. Your documents have been verified."), "info")
         return redirect(url_for('users.view_my_documents'))
     
     # بررسی درخواست در حال انتظار
@@ -1641,7 +1664,7 @@ def start_upgrade():
     if existing_pending:
         # اگر مدارک آپلود شده باشند، کاربر در حال بررسی است
         if existing_pending.passport_file and existing_pending.license_file and existing_pending.payment_receipt:
-            flash("You already have a pending verification request.", "info")
+            flash(_("You already have a pending verification request."), "info")
             return redirect(url_for('users.upgrade_to_premium'))
         # اگر مدارک آپلود نشده، اجازه ادامه فرآیند را بده
     
@@ -1650,7 +1673,7 @@ def start_upgrade():
     db.session.add(req)
     db.session.commit()
 
-    flash("The upgrade process has started. Please upload your documents.")
+    flash(_("The upgrade process has started. Please upload your documents."))
     return redirect(url_for('users.upload_documents'))
 
 # آپلود مدارک برای Premium
@@ -1661,18 +1684,18 @@ def upload_documents():
 
     # اگر درخواستی وجود ندارد، کاربر باید ابتدا فرآیند را شروع کند
     if not req:
-        flash("Please start the premium verification process first.", "error")
+        flash(_("Please start the premium verification process first."), "error")
         return redirect(url_for('users.upgrade_to_premium'))
 
     # اگر کاربر قبلاً پریمیوم شده (تأیید نهایی)، نمی‌تواند مدارک را تغییر دهد
     if req.status == 'approved':
-        flash("Your documents have been verified. You cannot modify them.", "info")
+        flash(_("Your documents have been verified. You cannot modify them."), "info")
         return redirect(url_for('users.view_my_documents'))
 
     # اگر مدارک قبلاً آپلود شده و در حال بررسی است
     if req.passport_file and req.license_file:
         if req.status == 'pending':
-            flash("Your documents are under review by admin.", "info")
+            flash(_("Your documents are under review by admin."), "info")
             return redirect(url_for('users.view_my_documents'))
         else:
             # هنوز تأیید نشده، اجازه آپلود مجدد
@@ -1694,7 +1717,10 @@ def upload_documents():
         if passport_file and passport_file.filename != '':
             is_valid, error_msg = validate_file(passport_file)
             if not is_valid:
-                flash(f"❌ {error_msg}", "error")
+                flash(
+                    _("Error: %(error)s") % {"error": error_msg},
+                    "error"
+                )
                 return redirect(url_for('users.upload_documents'))
 
             filename = secure_filename(f"passport.+{passport_file.filename.rsplit('.', 1)[1].lower()}")
@@ -1708,7 +1734,10 @@ def upload_documents():
         if license_file and license_file.filename != '':
             is_valid, error_msg = validate_file(license_file)
             if not is_valid:
-                flash(f"❌ {error_msg}", "error")
+                flash(
+                    _("Error: %(error)s") % {"error": error_msg},
+                    "error"
+                )
                 return redirect(url_for('users.upload_documents'))
 
             filename = secure_filename(f"license.+{license_file.filename.rsplit('.', 1)[1].lower()}")
@@ -1721,10 +1750,10 @@ def upload_documents():
             req.docs_verified = True
             db.session.commit()
 
-            flash("✅ Documents uploaded successfully.", "success")
+            flash(_("✅ Documents uploaded successfully."), "success")
             return redirect(url_for('users.make_payment'))
         else:
-            flash("❌ No files were found to upload. Please select files and try again.", "error")
+            flash(_("❌ No files were found to upload. Please select files and try again."), "error")
 
     return render_template('users/upload_documents.html', req=req)
 
@@ -1736,7 +1765,7 @@ def view_my_documents():
     req = PremiumRequest.query.filter_by(user_id=current_user.id).order_by(PremiumRequest.submitted_at.desc()).first()
     
     if not req:
-        flash("No verification request found.", "error")
+        flash(_("No verification request found."), "error")
         return redirect(url_for('users.upgrade_to_premium'))
     
     return render_template('users/my_documents.html', req=req)
@@ -1749,7 +1778,7 @@ def make_payment():
 
     # اگر درخواستی وجود ندارد یا مدارک آپلود نشده، کاربر باید ابتدا مدارک را آپلود کند
     if not req or not (req.passport_file and req.license_file):
-        flash("Please upload your documents first.", "error")
+        flash(_("Please upload your documents first."), "error")
         return redirect(url_for('users.upload_documents'))
 
     # اگر رسید پرداخت قبلاً آپلود شده و تأیید شده، کاربر نباید بتواند دوباره آپلود کند
@@ -1774,7 +1803,7 @@ def make_payment():
                 req.status = 'pending'
                 req.payment_verified = True
                 db.session.commit()
-                flash("Payment receipt received. Reviewing...")
+                flash(_("Payment receipt received. Reviewing..."))
                 # ارسال اعلان به ادمین
                 notify_admin_of_new_request(req)
                 return redirect(url_for('users.payment_confirmation',now=datetime.now()))
@@ -1877,12 +1906,15 @@ def verify_email(token):
     user, error_msg = verify_email_token(token)
 
     if not user:
-        flash(f"❌ {error_msg}", "error")
+        flash(
+            _("Error: %(error)s") % {"error": error_msg},
+            "error"
+        )
         return redirect(url_for('users.resend_verification'))
 
     # 2. اگر قبلاً تایید شده
     if user.is_email_verified:
-        flash("✅ Your email is already verified. You can login.", "success")
+        flash(_("✅ Your email is already verified. You can login."), "success")
         return redirect(url_for('users.login'))
 
     # 3. تایید کاربر
@@ -1898,7 +1930,7 @@ def verify_email(token):
         token_record.mark_as_used()
         db.session.commit()
 
-    flash("🎉 Email verified successfully! Welcome to Metisma.", "success")
+    flash(_("🎉 Email verified successfully! Welcome to Metisma."), "success")
     return redirect(url_for('users.login'))
 
 
@@ -1910,11 +1942,11 @@ def resend_verification():
         user = User.query.filter_by(email=email).first()
 
         if not user:
-            flash("No account found with this email.", "error")
+            flash(_("No account found with this email."), "error")
             return redirect(url_for('users.resend_verification'))
 
         if user.is_email_verified:
-            flash("✅ Your email is already verified.", "success")
+            flash(_("✅ Your email is already verified."), "success")
             return redirect(url_for('users.login'))
 
         # تولید توکن جدید و ارسال
@@ -1938,9 +1970,12 @@ def resend_verification():
         success, error = send_verification_email(user, raw_token)
 
         if success:
-            flash("📧 New verification email sent! Please check your inbox.", "success")
+            flash(_("📧 New verification email sent! Please check your inbox."), "success")
         else:
-            flash(f"⚠️ Failed to send email: {error}", "error")
+            flash(
+                _("Error: ⚠️ Failed to send email: %(error)s") % {"error": error},
+                "error"
+            )
 
         return redirect(url_for('users.login'))
 

@@ -107,7 +107,7 @@ def get_orderbook(symbol):
     return jsonify(orderbook)
 
 # --- User Trading Operations ---
-
+from sqlalchemy import or_, desc
 @trading_bp.route('/wallet')
 @login_required
 def wallet():

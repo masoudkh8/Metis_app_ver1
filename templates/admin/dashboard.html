@@ -4,7 +4,7 @@
 <div class="min-h-[calc(100vh-4rem)] px-4 py-8">
     <div class="max-w-6xl mx-auto">
         <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-            <span class="p-2 rounded-lg bg-gold/10 text-gold">📊</span> Admin Dashboard
+            <span class="p-2 rounded-lg bg-gold/10 text-gold">📊</span> {{ _('Admin Dashboard') }}
         </h1>
 
         <!-- نوتیفیکیشن‌های جدید -->
@@ -38,51 +38,51 @@
         <!-- آمار کلی -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="bg-white dark:bg-dark-800 p-5 rounded-xl shadow border border-gray-200 dark:border-dark-700">
-                <p class="text-sm text-gray-500 dark:text-slate-400 mb-1">Total Users</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400 mb-1">{{ _('Total Users') }}</p>
                 <p class="text-3xl font-bold text-gray-900 dark:text-white">{{ total_users }}</p>
             </div>
             <div class="bg-white dark:bg-dark-800 p-5 rounded-xl shadow border border-gray-200 dark:border-dark-700">
-                <p class="text-sm text-gray-500 dark:text-slate-400 mb-1">Premium Requests</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400 mb-1">{{ _('Premium Requests') }}</p>
                 <p class="text-3xl font-bold text-gold">{{ premium_requests }}</p>
             </div>
             <div class="bg-white dark:bg-dark-800 p-5 rounded-xl shadow border border-gray-200 dark:border-dark-700">
-                <p class="text-sm text-gray-500 dark:text-slate-400 mb-1">Awaiting Review</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400 mb-1">{{ _('Awaiting Review') }}</p>
                 <p class="text-3xl font-bold text-red-500 dark:text-red-400">{{ pending_requests }}</p>
             </div>
             <div class="bg-white dark:bg-dark-800 p-5 rounded-xl shadow border border-gray-200 dark:border-dark-700">
-                <p class="text-sm text-gray-500 dark:text-slate-400 mb-1">📄 Pending Documents</p>
+                <p class="text-sm text-gray-500 dark:text-slate-400 mb-1">{{ _('Pending Documents') }}</p>
                 <p class="text-3xl font-bold text-purple-500 dark:text-purple-400">{{ users_with_pending_docs }}</p>
             </div>
         </div>
 
         <!-- Quick Actions -->
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">🔧 Quick Actions</h2>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">🔧 {{ _('Quick Actions') }}</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <a href="{{ url_for('admin.manage_users') }}" class="flex items-center gap-3 p-4 bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 hover:border-gold/40 hover:shadow-lg transition group">
                 <div class="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition">👥</div>
-                <span class="font-medium text-gray-900 dark:text-white">User Management</span>
+                <span class="font-medium text-gray-900 dark:text-white">{{ _('User Management') }}</span>
             </a>
             <a href="{{ url_for('admin.premium_requests') }}" class="flex items-center gap-3 p-4 bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 hover:border-gold/40 hover:shadow-lg transition group relative">
                 <div class="p-2 rounded-lg bg-gold/10 text-gold group-hover:scale-110 transition">📂</div>
-                <span class="font-medium text-gray-900 dark:text-white">Premium Requests</span>
+                <span class="font-medium text-gray-900 dark:text-white">{{ _('Premium Requests') }}</span>
                 {% if pending_requests > 0 %}
                 <span class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center">{{ pending_requests }}</span>
                 {% endif %}
             </a>
             <a href="{{ url_for('admin.view_all_documents') }}" class="flex items-center gap-3 p-4 bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 hover:border-gold/40 hover:shadow-lg transition group relative">
                 <div class="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 group-hover:scale-110 transition">📄</div>
-                <span class="font-medium text-gray-900 dark:text-white">User Documents</span>
+                <span class="font-medium text-gray-900 dark:text-white">{{ _('User Documents') }}</span>
                 {% if users_with_pending_docs > 0 %}
                 <span class="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 text-white text-xs font-bold rounded-full flex items-center justify-center">{{ users_with_pending_docs }}</span>
                 {% endif %}
             </a>
             <a href="{{ url_for('admin.admin_perms.permission_dashboard') }}" class="flex items-center gap-3 p-4 bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 hover:border-gold/40 hover:shadow-lg transition group">
                 <div class="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition">🔐</div>
-                <span class="font-medium text-gray-900 dark:text-white">Permission Management</span>
+                <span class="font-medium text-gray-900 dark:text-white">{{ _('Permission Management') }}</span>
             </a>
             <a href="{{ url_for('admin.admin_chat_list') }}" class="flex items-center gap-3 p-4 bg-white dark:bg-dark-800 rounded-xl shadow border border-gray-200 dark:border-dark-700 hover:border-gold/40 hover:shadow-lg transition group">
                 <div class="p-2 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 group-hover:scale-110 transition">💬</div>
-                <span class="font-medium text-gray-900 dark:text-white">Admin Chat</span>
+                <span class="font-medium text-gray-900 dark:text-white">{{ _('Admin Chat') }}</span>
             </a>
         </div>
     </div>

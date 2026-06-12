@@ -1,7 +1,9 @@
 # routes/admin/routes.py
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, session
 from flask_login import login_required, current_user
-
+from flask import Blueprint, redirect, url_for, flash, request
+from flask_login import login_required, current_user
+from flask_babel import gettext as _
 from models import db, Notification, Message
 from models.user import User, Role
 from models.premium_request import PremiumRequest
@@ -39,11 +41,11 @@ def admin_required(f):
     def decorated_function(*args, **kwargs):
         # ✅ اول چک کن کاربر وارد شده باشد
         if not current_user.is_authenticated:
-            flash("❌ Please log in first.")
+            flash(_("❌ Please log in first."))
             return redirect(url_for('users.login'))
 
         if  current_user.role != Role.ADMIN:
-            flash("❌ Access denied: Only admin can access this page.", "error")
+            flash(_("❌ Access denied: Only admin can access this page."), "error")
             return redirect(url_for('users.profile'))
         return f(*args, **kwargs)
 
@@ -140,7 +142,7 @@ def change_user_role(user_id):
     new_role = request.form.get('role')
 
     if not Role.has_value(new_role):
-        flash("❌ The role is invalid.", "error")
+        flash(_("❌ The role is invalid."), "error")
     else:
         user.role = Role(new_role)
         # print(new_role)
@@ -151,7 +153,10 @@ def change_user_role(user_id):
             user.is_kyc_verified = True
             user.premium_since = datetime.now(tehran_tz)
         db.session.commit()
-        flash(f"✅ User role {user.username} changed to '{new_role}' .", "success")
+        flash(_("✅ User role %(username)s changed to '%(role)s'.") % {
+            "username": user.username,
+            "role": new_role
+        }, "success")
     return redirect(url_for('admin.manage_users'))
 
 
@@ -208,13 +213,21 @@ def review_premium_request(req_id):
         req.user.verification_documents = json.dumps(docs)
         
         db.session.commit()
-        flash(f"✅ User '{req.user.username}' successfully promoted to Premium Level 1 (Verified). Trust Score increased by 20 points!", "success")
+        flash(
+            _("[SUCCESS] User '%(username)s' successfully promoted to Premium Level 1 (Verified). Trust Score increased by 20 points!") % {
+                "username": req.user.username
+            },
+            "success"
+        )
     elif action == 'reject':
         req.status = 'rejected'
         db.session.commit()
-        flash(f"❌ Upgrade Request for '{req.user.username}' rejected.", "warning")
+        flash(
+            _("[warning] Upgrade Request for '%(username)s' rejected.") % {
+                "username": req.user.username
+            }, "warning")
     else:
-        flash("⚠️ Invalid action.", "error")
+        flash(_("⚠️ Invalid action."), "error")
         return redirect(url_for('admin.view_premium_request', req_id=req_id))
     
     db.session.commit()
@@ -239,7 +252,10 @@ def approve_premium(req_id):
     req.user.premium_since = datetime.now(tehran_tz)
     db.session.commit()
 
-    flash(f"✅ User '{req.user.username}' Successfully promoted to special user.", "success")
+    flash(
+        _("[success] ✅ User '%(username)s' Successfully promoted to special user.") % {
+            "username": req.user.username
+        }, "success")
     return redirect(url_for('admin.premium_requests'))
 
 
@@ -253,7 +269,8 @@ def reject_premium(req_id):
     req.status = 'rejected'
     db.session.commit()
 
-    flash(f"❌ Upgrade Request for '{req.user.username}' rejected.", "warning")
+    flash(_("❌ Upgrade Request for '%(username)s' rejected.")%{"username": req.user.username}, "error")
+
     return redirect(url_for('admin.premium_requests'))
 
 
@@ -353,7 +370,7 @@ def verify_user_documents(user_id):
         related_id=user.id,
         related_type='document_verified',
         title='✅ Your documents have been verified',
-        message=f'Your identity verification documents have been successfully verified. Your trust score has been increased.'
+        message=_('Your identity verification documents have been successfully verified. Your trust score has been increased.')
     )
     db.session.add(notification)
     
@@ -362,7 +379,8 @@ def verify_user_documents(user_id):
         user.trust_score_value = min(100, user.trust_score_value + 20)
     
     db.session.commit()
-    flash(f"✅ Documents of user '{user.username}' have been successfully verified.", "success")
+    flash(_("✅ Documents of user '%(username)s' have been successfully verified.") % {"username": user.username},
+          "success")
     return redirect(url_for('admin.view_user_documents', user_id=user_id))
 
 
@@ -385,13 +403,13 @@ def reject_user_documents(user_id):
         actor_id=current_user.id,
         related_id=user.id,
         related_type='document_rejected',
-        title='⚠️ Your documents have been rejected',
-        message=f'Your identity verification documents were not approved. Please upload correct documents.'
+        title=_('⚠️ Your documents have been rejected'),
+        message=_('Your identity verification documents were not approved. Please upload correct documents.')
     )
     db.session.add(notification)
     
     db.session.commit()
-    flash(f"⚠️ Documents of user '{user.username}' have been rejected.", "warning")
+    flash(_("Documents of user '%(username)s' have been rejected.") % {'username': user.username}, "warning")
     return redirect(url_for('admin.view_user_documents', user_id=user_id))
 
 
@@ -403,7 +421,7 @@ def reject_user_documents(user_id):
 def delete_user(user_id):
     Notification.query.filter_by(user_id=user_id).delete()
     if current_user.id == user_id:
-        flash("❌ You cannot delete yourself.", "error")
+        flash(_('❌ You cannot delete yourself.'), "error")
         return redirect(url_for('admin.manage_users'))
 
     user = User.query.get_or_404(user_id)
@@ -418,7 +436,8 @@ def delete_user(user_id):
     # db.session.delete(user)
     db.session.commit()
 
-    flash(f" User✅{username} deleted successfully." ,"success")
+    flash(_("User✅ '%(username)s' deleted successfully.") % {'username': user.username},"success")
+
     return redirect(url_for('admin.manage_users'))
 
 
@@ -430,17 +449,17 @@ def delete_user(user_id):
 @admin_required
 def deactivate_user(user_id):
     if current_user.id == user_id:
-        flash("❌ You cannot deactivate yourself.")
+        flash(_("❌ You cannot deactivate yourself."))
         return redirect(url_for('admin.manage_users'))
 
     user = User.query.get_or_404(user_id)
     if user.role == Role.ADMIN:
-        flash("❌ You cannot deactivate another admin.")
+        flash(_("❌ You cannot deactivate another admin."))
         return redirect(url_for('admin.manage_users'))
 
     user.is_active = False
     db.session.commit()
-    flash(f"✅ User'{user.username}' has been disabled.")
+    flash(_("✅ User'%(username)s' has been disabled.")%{'username': user.username})
     return redirect(url_for('admin.manage_users', status=request.args.get('status', 'active')))
 
 
@@ -453,7 +472,7 @@ def activate_user(user_id):
     user = User.query.get_or_404(user_id)
     user.is_active = True
     db.session.commit()
-    flash(f"✅ User'{user.username}' activated.")
+    flash(_("✅ User'%(username)s' activated.")%{'username': user.username})
     return redirect(url_for('admin.manage_users', status=request.args.get('status', 'active')))
 
 
@@ -464,7 +483,7 @@ def activate_user(user_id):
 @admin_required
 def toggle_premium(user_id):
     if current_user.id == user_id:
-        flash("❌ You cannot change your own special status.", "error")
+        flash(_("❌ You cannot change your own special status."), "error")
         return redirect(url_for('admin.manage_users'))
 
     user = User.query.get_or_404(user_id)
@@ -480,9 +499,9 @@ def toggle_premium(user_id):
     db.session.commit()
     
     if user.is_premium:
-        flash(f"✅ User '{user.username}' is now a special user.", "success")
+        flash(_("✅ User '%(username)s' is now a special user.")%{'username': user.username}, "success")
     else:
-        flash(f"⚠️ Special status removed from user '{user.username}'.", "warning")
+        flash(_("⚠️ Special status removed from user '%(username)s'.")%{'username': user.username}, "warning")
     
     return redirect(url_for('admin.manage_users'))
 
@@ -508,7 +527,7 @@ def admin_chat_with_user(user_id):
     user = User.query.get_or_404(user_id)
     
     if user.id == current_user.id:
-        flash("❌ You cannot chat with yourself.", "error")
+        flash(_('❌ You cannot chat with yourself.'), "error")
         return redirect(url_for('admin.admin_chat_list'))
     
     # دریافت پیام‌های بین ادمین و این کاربر
@@ -537,12 +556,12 @@ def admin_chat_with_user(user_id):
             # ایجاد اعلان برای کاربر
             notification = Notification(
                 user_id=user.id,
-                message=f"📩 You received a new message from Admin."
+                message=_('📩 You received a new message from Admin.')
             )
             db.session.add(notification)
             db.session.commit()
             
-            flash("✅ Message sent to user.", "success")
+            flash(_("✅ Message sent to user."), 'success')
             return redirect(url_for('admin.admin_chat_with_user', user_id=user.id))
     
     return render_template('admin/chat_with_user.html', user=user, messages=messages)
@@ -568,14 +587,14 @@ def login_post():
     if user and check_password_hash(user.password_hash, password):
         if user.role ==  Role.ADMIN:
             login_user(user)
-            flash("✅ Welcome, admin.!", "success")
+            flash(_("✅ Welcome, admin.!"), "success")
             return redirect(url_for('admin.dashboard'))
         else:
             print(user.role)
             print(user)
-            flash("❌ Access denied: Only admin can log in.", "error")
+            flash(_("❌ Access denied: Only admin can log in."), "error")
     else:
-        flash("❌ The email or password is incorrect.", "error")
+        flash(_("❌ The email or password is incorrect."), "error")
 
     return redirect(url_for('admin.login'))
 
@@ -589,7 +608,7 @@ def create_first_admin():
     admin_exists = User.query.filter_by(role=Role.ADMIN).first()
     
     if admin_exists:
-        flash("⚠️ Admin already exists. Please log in.", "warning")
+        flash(_("⚠️ Admin already exists. Please log in."), "warning")
         return redirect(url_for('admin.login'))
     
     if request.method == 'POST':
@@ -623,7 +642,7 @@ def create_first_admin():
         
         if errors:
             for error in errors:
-                flash(f"❌ {error}", "error")
+                flash(_("[ERROR] %(error)s") % {"error": error}, "error")
             return render_template('admin/create_first_admin.html', 
                                  username=username, 
                                  email=email,
@@ -660,10 +679,38 @@ def create_first_admin():
         db.session.add(activity)
         db.session.commit()
         
-        flash("✅ First admin account created successfully! Please log in.", "success")
+        flash(_("✅ First admin account created successfully! Please log in."), "success")
         return redirect(url_for('admin.login'))
     
     return render_template('admin/create_first_admin.html', 
                          username='', 
                          email='',
                          current_year=datetime.now().year)
+
+
+
+@admin_bp.route('/toggle_active/<int:user_id>', methods=['POST'])
+@login_required
+def toggle_active(user_id):
+    # ۱. بررسی دسترسی: فقط ادمین‌ها مجازند
+    if not current_user.is_authenticated or current_user.role != Role.ADMIN:
+        flash(_('Access denied.'), 'error')
+        return redirect(url_for('admin.dashboard'))  # یا آدرس لیست کاربران
+
+    user = User.query.get_or_404(user_id)
+
+    # ۲. جلوگیری از غیرفعال کردن اکانت خود ادمین
+    if user.id == current_user.id:
+        flash(_('You c…deactivate your own account.'), 'warning')
+        return redirect(request.referrer or url_for('admin.dashboard'))
+
+    # ۳. تغییر وضعیت و ذخیره در دیتابیس
+    user.is_active = not user.is_active
+    db.session.commit()
+
+    # ۴. پیام موفقیت
+    status_msg = _('activated') if user.is_active else _('deactivated')
+    flash(_('User account has been {} successfully.').format(status_msg), 'success')
+
+    # ۵. بازگشت به صفحه قبلی
+    return redirect(request.referrer or url_for('admin.dashboard'))
