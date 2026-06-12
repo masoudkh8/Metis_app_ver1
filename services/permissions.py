@@ -44,7 +44,8 @@ class Permission(Enum):
     # --- Public / Unauthenticated ---
     PUBLIC_VIEW_PRODUCTS = 'public.view_products'
     PUBLIC_VIEW_ABOUT = 'public.view_about'
-
+    # ✅ ۱. اضافه کردن مجوز دسترسی به شبکه اجتماعی
+    SOCIAL_ACCESS = 'social.access'
 # تعریف دسترسی‌های پیش‌فرض برای هر نقش (Default Role Policies)
 DEFAULT_ROLE_PERMISSIONS = {
     'guest': [  # کاربران غیر احراز هویت
@@ -58,6 +59,7 @@ DEFAULT_ROLE_PERMISSIONS = {
         Permission.FINANCE_VIEW_WALLET,
         Permission.DASHBOARD_VIEW_STATS,
         Permission.PROFILE_EDIT,
+        Permission.SOCIAL_ACCESS,
     ],
     'producer': [
         Permission.ORDER_VIEW,
@@ -65,6 +67,7 @@ DEFAULT_ROLE_PERMISSIONS = {
         Permission.LOGISTICS_VIEW_ASSIGNED, # تولیدکننده هم می‌تواند وضعیت لجستیک سفارش خودش را ببیند
         Permission.DASHBOARD_VIEW_STATS,
         Permission.PROFILE_EDIT,
+        Permission.SOCIAL_ACCESS,
     ],
     'logistics': [
         Permission.LOGISTICS_VIEW_ASSIGNED,
@@ -72,36 +75,43 @@ DEFAULT_ROLE_PERMISSIONS = {
         Permission.LOGISTICS_ASSIGN_DRIVER,
         Permission.ORDER_VIEW, # برای دیدن جزئیات سفارش جهت حمل
         Permission.DASHBOARD_VIEW_STATS,
+        Permission.SOCIAL_ACCESS,
     ],
     'legal': [
         Permission.LEGAL_VIEW_CONTRACTS,
         Permission.LEGAL_APPROVE_DOCS,
         Permission.LEGAL_REJECT_DOCS,
         Permission.ORDER_VIEW, # مشاهده سفارش مرتبط با قرارداد
+        Permission.SOCIAL_ACCESS,
     ],
     'tech_partner': [
         Permission.TECH_VIEW_INSPECTIONS,
         Permission.TECH_SUBMIT_REPORT,
         Permission.ORDER_VIEW,
+        Permission.SOCIAL_ACCESS,
     ],
     'investor': [
         Permission.INVESTMENT_VIEW_PORTFOLIO,
         Permission.INVESTMENT_COMMIT,
         Permission.FINANCE_VIEW_WALLET,
         Permission.DASHBOARD_VIEW_STATS,
+        Permission.SOCIAL_ACCESS,
     ],
     'corporate_agent': [
         Permission.ORDER_VIEW,
         Permission.LEGAL_VIEW_CONTRACTS,
         Permission.DASHBOARD_VIEW_STATS,
+        Permission.SOCIAL_ACCESS,
     ],
     'broker': [
         Permission.ORDER_VIEW,
         Permission.DASHBOARD_VIEW_STATS,
         Permission.FINANCE_VIEW_WALLET,
+        Permission.SOCIAL_ACCESS,
     ],
     'admin': [
         perm for perm in Permission # دسترسی به همه چیز
+
     ]
 }
 

@@ -49,7 +49,7 @@ from .i18n import Language, TranslationKey, Translation, LocalizationSettings
 from .data_intelligence import MarketTrend, CompetitorAnalysis, DemandForecast, TradeStatistic, CustomReport, DataAlert
 
 # Social Network (بخش سوشال - مرحله ۱)
-from .social import Follow, Post, Comment, Like, update_user_relationships
+from .social import Follow, Post, Comment, Like
 
 # Exhibition Hall (نمایشگاه آنلاین - مرحله ۲)
 from .exhibition import (
@@ -69,4 +69,3 @@ from .trading import (
 from .auth import PasswordResetToken, LoginSession, ActivityLog, EmailVerificationToken, TwoFactorBackupCode
 
 # Initialize social relationships after all models are imported
-update_user_relationships()

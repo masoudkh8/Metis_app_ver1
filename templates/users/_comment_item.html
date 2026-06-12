@@ -1,4 +1,7 @@
 <!-- templates/users/_comment_item.html -->
+
+{# تعریف Macro برای رندر بازگشتی امن کامنت‌ها #}
+{% macro render_comment_item(comment) %}
 <div class="comment-item {% if comment.is_deleted %}deleted{% endif %} mb-3 pb-3 border-bottom" data-comment-id="{{ comment.id }}">
     <div class="d-flex align-items-start">
         <!-- Avatar -->
@@ -7,20 +10,20 @@
                 <img src="{{ comment.author.profile.avatar_url }}" alt="{{ comment.author.username }}" class="rounded-circle" width="32" height="32" style="object-fit: cover;">
             {% else %}
                 <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white" style="width: 32px; height: 32px;">
-                    {{ comment.author.username[0]|upper }}
+                    {{ (comment.author.username or 'U')[0]|upper }}
                 </div>
             {% endif %}
         </a>
-        
+
         <!-- Comment Content -->
         <div class="flex-grow-1">
             <div class="d-flex align-items-center mb-1">
                 <a href="{{ url_for('social.public_profile', username=comment.author.username) }}" class="fw-bold text-dark text-decoration-none me-2">
                     {{ comment.author.company_name or comment.author.username }}
                 </a>
-                {% if comment.author.trust_score %}
-                    <span class="badge badge-sm {% if comment.author.trust_score >= 70 %}bg-success{% elif comment.author.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %} me-2" title="{{ t_('social.trust_score') }}">
-                        {{ comment.author.trust_score }}
+                {% if comment.author.trust_score_value %}
+                    <span class="badge badge-sm {% if comment.author.trust_score_value >= 70 %}bg-success{% elif comment.author.trust_score_value >= 40 %}bg-warning{% else %}bg-danger{% endif %} me-2" title="{{ _('social.trust_score') }}">
+                        {{ comment.author.trust_score_value }}
                     </span>
                 {% endif %}
                 <small class="text-muted">
@@ -30,57 +33,58 @@
                     {% endif %}
                 </small>
             </div>
-            
+
             {% if comment.is_deleted %}
-                <p class="text-muted fst-italic mb-2">{{ t_('social.this_comment_deleted') }}</p>
+                <p class="text-muted fst-italic mb-2">{{ _('social.this_comment_deleted') }}</p>
             {% else %}
                 <p class="mb-2">{{ comment.content }}</p>
             {% endif %}
-            
+
             <!-- Comment Actions -->
             {% if not comment.is_deleted %}
             <div class="comment-actions d-flex align-items-center">
-                <button class="btn btn-link p-0 me-3 like-comment-btn {% if current_user.is_authenticated and comment.is_liked_by_current_user %}active{% endif %}" 
-                        data-comment-id="{{ comment.id }}" 
+                <button class="btn btn-link p-0 me-3 like-comment-btn {% if current_user.is_authenticated and comment.is_liked_by_current_user %}active{% endif %}"
+                        data-comment-id="{{ comment.id }}"
                         data-action="like">
                     <i class="{% if current_user.is_authenticated and comment.is_liked_by_current_user %}fas{% else %}far{% endif %} fa-heart me-1"></i>
                     {{ comment.likes_count }}
                 </button>
-                
+
                 {% if current_user.is_authenticated %}
                 <button class="btn btn-link p-0 me-3" onclick="toggleReplyForm({{ comment.id }})">
-                    <i class="far fa-reply me-1"></i>{{ t_('social.reply') }}
+                    <i class="far fa-reply me-1"></i>{{ _('social.reply') }}
                 </button>
                 {% endif %}
-                
+
                 {% if current_user.is_authenticated and (current_user.id == comment.author_id or current_user.is_admin_or_moderator) %}
-                <form action="{{ url_for('social.delete_comment', comment_id=comment.id) }}" method="POST" class="d-inline" onsubmit="return confirm('{{ t_('social.delete_comment_confirm') }}')">
+                <form action="{{ url_for('social.delete_comment', comment_id=comment.id) }}" method="POST" class="d-inline" onsubmit="return confirm('{{ _('social.delete_comment_confirm') }}')">
                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                     <button type="submit" class="btn btn-link p-0 text-danger">
-                        <i class="fas fa-trash me-1"></i>{{ t_('common.delete') }}
+                        <i class="fas fa-trash me-1"></i>{{ _('common.delete') }}
                     </button>
                 </form>
                 {% endif %}
             </div>
-            
+
             <!-- Reply Form -->
             {% if current_user.is_authenticated %}
             <div id="reply-form-{{ comment.id }}" class="mt-2" style="display: none;">
                 <form action="{{ url_for('social.add_comment', post_id=comment.post_id) }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="parent_id" value="{{ comment.id }}">
                     <div class="input-group">
-                        <input type="text" name="content" class="form-control form-control-sm" placeholder="{{ t_('social.reply_to_comment') }}..." required>
-                        <button type="submit" class="btn btn-primary btn-sm">{{ t_('social.reply') }}</button>
+                        <input type="text" name="content" class="form-control form-control-sm" placeholder="{{ _('social.reply_to_comment') }}..." required>
+                        <button type="submit" class="btn btn-primary btn-sm">{{ _('social.reply') }}</button>
                     </div>
                 </form>
             </div>
             {% endif %}
-            
-            <!-- Replies -->
+
+            <!-- Replies (بازگشتی با Macro) -->
             {% if comment.replies %}
             <div class="replies mt-2 ms-4 ps-3 border-start">
                 {% for reply in comment.replies %}
-                    {% include 'users/_comment_item.html' %}
+                    {{ render_comment_item(reply) }}
                 {% endfor %}
             </div>
             {% endif %}
@@ -88,6 +92,10 @@
         </div>
     </div>
 </div>
+{% endmacro %}
+
+{# فراخوانی Macro برای کامنت اصلی #}
+{{ render_comment_item(comment) }}
 
 <style>
 .comment-item.deleted {
@@ -106,6 +114,9 @@
 </style>
 
 <script>
+// دریافت توکن CSRF
+const csrfTokenComment = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
 // Toggle reply form visibility
 function toggleReplyForm(commentId) {
     const form = document.getElementById('reply-form-' + commentId);
@@ -121,20 +132,17 @@ function toggleReplyForm(commentId) {
 document.querySelectorAll('.like-comment-btn').forEach(btn => {
     btn.addEventListener('click', async function() {
         const commentId = this.dataset.commentId;
-        
         try {
             const response = await fetch(`/social/comment/${commentId}/like`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': csrfTokenComment
                 }
             });
-            
             const data = await response.json();
-            
             if (data.success) {
-                // Update UI
                 const icon = this.querySelector('i');
                 if (data.is_liked) {
                     this.classList.add('active');
@@ -145,8 +153,7 @@ document.querySelectorAll('.like-comment-btn').forEach(btn => {
                     icon.classList.remove('fas');
                     icon.classList.add('far');
                 }
-                
-                // Update likes count
+                // Update likes count text
                 this.innerHTML = `<i class="${data.is_liked ? 'fas' : 'far'} fa-heart me-1"></i> ${data.likes_count}`;
             }
         } catch (error) {

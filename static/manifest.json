@@ -1,11 +1,11 @@
 {
-  "name": "Metisma - Intelligent Global Trade Platform",
+  "name": "Metisma-Intelligent Global Trade Platform",
   "short_name": "Metisma",
   "start_url": "/users/profile",
   "display": "standalone",
   "background_color": "#050a1a",
   "theme_color": "#d4af37",
-  "description": "Metisma - the comprehensive international trade management platform with AI-powered business intelligence",
+  "description": "Metisma-the comprehensive international trade management platform with AI-powered business intelligence",
   "orientation": "portrait-primary",
   "icons": [
     {

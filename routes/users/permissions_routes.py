@@ -7,9 +7,6 @@ from models.user import User, UserProfile, Role
 from services.permissions import Permission, DEFAULT_ROLE_PERMISSIONS
 from services.access_control import role_required, permission_required, get_user_permissions, has_permission
 import json
-
-# users_bp = Blueprint('users', __name__, url_prefix='/users')
-# Using shared users_bp from __init__.py
 from . import users_bp
 
 

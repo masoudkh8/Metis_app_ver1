@@ -1,7 +1,7 @@
 <!-- templates/users/post_detail.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}{{ t_('social.post') }} #{{ post.id }}{% endblock %}
+{% block title %}{{ _('social.post') }} #{{ post.id }}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
@@ -9,7 +9,7 @@
         <div class="col-lg-8">
             <!-- Back Button -->
             <a href="{{ url_for('social.news_feed') }}" class="btn btn-outline-secondary mb-3">
-                <i class="fas fa-arrow-left me-1"></i>{{ t_('common.back') }}
+                <i class="fas fa-arrow-left me-1"></i>{{ _('common.back') }}
             </a>
             
             <!-- Post Detail -->
@@ -18,66 +18,74 @@
             <!-- Comments Section -->
             <div class="card mt-4 shadow-sm">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <h6 class="mb-0">{{ t_('social.comments') }} ({{ comments|length }})</h6>
+                    <h6 class="mb-0">{{ _('social.comments') }} ({{ comments|length }})</h6>
                 </div>
                 <div class="card-body">
                     <!-- Add Comment Form -->
-                    {% if current_user.is_authenticated %}
-                    <form action="{{ url_for('social.add_comment', post_id=post.id) }}" method="POST" class="mb-4">
-                        <div class="mb-2">
-                            <textarea name="content" class="form-control" rows="3" placeholder="{{ t_('social.comment') }}..." required></textarea>
+                    <!-- فرم اصلی ارسال کامنت -->
+                    <!-- فرم اصلی ارسال کامنت -->
+                        {% if current_user.is_authenticated %}
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="mb-3">{{ _('social.write_a_comment') }}</h6>
+                                <form action="{{ url_for('social.add_comment', post_id=post.id) }}" method="POST">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <div class="mb-3">
+                                        <textarea name="content" class="form-control" rows="3" placeholder="{{ _('social.what_is_on_your_mind') }}" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-paper-plane me-1"></i> {{ _('social.comment') }}
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary btn-sm">{{ t_('social.comment') }}</button>
+                        {% else %}
+                        <div class="alert alert-info text-center">
+                            <a href="{{ url_for('users.login') }}">{{ _('common.login') }}</a> {{ _('messages.fill_required_fields') }} {{ _('social.comment')|lower }}.
                         </div>
-                    </form>
-                    {% else %}
-                    <div class="alert alert-info">
-                        <a href="{{ url_for('auth.login') }}">{{ t_('common.login') }}</a> {{ t_('messages.fill_required_fields') }} {{ t_('social.comment')|lower }}.
-                    </div>
-                    {% endif %}
-                    
-                    <!-- Comments List -->
-                    <div class="comments-list">
+                        {% endif %}
+
+                        <!-- لیست کامنت‌ها -->
+                        <h6 class="mb-3">{{ _('social.comments') }} ({{ comments|length }})</h6>
                         {% if comments %}
                             {% for comment in comments %}
                                 {% include 'users/_comment_item.html' %}
                             {% endfor %}
                         {% else %}
-                            <p class="text-muted text-center py-4">{{ t_('social.no_posts_yet')|replace('posts', 'comments') }}</p>
+                            <p class="text-muted text-center py-4">{{ _('social.no_posts_yet')|replace('posts', 'comments') }}</p>
                         {% endif %}
                     </div>
-                </div>
+
             </div>
         </div>
         
         <!-- Sidebar -->
         <div class="col-lg-4">
             <!-- Share Options -->
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header bg-white">
-                    <h6 class="mb-0">{{ t_('social.share_to') }}</h6>
-                </div>
+            <div class="card mt-4 shadow-sm">
                 <div class="card-body">
-                    <button class="btn btn-outline-primary w-100 mb-2" onclick="shareToTelegram()">
-                        <i class="fab fa-telegram me-2"></i>Telegram
-                    </button>
-                    <button class="btn btn-outline-info w-100 mb-2" onclick="shareToTwitter()">
-                        <i class="fab fa-twitter me-2"></i>Twitter
-                    </button>
-                    <button class="btn btn-outline-success w-100 mb-2" onclick="shareToWhatsApp()">
-                        <i class="fab fa-whatsapp me-2"></i>WhatsApp
-                    </button>
-                    <button class="btn btn-outline-secondary w-100" onclick="copyPostLink({{ post.id }})">
-                        <i class="fas fa-link me-2"></i>{{ t_('social.copy_link') }}
-                    </button>
+                    <h6 class="mb-3">{{ _('social.share_to') }}</h6>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a href="https://t.me/share/url?url={{ request.url|urlencode }}&text={{ post.content|truncate(50)|urlencode }}" target="_blank" class="btn btn-outline-info btn-sm">
+                            <i class="fab fa-telegram me-1"></i> Telegram
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ request.url|urlencode }}&text={{ post.content|truncate(50)|urlencode }}" target="_blank" class="btn btn-outline-dark btn-sm">
+                            <i class="fab fa-twitter me-1"></i> Twitter
+                        </a>
+                        <a href="https://wa.me/?text={{ (post.content|truncate(50) + ' ' + request.url)|urlencode }}" target="_blank" class="btn btn-outline-success btn-sm">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                        </a>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="copyPostLink({{ post.id }})">
+                            <i class="fas fa-link me-1"></i> {{ _('social.copy_link') }}
+                        </button>
+                    </div>
                 </div>
             </div>
             
             <!-- Related Posts -->
             <div class="card mb-4 shadow-sm">
                 <div class="card-header bg-white">
-                    <h6 class="mb-0">{{ t_('social.related_posts')|default('Related Posts') }}</h6>
+                    <h6 class="mb-0">{{ _('social.related_posts')|default('Related Posts') }}</h6>
                 </div>
                 <div class="card-body p-0">
                     <ul class="list-group list-group-flush">

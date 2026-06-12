@@ -29,7 +29,7 @@ class Follow(db.Model):
     )
     
     # Relationships
-    follower = db.relationship('User', foreign_keys=[follower_id], back_populates='following')
+    follower = db.relationship('User', foreign_keys=[follower_id], back_populates='followed')
     following = db.relationship('User', foreign_keys=[following_id], back_populates='followers')
     
     def __repr__(self):
@@ -274,53 +274,6 @@ class Like(db.Model):
             target_type=target_type,
             target_id=target_id
         ).count()
-
-
-# به‌روزرسانی relationshipهای User
-def update_user_relationships():
-    """
-    افزودن relationshipهای جدید به کلاس User
-    این تابع باید بعد از ایمپورت تمام مدل‌ها صدا زده شود
-    """
-    from .user import User
-    
-    # اضافه کردن relationshipهای social به User
-    if not hasattr(User, 'posts'):
-        User.posts = db.relationship('Post', back_populates='author', cascade='all, delete-orphan', lazy='dynamic')
-    
-    if not hasattr(User, 'following'):
-        User.following = db.relationship('Follow', foreign_keys='Follow.follower_id', 
-                                        back_populates='follower', cascade='all, delete-orphan')
-    
-    if not hasattr(User, 'followers'):
-        User.followers = db.relationship('Follow', foreign_keys='Follow.following_id', 
-                                        back_populates='following', cascade='all, delete-orphan')
-    
-    # Propertyهای کمکی
-    if not hasattr(User, 'followed_posts'):
-        @property
-        def followed_posts(self):
-            """دریافت پست‌های کاربران فالو شده"""
-            following_ids = [f.following_id for f in self.following]
-            return Post.query.filter(Post.author_id.in_(following_ids)).order_by(Post.created_at.desc())
-        
-        User.followed_posts = followed_posts
-    
-    if not hasattr(User, 'followers_count'):
-        @property
-        def followers_count(self):
-            """تعداد دنبال‌کنندگان"""
-            return Follow.get_followers_count(self.id)
-        
-        User.followers_count = followers_count
-    
-    if not hasattr(User, 'following_count'):
-        @property
-        def following_count(self):
-            """تعداد افرادی که دنبال می‌کند"""
-            return Follow.get_following_count(self.id)
-        
-        User.following_count = following_count
 
 
 # Helper functions

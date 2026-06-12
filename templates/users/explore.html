@@ -1,124 +1,101 @@
 <!-- templates/users/explore.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}{{ t_('social.explore') }}{% endblock %}
+{% block title %}{{ _('social.explore') }}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="row">
-        <!-- Featured Posts Column -->
+        <!-- ستون پست‌های ویژه -->
         <div class="col-lg-8">
-            <h4 class="mb-3">{{ t_('social.featured_posts') }}</h4>
-            
+            <h4 class="mb-4">{{ _('social.featured_posts') }}</h4>
             {% if featured_posts %}
                 {% for post in featured_posts %}
                     {% include 'users/_post_card.html' %}
                 {% endfor %}
             {% else %}
-                <div class="card shadow-sm">
-                    <div class="card-body text-center py-5">
-                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
-                        <p class="text-muted">{{ t_('social.no_posts_yet') }}</p>
-                    </div>
+                <div class="text-center py-5">
+                    <p class="text-muted">{{ _('social.no_posts_yet') }}</p>
                 </div>
             {% endif %}
         </div>
-        
-        <!-- Sidebar Column -->
+
+        <!-- ستون کناری: کاربران پیشنهادی و تگ‌ها -->
         <div class="col-lg-4">
-            <!-- Suggested Users -->
-            <div class="card mb-4 shadow-sm">
+            <!-- کاربران پیشنهادی -->
+            <div class="card shadow-sm mb-4">
                 <div class="card-header bg-white">
-                    <h6 class="mb-0">{{ t_('social.suggested_users') }}</h6>
+                    <h6 class="mb-0">{{ _('social.suggested_users') }}</h6>
                 </div>
-                <div class="card-body p-0">
+                <div class="list-group list-group-flush">
                     {% if suggested_users %}
-                    <ul class="list-group list-group-flush">
                         {% for user in suggested_users %}
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                            <div class="d-flex align-items-center">
-                                {% if user.profile and user.profile.avatar_url %}
-                                    <img src="{{ user.profile.avatar_url }}" alt="{{ user.username }}" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
-                                {% else %}
-                                    <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center text-white" style="width: 40px; height: 40px;">
-                                        {{ user.username[0]|upper }}
-                                    </div>
-                                {% endif %}
-                                <div>
-                                    <a href="{{ url_for('social.public_profile', username=user.username) }}" class="fw-bold text-dark text-decoration-none d-block">
-                                        {{ user.company_name or user.username }}
-                                    </a>
-                                    {% if user.trust_score %}
-                                        <span class="badge badge-sm {% if user.trust_score >= 70 %}bg-success{% elif user.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}" title="{{ t_('social.trust_score') }}">
-                                            {{ user.trust_score }}
-                                        </span>
+                            <div class="list-group-item d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    {% if user.profile and user.profile.avatar_url %}
+                                        <img src="{{ user.profile.avatar_url }}" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
+                                    {% else %}
+                                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white me-2" style="width: 40px; height: 40px;">
+                                            {{ user.username[0]|upper }}
+                                        </div>
                                     {% endif %}
+                                    <div>
+                                        <a href="{{ url_for('social.public_profile', username=user.username) }}" class="fw-bold text-dark text-decoration-none d-block">
+                                            {{ user.company_name or user.username }}
+                                        </a>
+                                        {% if user.trust_score_value %}
+                                            <small class="text-muted">Trust Score: {{ user.trust_score_value }}</small>
+                                        {% endif %}
+                                    </div>
                                 </div>
+
+                                <!-- 🔥 دکمه فالو با استفاده از following_ids (اصلاح شده و امن) -->
+                                {% if current_user.is_authenticated %}
+                                    {% if user.id in following_ids %}
+                                        <form action="{{ url_for('social.unfollow_user', user_id=user.id) }}" method="POST" class="d-inline">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">{{ _('social.following') }}</button>
+                                        </form>
+                                    {% else %}
+                                        <form action="{{ url_for('social.follow_user', user_id=user.id) }}" method="POST" class="d-inline">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-sm btn-primary">{{ _('social.follow') }}</button>
+                                        </form>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{{ url_for('users.login') }}" class="btn btn-sm btn-outline-primary">{{ _('common.login') }}</a>
+                                {% endif %}
                             </div>
-                            
-                            {% if current_user.is_authenticated %}
-                            <button class="btn btn-sm btn-outline-primary follow-btn" 
-                                    data-user-id="{{ user.id }}" 
-                                    data-action="follow">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            {% else %}
-                            <a href="{{ url_for('auth.login') }}" class="btn btn-sm btn-outline-primary">{{ t_('common.login') }}</a>
-                            {% endif %}
-                        </li>
                         {% endfor %}
-                    </ul>
                     {% else %}
-                    <div class="p-3 text-center text-muted">
-                        <small>{{ t_('social.no_posts_yet')|replace('posts', 'users') }}</small>
-                    </div>
+                        <div class="list-group-item text-muted text-center">
+                            {{ _('social.no_posts_yet')|replace('posts', 'users') }}
+                        </div>
                     {% endif %}
                 </div>
             </div>
-            
-            {/* Trust Score Info */}
-            {% if current_user.is_authenticated %}
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header bg-white">
-                    <h6 class="mb-0">{{ t_('social.trust_score') }}</h6>
-                </div>
-                <div class="card-body">
-                    <div class="text-center">
-                        <div class="trust-score-display mb-2">
-                            {% if current_user.trust_score %}
-                                <span class="badge {% if current_user.trust_score >= 70 %}bg-success{% elif current_user.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}" style="font-size: 1.5rem; padding: 0.5em 1em;">
-                                    {{ current_user.trust_score }}
-                                </span>
-                            {% else %}
-                                <span class="badge bg-secondary" style="font-size: 1.5rem; padding: 0.5em 1em;">--</span>
-                            {% endif %}
-                        </div>
-                        <p class="small text-muted mb-0">
-                            {% if current_user.trust_score and current_user.trust_score >= 70 %}
-                                {{ t_('social.high_trust') }}
-                            {% elif current_user.trust_score and current_user.trust_score >= 40 %}
-                                {{ t_('social.medium_trust') }}
-                            {% else %}
-                                {{ t_('social.low_trust') }}
-                            {% endif %}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            
-            {/* Trending Tags */}
-            <div class="card mb-4 shadow-sm">
+
+            <!-- 🔥 تگ‌های پرطرفدار (داینامیک) -->
+            <div class="card shadow-sm">
                 <div class="card-header bg-white">
                     <h6 class="mb-0">Trending Tags</h6>
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-wrap gap-2">
-                        <span class="badge bg-primary">#Products</span>
-                        <span class="badge bg-success">#Trading</span>
-                        <span class="badge bg-info">#Exhibition</span>
-                        <span class="badge bg-warning">#Market</span>
-                        <span class="badge bg-danger">#New</span>
+                        <!-- اگر از بک‌اند لیست تگ‌ها را فرستادید: -->
+                        {% if trending_tags %}
+                            {% for tag in trending_tags %}
+                                <a href="{{ url_for('social.explore', tag=tag.name) }}" class="badge bg-light text-dark border p-2 text-decoration-none">
+                                    #{{ tag.name }}
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <!-- فال‌بک (نمایش نمونه تا زمانی که بک‌اند تگ‌ها را بفرستد) -->
+                            <a href="#" class="badge bg-light text-dark border p-2 text-decoration-none">#Products</a>
+                            <a href="#" class="badge bg-light text-dark border p-2 text-decoration-none">#Trading</a>
+                            <a href="#" class="badge bg-light text-dark border p-2 text-decoration-none">#Exhibition</a>
+                            <a href="#" class="badge bg-light text-dark border p-2 text-decoration-none">#Market</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <!-- templates/users/followers_list.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}{{ t_('social.followers') }} - {{ user.username }}{% endblock %}
+{% block title %}{{ _('social.followers') }} - {{ user.username }}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
@@ -9,7 +9,7 @@
         <div class="col-lg-8">
             <!-- Back Button -->
             <a href="{{ url_for('social.public_profile', username=user.username) }}" class="btn btn-outline-secondary mb-3">
-                <i class="fas fa-arrow-left me-1"></i>{{ t_('common.back') }}
+                <i class="fas fa-arrow-left me-1"></i>{{ _('common.back') }}
             </a>
             
             <!-- Header -->
@@ -17,7 +17,7 @@
                 <div class="card-body text-center">
                     <h4>{{ user.company_name or user.username }}</h4>
                     <p class="text-muted mb-0">
-                        <strong>{{ followers|length }}</strong> {{ t_('social.followers') }}
+                        <strong>{{ followers|length }}</strong> {{ _('social.followers') }}
                     </p>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <!-- Followers List -->
             <div class="card shadow-sm">
                 <div class="card-header bg-white">
-                    <h6 class="mb-0">{{ t_('social.followers') }}</h6>
+                    <h6 class="mb-0">{{ _('social.followers') }}</h6>
                 </div>
                 <div class="card-body p-0">
                     {% if followers %}
@@ -33,36 +33,49 @@
                         {% for follow in followers %}
                         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                             <div class="d-flex align-items-center">
-                                {% if follow.follower.profile and follow.follower.profile.avatar_url %}
-                                    <img src="{{ follow.follower.profile.avatar_url }}" alt="{{ follow.follower.username }}" class="rounded-circle me-2" width="50" height="50" style="object-fit: cover;">
-                                {% else %}
-                                    <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center text-white" style="width: 50px; height: 50px;">
-                                        {{ follow.follower.username[0]|upper }}
+                                    {% if follow.follower.profile and follow.follower.profile.avatar_url %}
+                                        <img src="{{ follow.follower.profile.avatar_url }}" alt="{{ follow.follower.username }}" class="rounded-circle me-2" width="50" height="50" style="object-fit: cover;">
+                                    {% else %}
+                                        <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center text-white" style="width: 50px; height: 50px;">
+                                            {{ (follow.follower.username or 'U')[0]|upper }}
+                                        </div>
+                                    {% endif %}
+
+                                    <div>
+                                        <a href="{{ url_for('social.public_profile', username=follow.follower.username) }}" class="fw-bold text-dark text-decoration-none d-block">
+                                            {{ follow.follower.company_name or follow.follower.username }}
+                                        </a>
+                                        <small class="text-muted">
+                                            @{{ follow.follower.username }}
+
+                                            {# ✅ اصلاح شده: استفاده از trust_score_value به جای trust_score #}
+                                            {% if follow.follower.trust_score_value is not none %}
+                                                · <span class="badge badge-sm {% if follow.follower.trust_score_value >= 70 %}bg-success{% elif follow.follower.trust_score_value >= 40 %}bg-warning{% else %}bg-danger{% endif %}">
+                                                    {{ follow.follower.trust_score_value }}
+                                                </span>
+                                            {% endif %}
+
+                                        </small>
                                     </div>
-                                {% endif %}
-                                <div>
-                                    <a href="{{ url_for('social.public_profile', username=follow.follower.username) }}" class="fw-bold text-dark text-decoration-none d-block">
-                                        {{ follow.follower.company_name or follow.follower.username }}
-                                    </a>
-                                    <small class="text-muted">
-                                        @{{ follow.follower.username }}
-                                        {% if follow.follower.trust_score %}
-                                            · <span class="badge badge-sm {% if follow.follower.trust_score >= 70 %}bg-success{% elif follow.follower.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}">{{ follow.follower.trust_score }}</span>
-                                        {% endif %}
-                                    </small>
                                 </div>
-                            </div>
                             
                             {% if current_user.is_authenticated and current_user.id != follow.follower.id %}
-                            <button class="btn btn-sm {% if follow.follower.is_followed_by_current_user %}btn-secondary active{% else %}btn-outline-primary{% endif %} follow-btn" 
-                                    data-user-id="{{ follow.follower.id }}" 
-                                    data-action="{% if follow.follower.is_followed_by_current_user %}unfollow{% else %}follow{% endif %}">
-                                {% if follow.follower.is_followed_by_current_user %}
-                                    <i class="fas fa-check"></i> {{ t_('social.following') }}
+                                <!-- 🔥 اصلاح: استفاده از following_ids به جای متد مدل -->
+                                {% if follow.follower.id in following_ids %}
+                                    <form action="{{ url_for('social.unfollow_user', user_id=follow.follower.id) }}" method="POST" style="display:inline;">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                            {{ _('social.following') }}
+                                        </button>
+                                    </form>
                                 {% else %}
-                                    <i class="fas fa-plus"></i> {{ t_('social.follow') }}
+                                    <form action="{{ url_for('social.follow_user', user_id=follow.follower.id) }}" method="POST" style="display:inline;">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-sm btn-primary">
+                                            {{ _('social.follow') }}
+                                        </button>
+                                    </form>
                                 {% endif %}
-                            </button>
                             {% endif %}
                         </li>
                         {% endfor %}
@@ -70,7 +83,7 @@
                     {% else %}
                     <div class="p-4 text-center text-muted">
                         <i class="fas fa-user-slash fa-2x mb-2"></i>
-                        <p>{{ t_('social.no_posts_yet')|replace('posts', 'followers') }}</p>
+                        <p>{{ _('social.no_posts_yet')|replace('posts', 'followers') }}</p>
                     </div>
                     {% endif %}
                 </div>

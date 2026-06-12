@@ -9,7 +9,8 @@
                         <img src="{{ post.author.profile.avatar_url }}" alt="{{ post.author.username }}" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
                     {% else %}
                         <div class="rounded-circle bg-secondary me-2 d-flex align-items-center justify-content-center text-white" style="width: 40px; height: 40px;">
-                            {{ post.author.username[0]|upper }}
+{#                            {{ post.author.username[0]|upper }}#}
+                            {{ (post.author.username or 'U')[0]|upper }}
                         </div>
                     {% endif %}
                 </a>
@@ -17,15 +18,16 @@
                     <a href="{{ url_for('social.public_profile', username=post.author.username) }}" class="fw-bold text-dark text-decoration-none">
                         {{ post.author.company_name or post.author.username }}
                     </a>
-                    {% if post.author.trust_score %}
-                        <span class="badge badge-sm {% if post.author.trust_score >= 70 %}bg-success{% elif post.author.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %} ms-1" title="{{ t_('social.trust_score') }}">
-                            {{ post.author.trust_score }}
+
+                    {% if post.author.trust_score_value is not none %}
+                        <span class="badge badge-sm {% if post.author.trust_score_value >= 70 %}bg-success{% elif post.author.trust_score_value >= 40 %}bg-warning{% else %}bg-danger{% endif %} ms-1" title="{{ _('social.trust_score') }}">
+                            {{ post.author.trust_score_value }}
                         </span>
                     {% endif %}
                     <br>
                     <small class="text-muted">
                         <time datetime="{{ post.created_at.isoformat() }}">{{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</time>
-                        · {{ t_('social.visibility_' + post.visibility) if post.visibility in ['public', 'followers_only', 'private'] else t_('social.visibility_public') }}
+                        · {{ _('social.visibility_' + post.visibility) if post.visibility in ['public', 'followers_only', 'private'] else _('social.visibility_public') }}
                     </small>
                 </div>
             </div>
@@ -37,16 +39,16 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     {% if current_user.id == post.author_id %}
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>{{ t_('social.edit_post') }}</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-thumbtack me-2"></i>{% if post.is_pinned %}{{ t_('social.unpin_post') }}{% else %}{{ t_('social.pin_post') }}{% endif %}</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>{{ _('social.edit_post') }}</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-thumbtack me-2"></i>{% if post.is_pinned %}{{ _('social.unpin_post') }}{% else %}{{ _('social.pin_post') }}{% endif %}</a></li>
                     {% endif %}
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-flag me-2"></i>{{ t_('social.report_post') }}</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-flag me-2"></i>{{ _('social.report_post') }}</a></li>
                     {% if current_user.id == post.author_id or current_user.is_admin %}
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                        <form action="{{ url_for('social.delete_post', post_id=post.id) }}" method="POST" onsubmit="return confirm('{{ t_('social.delete_post_confirm') }}')">
+                        <form action="{{ url_for('social.delete_post', post_id=post.id) }}" method="POST" onsubmit="return confirm('{{ _('social.delete_post_confirm') }}')">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                            <button type="submit" class="dropdown-item text-danger"><i class="fas fa-trash me-2"></i>{{ t_('common.delete') }}</button>
+                            <button type="submit" class="dropdown-item text-danger"><i class="fas fa-trash me-2"></i>{{ _('common.delete') }}</button>
                         </form>
                     </li>
                     {% endif %}
@@ -72,9 +74,11 @@
         </div>
         
         <!-- Post Media -->
-        {% if post.media and (post.media.images or post.media.files) %}
+{#        {% if post.media and (post.media.images or post.media.files) %}#}
+        {% if post.media and (post.media.get('images') or post.media.get('files')) %}
         <div class="post-media mb-3">
-            {% if post.media.images %}
+{#            {% if post.media.images %}#}
+            {% if post.media.get('images') %}
             <div class="row g-2">
                 {% for image_url in post.media.images[:4] %}
                 <div class="{% if post.media.images|length == 1 %}col-12{% elif post.media.images|length <= 4 %}col-md-6{% else %}col-md-4{% endif %}">
@@ -124,26 +128,32 @@
                 <time datetime="{{ post.created_at.isoformat() }}" title="{{ post.created_at }}">{{ post.created_at.strftime('%Y-%m-%d') }}</time>
             </div>
         </div>
-        
+
         <!-- Post Actions -->
         <div class="post-actions d-flex justify-content-around border-top pt-2">
-            <button class="btn btn-outline-danger like-btn {% if current_user.is_authenticated and post.is_liked_by_current_user %}active{% endif %}" 
-                    data-post-id="{{ post.id }}" 
+{#            <button class="btn btn-outline-danger like-btn {% if current_user.is_authenticated and post.is_liked_by_current_user %}active{% endif %}" #}
+{#                    data-post-id="{{ post.id }}" #}
+{#                    data-action="like">#}
+{#                <i class="{% if current_user.is_authenticated and post.is_liked_by_current_user %}fas{% else %}far{% endif %} fa-heart me-1"></i>#}
+{#                {{ _('social.like') }}#}
+{#            </button>#}
+             <button class="btn btn-outline-danger like-btn {% if current_user.is_authenticated and post.id in liked_post_ids %}active{% endif %}"
+                    data-post-id="{{ post.id }}"
                     data-action="like">
-                <i class="{% if current_user.is_authenticated and post.is_liked_by_current_user %}fas{% else %}far{% endif %} fa-heart me-1"></i>
-                {{ t_('social.like') }}
+                <i class="{% if current_user.is_authenticated and post.id in liked_post_ids %}fas{% else %}far{% endif %} fa-heart me-1"></i>
+                {{ _('social.like') }}
             </button>
             
             <a href="{{ url_for('social.view_post', post_id=post.id) }}" class="btn btn-outline-primary">
-                <i class="far fa-comment me-1"></i>{{ t_('social.comment') }}
+                <i class="far fa-comment me-1"></i>{{ _('social.comment') }}
             </a>
             
             <button class="btn btn-outline-success share-btn" data-post-id="{{ post.id }}" data-action="share">
-                <i class="fas fa-share me-1"></i>{{ t_('social.share') }}
+                <i class="fas fa-share me-1"></i>{{ _('social.share') }}
             </button>
             
             <button class="btn btn-outline-secondary" onclick="copyPostLink({{ post.id }})">
-                <i class="fas fa-link me-1"></i>{{ t_('social.copy_link') }}
+                <i class="fas fa-link me-1"></i>{{ _('social.copy_link') }}
             </button>
         </div>
     </div>
@@ -169,25 +179,24 @@
 </style>
 
 <script>
-// Like functionality
+// ۱. دریافت توکن CSRF از متا تگ
+const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
+// ۲. عملکرد دکمه لایک پست
 document.querySelectorAll('.like-btn').forEach(btn => {
     btn.addEventListener('click', async function() {
         const postId = this.dataset.postId;
-        const isLiked = this.classList.contains('active');
-        
         try {
             const response = await fetch(`/social/post/${postId}/like`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': csrfToken // 🔥 هدر CSRF اضافه شد
                 }
             });
-            
             const data = await response.json();
-            
             if (data.success) {
-                // Update UI
                 const icon = this.querySelector('i');
                 if (data.is_liked) {
                     this.classList.add('active');
@@ -198,10 +207,7 @@ document.querySelectorAll('.like-btn').forEach(btn => {
                     icon.classList.remove('fas');
                     icon.classList.add('far');
                 }
-                
-                // Update likes count
-                const statsDiv = this.closest('.post-card').querySelector('.post-stats');
-                // Refresh stats
+                // به‌روزرسانی آمار پست
                 updatePostStats(postId);
             }
         } catch (error) {
@@ -210,30 +216,25 @@ document.querySelectorAll('.like-btn').forEach(btn => {
     });
 });
 
-// Share functionality
+// ۳. عملکرد دکمه شیر (اشتراک‌گذاری)
 document.querySelectorAll('.share-btn').forEach(btn => {
     btn.addEventListener('click', async function() {
         const postId = this.dataset.postId;
         const postUrl = window.location.origin + '/social/post/' + postId;
-        
         try {
             if (navigator.share) {
-                await navigator.share({
-                    title: '{{ t_("social.post") }}',
-                    url: postUrl
-                });
+                await navigator.share({ title: 'Metisma Post', url: postUrl });
             } else {
-                // Fallback: copy to clipboard
                 await navigator.clipboard.writeText(postUrl);
-                alert('{{ t_("social.link_copied") }}');
+                showToast('Post link copied.');
             }
-            
-            // Track share
+            // ثبت آمار شیر در بک‌اند
             await fetch(`/social/post/${postId}/share`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': csrfToken // 🔥 هدر CSRF اضافه شد
                 }
             });
         } catch (error) {
@@ -242,31 +243,50 @@ document.querySelectorAll('.share-btn').forEach(btn => {
     });
 });
 
-// Copy link function
+// ۴. کپی لینک پست
 async function copyPostLink(postId) {
     const url = window.location.origin + '/social/post/' + postId;
     try {
         await navigator.clipboard.writeText(url);
-        showToast('{{ t_("social.link_copied") }}');
+        showToast('Post link copied.');
     } catch (error) {
         console.error('Error copying link:', error);
     }
 }
 
-// Update post stats
+// ۵. 🔥 تکمیل تابع به‌روزرسانی آمار پست
+// جایگزین تابع خالی updatePostStats شود
 async function updatePostStats(postId) {
     try {
-        const response = await fetch(`/social/api/post/${postId}/stats`);
+        const response = await fetch(`/social/api/post/${postId}/stats`, {
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        });
         const data = await response.json();
-        // Update UI with new stats
+        const card = document.querySelector(`.post-card[data-post-id="${postId}"]`);
+        if (!card) return;
+
+        const statsDiv = card.querySelector('.post-stats > div');
+        if (statsDiv) {
+            let html = '';
+            if (data.likes_count > 0) html += `<span><i class="fas fa-heart me-1"></i>${data.likes_count}</span> `;
+            if (data.comments_count > 0) html += `<span class="ms-2"><i class="fas fa-comment me-1"></i>${data.comments_count}</span> `;
+            if (data.shares_count > 0) html += `<span class="ms-2"><i class="fas fa-share me-1"></i>${data.shares_count}</span> `;
+            if (data.views_count > 0) html += `<span class="ms-2"><i class="fas fa-eye me-1"></i>${data.views_count}</span> `;
+            statsDiv.innerHTML = html || '<span>No interaction</span>';
+        }
     } catch (error) {
         console.error('Error updating stats:', error);
     }
 }
-
-// Toast notification
+// ۶. نمایش پیام Toast ساده
 function showToast(message) {
-    // Implement toast notification
-    console.log('Toast:', message);
+    // اگر از Bootstrap Toast استفاده می‌کنید، کد آن را اینجا بگذارید
+    // در غیر این صورت، یک الرت موقت:
+    const toast = document.createElement('div');
+    toast.className = 'position-fixed bottom-0 end-0 p-3';
+    toast.style.zIndex = '1050';
+    toast.innerHTML = `<div class="toast show" role="alert"><div class="toast-body bg-dark text-white rounded">${message}</div></div>`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
 }
 </script>

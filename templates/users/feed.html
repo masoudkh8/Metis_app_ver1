@@ -1,142 +1,85 @@
 <!-- templates/users/feed.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}{{ t_('social.feed') }}{% endblock %}
+{% block title %}{{ _('social.feed') }}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <!-- دکمه بازگشت به داشبورد -->
-    <div class="mb-3">
-        <a href="{{ url_for('users.dashboard') }}" class="inline-flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-gold transition text-sm">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-            </svg>
-            Back to Dashboard
-        </a>
-    </div>
-    
     <div class="row">
-        <!-- Main Feed Column -->
+        <!-- ستون اصلی فید -->
         <div class="col-lg-8">
-            <!-- Create Post Card -->
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title mb-3">{{ t_('social.create_post') }}</h5>
-                    <form action="{{ url_for('social.create_post') }}" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                        <div class="mb-3">
-                            <textarea class="form-control" name="content" rows="3" placeholder="{{ t_('social.what_is_on_your_mind') }}" required></textarea>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="visibility" class="form-label">{{ t_('social.visibility') }}</label>
-                            <select class="form-select" name="visibility" id="visibility">
-                                <option value="public">{{ t_('social.visibility_public') }}</option>
-                                <option value="followers_only">{{ t_('social.visibility_followers_only') }}</option>
-                                <option value="private">{{ t_('social.visibility_private') }}</option>
-                            </select>
-                        </div>
-                        
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <button type="button" class="btn btn-outline-secondary btn-sm me-2" id="addMediaBtn">
-                                    <i class="fas fa-image"></i> {{ t_('social.add_media') }}
-                                </button>
-                                <button type="button" class="btn btn-outline-secondary btn-sm">
-                                    <i class="fas fa-tag"></i> {{ t_('social.tag_products') }}
-                                </button>
-                            </div>
-                            <button type="submit" class="btn btn-primary">{{ t_('social.publish') }}</button>
-                        </div>
-                        
-                        <input type="file" id="mediaInput" name="media" multiple style="display: none;" accept="image/*,video/*,.pdf,.doc,.docx">
-                    </form>
-                </div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="mb-0">{{ _('social.feed') }}</h4>
+                <a href="{{ url_for('social.create_post') }}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus me-1"></i> {{ _('social.create_post') }}
+                </a>
             </div>
-            
-            <!-- Feed Posts -->
-            <div id="feed-posts">
-                {% if feed_posts %}
-                    {% for post in feed_posts %}
-                        {% include 'users/_post_card.html' %}
-                    {% endfor %}
-                {% else %}
-                    <div class="card shadow-sm">
-                        <div class="card-body text-center py-5">
-                            <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
-                            <p class="text-muted">{{ t_('social.no_posts_yet') }}</p>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-        
-        <!-- Sidebar Column -->
-        <div class="col-lg-4">
-            <!-- Suggested Users -->
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header bg-white">
-                    <h6 class="mb-0">{{ t_('social.suggested_users') }}</h6>
-                </div>
-                <div class="card-body p-0">
-                    <ul class="list-group list-group-flush" id="suggested-users">
-                        <!-- Will be populated by AJAX or backend -->
+
+            {% if feed_posts.items %}
+                {% for post in feed_posts.items %}
+                    {% include 'users/_post_card.html' %}
+                {% endfor %}
+
+                <!-- 🔥 اضافه شده: کنترل‌های صفحه‌بندی (Pagination) -->
+                <nav aria-label="Page navigation" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        {% if feed_posts.has_prev %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('social.news_feed', page=feed_posts.prev_num) }}">
+                                    <i class="fas fa-chevron-right me-1"></i> {{ _('common.previous')|default('قبلی') }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <li class="page-item disabled">
+                            <span class="page-link">صفحه {{ feed_posts.page }} از {{ feed_posts.pages }}</span>
+                        </li>
+
+                        {% if feed_posts.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('social.news_feed', page=feed_posts.next_num) }}">
+                                    {{ _('common.next')|default('بعدی') }} <i class="fas fa-chevron-left ms-1"></i>
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
+                </nav>
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                    <p class="text-muted">{{ _('social.no_posts_yet') }}</p>
+                    <a href="{{ url_for('social.explore') }}" class="btn btn-outline-primary">{{ _('social.explore') }}</a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- ستون کناری (Sidebar) برای اطلاعات کاربر -->
+        <div class="col-lg-4 d-none d-lg-block">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ _('social.suggested_users') }}</h5>
+                    <p class="text-muted small">برای دیدن پیشنهادات به صفحه کاوش بروید.</p>
+                    <a href="{{ url_for('social.explore') }}" class="btn btn-outline-primary w-100">{{ _('social.explore') }}</a>
                 </div>
             </div>
-            
-            <!-- Trust Score Info -->
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header bg-white">
-                    <h6 class="mb-0">{{ t_('social.trust_score') }}</h6>
-                </div>
+
+            <div class="card shadow-sm">
                 <div class="card-body">
-                    <div class="text-center">
-                        <div class="trust-score-display mb-2">
-                            {% if current_user.trust_score %}
-                                <span class="badge {% if current_user.trust_score >= 70 %}bg-success{% elif current_user.trust_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}">
-                                    {{ current_user.trust_score }}
-                                </span>
-                            {% else %}
-                                <span class="badge bg-secondary">--</span>
-                            {% endif %}
+                    <h6 class="card-title">{{ _('social.trust_score') }}</h6>
+                    {% if current_user.trust_score_value %}
+                        <div class="d-flex align-items-center">
+                            <div class="progress flex-grow-1 me-3" style="height: 10px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ current_user.trust_score_value }}%"></div>
+                            </div>
+                            <span class="fw-bold">{{ current_user.trust_score_value }}</span>
                         </div>
-                        <small class="text-muted">{{ t_('messages.fill_required_fields') }}</small>
-                    </div>
+                    {% else %}
+                        <span class="text-muted">--</span>
+                    {% endif %}
+                    <small class="text-muted d-block mt-2">{{ _('messages.fill_required_fields') }} {{ _('social.complete_profile')|default('برای افزایش امتیاز') }}</small>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
-<script>
-// Media upload handling
-document.getElementById('addMediaBtn').addEventListener('click', function() {
-    document.getElementById('mediaInput').click();
-});
-
-// Auto-resize textarea
-const textarea = document.querySelector('textarea[name="content"]');
-textarea.addEventListener('input', function() {
-    this.style.height = 'auto';
-    this.style.height = (this.scrollHeight) + 'px';
-});
-
-// Load suggested users
-async function loadSuggestedUsers() {
-    try {
-        const response = await fetch('{{ url_for("social.explore") }}');
-        // Parse and display suggested users
-    } catch (error) {
-        console.error('Error loading suggested users:', error);
-    }
-}
-
-// Initialize
-document.addEventListener('DOMContentLoaded', function() {
-    loadSuggestedUsers();
-});
-</script>
 {% endblock %}

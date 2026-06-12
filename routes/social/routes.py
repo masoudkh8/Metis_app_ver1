@@ -6,16 +6,21 @@ Includes: Public Profile, News Feed, Follow/Unfollow, Like, Comment, Share
 from flask_babel import gettext as _
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify, current_app
 from flask_login import login_required, current_user
+from models.user import Role
+from extensions import limiter  # ✅ ایمپورت نمونه سراسری limiter
+from flask_limiter.util import get_remote_address
 from models import db
 from models.user import User, UserProfile
 from models.social import Post, Comment, Like, Follow
 from models.notification import Notification
 from datetime import datetime
 import pytz
-from celery_app import celery, send_notification_task
-tehran_tz = pytz.timezone('Asia/Tehran')
 
-social_bp = Blueprint('social', __name__, url_prefix='/social')
+from utils.file_upload import upload_social_media # ایمپورت تابع جدید
+tehran_tz = pytz.timezone('Asia/Tehran')
+from utils.social_cache import increment_post_views_async, get_post_views
+
+from . import social_bp
 
 
 def send_notification_async(user_id, notification_data):
@@ -23,6 +28,7 @@ def send_notification_async(user_id, notification_data):
     Send notification via Celery task for real-time delivery.
     Falls back to synchronous if Celery is not available.
     """
+    from celery_app import celery, send_notification_task
     try:
         task = send_notification_task.delay(user_id, notification_data)
         return task
@@ -60,10 +66,20 @@ def public_profile(username):
         author_id=profile_user.id,
         visibility='public'
     ).order_by(Post.created_at.desc()).limit(20).all()
-    
-    return render_template('users/public_profile.html', 
-                         profile_user=profile_user, 
-                         profile_posts=profile_posts)
+
+    # 🔥 اصلاح حیاتی: بررسی فالو به صورت بهینه (بدون لود کردن کل لیست)
+    is_following = False
+    if current_user.is_authenticated:
+        # روش ۱: اگر متد is_following در مدل User شما تعریف شده باشد (طبق فایل راهنما)
+        is_following = current_user.is_following(profile_user.id)
+
+        # روش ۲ (جایگزین): اگر متد بالا کار نکرد، از این کوئری مستقیم و سبک استفاده کنید:
+        # is_following = Follow.query.filter_by(follower_id=current_user.id, following_id=profile_user.id).first() is not None
+
+    return render_template('users/public_profile.html',
+                           profile_user=profile_user,
+                           profile_posts=profile_posts,
+                           is_following=is_following)  # 🔥 ارسال متغیر به قالب
 
 
 # ============================================
@@ -72,6 +88,7 @@ def public_profile(username):
 
 @social_bp.route('/follow/<int:user_id>', methods=['POST'])
 @login_required
+@limiter.limit("10/minute")
 def follow_user(user_id):
     """
     Follow a user
@@ -149,10 +166,17 @@ def user_followers(user_id):
     """
     user = User.query.get_or_404(user_id)
     followers = Follow.query.filter_by(following_id=user_id).all()
-    
-    return render_template('users/followers_list.html', 
-                         user=user, 
-                         followers=followers)
+    # 🔥 اضافه شده: استخراج IDهای فالوینگ‌های کاربر فعلی
+    following_ids = set()
+    if current_user.is_authenticated:
+        following_ids = set(
+            f.following_id for f in Follow.query.filter_by(follower_id=current_user.id).all()
+        )
+
+    return render_template('users/followers_list.html',
+                             user=user,
+                             followers=followers,
+                             following_ids=following_ids) # پاس دادن به تمپلیت
 
 
 @social_bp.route('/following/<int:user_id>')
@@ -162,53 +186,117 @@ def user_following(user_id):
     """
     user = User.query.get_or_404(user_id)
     following = Follow.query.filter_by(follower_id=user_id).all()
-    
-    return render_template('users/following_list.html', 
-                         user=user, 
-                         following=following)
+
+
+    following_ids = set()
+    if current_user.is_authenticated:
+        following_ids = set(f.following_id for f in Follow.query.filter_by(follower_id=current_user.id).all())
+
+    return render_template('users/following_list.html',
+                           user=user,
+                           following=following,
+                           following_ids=following_ids)
 
 
 # ============================================
 # 3. News Feed (The Feed)
 # ============================================
 
+
 @social_bp.route('/feed')
 @login_required
 def news_feed():
-    """
-    Personalized news feed for user
-    Display posts from followed users + featured posts
-    Enhanced algorithm using TrustScore
-    """
-    # Get feed with TrustScore-enhanced algorithm
-    feed_posts = Post.get_feed_with_trust_score(current_user.id, limit=50, include_featured=True)
-    
-    return render_template('users/feed.html', feed_posts=feed_posts)
+    # ۱. دریافت شماره صفحه از URL (پیش‌فرض صفحه ۱)
+    page = request.args.get('page', 1, type=int)
+    per_page = 15
 
+    # ۲. دریافت پست‌های صفحه جاری (Paginate)
+    feed_posts = Post.query.filter(
+        Post.visibility.in_(['public', 'followers_only'])
+    ).order_by(Post.created_at.desc()).paginate(
+        page=page,
+        per_page=per_page,
+        error_out=False
+    )
+
+    # ۳. بهینه‌سازی کوئری لایک‌ها: فقط برای پست‌های "همین صفحه" کوئری می‌زنیم
+    liked_post_ids = set()
+    liked_comment_ids = set()
+
+    # نکته: @login_required تضمین می‌کند که current_user همیشه احراز هویت شده است.
+    # پس نیازی به if current_user.is_authenticated نیست.
+    if feed_posts.items:  # اگر پستی در این صفحه وجود دارد
+
+        # الف) استخراج ID پست‌های موجود در همین صفحه
+        post_ids_on_page = [post.id for post in feed_posts.items]
+
+        # ب) کوئری بهینه: فقط لایک‌های کاربر جاری را برای همین پست‌های خاص بررسی می‌کنیم
+        # استفاده از .in_() باعث می‌شود دیتابیس فقط چند رکورد (مثلاً حداکثر ۱۵ تا) را برگرداند
+        liked_posts_query = Like.query.filter(
+            Like.user_id == current_user.id,
+            Like.target_type == 'post',
+            Like.target_id.in_(post_ids_on_page)
+        ).with_entities(Like.target_id).all()
+
+        liked_post_ids = {lp[0] for lp in liked_posts_query}
+
+        # ج) (اختیاری) اگر در تمپلیت feed.html کامنت‌ها هم رندر می‌شوند، برای کامنت‌ها هم همین کار را می‌کنیم
+        # اگر کامنت‌ها در فید اصلی نمایش داده نمی‌شوند، می‌توانید این بخش را حذف کنید تا سرعت بیشتر شود.
+        # (فرض بر این است که ID کامنت‌های این پست‌ها را دارید، در غیر این صورت فقط liked_post_ids کافی است)
+        # comment_ids_on_page = [comment.id for post in feed_posts.items for comment in post.comments]
+        # liked_comments_query = Like.query.filter(
+        #     Like.user_id == current_user.id,
+        #     Like.target_type == 'comment',
+        #     Like.target_id.in_(comment_ids_on_page)
+        # ).with_entities(Like.target_id).all()
+        # liked_comment_ids = {lc[0] for lc in liked_comments_query}
+
+    # ۴. ارسال به تمپلیت
+    return render_template(
+        'users/feed.html',
+        feed_posts=feed_posts,
+        liked_post_ids=liked_post_ids,
+        liked_comment_ids=liked_comment_ids
+    )
 
 @social_bp.route('/post/create', methods=['GET', 'POST'])
 @login_required
+@limiter.limit("5 per hour")
 def create_post():
     """
-    Create new post
+    Create new post with media and tags support
     """
     if request.method == 'POST':
         content = request.form.get('content', '').strip()
         visibility = request.form.get('visibility', 'public')
-        
-        if not content:
+
+        # دریافت فایل‌ها (نام فیلد در HTML باید name="media" باشد)
+        media_files = request.files.getlist('media')
+
+        # اصلاح: اگر هم متن خالی بود و هم فایلی آپلود نشده بود، خطا بده
+        if not content and not (media_files and any(file.filename for file in media_files)):
             flash(_('social.post_content_empty'), 'error')
             return redirect(url_for('social.news_feed'))
-        
-        # Process uploaded files (if any)
+
+        # پردازش فایل‌های آپلودی
         media = {'images': [], 'files': []}
-        # TODO: Add file upload logic
-        
-        # Process product/company tags
-        tagged_products = []
-        tagged_companies = []
-        # TODO: Add tagging logic
-        
+        if media_files and any(file.filename for file in media_files):
+            # فراخوانی تابع آپلود (مطمئن شوید این تابع همان نسخه امنیتی با UUID است که قبلاً فرستادم)
+            media_urls = upload_social_media(media_files)
+
+            # دسته‌بندی هوشمند بر اساس پسوند
+            media = {
+                'images': [url for url in media_urls if
+                           url.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))],
+                'files': [url for url in media_urls if
+                          not url.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))]
+            }
+
+        # پردازش تگ محصولات و شرکت‌ها (دریافت به صورت لیست)
+        tagged_products = request.form.getlist('tagged_products', type=int)
+        tagged_companies = request.form.getlist('tagged_companies', type=int)
+
+        # ساخت شیء پست
         post = Post(
             author_id=current_user.id,
             content=content,
@@ -217,35 +305,70 @@ def create_post():
             tagged_products=tagged_products,
             tagged_companies=tagged_companies
         )
-        
+
         db.session.add(post)
         db.session.commit()
-        
+
         flash(_('social.post_published'), 'success')
         return redirect(url_for('social.public_profile', username=current_user.username))
-    
-    return render_template('users/create_post.html')
+
+
+    # 🔥 این بخش برای حالت GET اضافه شد:
+    from models import Product
+    products = Product.query.all()  # لیست تمام محصولات
+    # companies = Company.query.all()  # لیست تمام شرکت‌ها
+    companies = []
+
+    return render_template('users/create_post.html',  products=products,
+        companies=companies)
 
 
 @social_bp.route('/post/<int:post_id>')
 def view_post(post_id):
-    """
-    Display a specific post
-    """
     post = Post.query.get_or_404(post_id)
-    
-    # Increment view count
-    post.views_count += 1
-    db.session.commit()
-    
-    # Get comments
+
+    # افزایش بازدید (آسنکرون)
+    increment_post_views_async(post_id)
+
     comments = Comment.query.filter_by(
         post_id=post_id,
         is_deleted=False
     ).order_by(Comment.created_at.asc()).all()
-    
-    return render_template('users/post_detail.html', post=post, comments=comments)
 
+    total_views = get_post_views(post_id)
+
+    # ✅ منطق جدید برای ارسال وضعیت لایک‌ها به تمپلیت
+    liked_post_ids = set()
+    liked_comment_ids = set()
+
+    if current_user.is_authenticated:
+        from models.social import Like
+
+        # ۱. بررسی لایک پست جاری
+        liked_post = Like.query.filter_by(
+            user_id=current_user.id,
+            target_type='post',
+            target_id=post_id
+        ).first()
+        if liked_post:
+            liked_post_ids.add(post_id)
+
+        # ۲. بررسی لایک کامنت‌های همین پست (بهینه‌شده با .in_)
+        comment_ids = [c.id for c in comments]
+        if comment_ids:
+            liked_comments = Like.query.filter(
+                Like.user_id == current_user.id,
+                Like.target_type == 'comment',
+                Like.target_id.in_(comment_ids)
+            ).with_entities(Like.target_id).all()
+            liked_comment_ids = {lc[0] for lc in liked_comments}
+
+    return render_template('users/post_detail.html',
+                           post=post,
+                           comments=comments,
+                           total_views=total_views,
+                           liked_post_ids=liked_post_ids,  # ✅ ضروری برای _post_card.html
+                           liked_comment_ids=liked_comment_ids)  # ✅ ضروری برای _comment_item.html
 
 @social_bp.route('/post/<int:post_id>/delete', methods=['POST'])
 @login_required
@@ -272,6 +395,7 @@ def delete_post(post_id):
 
 @social_bp.route('/post/<int:post_id>/like', methods=['POST'])
 @login_required
+@limiter.limit("10/minute")
 def like_post(post_id):
     """
     Like a post
@@ -531,10 +655,15 @@ def explore():
     # Suggested users (based on TrustScore)
     suggested_users = User.query.join(UserProfile).filter(
         User.is_active == True,
-        User.role.value.in_(['producer', 'buyer', 'broker'])
-    ).order_by(db.desc(User.trust_score)).limit(10).all() if hasattr(User, 'trust_score') else []
-    
-    return render_template('users/explore.html', 
-                         featured_posts=featured_posts, 
-                         suggested_users=suggested_users)
+        User.role.in_(Role.get_core_roles())  # ✅ استفاده از تمام ۸ نقش اصلی به صورت پویا
+    ).order_by(db.desc(User.trust_score_value)).limit(10).all() if hasattr(User, 'trust_score_value') else []
+
+    following_ids = set()
+    if current_user.is_authenticated:
+        following_ids = set(f.following_id for f in Follow.query.filter_by(follower_id=current_user.id).all())
+
+    return render_template('users/explore.html',
+                           featured_posts=featured_posts,
+                           suggested_users=suggested_users,
+                           following_ids=following_ids)  # ارسال به قالب
 # Share System Routes Added

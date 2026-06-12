@@ -10,7 +10,7 @@ import json
 tehran_tz = pytz.timezone('Asia/Tehran')
 
 
-class Role(Enum):
+class Role(str,Enum):
     """8 Specialized User Roles Based on CONTEXT_MASTER_BRIEF"""
     PRODUCER = 'producer'              # Producer/Exporter
     BUYER = 'buyer'                    # Importer/Buyer
@@ -128,6 +128,10 @@ class UserProfile(db.Model):
     
     # Relationships
     user = db.relationship('User', back_populates='profile')
+
+    # # رابطه با مدل Follow (برای دسترسی به لیست فالوورها و فالوینگ‌ها)
+    # following_relations = db.relationship('Follow', foreign_keys='Follow.follower_id', back_populates='follower', cascade='all, delete-orphan')
+    # followers_relations = db.relationship('Follow', foreign_keys='Follow.following_id', back_populates='following', cascade='all, delete-orphan')
     # company relationship will be established when Company model is created
     # documents and endorsements can be added as separate models if needed
     
@@ -218,7 +222,7 @@ connections = db.Table('connections',
 )
 
 
-class MembershipTier(Enum):
+class MembershipTier(str,Enum):
     """Elite Club Access Layers (Concentric Circles Model)"""
     OBSERVER = 'observer'          # Layer 1: Visitor (Newcomer, Unverified)
     VERIFIED = 'verified'          # Layer 2: Verified Member (KYC Completed, Basic Membership)
@@ -255,11 +259,12 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(200), nullable=False)
-    role = db.Column(db.Enum(Role), nullable=False)
 
-    # === Elite Club Tier System ===
-    membership_tier = db.Column(db.Enum(MembershipTier), default=MembershipTier.OBSERVER, nullable=False, index=True)
-    
+    # ✅ حالت جدید (استفاده از String):
+    role = db.Column(db.String(50), nullable=False)
+    membership_tier = db.Column(db.String(50), default='observer', nullable=False, index=True)
+
+
     # Invitation System (Exclusive Entry)
     invite_code = db.Column(db.String(32), unique=True, index=True, nullable=True)  # User's own invite code
     invited_by_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)  # Who invited?
@@ -342,7 +347,15 @@ class User(db.Model, UserMixin):
     badges = db.relationship('UserBadge', back_populates='user', cascade='all, delete-orphan')
     progress = db.relationship('UserProgress', back_populates='user', uselist=False, cascade='all, delete-orphan')
     credit_account = db.relationship('TradeCreditAccount', back_populates='user', uselist=False, cascade='all, delete-orphan')
-    
+
+    # ✅ روابط اجتماعی (Follow System) - باید دقیقاً داخل کلاس User باشند
+    followed = db.relationship('Follow', foreign_keys='Follow.follower_id', back_populates='follower',
+                               cascade='all, delete-orphan')
+    followers = db.relationship('Follow', foreign_keys='Follow.following_id', back_populates='following',
+                                cascade='all, delete-orphan')
+    # رابطه پست‌ها (چون در social.py به آن اشاره شده است)
+    posts = db.relationship('Post', back_populates='author', cascade='all, delete-orphan', lazy='dynamic')
+
     # روابط اجتماعی (Follow System) - استفاده از مدل Follow از social.py
     # relationshipهای follow/followers در models/social.py به User اضافه می‌شوند
     # اینجا فقط برای سازگاری با کدهای قدیمی تعریف شده
@@ -387,22 +400,43 @@ class User(db.Model, UserMixin):
         if not self.invite_code:
             self.invite_code = f"{self.username.upper()[:4]}-{secrets.token_hex(4)}"
         return self.invite_code
-    
+
+    # در فایل models/user.py، داخل کلاس User، این سه متد را جایگزین متدهای قدیمی کنید:
+
     def follow(self, user):
-        """Follow another user"""
-        if not self.is_following(user):
-            self.followed.append(user)
-    
+        """دنبال کردن یک کاربر"""
+        from .social import Follow
+        target_id = user.id if hasattr(user, 'id') else user
+
+        if self.id != target_id and not Follow.is_following(self.id, target_id):
+            new_follow = Follow(follower_id=self.id, following_id=target_id)
+            db.session.add(new_follow)
+            db.session.commit()
+
     def unfollow(self, user):
-        """Unfollow user"""
-        if self.is_following(user):
-            self.followed.remove(user)
-    
+        """لغو دنبال کردن یک کاربر"""
+        from .social import Follow
+        target_id = user.id if hasattr(user, 'id') else user
+
+        follow_record = Follow.query.filter_by(
+            follower_id=self.id,
+            following_id=target_id
+        ).first()
+
+        if follow_record:
+            db.session.delete(follow_record)
+            db.session.commit()
+
     def is_following(self, user):
-        """Is this user following another user?"""
-        return self.followed.filter(
-            connections.c.followed_id == user.id).count() > 0
-    
+        """بررسی اینکه آیا این کاربر، کاربر دیگر را دنبال می‌کند یا خیر"""
+        from .social import Follow
+        target_id = user.id if hasattr(user, 'id') else user
+
+        if target_id == self.id:
+            return False
+
+        # استفاده از متد کلاس Follow که از تداخل جلوگیری می‌کند
+        return Follow.is_following(self.id, target_id)
     def get_public_profile_url(self):
         """Get Public Profile URL"""
         return f"/user/{self.username}"

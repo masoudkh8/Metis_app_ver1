@@ -1,7 +1,7 @@
 <!-- templates/users/create_post.html -->
 {% extends "base_pwa.html" %}
 
-{% block title %}{{ t_('social.create_post') }}{% endblock %}
+{% block title %}{{ _('social.create_post') }}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
@@ -11,7 +11,7 @@
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
-            Back to Feed
+            {{ _('common.back_to_feed')|default('Back to Feed') }}
         </a>
     </div>
     
@@ -19,57 +19,95 @@
         <div class="col-lg-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-white">
-                    <h5 class="mb-0">{{ t_('social.create_post') }}</h5>
+                    <h5 class="mb-0">{{ _('social.create_post') }}</h5>
                 </div>
                 <div class="card-body">
+                    
+                    <!-- 🔥 اضافه شده: نمایش پیام‌های خطا و موفقیت (Flash Messages) -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
                     <form action="{{ url_for('social.create_post') }}" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        
                         <!-- Content -->
                         <div class="mb-3">
-                            <label for="content" class="form-label">{{ t_('social.what_is_on_your_mind') }}</label>
-                            <textarea class="form-control" name="content" id="content" rows="5" required placeholder="{{ t_('social.what_is_on_your_mind') }}"></textarea>
-                            <div class="form-text" id="contentCount">0 characters</div>
+                            <label for="content" class="form-label">{{ _('social.what_is_on_your_mind') }}</label>
+                            <textarea class="form-control" name="content" id="content" rows="5" placeholder="{{ _('social.what_is_on_your_mind') }}"></textarea>
+                            <div class="form-text text-end" id="contentCount">0 / 2000 characters</div>
                         </div>
                         
                         <!-- Visibility -->
                         <div class="mb-3">
-                            <label for="visibility" class="form-label">{{ t_('social.visibility') }}</label>
+                            <label for="visibility" class="form-label">{{ _('social.visibility') }}</label>
                             <select class="form-select" name="visibility" id="visibility">
-                                <option value="public">{{ t_('social.visibility_public') }}</option>
-                                <option value="followers_only">{{ t_('social.visibility_followers_only') }}</option>
-                                <option value="private">{{ t_('social.visibility_private') }}</option>
+                                <option value="public">{{ _('social.visibility_public') }}</option>
+                                <option value="followers_only">{{ _('social.visibility_followers_only') }}</option>
+                                <option value="private">{{ _('social.visibility_private') }}</option>
                             </select>
                         </div>
                         
                         <!-- Media Upload -->
                         <div class="mb-3">
-                            <label class="form-label">{{ t_('social.add_media') }}</label>
-                            <div class="border rounded p-3 text-center" id="dropZone">
+                            <label class="form-label">{{ _('social.add_media') }}</label>
+                            <div class="border rounded p-4 text-center bg-light" id="dropZone" style="cursor: pointer;">
                                 <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-2"></i>
-                                <p class="text-muted">{{ t_('social.add_images') }} {{ t_('common.or')|default('or') }} {{ t_('social.add_files') }}</p>
+                                <p class="text-muted mb-1">{{ _('social.add_images') }} {{ _('common.or')|default('or') }} {{ _('social.add_files') }}</p>
+                                <small class="text-muted">PNG, JPG, PDF, DOC (Max 10MB)</small>
                                 <input type="file" name="media" id="mediaInput" multiple accept="image/*,video/*,.pdf,.doc,.docx" style="display: none;">
-                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="document.getElementById('mediaInput').click()">
-                                    {{ t_('social.add_media') }}
+                                <br>
+                                <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="document.getElementById('mediaInput').click()">
+                                    {{ _('social.add_media') }}
                                 </button>
                             </div>
                             <div id="previewContainer" class="mt-3 row g-2"></div>
                         </div>
                         
-                        <!-- Tagging -->
-                        <div class="mb-3">
-                            <label class="form-label">{{ t_('social.tag_products') }}</label>
-                            <input type="text" class="form-control" id="tagProducts" placeholder="Enter product IDs separated by comma">
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">{{ t_('social.tag_companies') }}</label>
-                            <input type="text" class="form-control" id="tagCompanies" placeholder="Enter company IDs separated by comma">
+                        <!-- 🔧 اصلاح شده: Tagging با Select به جای Input Text -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="tagged_products" class="form-label">{{ _('social.tag_products') }}</label>
+                                <select name="tagged_products" id="tagged_products" class="form-select" multiple size="4">
+                                    <!-- ⚠️ این گزینه‌ها باید از بک‌اند (routes.py) به اینجا ارسال شوند -->
+                                    {% if products %}
+                                        {% for product in products %}
+                                            <option value="{{ product.id }}">{{ product.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option value="" disabled>محصولی برای نمایش وجود ندارد</option>
+                                    {% endif %}
+                                </select>
+                                <small class="form-text text-muted">برای انتخاب چند مورد، کلید Ctrl را نگه دارید.</small>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="tagged_companies" class="form-label">{{ _('social.tag_companies') }}</label>
+                                <select name="tagged_companies" id="tagged_companies" class="form-select" multiple size="4">
+                                    {% if companies %}
+                                        {% for company in companies %}
+                                            <option value="{{ company.id }}">{{ company.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option value="" disabled>شرکتی برای نمایش وجود ندارد</option>
+                                    {% endif %}
+                                </select>
+                            </div>
                         </div>
                         
                         <!-- Actions -->
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ url_for('social.news_feed') }}" class="btn btn-secondary">{{ t_('common.cancel') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ t_('social.publish') }}</button>
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{{ url_for('social.news_feed') }}" class="btn btn-secondary">{{ _('common.cancel') }}</a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-1"></i> {{ _('social.publish') }}
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -86,7 +124,9 @@ const contentTextarea = document.getElementById('content');
 const contentCount = document.getElementById('contentCount');
 
 contentTextarea.addEventListener('input', function() {
-    contentCount.textContent = this.value.length + ' characters';
+    const len = this.value.length;
+    contentCount.textContent = `${len} / 2000 characters`;
+    contentCount.className = len > 2000 ? 'form-text text-end text-danger' : 'form-text text-end text-muted';
 });
 
 // File preview
@@ -102,11 +142,11 @@ mediaInput.addEventListener('change', function(e) {
             const reader = new FileReader();
             reader.onload = function(e) {
                 const col = document.createElement('div');
-                col.className = 'col-4';
+                col.className = 'col-4 col-md-3';
                 col.innerHTML = `
                     <div class="position-relative">
                         <img src="${e.target.result}" class="img-fluid rounded" style="width: 100%; height: 100px; object-fit: cover;">
-                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1" onclick="this.parentElement.parentElement.remove()">
+                        <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 p-1" onclick="this.parentElement.parentElement.remove()">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -116,11 +156,11 @@ mediaInput.addEventListener('change', function(e) {
             reader.readAsDataURL(file);
         } else {
             const col = document.createElement('div');
-            col.className = 'col-6';
+            col.className = 'col-6 col-md-4';
             col.innerHTML = `
-                <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
-                    <span><i class="fas fa-file me-1"></i>${file.name}</span>
-                    <button type="button" class="btn btn-danger btn-sm" onclick="this.parentElement.parentElement.remove()">
+                <div class="alert alert-info py-2 d-flex justify-content-between align-items-center mb-0">
+                    <span class="text-truncate"><i class="fas fa-file me-1"></i>${file.name}</span>
+                    <button type="button" class="btn btn-danger btn-sm ms-2 p-1" onclick="this.parentElement.parentElement.remove()">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -133,22 +173,27 @@ mediaInput.addEventListener('change', function(e) {
 // Drag and drop
 const dropZone = document.getElementById('dropZone');
 
+dropZone.addEventListener('click', function() {
+    mediaInput.click();
+});
+
 dropZone.addEventListener('dragover', function(e) {
     e.preventDefault();
-    this.classList.add('bg-light');
+    this.classList.add('bg-primary', 'bg-opacity-10');
+    this.style.borderColor = '#0d6efd';
 });
 
 dropZone.addEventListener('dragleave', function() {
-    this.classList.remove('bg-light');
+    this.classList.remove('bg-primary', 'bg-opacity-10');
+    this.style.borderColor = '';
 });
 
 dropZone.addEventListener('drop', function(e) {
     e.preventDefault();
-    this.classList.remove('bg-light');
-    const files = e.dataTransfer.files;
-    mediaInput.files = files;
+    this.classList.remove('bg-primary', 'bg-opacity-10');
+    this.style.borderColor = '';
     
-    // Trigger change event
+    mediaInput.files = e.dataTransfer.files;
     const event = new Event('change');
     mediaInput.dispatchEvent(event);
 });

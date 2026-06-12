@@ -45,9 +45,11 @@ class Config:
     MAIL_SUPPRESS_SEND = False  # در توسعه اگر True باشد، ایمیل فقط در کنسول چاپ می‌شود
 
 
+
+
     # File upload settings
     basedir = os.path.abspath(os.path.dirname(__file__))
-    UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
+    UPLOAD_FOLDER = os.path.join(basedir, 'static', 'uploads', 'social')
     PROFILE_UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'profiles')
     MAGAZINE_UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'magazines')
     MAX_CONTENT_LENGTH = 50 * 1024 * 1024  # 50 MB max file size

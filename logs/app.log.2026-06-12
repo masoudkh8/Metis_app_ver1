@@ -1,0 +1,593 @@
+{"timestamp": "2026-06-12 00:09:32,269", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:11:40,039", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:23:47,236", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:25:56,864", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:26:29,974", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:27:03,081", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:27:36,193", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:28:09,292", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:28:42,412", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:29:15,533", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:37:52,263", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 00:49:51,104", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:09:59,484", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:12:11,911", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:26:32,816", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:27:05,940", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:27:36,682", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:28:09,797", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:28:40,602", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:29:13,729", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:29:43,745", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:38:13,375", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:45:33,170", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 01:50:16,161", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 11:32:55,554", "level": "WARNING", "message": "Slow request: GET /users/login took 3.9395s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 11:41:16,448", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 11:41:17,126", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 11:41:17,467", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 11:41:18,005", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 11:41:18,005", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 11:41:18,325", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 11:41:18,414", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 11:41:18,670", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 11:41:18,733", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 11:41:18,734", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 12:15:54,517", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 12:15:58,203", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 12:16:18,558", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 12:16:21,127", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 12:16:21,127", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 12:16:21,534", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 12:16:21,667", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 12:16:22,088", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 12:16:22,162", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 12:16:22,162", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 12:21:44,851", "level": "ERROR", "message": "Exception on / [GET]", "module": "app", "lineno": 1414}
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 357, in connect
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\retry.py", line 62, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 358, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 730, in _connect
+    raise err
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 718, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1482, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1974, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1169, in _check_request_limit
+    raise e
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1153, in _check_request_limit
+    self.__evaluate_limits(endpoint, all_limits)
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1081, in __evaluate_limits
+    if not method(lim.limit, *args, **kwargs):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\strategies.py", line 97, in hit
+    return cast(MovingWindowSupport, self.storage).acquire_entry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\storage\base.py", line 25, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\storage\redis.py", line 258, in acquire_entry
+    acquired = self.lua_acquire_moving_window(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5501, in __call__
+    return client.evalsha(self.sha, len(keys), *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5710, in evalsha
+    return self._evalsha("EVALSHA", sha, numkeys, *keys_and_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5694, in _evalsha
+    return self.execute_command(command, sha, numkeys, *keys_and_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\client.py", line 565, in _execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 1422, in get_connection
+    connection.connect()
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 363, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+{"timestamp": "2026-06-12 12:22:11,554", "level": "ERROR", "message": "Exception on / [GET]", "module": "app", "lineno": 1414}
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 357, in connect
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\retry.py", line 62, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 358, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 730, in _connect
+    raise err
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 718, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1482, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1974, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1169, in _check_request_limit
+    raise e
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1153, in _check_request_limit
+    self.__evaluate_limits(endpoint, all_limits)
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1081, in __evaluate_limits
+    if not method(lim.limit, *args, **kwargs):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\strategies.py", line 97, in hit
+    return cast(MovingWindowSupport, self.storage).acquire_entry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\storage\base.py", line 25, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\storage\redis.py", line 258, in acquire_entry
+    acquired = self.lua_acquire_moving_window(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5501, in __call__
+    return client.evalsha(self.sha, len(keys), *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5710, in evalsha
+    return self._evalsha("EVALSHA", sha, numkeys, *keys_and_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5694, in _evalsha
+    return self.execute_command(command, sha, numkeys, *keys_and_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\client.py", line 565, in _execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 1422, in get_connection
+    connection.connect()
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 363, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+{"timestamp": "2026-06-12 12:40:53,100", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 12:40:53,581", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 12:40:54,424", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 12:40:55,206", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 12:40:55,206", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 12:40:56,016", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 12:40:56,090", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 12:40:56,399", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 12:40:56,445", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 12:40:56,446", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 12:41:19,760", "level": "ERROR", "message": "Exception on / [GET]", "module": "app", "lineno": 1414}
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 357, in connect
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\retry.py", line 62, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 358, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 730, in _connect
+    raise err
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 718, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1482, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1974, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1169, in _check_request_limit
+    raise e
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1153, in _check_request_limit
+    self.__evaluate_limits(endpoint, all_limits)
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_limiter\_extension.py", line 1081, in __evaluate_limits
+    if not method(lim.limit, *args, **kwargs):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\strategies.py", line 97, in hit
+    return cast(MovingWindowSupport, self.storage).acquire_entry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\storage\base.py", line 25, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\limits\storage\redis.py", line 258, in acquire_entry
+    acquired = self.lua_acquire_moving_window(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5501, in __call__
+    return client.evalsha(self.sha, len(keys), *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5710, in evalsha
+    return self._evalsha("EVALSHA", sha, numkeys, *keys_and_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\commands\core.py", line 5694, in _evalsha
+    return self.execute_command(command, sha, numkeys, *keys_and_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\client.py", line 565, in _execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 1422, in get_connection
+    connection.connect()
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\redis\connection.py", line 363, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+{"timestamp": "2026-06-12 13:19:04,619", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 13:19:06,849", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 13:19:10,746", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 13:19:11,633", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 13:19:11,633", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 13:19:11,982", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 13:19:12,074", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 13:19:12,296", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 13:19:12,358", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 13:19:12,358", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 13:20:05,113", "level": "ERROR", "message": "Exception on / [GET]", "module": "app", "lineno": 1414}
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\routes\users\routes.py", line 122, in main_page
+    return render_template('landing.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 771, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\templates\landing.html", line 3119, in template
+    {% block ticker %}
+jinja2.exceptions.TemplateAssertionError: block 'ticker' defined twice
+{"timestamp": "2026-06-12 13:20:05,390", "level": "WARNING", "message": "Slow request: GET / took 6.5750s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 13:23:32,397", "level": "WARNING", "message": "Slow request: GET / took 3.2834s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 13:24:00,000", "level": "WARNING", "message": "Slow request: GET /static/js/three.min.js took 25.7827s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 13:24:12,039", "level": "WARNING", "message": "Slow request: GET /static/fonts/Vazirmatn-Regular.woff2 took 1.1239s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 13:43:19,024", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 13:43:21,050", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 13:43:24,593", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 13:43:25,426", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 13:43:25,426", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 13:43:25,666", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 13:43:25,831", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 13:43:26,104", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 13:43:26,152", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 13:43:26,152", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 14:03:09,178", "level": "WARNING", "message": "Slow request: GET / took 6.4854s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 14:08:12,549", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 14:08:13,016", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 14:08:13,250", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 14:08:13,801", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 14:08:13,801", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 14:08:14,093", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 14:08:14,167", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 14:08:14,338", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 14:08:14,384", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 14:08:14,384", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 14:08:41,677", "level": "WARNING", "message": "Slow request: GET / took 2.2016s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 14:09:05,266", "level": "WARNING", "message": "Slow request: GET /users/login took 2.5617s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 14:15:30,734", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 14:15:31,084", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 14:15:31,370", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 14:15:31,867", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 14:15:31,867", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 14:15:31,889", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 14:15:32,054", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 14:15:32,235", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 14:15:32,276", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 14:15:32,276", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 14:16:56,035", "level": "WARNING", "message": "Slow request: GET / took 2.1629s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 14:17:45,343", "level": "WARNING", "message": "Slow request: POST /users/login took 2.1758s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 14:18:48,540", "level": "ERROR", "message": "Exception on /users/account-settings [GET]", "module": "app", "lineno": 1414}
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\routes\users\routes.py", line 598, in account_settings
+    return render_template('users/account_settings.html', user=current_user)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\templating.py", line 151, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\templating.py", line 132, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\templates\users\account_settings.html", line 1, in top-level template code
+    {% extends "base_pwa.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\templates\base_pwa.html", line 6, in top-level template code
+    <title>{% block title %}{{ _('Metisma - Intelligent Global Trade Platform') }}{% endblock %}</title>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\templates\users\account_settings.html", line 3, in block 'title'
+    {% block title %}{{ t_('common.account_settings') }} - {{ user.username }}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\utils.py", line 92, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 't_' is undefined
+{"timestamp": "2026-06-12 14:27:16,620", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 14:27:16,869", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 14:27:17,093", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 14:27:17,681", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 14:27:17,682", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 14:27:17,807", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 14:27:17,889", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 14:27:18,122", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 14:27:18,177", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 14:27:18,178", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 14:41:47,871", "level": "WARNING", "message": "Slow request: GET / took 2.1989s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 14:49:56,067", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 172.25.98.122 | Path: /users/login", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:01:16,129", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:01:49,236", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:02:19,258", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:02:49,258", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:03:22,387", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:03:55,526", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:04:28,650", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:04:58,688", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:05:31,797", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:06:01,804", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:06:34,925", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:07:04,943", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:07:38,044", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:08:08,685", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:08:41,811", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:10:15,665", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:10:48,790", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:11:21,891", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:11:54,995", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:12:25,787", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:12:58,891", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:13:28,900", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:13:59,996", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:14:30,167", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:15:03,270", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:15:33,936", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:16:07,046", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:16:37,369", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:17:07,390", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:22:18,702", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:22:48,729", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:23:19,339", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 15:52:54,829", "level": "WARNING", "message": "Slow request: GET /users/api/unread-notifications took 1.4694s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 16:12:50,067", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:13:20,081", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:13:50,432", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:14:23,551", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:14:56,661", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:15:29,780", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:15:59,788", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:16:32,951", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:17:02,924", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:17:33,389", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:22:50,976", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:23:24,095", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 16:28:41,187", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:13:40,526", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:14:10,526", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:14:40,543", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:15:13,655", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:15:43,677", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:16:16,799", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:16:47,431", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:17:20,552", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:17:51,308", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:23:20,004", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:23:53,121", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 17:57:24,259", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:06:56,550", "level": "WARNING", "message": "Slow request: GET /users/api/unread-notifications took 1.0992s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 18:08:06,610", "level": "WARNING", "message": "Slow request: GET /users/login took 59.2328s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 18:14:43,008", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:15:16,110", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:15:50,066", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:16:22,324", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:16:55,440", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:17:28,547", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:18:01,655", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:23:22,176", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:23:52,199", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 18:24:22,211", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:06:05,842", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:06:38,954", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:07:45,177", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:15:56,301", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:16:29,410", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:17:00,252", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:17:33,371", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:18:06,469", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:19:06,684", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:23:53,524", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:24:26,638", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 19:28:46,195", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:06:43,053", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:07:46,206", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:09:23,183", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:16:27,428", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:16:57,443", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:17:30,567", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:18:03,736", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:19:09,886", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:24:07,860", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:24:40,979", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 20:28:55,312", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:07:14,694", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:09:27,139", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:10:28,088", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:17:02,421", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:17:35,535", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:18:05,556", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:18:35,565", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:19:39,451", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:24:28,941", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:25:02,048", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 21:29:21,394", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:01:10,229", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:07:40,424", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:09:53,214", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:10:59,461", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:17:29,056", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:18:02,167", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:18:35,285", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:19:41,502", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:24:37,111", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:25:10,217", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 22:29:32,000", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:01:35,358", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:08:12,658", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:10:22,676", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:11:26,518", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:17:54,643", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:18:27,759", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:19:00,860", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:20:07,073", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:24:59,050", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:25:29,064", "level": "WARNING", "message": "[ALERT] Rate limit exceeded (Dev Mode Bypass) - IP: 127.0.0.1 | Path: /users/api/unread-notifications", "module": "app", "lineno": 356}
+{"timestamp": "2026-06-12 23:31:10,975", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 23:31:12,705", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 23:31:13,879", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 23:31:14,957", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 23:31:14,957", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 23:37:04,541", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 23:37:05,155", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 23:37:09,209", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 23:37:10,351", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 23:37:10,351", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 23:37:10,742", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}
+{"timestamp": "2026-06-12 23:37:10,858", "level": "INFO", "message": "API documentation registered at /api/docs and /api/openapi.json", "module": "api_docs", "lineno": 1287}
+{"timestamp": "2026-06-12 23:37:11,103", "level": "INFO", "message": "[SUCCESS] Database tables created successfully.", "module": "app", "lineno": 606}
+{"timestamp": "2026-06-12 23:37:11,158", "level": "INFO", "message": "[SUCCESS] Exhibition and Trading modules initialized successfully.", "module": "app", "lineno": 621}
+{"timestamp": "2026-06-12 23:37:11,158", "level": "INFO", "message": "Database initialization process completed.", "module": "app", "lineno": 628}
+{"timestamp": "2026-06-12 23:42:16,761", "level": "WARNING", "message": "Slow request: GET / took 2.2179s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 23:42:19,555", "level": "WARNING", "message": "Slow request: GET /static/images/partners/partner1.png took 1.1909s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 23:43:03,829", "level": "WARNING", "message": "Slow request: POST /users/login took 1.9477s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 23:43:41,567", "level": "WARNING", "message": "Slow request: POST /users/verify_2fa_login took 1.5570s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 23:43:42,842", "level": "ERROR", "message": "Exception on /users/profile [GET]", "module": "app", "lineno": 1414}
+Traceback (most recent call last):
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\routes\users\routes.py", line 802, in profile
+    return render_template('users/profile.html',
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\templating.py", line 151, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\templating.py", line 132, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\templates\users\profile.html", line 1, in top-level template code
+    {% extends "base_pwa.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\metis_app_ver_1\templates\base_pwa.html", line 239, in top-level template code
+    <a href="{{ url_for('social.news_feed') }}" class="nav-link">
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1697, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\flask\app.py", line 1686, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\masoud\Downloads\Royan_ver_1_7_5-branch_e (3)\.venv\Lib\site-packages\werkzeug\routing\map.py", line 950, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'social.news_feed'. Did you mean 'users.reject_order' instead?
+{"timestamp": "2026-06-12 23:43:50,159", "level": "WARNING", "message": "Slow request: GET /users/profile took 8.4442s", "module": "app", "lineno": 157}
+{"timestamp": "2026-06-12 23:58:37,278", "level": "INFO", "message": "Application startup", "module": "app", "lineno": 79}

@@ -57,8 +57,8 @@ def get_remote_address_safe():
 limiter = Limiter(
     key_func=get_remote_address_safe,  # استفاده از تابع امن
     default_limits=[
-        "100 per hour",  # محدودیت پیش‌فرض: 100 درخواست در ساعت
-        "1000 per day"  # محدودیت روزانه: 1000 درخواست در روز
+        "50 per hour",  # محدودیت پیش‌فرض: 100 درخواست در ساعت
+        "200 per day"  # محدودیت روزانه: 1000 درخواست در روز
     ],
     storage_uri=RATELIMIT_STORAGE_URL,  # ✅ استفاده از Redis به جای memory
     strategy="moving-window",  # استراتژی پنجره متحرک (دقیق‌تر)

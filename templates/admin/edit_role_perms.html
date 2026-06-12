@@ -448,9 +448,12 @@
                 'TECH': {'title': 'Technical Inspection', 'subtitle': 'Technical reports and commodity inspection', 'icon': '🔧', 'gradient': '#feebc8'},
                 'DASHBOARD': {'title': 'Dashboard', 'subtitle': 'Display statistics and general information', 'icon': '📊', 'gradient': '#fed7e2'},
                 'PROFILE': {'title': 'Profile', 'subtitle': 'Manage personal information', 'icon': '👤', 'gradient': '#e2e8f0'},
-                'PUBLIC': {'title': 'Public', 'subtitle': 'Basic system access', 'icon': '🌐', 'gradient': '#cbd5e0'}
+                'PUBLIC': {'title': 'Public', 'subtitle': 'Basic system access', 'icon': '🌐', 'gradient': '#cbd5e0'},
+                'SOCIAL': {'title': 'Social Network', 'subtitle': 'Access to feeds, posts, and connections', 'icon': '👥', 'gradient': '#e0e7ff'}
             } %}
-            
+
+
+
             <div class="permission-groups-container">
                 {% for category, info in categories.items() %}
                     {% set category_perms = [] %}

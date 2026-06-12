@@ -510,7 +510,7 @@ def login():
                 # کاربر وجود ندارد - برای امنیت پیام کلی نمایش می‌دهیم
                 flash(_("❌ Incorrect email or password."))
     
-    support_user = User.query.filter_by(username='masoudkh', is_active=True).first()
+    support_user = User.query.filter_by(role=Role.ADMIN, is_active=True).first()
     return render_template('users/login.html', support_user=support_user)
 
 
@@ -793,6 +793,12 @@ def profile():
     buyer = User.query.filter_by(role=Role.BUYER, is_active=True).first()
     broker = User.query.filter_by(role=Role.BROKER, is_premium=True, is_active=True).first()
 
+    # 🔥 اضافه شده: دریافت ۳ پست اخیر کاربر جاری
+    from models.social import Post
+    my_recent_posts = Post.query.filter_by(
+        author_id=current_user.id
+    ).order_by(Post.created_at.desc()).limit(3).all()
+
     return render_template('users/profile.html', 
                           user=current_user,
                           support_user=support_user,
@@ -803,6 +809,7 @@ def profile():
                           broker=broker,
                           pending_tasks=pending_tasks,
                           verification_docs=verification_docs,
+                          my_recent_posts=my_recent_posts,  # 🔥 ارسال به تمپلیت
                           document_status=document_status)
 
 
@@ -866,6 +873,9 @@ def place_order():
 
             seller_id = int(seller_id_str)
             seller = db.session.get(User, seller_id)
+            if not seller or seller.role != Role.PRODUCER:  # ✅ باید اینطور اصلاح شود
+                flash(_("❌ The desired seller was not found or is not a producer."))
+                return redirect(url_for('users.place_order'))
 
             if not seller:
                 flash(_("❌ The desired seller was not found."))

@@ -13,7 +13,7 @@ from models.user import Role
 from routes.admin.routes import admin_bp
 from routes.admin import init_admin_blueprints  # Import the initializer function
 from routes.users.routes import users_bp, api_bp
-from routes.social import social_bp
+
 from config import Config
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -518,21 +518,20 @@ def create_app():
             'Permission': Permission
         }
 
+        # ✅ مقداردهی اولیه Celery در اینجا (داخل create_app)
+    from celery_app import init_celery
+    init_celery(app)
+
     # Register blueprints
     from routes.magazine import magazine_bp
     from routes.exhibition import exhibition_bp
     from routes.trading import trading_bp
     from routes.language import language_bp
     from api_docs import init_api_docs
-
+    from routes.social import social_bp
     app.register_blueprint(users_bp, url_prefix='/users')
-    # Blueprint از permissions_routes به دلیل استفاده از همان users_bp در آن فایل، نیاز به ثبت جداگانه ندارد
-    # تمام routeهای permissions_routes تحت همان users_bp ثبت شده‌اند
-    app.register_blueprint(root_bp)
 
-    # Initialize admin blueprints (includes permission management)
-    # admin_bp_instance = init_admin_blueprints()
-    # app.register_blueprint(admin_bp_instance, url_prefix='/admin')
+    app.register_blueprint(root_bp)
 
 
     if not any(bp.name == 'admin' for bp in app.blueprints.values()):

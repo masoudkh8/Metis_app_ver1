@@ -189,6 +189,36 @@
             </div>
         </div>
 
+
+        <!-- در فایل profile.html، بعد از بخش Trust Score یا Documents -->
+        {% if my_recent_posts and my_recent_posts|length > 0 %}
+        <div class="card border-0 shadow-sm mt-4">
+            <div class="card-header bg-white border-bottom-0 pt-4 px-4 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold text-dark">
+                    <i class="fas fa-pen-nib text-primary me-2"></i>{{ _('My Recent Posts') }}
+                </h5>
+                <a href="{{ url_for('social.public_profile', username=current_user.username) }}" class="btn btn-sm btn-outline-primary">
+                    {{ _('View Full Profile') }}
+                </a>
+            </div>
+            <div class="card-body px-4 pb-4">
+                {% for post in my_recent_posts %}
+                    <!-- استفاده از کامپوننت مشترک پست -->
+                    {% include 'users/_post_card.html' %}
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-light border mt-4 text-center">
+            <i class="fas fa-inbox text-muted fa-2x mb-2"></i>
+            <p class="text-muted mb-2">{{ _('You have not published any posts yet.') }}</p>
+            <a href="{{ url_for('social.create_post') }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus me-1"></i> {{ _('Create Your First Post') }}
+            </a>
+        </div>
+        {% endif %}
+
+
         <!-- Dashboard Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             
@@ -217,114 +247,7 @@
                 </div>
             </div>
             {% endif %}
-            
-{#            <!-- Orders Card -->#}
-{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
-{#                <div class="flex items-center justify-between mb-4">#}
-{#                    <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">#}
-{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
-{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>#}
-{#                        </svg>#}
-{#                        Orders#}
-{#                    </h3>#}
-{#                    {% if pending_orders > 0 %}#}
-{#                        <span class="px-2 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold">#}
-{#                            {{ pending_orders }} New#}
-{#                        </span>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#                <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">View and manage your trade orders.</p>#}
-{#                <a href="{{ url_for('users.my_orders') }}"#}
-{#                   class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
-{#                    View Orders →#}
-{#                </a>#}
-{#            </div>#}
 
-{#            <!-- Manage Orders Card (Producer Only) -->#}
-{#            {% if current_user.role.value == 'producer' %}#}
-{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
-{#                <div class="flex items-center gap-3 mb-4">#}
-{#                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">#}
-{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
-{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>#}
-{#                        </svg>#}
-{#                    </div>#}
-{#                    <h3 class="font-bold text-gray-900 dark:text-white">Manage Orders</h3>#}
-{#                </div>#}
-{#                <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Process incoming orders from buyers.</p>#}
-{#                <a href="{{ url_for('users.seller_orders') }}" #}
-{#                   class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
-{#                    Manage →#}
-{#                </a>#}
-{#            </div>#}
-{#            {% endif %}#}
-
-{#            <!-- Smart Chat Card -->#}
-{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
-{#                <div class="flex items-center gap-3 mb-4">#}
-{#                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">#}
-{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
-{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>#}
-{#                        </svg>#}
-{#                    </div>#}
-{#                    <h3 class="font-bold text-gray-900 dark:text-white">Smart Chat</h3>#}
-{#                </div>#}
-{#                {% if current_user.is_premium %}#}
-{#                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Connect with verified traders worldwide.</p>#}
-{#                    <a href="{{ url_for('users.chat') }}" #}
-{#                       class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
-{#                        Open Chat →#}
-{#                    </a>#}
-{#                {% else %}#}
-{#                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Premium feature: Chat with verified traders.</p>#}
-{#                    <a href="{{ url_for('users.upgrade_to_premium') }}" #}
-{#                       class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
-{#                        Unlock →#}
-{#                    </a>#}
-{#                {% endif %}#}
-{#            </div>#}
-{##}
-{#            <!-- Support Card -->#}
-{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
-{#                <div class="flex items-center gap-3 mb-4">#}
-{#                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">#}
-{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
-{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>#}
-{#                        </svg>#}
-{#                    </div>#}
-{#                    <h3 class="font-bold text-gray-900 dark:text-white">Support</h3>#}
-{#                </div>#}
-{#                <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Get help from our expert team.</p>#}
-{#                <a href="{{ url_for('users.support') }}" #}
-{#                   class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
-{#                    Contact Support →#}
-{#                </a>#}
-{#            </div>#}
-{##}
-{#            <!-- Port Finder Card (Premium) -->#}
-{#            <div class="bg-white dark:bg-dark-800 rounded-xl p-5 shadow border border-gray-200 dark:border-dark-700 transition-all duration-300 hover:shadow-lg">#}
-{#                <div class="flex items-center gap-3 mb-4">#}
-{#                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">#}
-{#                        <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">#}
-{#                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>#}
-{#                        </svg>#}
-{#                    </div>#}
-{#                    <h3 class="font-bold text-gray-900 dark:text-white">Port Finder</h3>#}
-{#                </div>#}
-{#                {% if current_user.is_premium %}#}
-{#                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Find optimal ports for your shipments.</p>#}
-{#                    <a href="{{ url_for('users.show_map') }}" #}
-{#                       class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
-{#                        Open Map →#}
-{#                    </a>#}
-{#                {% else %}#}
-{#                    <p class="text-gray-600 dark:text-slate-400 text-sm mb-4">Premium: Interactive port & vessel tracking.</p>#}
-{#                    <a href="{{ url_for('users.upgrade_to_premium') }}" #}
-{#                       class="inline-flex items-center gap-2 text-gold hover:text-gold-light font-medium text-sm transition">#}
-{#                        Unlock →#}
-{#                    </a>#}
-{#                {% endif %}#}
-{#            </div>#}
 
             <!-- Upgrade to Premium Card -->
             {% if not current_user.is_premium %}
