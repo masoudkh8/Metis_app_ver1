@@ -1244,6 +1244,8 @@ def notifications():
 
 
 @users_bp.route('/api/unread-notifications')
+# @limiter.exempt  # ✅ این مسیر دیگر هرگز محدودیت زمانی نخواهد داشت
+@limiter.limit("1000 per minute")
 @login_required
 def get_unread_notifications():
     """API endpoint to get unread notification count"""

@@ -115,17 +115,28 @@
 
                         <div class="flex items-stretch gap-0">
                             <!-- Phone Icon + Country Code Select -->
-                           <div class="relative flex-none w-50 h-full sm:w-24">
-                                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 z-10 pointer-events-none">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                    </svg>
-                                </span>
-                                <input type="text" id="countryInput" name="country_code" list="country-list"
-                                       value="+98"
-                                       class="w-full pl-14 pr-10 py-3 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                                       placeholder="+98"
-                                       onchange="updatePhoneFromInput(this.value)">
+{#                           <div class="relative flex-none w-50 h-full sm:w-24">#}
+                            <div class="relative flex-none w-28 sm:w-36 h-full">
+{#                                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 z-10 pointer-events-none">#}
+{#                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">#}
+{#                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>#}
+{#                                    </svg>#}
+{#                                </span>#}
+{#                                <input type="text" id="countryInput" name="country_code" list="country-list"#}
+{#                                       value="+98"#}
+{#                                       class="w-full pl-14 pr-10 py-3 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-200 placeholder-gray-400"#}
+{#                                       placeholder="+98"#}
+{#                                       onchange="updatePhoneFromInput(this.value)">#}
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10 pointer-events-none">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                                            </svg>
+                                        </span>
+                                        <input type="text" id="countryInput" name="country_code" list="country-list"
+                                               value="+98"
+                                               class="w-full pl-9 pr-3 py-3 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-l-xl rounded-r-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-200 placeholder-gray-400 text-center font-medium"
+                                               placeholder="+98"
+                                               onchange="updatePhoneFromInput(this.value)">
 
                                 <!-- The Full Country List (Hidden but searchable) -->
                                 <datalist id="country-list">
@@ -329,8 +340,13 @@
                             </div>
 
                             <!-- Phone Number Input -->
+{#                            <input type="tel" name="phone" id="phone" required pattern="[0-9]{7,15}" inputmode="numeric"#}
+{#                                   class="w-full pl-14 pr-10 py-3 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-200 placeholder-gray-400"#}
+{#                                   placeholder="9123456789"#}
+{#                                   oninput="formatPhoneInput(this); checkAvailability('phone', this.value)">#}
+<!-- Phone Number Input -->
                             <input type="tel" name="phone" id="phone" required pattern="[0-9]{7,15}" inputmode="numeric"
-                                   class="w-full pl-14 pr-10 py-3 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-200 placeholder-gray-400"
+                                   class="flex-1 pl-4 pr-4 py-3 border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-r-xl rounded-l-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-200 placeholder-gray-400"
                                    placeholder="9123456789"
                                    oninput="formatPhoneInput(this); checkAvailability('phone', this.value)">
                         </div>
@@ -927,12 +943,15 @@ async function checkAvailability(field, value) {
             }
 
         } catch (err) {
+            // ✅ نادیده گرفتن خطاهای ناشی از قطع شدن درخواست (هنگام ریدایرکت یا سابمیت فرم)
+            if (err.name === 'AbortError' || (err.name === 'TypeError' && err.message.includes('Failed to fetch'))) {
+                return; // سکوت مطلق، چون صفحه در حال تغییر است
+            }
+
             console.error(`❌ ${field} availability check failed:`, err);
 
             if (err.name === 'SyntaxError' && err.message.includes('JSON')) {
                 showAvailabilityStatus(field, '⚠️ Response error', 'error');
-            } else if (err.name === 'TypeError' && err.message.includes('Failed to fetch')) {
-                showAvailabilityStatus(field, '🔌 Connection error', 'error');
             } else {
                 hideAvailabilityStatus(field);
             }
@@ -1106,8 +1125,12 @@ function updateProgress(step) {
 }
 
 // ===== Form Submission =====
-// ===== Form Submission (FIXED URL Parameters) =====
+// ===== Form Submission (FIXED: Prevent Default & Manual Submit) =====
 $('#registerForm')?.addEventListener('submit', async function(e) {
+    // ✅ حیاتی: جلوگیری از سابمیت خودکار فرم در همین خط اول
+    e.preventDefault();
+
+    const form = this; // ذخیره مرجع فرم برای سابمیت دستی
     const submitBtn = $('#submitBtn');
     const originalContent = submitBtn?.innerHTML || 'Create Account ✓';
 
@@ -1117,30 +1140,27 @@ $('#registerForm')?.addEventListener('submit', async function(e) {
         if (!csrf?.value) {
             console.error('CSRF missing');
             alert('Security error. Please refresh.');
-            e.preventDefault();
             return false;
         }
 
-        // ✅ Fixed: ارسال پارامترها به صورت field=...&value=...
+        // بررسی موجود بودن ایمیل
         const email = $('#email')?.value;
-        const phoneFull = $('#phoneFull')?.value;
-
         if (email) {
             const res = await fetch(`/api/check-availability?field=email&value=${encodeURIComponent(email)}`, {
                 headers: { 'Accept': 'application/json' }
             });
-            // Check Content-Type to prevent JSON error
             const contentType = res.headers.get('content-type');
             if (contentType?.includes('application/json')) {
                 const data = await res.json();
                 if (!data.available) {
                     showMessage('Email already registered.', 'error', 'email');
-                    e.preventDefault();
-                    return false;
+                    return false; // فرم سابمیت نمی‌شود
                 }
             }
         }
 
+        // بررسی موجود بودن شماره تلفن
+        const phoneFull = $('#phoneFull')?.value;
         if (phoneFull) {
             const res = await fetch(`/api/check-availability?field=phone&value=${encodeURIComponent(phoneFull)}`, {
                 headers: { 'Accept': 'application/json' }
@@ -1150,8 +1170,7 @@ $('#registerForm')?.addEventListener('submit', async function(e) {
                 const data = await res.json();
                 if (!data.available) {
                     showMessage('Phone already registered.', 'error', 'phone');
-                    e.preventDefault();
-                    return false;
+                    return false; // فرم سابمیت نمی‌شود
                 }
             }
         }
@@ -1159,7 +1178,6 @@ $('#registerForm')?.addEventListener('submit', async function(e) {
         // Terms check
         const terms = this.querySelector('input[name="agree_terms"]');
         if (terms && !terms.checked) {
-            e.preventDefault();
             terms.scrollIntoView({behavior:'smooth',block:'center'});
             terms.classList.add('animate-pulse','ring-2','ring-red-500/50');
             setTimeout(()=>terms.classList.remove('animate-pulse','ring-2','ring-red-500/50'),1500);
@@ -1181,6 +1199,10 @@ $('#registerForm')?.addEventListener('submit', async function(e) {
             email,
             phone: $('#phoneFull')?.value
         });
+
+        // ✅ سابمیت دستی فرم پس از اتمام موفقیت‌آمیز تمام بررسی‌ها
+        // استفاده از HTMLFormElement.prototype.submit برای جلوگیری از حلقه بی‌نهایت
+        HTMLFormElement.prototype.submit.call(form);
         return true;
 
     } catch(err) {
@@ -1190,13 +1212,11 @@ $('#registerForm')?.addEventListener('submit', async function(e) {
             submitBtn.innerHTML=originalContent;
         }
         alert('Error: '+err.message);
-        e.preventDefault();
         return false;
     } finally {
         console.log('✅ Submit handler done');
     }
 });
-
 // ===== Initialize =====
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Metisma Register initialized');

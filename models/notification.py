@@ -22,7 +22,7 @@ class Notification(db.Model):
     
     message = db.Column(db.String(500), nullable=False)
     title = db.Column(db.String(200), nullable=True)
-    is_read = db.Column(db.Boolean, default=False)
+    is_read = db.Column(db.Boolean, default=False, index=True)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(tehran_tz), index=True)
     
     # Relationships
